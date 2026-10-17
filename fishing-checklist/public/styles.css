@@ -50,7 +50,7 @@ h1 { font-size: clamp(36px, 4.8vw, 54px); line-height: 1.09; letter-spacing: -2.
 .progress-track { height: 6px; border-radius: 8px; background: #d7e2d1; overflow: hidden; }
 .progress-track > div { height: 100%; width: 0; background: var(--green); border-radius: inherit; transition: width .25s ease; }
 .summary-hint { margin: 12px 0 0; font-size: 11px; color: #61735f; line-height: 1.6; }
-.checklist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.checklist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .checklist-card { border: 1px solid var(--line); border-radius: 14px; background: #fffefa; overflow: hidden; box-shadow: 0 3px 5px #283b2903; }
 .card-header { padding: 23px 22px 0; position: relative; }
 .section-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: #edf0e4; color: #637842; margin-bottom: 19px; }

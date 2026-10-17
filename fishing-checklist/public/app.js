@@ -1,19 +1,25 @@
+const generalGroups = [
+  { title: 'Rods & reels', items: [['rods', 'Rods'], ['reels', 'Reels']] },
+  { title: 'General', items: [['water', 'Water'], ['dry-bag', 'Dry bag'], ['rags', 'Rags'], ['ice-box', 'Icebox / bucket']] },
+];
+
+function generalGroupsFor(sectionId) {
+  return generalGroups.map(group => ({
+    ...group,
+    items: group.items.map(([id, label]) => [`${sectionId}-${id}`, label]),
+  }));
+}
+
 const sections = [
   {
-    id: 'general', title: 'General', subtitle: 'The every-trip essentials', tag: 'EVERY TRIP',
-    icon: '<rect x="5" y="8" width="14" height="13" rx="3"/><path d="M9 8V6a3 3 0 0 1 6 0v2M5 13h14M9 13v3m6-3v3"/>',
-    groups: [
-      { title: 'Rods & reels', items: [['rods', 'Rods'], ['reels', 'Reels']] },
-      { title: 'Tackle & essentials', items: [['tacklebox', 'Tacklebox'], ['bag', 'Bag'], ['dry-bag', 'Dry bag'], ['rags', 'Rags'], ['ice-box', 'Icebox / bucket']] },
-    ],
-  },
-  {
-    id: 'boat', title: 'Boat', subtitle: 'For a day on the water', tag: 'ON THE WATER',
+    id: 'boat', title: 'Boat fishing', subtitle: 'For a day on the water', tag: 'ON THE WATER',
     icon: '<path d="m3 13 9-4 9 4-3 6H6l-3-6ZM12 9V3m-4 8V6h8v5M2 21c2-2 3 2 5 0s3 2 5 0 3 2 5 0 3 2 5 0"/>',
     groups: [
+      ...generalGroupsFor('boat'),
       { title: 'Outboard', items: [['outboard', 'Outboard'], ['gas-tank', 'Gas tank'], ['two-stroke-oil', '2-stroke oil']] },
       { title: 'Safety', items: [['vhf-radio', 'VHF radio'], ['lifejackets', 'Lifejackets']] },
       { title: 'Boat', items: [['boat', 'Boat'], ['boat-wheels', 'Wheels'], ['oars', 'Oars'], ['pump', 'Pump'], ['electric-pump', 'Electric pump']] },
+      { title: 'Bag', items: [['softbait', 'Softbait'], ['jigheads', 'Jigheads'], ['trace-line', 'Trace line'], ['line', 'Line']] },
     ],
   },
   {
@@ -21,6 +27,8 @@ const sections = [
     icon: '<path d="m2 20 5-8 6 2 4-8 5 14H2ZM7 12l3 8m3-6 4 6M4 5l3-2 3 2"/>',
     groups: [
       { title: 'Rods & reels', items: [['rock-rod', 'Rock rod'], ['rock-reel', 'Rock reel']] },
+      generalGroupsFor('rocks')[1],
+      { title: 'Bag', items: [['rocks-trace-line', 'Trace line'], ['rocks-line', 'Line'], ['rocks-hooks', 'Hooks'], ['rocks-sinkers', 'Sinkers'], ['rocks-terminal-tackle', 'Terminal tackle (lumo beads, other beads, etc.)']] },
       { title: 'Bait & burley', items: [['bait', 'Bait'], ['burley', 'Burley']] },
       { title: 'Rock setup', items: [['rope', 'Rope'], ['ground-rock-stake', 'Ground / rock stake']] },
     ],
@@ -34,7 +42,17 @@ let storageAvailable = true;
 
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-  if (Array.isArray(saved)) checked = new Set(saved.filter(id => validIds.has(id)));
+  if (Array.isArray(saved)) {
+    // Carry existing General ticks into each independent checklist.
+    const migrated = saved.flatMap(id => {
+      if (generalGroups.some(group => group.items.some(([itemId]) => itemId === id))) {
+        return [`boat-${id}`, `rocks-${id}`];
+      }
+      if (id === 'softbait-and-jigheads') return ['softbait', 'jigheads'];
+      return [id];
+    });
+    checked = new Set(migrated.filter(id => validIds.has(id)));
+  }
 } catch {
   // A damaged saved list should not prevent a fresh checklist from working.
 }

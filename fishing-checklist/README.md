@@ -1,20 +1,22 @@
 # Fishing checklist
 
-A small, mobile-friendly packing checklist with three sections:
+A small, mobile-friendly packing checklist with two sections:
 
-- **General:** rods, reels, tacklebox, bag, dry bag, rags, icebox / bucket.
-- **Boat:** VHF radio, boat, wheels, oars, lifejackets, pump, electric pump, gas tank,
-  2-stroke oil, outboard.
-- **Rock fishing:** rock rod, rock reel, burley, bait, rope, ground / rock stake.
+- **Boat fishing:** rods, reels, water, dry bag, rags, icebox / bucket,
+  VHF radio, boat, wheels, oars, lifejackets, pump, electric pump, gas tank,
+  2-stroke oil, outboard. The Bag group contains softbait, jigheads, trace line,
+  and line.
+- **Rock fishing:** water, dry bag, rags, icebox / bucket,
+  rock rod, rock reel, burley, bait, rope, ground / rock stake. The Bag group
+  contains trace line, line, hooks, sinkers, and terminal tackle (lumo beads,
+  other beads, etc.).
 
-Each category groups gear you'd pack together: rods and reels plus tackle and
-essentials in General; outboard, safety, and boat gear in Boat; rods and reels,
-bait and burley, and rock setup in Rock fishing.
+Everyday essentials appear in both sections, with independent checkboxes for
+boat and rock trips. Existing saved General ticks carry over to both sections.
 
-Tick items to update the section and overall progress. General gear is for every
-trip; use whichever specialist section you need. The overall counter includes all
-23 items across all three sections. Reset checklist opens a confirmation before
-clearing all ticks.
+Tick items to update the section and overall progress. Use whichever section
+you need. The overall counter includes all 35 items across both sections.
+Reset checklist opens a confirmation before clearing all ticks.
 
 Ticking an item plays a soft pop with a brief checkbox bounce and particle burst.
 Finishing a category plays a two-note chime. The header's Sound button mutes or
