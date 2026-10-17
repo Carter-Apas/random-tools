@@ -1,0 +1,15 @@
+export const STORAGE_KEYS = {
+  expenses: "fire_tracker_expenses",
+  portfolio: "fire_tracker_portfolio",
+  annualReturn: "fire_tracker_annual_return",
+  currentSalary: "fire_tracker_current_salary",
+  kiwiSaverRate: "fire_tracker_employer_contribution_rate",
+  studentLoanEnabled: "fire_tracker_student_loan_enabled",
+  savingsMode: "fire_tracker_savings_mode",
+  savingsRate: "fire_tracker_savings_rate",
+  fixedMonthlySpend: "fire_tracker_fixed_monthly_spend",
+  inflationRate: "fire_tracker_inflation_rate",
+  targetMode: "fire_tracker_target_mode",
+  customPortfolioTarget: "fire_tracker_custom_portfolio_target",
+  goalSalary: "fire_tracker_goal_salary",
+};

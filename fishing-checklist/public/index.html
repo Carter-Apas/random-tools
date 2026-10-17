@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#234f42" />
+    <meta name="description" content="Your fishing gear, all accounted for. A simple packing checklist for the boat, the rocks, and every trip in between." />
+    <title>Fishing checklist · Before you cast</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Fishing checklist home">
+          <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 16c5-8 13-8 19-2l5-4v12l-5-4C18 24 10 24 5 16Z"/><path d="M13 11 15 6l6 5M13 21l3 5 5-6"/><circle cx="10" cy="15" r="1" fill="currentColor" stroke="none"/></svg></span>
+          <span>fishing checklist<span class="brand-dot">.</span></span>
+        </a>
+        <div class="topbar-actions">
+          <span class="topbar-note">A little prep. A better day out.</span>
+          <button class="sound-button" id="sound-button" type="button" aria-label="Packing sounds" aria-pressed="true" title="Toggle packing sounds">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Z"/><path class="sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="sound-muted" d="m16 9 6 6m0-6-6 6"/></svg>
+            <span id="sound-label">Sound on</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow"><span></span> BEFORE YOU CAST</p>
+            <h1 id="page-title">Less forgetting.<br />More fishing.</h1>
+            <p class="intro-description">Pack the essentials, tick them off, and get out there.</p>
+          </div>
+          <svg class="coast-illustration" viewBox="0 0 280 160" fill="none" aria-hidden="true">
+            <circle cx="207" cy="42" r="22" fill="#e6b694"/>
+            <path d="m37 43 7-3 7 3m65-20 7-3 7 3" stroke="#8a9e8b" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 125c17 0 17-6 34-6s17 6 34 6 17-6 34-6 17 6 34 6 17-6 34-6 17 6 34 6 17-6 34-6M38 141c17 0 17-6 34-6s17 6 34 6 17-6 34-6 17 6 34 6 17-6 34-6 17 6 34 6" stroke="#b8c6b5" stroke-width="2" stroke-linecap="round"/>
+            <path d="m75 94 21 20h77l19-20H75Z" fill="#234f42"/><path d="M115 94V57m-9 37V76h40v18" stroke="#234f42" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M115 58c17-24 44-30 71-21l12 6v47" stroke="#234f42" stroke-width="2" stroke-linecap="round"/>
+            <path d="M198 90v6c0 6-8 6-8 0" stroke="#234f42" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </section>
+
+        <section class="packing-summary" aria-label="Packing progress">
+          <div class="summary-top">
+            <div class="summary-heading"><span class="status-dot" aria-hidden="true"></span><span id="packing-status">Let's get you packed</span></div>
+            <button class="reset-button" id="reset-button" type="button" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg>Reset checklist</button>
+          </div>
+          <div class="summary-bottom"><p><strong id="total-packed">0</strong><span id="total-count"> / 23 items packed</span></p><span id="total-percent">0%</span></div>
+          <div class="progress-track" id="total-progress" role="progressbar" aria-label="Total items packed" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0"><div id="total-progress-fill"></div></div>
+          <p class="summary-hint">General gear for every trip. Boat or rocks? Tick the section you need.</p>
+        </section>
+
+        <div class="checklist-grid" id="checklist-sections"></div>
+        <p class="screen-reader-only" id="announcements" role="status" aria-live="polite" aria-atomic="true"></p>
+        <noscript><p class="storage-notice">Enable JavaScript to use and save your checklist.</p></noscript>
+        <p class="storage-notice" id="storage-notice" role="status" hidden>Browser storage is unavailable. Your ticks will only last while this page is open.</p>
+        <footer>
+          <span class="save-note" id="save-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 3 3 5-6"/><rect x="4" y="4" width="16" height="16" rx="5"/></svg>Progress saved on this device</span>
+          <span>Pack well. Tight lines.</span>
+        </footer>
+      </main>
+    </div>
+
+    <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-description">
+      <form method="dialog">
+        <span class="dialog-eyebrow">A FRESH START</span>
+        <h2 id="reset-title">Ready for the next trip?</h2>
+        <p id="reset-description">This will untick every item in all three sections.</p>
+        <div class="dialog-actions"><button value="cancel" class="cancel-button" autofocus>Keep packing</button><button value="reset" class="confirm-button">Reset checklist</button></div>
+      </form>
+    </dialog>
+  </body>
+</html>

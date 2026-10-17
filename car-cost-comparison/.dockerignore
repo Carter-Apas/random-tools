@@ -1,0 +1,14 @@
+dist
+node_modules
+.git
+.github
+.agents
+npm-debug.log
+Dockerfile
+README.md
+dist-server
+coverage
+.cache
+.env
+.env.*
+!.env.example
