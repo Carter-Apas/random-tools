@@ -16,6 +16,7 @@ const sections = [
     icon: '<path d="m3 13 9-4 9 4-3 6H6l-3-6ZM12 9V3m-4 8V6h8v5M2 21c2-2 3 2 5 0s3 2 5 0 3 2 5 0 3 2 5 0"/>',
     groups: [
       ...generalGroupsFor('boat'),
+      { title: 'Clothing', items: [['boat-raincoat', 'Raincoat'], ['boat-uv-protection', 'UV protection'], ['boat-shades-glasses', 'Shades / glasses']] },
       { title: 'Outboard', items: [['outboard', 'Outboard'], ['gas-tank', 'Gas tank'], ['two-stroke-oil', '2-stroke oil']] },
       { title: 'Safety', items: [['vhf-radio', 'VHF radio'], ['lifejackets', 'Lifejackets']] },
       { title: 'Boat', items: [['boat', 'Boat'], ['boat-wheels', 'Wheels'], ['oars', 'Oars'], ['pump', 'Pump'], ['electric-pump', 'Electric pump']] },
@@ -28,6 +29,7 @@ const sections = [
     groups: [
       { title: 'Rods & reels', items: [['rock-rod', 'Rock rod'], ['rock-reel', 'Rock reel']] },
       generalGroupsFor('rocks')[1],
+      { title: 'Clothing', items: [['rocks-raincoat', 'Raincoat'], ['rocks-uv-protection', 'UV protection'], ['rocks-shades-glasses', 'Shades / glasses'], ['rocks-suitable-footwear', 'Suitable footwear']] },
       { title: 'Bag', items: [['rocks-trace-line', 'Trace line'], ['rocks-line', 'Line'], ['rocks-hooks', 'Hooks'], ['rocks-sinkers', 'Sinkers'], ['rocks-terminal-tackle', 'Terminal tackle (lumo beads, other beads, etc.)']] },
       { title: 'Bait & burley', items: [['bait', 'Bait'], ['burley', 'Burley']] },
       { title: 'Rock setup', items: [['rope', 'Rope'], ['ground-rock-stake', 'Ground / rock stake']] },
