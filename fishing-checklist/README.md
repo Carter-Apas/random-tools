@@ -5,18 +5,18 @@ A small, mobile-friendly packing checklist with two sections:
 - **Boat fishing:** rods, reels, water, dry bag, rags, icebox / bucket,
   VHF radio, boat, wheels, oars, lifejackets, pump, electric pump, gas tank,
   2-stroke oil, outboard. The Bag group contains softbait, jigheads, trace line,
-  and line. Clothing includes raincoat, UV protection, and shades / glasses.
+  line, knife, and scissors. Clothing includes raincoat, UV protection, and shades / glasses.
 - **Rock fishing:** water, dry bag, rags, icebox / bucket,
   rock rod, rock reel, burley, bait, rope, ground / rock stake. The Bag group
   contains trace line, line, hooks, sinkers, and terminal tackle (lumo beads,
-  other beads, etc.). Clothing includes raincoat, UV protection, shades / glasses,
+  other beads, etc.), knife, and scissors. Clothing includes raincoat, UV protection, shades / glasses,
   and suitable footwear.
 
 Everyday essentials appear in both sections, with independent checkboxes for
 boat and rock trips. Existing saved General ticks carry over to both sections.
 
 Tick items to update the section and overall progress. Use whichever section
-you need. The overall counter includes all 42 items across both sections.
+you need. The overall counter includes all 46 items across both sections.
 Reset checklist opens a confirmation before clearing all ticks.
 
 Ticking an item plays a soft pop with a brief checkbox bounce and particle burst.

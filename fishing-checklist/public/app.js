@@ -20,7 +20,7 @@ const sections = [
       { title: 'Outboard', items: [['outboard', 'Outboard'], ['gas-tank', 'Gas tank'], ['two-stroke-oil', '2-stroke oil']] },
       { title: 'Safety', items: [['vhf-radio', 'VHF radio'], ['lifejackets', 'Lifejackets']] },
       { title: 'Boat', items: [['boat', 'Boat'], ['boat-wheels', 'Wheels'], ['oars', 'Oars'], ['pump', 'Pump'], ['electric-pump', 'Electric pump']] },
-      { title: 'Bag', items: [['softbait', 'Softbait'], ['jigheads', 'Jigheads'], ['trace-line', 'Trace line'], ['line', 'Line']] },
+      { title: 'Bag', items: [['softbait', 'Softbait'], ['jigheads', 'Jigheads'], ['trace-line', 'Trace line'], ['line', 'Line'], ['boat-knife', 'Knife'], ['boat-scissors', 'Scissors']] },
     ],
   },
   {
@@ -30,7 +30,7 @@ const sections = [
       { title: 'Rods & reels', items: [['rock-rod', 'Rock rod'], ['rock-reel', 'Rock reel']] },
       generalGroupsFor('rocks')[1],
       { title: 'Clothing', items: [['rocks-raincoat', 'Raincoat'], ['rocks-uv-protection', 'UV protection'], ['rocks-shades-glasses', 'Shades / glasses'], ['rocks-suitable-footwear', 'Suitable footwear']] },
-      { title: 'Bag', items: [['rocks-trace-line', 'Trace line'], ['rocks-line', 'Line'], ['rocks-hooks', 'Hooks'], ['rocks-sinkers', 'Sinkers'], ['rocks-terminal-tackle', 'Terminal tackle (lumo beads, other beads, etc.)']] },
+      { title: 'Bag', items: [['rocks-trace-line', 'Trace line'], ['rocks-line', 'Line'], ['rocks-hooks', 'Hooks'], ['rocks-sinkers', 'Sinkers'], ['rocks-terminal-tackle', 'Terminal tackle (lumo beads, other beads, etc.)'], ['rocks-knife', 'Knife'], ['rocks-scissors', 'Scissors']] },
       { title: 'Bait & burley', items: [['bait', 'Bait'], ['burley', 'Burley']] },
       { title: 'Rock setup', items: [['rope', 'Rope'], ['ground-rock-stake', 'Ground / rock stake']] },
     ],
