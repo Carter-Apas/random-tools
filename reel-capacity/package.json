@@ -1,0 +1,12 @@
+{
+  "name": "reel-capacity",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.mjs",
+    "start": "node server.mjs",
+    "check": "node --check public/app.js && node --check public/model.js && node --check server.mjs",
+    "test": "node --test test/model.test.js"
+  }
+}

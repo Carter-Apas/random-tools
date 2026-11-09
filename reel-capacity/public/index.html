@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08060e" />
+    <meta
+      name="description"
+      content="Estimate fishing reel capacity for different braid diameters and PE sizes. Convert metres and yards from a known spool capacity."
+    />
+    <title>Reel capacity</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <main>
+      <header class="page-header">
+        <a class="brand" href="/" aria-label="Reel capacity home"
+          ><svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="15" />
+            <circle cx="20" cy="20" r="9" />
+            <circle cx="20" cy="20" r="3" />
+            <path d="M31 9 38 2M2 38l7-7" /></svg
+          ><span>Reel capacity</span></a
+        >
+        <a class="quiet-link" href="#method"
+          >How it works <span aria-hidden="true">↗</span></a
+        >
+      </header>
+
+      <section class="intro">
+        <h1>Know what fits<br />on your reel.</h1>
+        <p>
+          One known capacity. Every braid size.<br />Find your next spool in
+          metres, yards, mm or PE.
+        </p>
+      </section>
+
+      <div class="calculator">
+        <section class="glass inputs" aria-labelledby="known-title">
+          <div class="section-heading">
+            <h2 id="known-title">Your reel’s capacity</h2>
+            <button id="reset" type="button" class="text-button">Reset</button>
+          </div>
+          <p class="section-note">
+            Use the capacity printed on your spool or box.
+          </p>
+          <form id="capacity-form" novalidate>
+            <label for="known-length">Known line length</label>
+            <div class="input-group">
+              <input
+                id="known-length"
+                name="length"
+                type="number"
+                min="0.01"
+                max="1000000"
+                step="any"
+                value="200"
+                inputmode="decimal"
+                required
+                aria-describedby="length-conversion input-error"
+              />
+              <select
+                id="length-unit"
+                name="lengthUnit"
+                aria-label="Known length unit"
+              >
+                <option value="m">metres</option>
+                <option value="yd">yards</option>
+              </select>
+            </div>
+            <p class="field-note" id="length-conversion"></p>
+
+            <label for="known-size" id="known-size-label"
+              >Known line diameter</label
+            >
+            <div class="input-group">
+              <input
+                id="known-size"
+                name="size"
+                type="number"
+                min="0.01"
+                max="5"
+                step="any"
+                value="0.20"
+                inputmode="decimal"
+                required
+                aria-describedby="size-conversion input-error"
+              />
+              <select
+                id="size-unit"
+                name="sizeUnit"
+                aria-label="Known line size unit"
+              >
+                <option value="mm">mm</option>
+                <option value="pe">PE</option>
+              </select>
+            </div>
+            <p class="field-note" id="size-conversion"></p>
+            <p id="input-error" class="error" role="status"></p>
+          </form>
+          <div class="input-footer">
+            <span class="live-dot" aria-hidden="true"></span>Calculates as you
+            type
+          </div>
+        </section>
+
+        <section class="glass result" aria-labelledby="result-title">
+          <div class="section-heading">
+            <h2 id="result-title">Try a different braid</h2>
+            <span class="estimate-tag">Estimated capacity</span>
+          </div>
+          <div class="result-layout">
+            <div class="result-content">
+              <label for="target-size" id="target-size-label"
+                >Target diameter</label
+              >
+              <div class="input-group target-input">
+                <input
+                  id="target-size"
+                  type="number"
+                  min="0.01"
+                  max="5"
+                  step="any"
+                  value="0.16"
+                  inputmode="decimal"
+                  required
+                  aria-describedby="target-conversion target-error"
+                />
+                <select id="target-unit" aria-label="Target line size unit">
+                  <option value="mm">mm</option>
+                  <option value="pe">PE</option>
+                </select>
+              </div>
+              <p class="field-note" id="target-conversion"></p>
+              <div
+                class="capacity-result"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <div class="primary-result">
+                  <span id="result-metres">—</span
+                  ><span class="result-unit">m</span>
+                </div>
+                <p class="secondary-result" id="result-yards">— yards</p>
+              </div>
+              <p id="target-error" class="error" role="status"></p>
+              <p id="capacity-change" class="capacity-change"></p>
+            </div>
+            <div class="spool-scene" aria-hidden="true">
+              <svg class="spool" viewBox="0 0 300 300">
+                <defs>
+                  <linearGradient id="rim" x1="0" x2="1" y1="0" y2="1">
+                    <stop stop-color="#f1c8ff" />
+                    <stop offset=".45" stop-color="#a451fa" />
+                    <stop offset="1" stop-color="#4a205b" />
+                  </linearGradient>
+                  <linearGradient id="body" x1="0" x2="1">
+                    <stop stop-color="#100b1b" />
+                    <stop offset=".5" stop-color="#49215d" />
+                    <stop offset="1" stop-color="#120c22" />
+                  </linearGradient>
+                  <radialGradient id="top">
+                    <stop stop-color="#35184c" />
+                    <stop offset="1" stop-color="#130b20" />
+                  </radialGradient>
+                </defs>
+                <ellipse
+                  class="spool-shadow"
+                  cx="150"
+                  cy="246"
+                  rx="109"
+                  ry="24"
+                />
+                <path
+                  d="M52 105v104c0 23 44 42 98 42s98-19 98-42V105"
+                  fill="url(#body)"
+                  stroke="url(#rim)"
+                />
+                <g
+                  id="spool-lines"
+                  fill="none"
+                  stroke="url(#rim)"
+                  stroke-width="1.2"
+                ></g>
+                <ellipse
+                  cx="150"
+                  cy="102"
+                  rx="113"
+                  ry="46"
+                  fill="url(#top)"
+                  stroke="url(#rim)"
+                  stroke-width="2"
+                />
+                <ellipse
+                  cx="150"
+                  cy="102"
+                  rx="95"
+                  ry="36"
+                  fill="none"
+                  stroke="url(#rim)"
+                  opacity=".6"
+                />
+                <ellipse
+                  cx="150"
+                  cy="102"
+                  rx="63"
+                  ry="24"
+                  fill="none"
+                  stroke="url(#rim)"
+                  opacity=".4"
+                />
+                <ellipse
+                  cx="150"
+                  cy="102"
+                  rx="25"
+                  ry="12"
+                  fill="#08060e"
+                  stroke="url(#rim)"
+                />
+                <path
+                  d="M248 153c31-5 12-49 41-69"
+                  fill="none"
+                  stroke="#e2abff"
+                  stroke-width="1.5"
+                />
+              </svg>
+              <span class="spool-caption"
+                >Same reel. Different possibilities.</span
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="glass comparison" aria-labelledby="comparison-title">
+        <div class="comparison-header">
+          <div>
+            <h2 id="comparison-title">Find your braid size</h2>
+            <p class="section-note" id="table-summary">
+              Estimated lengths for the same spool fill.
+            </p>
+          </div>
+          <div class="table-actions">
+            <div class="segmented" role="group" aria-label="Comparison sizes">
+              <button id="show-pe" type="button" aria-pressed="true">
+                PE sizes</button
+              ><button id="show-mm" type="button" aria-pressed="false">
+                Diameters
+              </button>
+            </div>
+            <button id="export" type="button" class="export-button">
+              Export CSV <span aria-hidden="true">↓</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="table-scroll"
+          tabindex="0"
+          role="region"
+          aria-label="Braid capacity comparison"
+        >
+          <table>
+            <caption class="sr-only">
+              Estimated reel capacity by braid size. Select a size to use it in
+              the custom result.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" id="size-column">PE size</th>
+                <th scope="col" id="equivalent-column">Approx. diameter</th>
+                <th scope="col" class="numeric">Metres</th>
+                <th scope="col" class="numeric">Yards</th>
+                <th scope="col" class="bar-heading">Relative length</th>
+              </tr>
+            </thead>
+            <tbody id="capacity-rows"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span id="row-count"></span
+          ><span>Select a size to explore it above.</span>
+        </div>
+      </section>
+
+      <section id="method" class="method" aria-labelledby="method-title">
+        <h2 id="method-title">The maths behind the spool</h2>
+        <div class="method-columns">
+          <div>
+            <p>
+              A reel holds a fixed volume of line. As diameter increases, the
+              length that fits decreases with the square of that diameter.
+            </p>
+            <p class="formula">
+              New length = known length × (known diameter ÷ new diameter)²
+            </p>
+          </div>
+          <div>
+            <p>
+              PE is a fibre density rating, not an exact diameter. PE inputs use
+              the
+              <a
+                href="https://www.varivas.fishing/japanese-fishing-line-size/"
+                target="_blank"
+                rel="noreferrer"
+                >VARIVAS approximate PE diameter chart</a
+              >
+              (PE 0.1–30). Sizes between entries are estimated by interpolating
+              cross-sectional area.
+            </p>
+            <p>
+              Use the braid’s stated diameter when available. Braid
+              construction, coating, winding tension and backing affect actual
+              capacity. Estimates assume the same fill level and no change in
+              backing.
+            </p>
+            <p>
+              1 yard = 0.9144 metres. Results are rounded to the nearest metre
+              or yard; calculations retain full precision.
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer class="page-footer">
+        <span>Reel capacity</span><span>Plan the spool. Get on the water.</span>
+      </footer>
+      <noscript
+        ><p class="error">
+          Enable JavaScript to calculate reel capacity.
+        </p></noscript
+      >
+    </main>
+  </body>
+</html>
