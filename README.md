@@ -10,6 +10,7 @@ shared npm workspace or root install step.
 | `fishing-checklist` | `ghcr.io/carter-apas/fishing-checklist:latest` | 80 |
 | `reel-capacity` | `ghcr.io/carter-apas/reel-capacity:latest` | 80 |
 | `kiwi-fire-planner` | `ghcr.io/carter-apas/kiwi-fire-planner:latest` | 80 |
+| `mermaid` | `ghcr.io/carter-apas/mermaid:latest` | 80 |
 | `quiz-gen` | `ghcr.io/carter-apas/quiz-gen:latest` | 3001 |
 
 ## Development
@@ -40,6 +41,9 @@ docker run --rm -p 8082:80 fishing-checklist:latest
 
 docker build -t reel-capacity:latest reel-capacity
 docker run --rm -p 8084:80 reel-capacity:latest
+
+docker build -t mermaid:latest mermaid
+docker run --rm -p 8085:80 mermaid:latest
 
 docker build -t quiz-gen:latest quiz-gen
 docker run --rm -p 3001:3001 --env-file quiz-gen/.env quiz-gen:latest
@@ -89,6 +93,10 @@ kubectl -n <namespace> rollout restart deployment/<tool-name>
   storage. No volumes or secrets required. `/healthz` is available for probes.
 - **reel-capacity:** static frontend; calculator inputs stay in browser local
   storage. No volumes or secrets required. `/healthz` is available for probes.
+- **mermaid:** shared editor; run one replica. Tabs live in the container's writable
+  layer and reset when it is replaced. Route `mermaid.coder.kiwi` to port 80 and
+  allow unbuffered Server-Sent Events on `/api/events`. No volumes or secrets
+  required. `/healthz` is available for probes.
 - **quiz-gen:** provide `OPENAI_API_KEY` through a Kubernetes Secret. Start with one
   replica: lobbies are stored in process memory. Route WebSocket traffic through
   your ingress to port 3001. A restart clears active games.
