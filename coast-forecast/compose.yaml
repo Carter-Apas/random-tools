@@ -1,0 +1,14 @@
+services:
+  coast-forecast:
+    build: .
+    ports:
+      - "8086:80"
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    volumes:
+      - type: bind
+        source: ./.data
+        target: /app/.data
+        bind:
+          create_host_path: false
+    restart: unless-stopped

@@ -12,6 +12,7 @@ shared npm workspace or root install step.
 | `kiwi-fire-planner`   | `ghcr.io/carter-apas/kiwi-fire-planner:latest`   | 80             |
 | `mermaid`             | `ghcr.io/carter-apas/mermaid:latest`             | 80             |
 | `quiz-gen`            | `ghcr.io/carter-apas/quiz-gen:latest`            | 3001           |
+| `coast-forecast`      | `ghcr.io/carter-apas/coast-forecast:latest`      | 80             |
 
 ## Development
 
@@ -30,7 +31,7 @@ See each app's README for its configuration and scripts.
 [`design-system/`](design-system/README.md) contains **Mono**, a standalone
 Storybook for the shared interface language. It includes Ayu-inspired Dark,
 Mirage, and Light appearances, reusable React components, framework-independent
-CSS tokens, and interactive examples from these tools. All six apps consume
+CSS tokens, and interactive examples from these tools. All seven apps consume
 versioned local snapshots of this library.
 
 ```sh
@@ -125,6 +126,9 @@ docker run --rm -p 8085:80 mermaid:latest
 
 docker build -t quiz-gen:latest quiz-gen
 docker run --rm -p 3001:3001 --env-file quiz-gen/.env quiz-gen:latest
+
+docker build -t coast-forecast:latest coast-forecast
+docker run --rm -p 8086:80 coast-forecast:latest
 ```
 
 For quiz-gen, copy `quiz-gen/.env.example` to `quiz-gen/.env` and set
@@ -178,6 +182,12 @@ kubectl -n <namespace> rollout restart deployment/<tool-name>
 - **quiz-gen:** provide `OPENAI_API_KEY` through a Kubernetes Secret. Start with one
   replica: lobbies are stored in process memory. Route WebSocket traffic through
   your ingress to port 3001. A restart clears active games.
+- **coast-forecast:** route to port 80; allow outbound HTTPS to Open-Meteo's weather
+  and marine APIs. Hourly forecasts are cached in server memory for one hour.
+  No API key required for personal use. `/admin` is a password-protected curve editor and simulator for surfing / rock /
+  inshore fishing. Use the app’s `compose.yaml` for a host bind mount, or mount
+  `/app/.data` to retain JSON configuration and the password hash across container replacement. Optional startup defaults use
+  `SPOT_CONFIG_FILE`. `/healthz` is available for probes.
 
 ## Imported sources
 

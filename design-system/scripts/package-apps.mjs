@@ -21,6 +21,7 @@ const apps = [
   "kiwi-fire-planner",
   "mermaid",
   "quiz-gen",
+  "coast-forecast",
 ];
 const targets = process.argv.slice(2);
 if (!targets.length) throw new Error("Name the apps to update, or pass --all.");

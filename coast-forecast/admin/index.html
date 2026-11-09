@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1f2430" />
+    <title>Forecast lab · Coast forecast</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/admin.ts"></script>
+  </head>
+  <body>
+    <div class="app-shell lab-shell">
+      <header data-mono-app-header data-title="Forecast lab">
+        <a class="header-link" href="/">View forecast</a
+        ><button id="logout" class="mono-button mono-button--sm" type="button" hidden>
+          Sign out
+        </button>
+      </header>
+      <main>
+        <section id="login-panel" class="lab-login" hidden>
+          <p class="lab-kicker">Your personal forecast model</p>
+          <h1 id="login-title">Sign in to the lab.</h1>
+          <p id="login-description">Use your admin password to edit the scoring curves.</p>
+          <form id="login-form">
+            <label for="admin-password">Password</label
+            ><input
+              class="mono-input"
+              id="admin-password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+            <div id="confirm-password-field" hidden>
+              <label for="confirm-password">Confirm password</label
+              ><input
+                class="mono-input"
+                id="confirm-password"
+                type="password"
+                autocomplete="new-password"
+              />
+            </div>
+            <p id="login-error" role="alert"></p>
+            <button class="mono-button mono-button--primary" type="submit" id="login-button">
+              Sign in
+            </button>
+          </form>
+          <p class="lab-login-note">
+            Your curves and password are stored on this server. JSON exports contain configuration
+            only.
+          </p>
+        </section>
+        <p id="lab-status" class="load-status" role="status" aria-live="polite">
+          Opening the forecast lab…
+        </p>
+        <p id="lab-error" class="warning" role="alert" hidden></p>
+        <div id="lab" hidden>
+          <section class="lab-intro">
+            <div>
+              <h1>Make it your forecast.</h1>
+              <p>Draw the conditions you want. Penalise the ones you don’t.</p>
+            </div>
+            <div class="lab-file-actions">
+              <button class="mono-button" type="button" id="export-config">Export JSON</button
+              ><button class="mono-button" type="button" id="choose-import">Import JSON</button
+              ><input type="file" id="import-file" accept="application/json,.json" hidden />
+            </div>
+          </section>
+          <nav class="spot-switch lab-places" aria-label="Place">
+            <button type="button" class="spot-button" data-spot="piha" aria-pressed="true">
+              <span class="spot-coast">West coast</span><strong>Piha / Māori Bay</strong></button
+            ><button type="button" class="spot-button" data-spot="te-arai" aria-pressed="false">
+              <span class="spot-coast">East coast</span><strong>Te Ārai</strong>
+            </button>
+          </nav>
+          <nav class="lab-activities" aria-label="Activity">
+            <button type="button" data-activity="surfing" aria-pressed="true">Surfing</button
+            ><button type="button" data-activity="rockFishing" aria-pressed="false">
+              Rock fishing</button
+            ><button type="button" data-activity="inshoreFishing" aria-pressed="false">
+              Inshore boat fishing
+            </button>
+          </nav>
+          <div class="lab-workspace">
+            <section class="lab-library" aria-labelledby="variables-title">
+              <div class="lab-section-heading">
+                <div>
+                  <h2 id="variables-title">Points curves</h2>
+                  <p>Open a variable to shape its contribution.</p>
+                </div>
+                <span id="maximum-total"></span>
+              </div>
+              <div id="variable-list" class="variable-list"></div>
+              <details class="lab-calibration">
+                <summary>Place calibration</summary>
+                <div class="admin-fields">
+                  <label for="surf-factor"
+                    >Surf-height multiplier<input
+                      class="mono-input"
+                      id="surf-factor"
+                      type="number"
+                      min="0.1"
+                      max="3"
+                      step="0.05" /></label
+                  ><label for="offshore-from"
+                    >Offshore wind from (°)<input
+                      class="mono-input"
+                      id="offshore-from"
+                      type="number"
+                      min="0"
+                      max="359"
+                      step="1"
+                  /></label>
+                </div>
+                <label class="admin-check"
+                  ><input id="calibrated" type="checkbox" />Calibrated against local
+                  observations</label
+                >
+                <p>
+                  Wind-direction curves use absolute FROM bearings. Changing the offshore bearing
+                  only changes the forecast’s orientation label; edit the direction curve to change
+                  points.
+                </p>
+              </details>
+            </section>
+            <aside class="lab-simulator" aria-labelledby="simulator-title">
+              <div class="lab-section-heading">
+                <div>
+                  <h2 id="simulator-title">Try a day out</h2>
+                  <p>Fake swell and weather. Instant feedback.</p>
+                </div>
+                <span class="lab-preview-tag">Unsaved preview</span>
+              </div>
+              <div id="sim-score" class="sim-score" role="status" aria-live="polite"></div>
+              <div class="sim-presets">
+                <button type="button" class="mono-button mono-button--sm" data-preset="best">
+                  Curve maxima</button
+                ><button type="button" class="mono-button mono-button--sm" data-preset="onshore">
+                  Wrong wind</button
+                ><button type="button" class="mono-button mono-button--sm" data-preset="calm">
+                  Calm fishing</button
+                ><button type="button" class="mono-button mono-button--sm" id="load-forecast">
+                  Load tomorrow
+                </button>
+              </div>
+              <p id="sim-status" class="sim-note" role="status"></p>
+              <div id="sim-inputs" class="sim-inputs"></div>
+              <details class="sim-more">
+                <summary>More weather & secondary swell</summary>
+                <div id="sim-extra" class="sim-inputs"></div>
+              </details>
+              <div id="sim-breakdown" class="sim-breakdown"></div>
+              <p class="sim-note">
+                Inputs are independent for testing. Live forecasts derive surf height from total
+                waves and the place multiplier. Empty inputs test missing data.
+              </p>
+            </aside>
+          </div>
+          <div class="lab-savebar">
+            <span id="save-state">All changes saved</span>
+            <div>
+              <button class="mono-button" type="button" id="reset-profile">Reset activity</button
+              ><button class="mono-button mono-button--primary" type="button" id="save-config">
+                Save configuration
+              </button>
+            </div>
+          </div>
+          <details class="lab-method">
+            <summary>How the point model works</summary>
+            <p>
+              Each enabled curve turns one input into signed points. We add the earned points,
+              divide by the sum of every enabled curve’s maximum, then multiply by 100 and clamp the
+              result to 0–100. A curve with a larger positive maximum has more influence. Negative
+              points cancel positive ones; a large negative penalty can make the whole day a zero.
+            </p>
+            <p>
+              Smooth curves stay inside their control-point values, so the displayed maximum is the
+              true maximum. Linear and step functions are also available. Outside a curve’s
+              control-point range, its endpoint value is held. Direction curves wrap at north.
+              Disabled variables are ignored, including their maxima. An enabled curve with missing
+              input makes the score unavailable.
+            </p>
+            <p>
+              These are personal conditions estimates. Tides, access, local hazards, water quality
+              and species are not modelled. Reset changes only the selected place and activity;
+              import replaces the complete configuration.
+            </p>
+          </details>
+        </div>
+      </main>
+    </div>
+    <dialog
+      id="curve-editor"
+      class="mono-dialog curve-dialog"
+      aria-labelledby="curve-title"
+      aria-describedby="curve-note"
+    >
+      <div class="curve-dialog-head">
+        <div>
+          <p id="curve-context"></p>
+          <h2 id="curve-title">Edit curve</h2>
+        </div>
+        <button
+          class="mono-button mono-button--ghost"
+          type="button"
+          id="close-curve"
+          aria-label="Close curve editor"
+        >
+          ✕
+        </button>
+      </div>
+      <p id="curve-note"></p>
+      <label class="admin-check"
+        ><input id="curve-enabled" type="checkbox" />Include this variable in the score</label
+      >
+      <div class="curve-toolbar">
+        <label
+          >Interpolation<select class="mono-input" id="curve-interpolation">
+            <option value="smooth">Smooth spline</option>
+            <option value="linear">Straight lines</option>
+            <option value="step">Steps</option>
+          </select></label
+        ><label
+          >Edit mode<select class="mono-input" id="curve-mode">
+            <option value="move">Move points</option>
+            <option value="draw">Draw curve</option>
+          </select></label
+        ><button class="mono-button mono-button--sm" id="add-point" type="button">Add point</button
+        ><button class="mono-button mono-button--sm" id="undo-curve" type="button">Undo</button
+        ><button class="mono-button mono-button--sm" id="redo-curve" type="button">Redo</button>
+      </div>
+      <div id="curve-canvas" class="curve-canvas" data-mode="move"></div>
+      <p class="curve-help">
+        Drag points or double-click to add. Arrow keys move a focused point; Shift moves faster.
+        Draw mode replaces the section you draw over.
+      </p>
+      <div class="curve-point-controls">
+        <label>Selected point<select class="mono-input" id="point-index"></select></label
+        ><label>Input value<input class="mono-input" id="point-x" type="number" /></label
+        ><label
+          >Points<input
+            class="mono-input"
+            id="point-y"
+            type="number"
+            min="-10000"
+            max="10000"
+            step="any" /></label
+        ><button class="mono-button mono-button--sm" type="button" id="delete-point">
+          Delete point</button
+        ><label
+          >Y minimum<input class="mono-input" id="curve-y-min" type="number" step="any" /></label
+        ><label
+          >Y maximum<input class="mono-input" id="curve-y-max" type="number" step="any" /></label
+        ><button class="mono-button mono-button--sm" type="button" id="fit-curve">Fit range</button>
+      </div>
+      <div class="curve-preview">
+        <span id="curve-maximum"></span><strong id="curve-result"></strong>
+      </div>
+      <p id="curve-error" role="alert"></p>
+      <div class="curve-dialog-actions">
+        <button class="mono-button" id="cancel-curve" type="button">Cancel</button
+        ><button class="mono-button mono-button--primary" id="apply-curve" type="button">
+          Use this curve
+        </button>
+      </div>
+    </dialog>
+    <dialog id="import-dialog" class="mono-dialog import-dialog" aria-labelledby="import-title">
+      <h2 id="import-title">Import configuration</h2>
+      <p id="import-summary"></p>
+      <p>
+        This replaces both places, every activity curve, and calibration. Unsaved edits will be
+        replaced. Your admin password is kept separately.
+      </p>
+      <p id="import-error" role="alert"></p>
+      <div class="curve-dialog-actions">
+        <button class="mono-button" id="cancel-import" type="button">Cancel</button
+        ><button class="mono-button mono-button--primary" id="apply-import" type="button">
+          Import configuration
+        </button>
+      </div>
+    </dialog>
+    <noscript><p class="noscript">Enable JavaScript to use the forecast lab.</p></noscript>
+  </body>
+</html>

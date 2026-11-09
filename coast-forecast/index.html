@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1f2430" />
+    <meta
+      name="description"
+      content="Tomorrow’s swell, wind and weather for Piha, Māori Bay and Te Ārai. An hourly coastal outlook with a simple JSON API."
+    />
+    <title>Coast forecast · Piha & Te Ārai</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header data-mono-app-header data-title="Coast forecast">
+        <a class="header-link" href="#api">JSON API</a
+        ><a class="header-link" href="/admin">Admin</a>
+      </header>
+      <main>
+        <section class="intro">
+          <div>
+            <h1 id="page-title">Tomorrow, on the coast.</h1>
+            <p>Swell, wind and weather. Two coasts, one outlook.</p>
+          </div>
+          <div class="date-control">
+            <label for="date">Forecast date <span>New Zealand time</span></label
+            ><input class="mono-input" id="date" type="date" required />
+          </div>
+        </section>
+        <nav class="spot-switch" aria-label="Forecast location">
+          <button type="button" class="spot-button" data-spot="piha" aria-pressed="true">
+            <span class="spot-coast">West coast</span><strong>Piha / Māori Bay</strong
+            ><span id="preview-piha" class="spot-preview">Loading forecast…</span
+            ><span class="spot-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="spot-button" data-spot="te-arai" aria-pressed="false">
+            <span class="spot-coast">East coast</span><strong>Te Ārai</strong
+            ><span id="preview-te-arai" class="spot-preview">Loading forecast…</span
+            ><span class="spot-check" aria-hidden="true">✓</span>
+          </button>
+        </nav>
+        <div class="load-status" id="status" role="status" aria-live="polite">
+          Fetching the coastal outlook…
+        </div>
+        <div id="error" class="error-state" role="alert" hidden>
+          <h2>Forecast unavailable</h2>
+          <p id="error-message"></p>
+          <button type="button" class="mono-button" id="retry">Try again</button>
+        </div>
+        <div id="forecast" hidden>
+          <section class="outlook" aria-labelledby="spot-title">
+            <div class="outlook-heading">
+              <div>
+                <p id="forecast-date" class="forecast-date"></p>
+                <h2 id="spot-title"></h2>
+              </div>
+              <span class="score-version">Personal conditions scores</span>
+            </div>
+            <div id="warnings" class="warning" role="status" hidden></div>
+            <div class="day-note" id="day-note"></div>
+            <div class="hour-heading">
+              <h3>At <span id="selected-time">6am</span></h3>
+              <span id="selected-weather"></span>
+            </div>
+            <div class="scores" id="scores"></div>
+            <p class="score-context" id="fishing-score"></p>
+            <div class="metrics" id="metrics"></div>
+            <p class="swell-detail" id="swell-detail"></p>
+          </section>
+          <section class="timeline" aria-label="Explore the day">
+            <div class="timeline-top">
+              <label for="hour">Move through the day</label><span id="daylight"></span>
+            </div>
+            <input
+              id="hour"
+              type="range"
+              min="0"
+              max="23"
+              step="1"
+              value="6"
+              aria-valuetext="6am"
+            />
+            <div class="time-labels" aria-hidden="true">
+              <span>Midnight</span><span>6am</span><span>Noon</span><span>6pm</span
+              ><span>11pm</span>
+            </div>
+          </section>
+          <section class="forecast-board" aria-label="Hourly forecast charts" id="charts"></section>
+          <p class="chart-help">Select a chart or move the time slider to explore an hour.</p>
+          <details class="hourly-details">
+            <summary>All hourly values</summary>
+            <div
+              class="table-scroll"
+              tabindex="0"
+              role="region"
+              aria-label="Scrollable hourly forecast"
+            >
+              <table>
+                <caption id="table-caption">
+                  Hourly forecast
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Swell</th>
+                    <th scope="col">Period</th>
+                    <th scope="col">From</th>
+                    <th scope="col">Total waves</th>
+                    <th scope="col">Surf estimate</th>
+                    <th scope="col">Wind</th>
+                    <th scope="col">Gust</th>
+                    <th scope="col">Wind from</th>
+                    <th scope="col">Water</th>
+                    <th scope="col">Air</th>
+                    <th scope="col">Rain</th>
+                    <th scope="col">Chance</th>
+                    <th scope="col">Surf /100</th>
+                    <th scope="col">Rocks /100</th>
+                    <th scope="col">Boat /100</th>
+                  </tr>
+                </thead>
+                <tbody id="hourly-rows"></tbody>
+              </table>
+            </div>
+          </details>
+          <section class="forecast-notes">
+            <p id="spot-note"></p>
+            <p id="calibration-note"></p>
+            <p>
+              Scores are personal conditions estimates, not catch predictions or safety ratings.
+              Daily comparisons use daylight hours. Tides, access, local hazards and species are not
+              modelled. <a href="/admin">View scoring rules and tuning</a>.
+            </p>
+            <p>
+              Forecasts describe modelled conditions. Check local conditions before surfing, boating
+              or rock fishing.
+            </p>
+          </section>
+          <div class="source-row">
+            <span id="updated"></span
+            ><button class="text-button" type="button" id="refresh">Refresh forecast</button>
+          </div>
+        </div>
+        <section class="api-section" id="api" aria-labelledby="api-title">
+          <div>
+            <h2 id="api-title">The same forecast, as JSON.</h2>
+            <p>Use it in your own dashboards, scripts and fishing tools.</p>
+          </div>
+          <div class="endpoint">
+            <span class="method">GET</span
+            ><a
+              id="endpoint"
+              href="/api/v1/forecast?spot=piha&amp;date=tomorrow"
+              target="_blank"
+              rel="noopener"
+              >/api/v1/forecast?spot=piha&amp;date=tomorrow</a
+            ><button class="mono-button" id="copy-api" type="button">Copy URL</button>
+          </div>
+          <div class="api-links">
+            <a href="/api/v1/forecast" target="_blank" rel="noopener">Both coasts</a
+            ><a href="/api/v1/spots" target="_blank" rel="noopener">Locations & defaults</a
+            ><a href="/api/openapi.json" target="_blank" rel="noopener">OpenAPI schema</a>
+          </div>
+          <details>
+            <summary>Parameters & data notes</summary>
+            <dl class="api-parameters">
+              <dt>spot</dt>
+              <dd><code>piha</code> or <code>te-arai</code>. Leave out for both.</dd>
+              <dt>date</dt>
+              <dd>
+                Defaults to <code>tomorrow</code> in Pacific/Auckland. Also accepts
+                <code>today</code> or YYYY-MM-DD, up to six days ahead.
+              </dd>
+              <dt>surf_factor</dt>
+              <dd>
+                Optional multiplier from 0.1 to 3. Requires a spot. Only changes the surf estimate;
+                the raw swell stays available.
+              </dd>
+              <dt>offshore_from</dt>
+              <dd>Optional offshore wind bearing, 0–359°. Requires a spot.</dd>
+            </dl>
+            <p>
+              Units: metres, seconds, km/h, °C and millimetres. Directions describe where wind and
+              swell come from. Rain is the preceding hour’s accumulation. Missing values are
+              <code>null</code>. Check <code>warnings</code> and <code>stale</code>; combined
+              responses also include per-spot <code>errors</code>. Forecasts are cached for one
+              hour, with explicitly marked fallback data for up to 6 hours.
+            </p>
+          </details>
+        </section>
+        <footer>
+          <span>Made for the next day out.</span
+          ><span
+            >Forecast data:
+            <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> ·
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener"
+              >CC BY 4.0</a
+            ></span
+          >
+        </footer>
+      </main>
+    </div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to view the charts. Forecast JSON is available at
+        <a href="/api/v1/forecast">/api/v1/forecast</a>.
+      </p></noscript
+    >
+  </body>
+</html>

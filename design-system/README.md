@@ -2,7 +2,7 @@
 
 A shared interface language for Random Tools: minimal, clean, technical, and
 inspired by Ayu. This folder is an independent Storybook and a reusable component
-package. All six applications consume versioned snapshots of this package.
+package. All seven applications consume versioned snapshots of this package.
 
 ## Preview
 

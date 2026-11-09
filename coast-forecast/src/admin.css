@@ -1,0 +1,666 @@
+.lab-shell {
+  width: min(1240px, calc(100% - 64px));
+}
+.lab-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 38px 0 30px;
+}
+.lab-intro h1 {
+  margin-bottom: 10px;
+  font-size: clamp(29px, 3.5vw, 42px);
+}
+.lab-intro p,
+.lab-section-heading p {
+  margin: 0;
+  color: var(--mono-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.lab-file-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.lab-file-actions button {
+  font-size: 12px;
+}
+.lab-places .spot-button {
+  padding-block: 16px;
+}
+.lab-places .spot-coast {
+  margin-bottom: 4px;
+}
+.lab-activities {
+  display: flex;
+  gap: 5px;
+  border-bottom: 1px solid var(--mono-border);
+  margin: 25px 0 30px;
+}
+.lab-activities button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  padding: 14px 20px;
+  color: var(--mono-muted);
+  font-size: 13px;
+}
+.lab-activities button[aria-pressed="true"] {
+  color: var(--mono-text);
+  border-color: var(--mono-accent-text);
+}
+.lab-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.lab-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.lab-section-heading h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+#maximum-total {
+  font-size: 11px;
+  color: var(--mono-accent-text);
+  white-space: nowrap;
+}
+.variable-list {
+  display: grid;
+  gap: 9px;
+}
+.variable-card {
+  display: flex;
+  gap: 4px;
+  border: 1px solid var(--mono-border);
+  border-radius: 8px;
+  background: var(--mono-surface);
+  min-width: 0;
+}
+.variable-card:hover {
+  border-color: var(--mono-control-border);
+  background: var(--mono-raised);
+}
+.variable-toggle {
+  display: flex;
+  align-items: center;
+  padding: 0 5px 0 15px;
+}
+.variable-toggle input {
+  accent-color: var(--mono-accent);
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+.variable-open {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  width: 100%;
+  padding: 14px 13px;
+  border: 0;
+  background: none;
+  color: var(--mono-text);
+  text-align: left;
+}
+.variable-copy {
+  flex: 1;
+  min-width: 0;
+}
+.variable-copy strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+.variable-copy small {
+  display: block;
+  color: var(--mono-muted);
+  font-size: 10px;
+  margin-top: 7px;
+  line-height: 1.5;
+}
+.variable-chevron {
+  color: var(--mono-info);
+  font-size: 18px;
+}
+.curve-mini {
+  width: 135px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.variable-card.is-disabled .curve-mini {
+  opacity: 0.4;
+}
+.variable-card.is-disabled .variable-copy strong {
+  color: var(--mono-muted);
+}
+.curve-path {
+  stroke: var(--mono-info);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.curve-negative {
+  stroke: var(--mono-danger);
+}
+.curve-mini .curve-path {
+  stroke-width: 2;
+}
+.curve-zero {
+  stroke: var(--mono-control-border);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+.curve-grid {
+  stroke: var(--mono-border);
+  stroke-width: 1;
+}
+.curve-svg text {
+  font-family: var(--mono-font);
+  font-size: 12px;
+  fill: var(--mono-muted);
+}
+.curve-knot {
+  fill: var(--mono-bg);
+  stroke: var(--mono-info);
+  stroke-width: 2;
+  cursor: grab;
+}
+.curve-knot.is-selected {
+  fill: var(--mono-accent);
+  stroke: var(--mono-accent-text);
+}
+.curve-knot:focus {
+  stroke: var(--mono-focus);
+  stroke-width: 4;
+  outline: none;
+}
+.curve-sim-marker {
+  stroke: var(--mono-accent-text);
+  stroke-width: 1;
+  stroke-dasharray: 5 5;
+}
+.curve-sim-dot {
+  fill: var(--mono-accent);
+  stroke: var(--mono-bg);
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+.lab-simulator {
+  background: var(--mono-raised);
+  border: 1px solid var(--mono-border);
+  border-radius: 10px;
+  padding: 23px;
+  position: sticky;
+  top: 24px;
+}
+.lab-preview-tag {
+  font-size: 10px;
+  color: var(--mono-accent-text);
+  white-space: nowrap;
+}
+.sim-score {
+  background: var(--mono-inset);
+  border-radius: 7px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.sim-score > div {
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+}
+.sim-score strong {
+  font-size: 52px;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+.sim-score span {
+  font-size: 14px;
+  color: var(--mono-muted);
+}
+.sim-score b {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+}
+.sim-score p {
+  color: var(--mono-muted);
+  font-size: 11px;
+  margin: 10px 0 0;
+  line-height: 1.7;
+}
+.sim-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sim-presets button {
+  font-size: 10px;
+}
+.sim-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px 12px;
+  margin-top: 18px;
+}
+.sim-inputs label {
+  font-size: 10px;
+  line-height: 1.5;
+}
+.sim-inputs label > span {
+  color: var(--mono-muted);
+}
+.sim-inputs input {
+  display: block;
+  margin-top: 7px;
+  padding: 7px 9px;
+  font-size: 12px;
+  min-height: 35px;
+}
+.sim-more {
+  margin-top: 15px;
+}
+.sim-more summary {
+  color: var(--mono-info);
+  font-size: 11px;
+}
+.sim-breakdown {
+  margin-top: 22px;
+}
+.sim-breakdown h3 {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.sim-factor {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--mono-border);
+  padding: 10px 0;
+  font-size: 11px;
+  color: var(--mono-text);
+  text-align: left;
+}
+.sim-factor:hover {
+  color: var(--mono-info);
+}
+.sim-factor strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.sim-factor small {
+  font-weight: 400;
+  color: var(--mono-muted);
+}
+.sim-factor.is-negative strong {
+  color: var(--mono-danger);
+}
+.sim-note {
+  color: var(--mono-muted);
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 13px 0 0;
+}
+.lab-calibration {
+  padding: 22px 0;
+}
+.lab-calibration summary {
+  color: var(--mono-info);
+}
+.lab-calibration .admin-fields {
+  margin-top: 16px;
+}
+.lab-calibration p {
+  color: var(--mono-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.lab-savebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 20px;
+  background: var(--mono-inset);
+  border: 1px solid var(--mono-border);
+  border-radius: 8px;
+  margin: 28px 0;
+}
+.lab-savebar > div {
+  display: flex;
+  gap: 8px;
+}
+#save-state {
+  font-size: 12px;
+}
+.lab-savebar button {
+  font-size: 12px;
+}
+.lab-method {
+  padding-bottom: 36px;
+}
+.lab-method p {
+  max-width: 80ch;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--mono-muted);
+}
+.lab-login {
+  max-width: 440px;
+  margin: 75px auto 50px;
+}
+.lab-login h1 {
+  font-size: 35px;
+  letter-spacing: -1.1px;
+  margin-top: 14px;
+}
+.lab-login p {
+  color: var(--mono-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.lab-kicker {
+  color: var(--mono-info) !important;
+  font-size: 12px !important;
+}
+.lab-login label {
+  display: block;
+  margin: 25px 0 8px;
+  font-size: 13px;
+}
+.lab-login button {
+  width: 100%;
+  margin-top: 15px;
+}
+.lab-login-note {
+  font-size: 11px !important;
+  margin-top: 26px;
+}
+#login-error,
+#curve-error,
+#import-error {
+  color: var(--mono-danger);
+  font-size: 12px;
+  line-height: 1.7;
+  min-height: 1em;
+}
+.mono-dialog.curve-dialog {
+  width: min(1000px, calc(100% - 40px));
+  max-width: 1000px;
+  max-height: calc(100dvh - 40px);
+  padding: 27px;
+  overflow: auto;
+}
+.curve-dialog[open] {
+  animation: curve-open 0.2s ease-out both;
+}
+.curve-dialog.is-closing {
+  animation: curve-close 0.16s ease-in both;
+}
+.curve-dialog::backdrop {
+  background: #0009;
+  backdrop-filter: blur(4px);
+  animation: backdrop-open 0.2s ease-out both;
+}
+.curve-dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+.curve-dialog-head h2 {
+  font-size: 27px;
+}
+#curve-context {
+  color: var(--mono-muted);
+  font-size: 11px;
+  margin: 0 0 8px;
+}
+#curve-note {
+  color: var(--mono-muted);
+  font-size: 12px;
+  margin: 14px 0 20px;
+  line-height: 1.8;
+}
+.curve-toolbar {
+  display: flex;
+  align-items: end;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.curve-toolbar label {
+  font-size: 11px;
+}
+.curve-toolbar select {
+  display: block;
+  margin-top: 6px;
+  min-height: 34px;
+  font-size: 12px;
+  padding: 5px 9px;
+}
+.curve-toolbar button {
+  margin-bottom: 1px;
+}
+.curve-canvas {
+  height: 350px;
+  border: 1px solid var(--mono-border);
+  background: var(--mono-inset);
+  border-radius: 7px;
+  touch-action: none;
+  user-select: none;
+}
+.curve-canvas[data-mode="draw"] {
+  cursor: crosshair;
+}
+.curve-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+.curve-help {
+  color: var(--mono-muted);
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 12px 0 18px;
+}
+.curve-point-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto repeat(2, minmax(0, 1fr)) auto;
+  gap: 12px;
+  align-items: end;
+}
+.curve-point-controls label {
+  font-size: 10px;
+}
+.curve-point-controls input,
+.curve-point-controls select {
+  display: block;
+  margin-top: 6px;
+  min-height: 34px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.curve-point-controls button {
+  min-height: 34px;
+  font-size: 10px;
+}
+.curve-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 0;
+  margin-top: 10px;
+  color: var(--mono-muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.curve-preview strong {
+  color: var(--mono-accent-text);
+  font-weight: 500;
+}
+.curve-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+.mono-dialog.import-dialog {
+  max-width: min(530px, calc(100% - 32px));
+  padding: 28px;
+}
+.import-dialog p {
+  color: var(--mono-muted);
+  line-height: 1.9;
+  font-size: 13px;
+}
+@keyframes curve-open {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes curve-close {
+  to {
+    opacity: 0;
+    transform: translateY(9px) scale(0.98);
+  }
+}
+@keyframes backdrop-open {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 1050px) {
+  .lab-workspace {
+    gap: 20px;
+  }
+  .curve-mini {
+    width: 98px;
+  }
+  .lab-simulator {
+    padding: 18px;
+  }
+  .sim-inputs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .curve-point-controls {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .lab-shell {
+    width: calc(100% - 36px);
+  }
+  .lab-intro {
+    display: block;
+    padding-top: 25px;
+  }
+  .lab-file-actions {
+    margin-top: 22px;
+  }
+  .lab-workspace {
+    grid-template-columns: 1fr;
+  }
+  .lab-simulator {
+    position: static;
+  }
+  .lab-activities button {
+    flex: 1;
+    padding: 13px 7px;
+    font-size: 12px;
+  }
+  .curve-mini {
+    width: 140px;
+  }
+  .lab-savebar {
+    align-items: start;
+    flex-direction: column;
+    padding: 16px;
+  }
+  .lab-savebar > div {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .lab-section-heading {
+    gap: 10px;
+  }
+  .lab-login {
+    margin-top: 45px;
+  }
+  .mono-dialog.curve-dialog {
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+    padding: 18px;
+  }
+  .curve-canvas {
+    height: 260px;
+  }
+  .curve-point-controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 420px) {
+  .curve-mini {
+    width: 92px;
+  }
+  .variable-open {
+    gap: 8px;
+    padding-left: 8px;
+  }
+  .variable-copy strong {
+    font-size: 12px;
+  }
+  .variable-copy small {
+    font-size: 9px;
+  }
+  .variable-toggle {
+    padding-left: 10px;
+  }
+  .lab-preview-tag {
+    display: none;
+  }
+  .curve-toolbar {
+    gap: 7px;
+  }
+  .curve-toolbar label {
+    flex: 1;
+  }
+  .curve-point-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .curve-dialog[open],
+  .curve-dialog.is-closing,
+  .curve-dialog::backdrop {
+    animation: none;
+  }
+}
