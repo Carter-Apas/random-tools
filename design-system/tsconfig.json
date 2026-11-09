@@ -18,6 +18,8 @@
     ".storybook/**/*.tsx",
     "vite.config.ts",
     "playwright.config.ts",
-    "tests"
+    "tests",
+    "playwright.apps.config.ts",
+    "integration"
   ]
 }

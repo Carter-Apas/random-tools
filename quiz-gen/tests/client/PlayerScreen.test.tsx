@@ -1,28 +1,29 @@
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
+
 import { PlayerScreen } from "../../src/features/player/PlayerScreen";
 import type { LobbySnapshot } from "../../src/features/shared/types";
 
-function createFakeSocket() {
+const createFakeSocket = () => {
   const listeners = new Map<string, Set<(payload: unknown) => void>>();
 
   return {
     connected: false,
-    connect() {},
-    disconnect() {},
-    on(event: string, handler: (payload: unknown) => void) {
+    connect: () => {},
+    disconnect: () => {},
+    on: (event: string, handler: (payload: unknown) => void) => {
       listeners.set(event, new Set([...(listeners.get(event) ?? []), handler]));
     },
-    off(event: string, handler: (payload: unknown) => void) {
+    off: (event: string, handler: (payload: unknown) => void) => {
       listeners.get(event)?.delete(handler);
     },
     emit: vi.fn(),
-    trigger(event: string, payload: unknown) {
+    trigger: (event: string, payload: unknown) => {
       listeners.get(event)?.forEach((handler) => handler(payload));
     },
   };
-}
+};
 
 const correctRevealSnapshot: LobbySnapshot = {
   role: "player",
@@ -177,9 +178,7 @@ describe("PlayerScreen", () => {
       socket.trigger("lobby:snapshot", leaderboardSnapshot);
     });
 
-    expect(
-      screen.getByRole("heading", { name: /next round in/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /next round in/i })).toBeInTheDocument();
   });
 
   it("shows the updated waiting copy before the host starts", async () => {
@@ -194,8 +193,6 @@ describe("PlayerScreen", () => {
       socket.trigger("lobby:snapshot", readySnapshot);
     });
 
-    expect(
-      screen.getByText(/waiting for the host to start the game/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/waiting for the host to start the game/i)).toBeInTheDocument();
   });
 });

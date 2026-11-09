@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
-import {
-  normalizeRoomCode,
-  roomCodeAlphabet,
-  roomCodeLength,
-} from "../../server/game/roomCode";
+
+import { normalizeRoomCode, roomCodeAlphabet, roomCodeLength } from "../../server/game/roomCode";
 
 describe("roomCode", () => {
   it("normalizes room codes to uppercase and strips whitespace", () => {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#182d46" />
+    <meta name="theme-color" content="#1f2430" />
     <meta
       name="description"
       content="A shared workspace for Mermaid diagrams. Write, render, and think together."
@@ -13,63 +13,24 @@
   </head>
   <body>
     <div id="app">
-      <header class="header">
-        <a class="brand" href="/" aria-label="Mermaid home">
-          <svg
-            class="brand-mark"
-            viewBox="0 0 36 36"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M10 9v18h16V9H10Z M10 18h16"
-              stroke="currentColor"
-              stroke-width="2"
-            />
-            <rect
-              x="5"
-              y="4"
-              width="10"
-              height="10"
-              rx="3"
-              fill="currentColor"
-            />
-            <rect
-              x="21"
-              y="13"
-              width="10"
-              height="10"
-              rx="3"
-              fill="currentColor"
-            />
-            <rect
-              x="5"
-              y="22"
-              width="10"
-              height="10"
-              rx="3"
-              fill="currentColor"
-            />
-          </svg>
-          <span>Mermaid</span
-          ><span class="brand-description">Shared diagrams</span>
-        </a>
+      <header data-mono-app-header data-title="Mermaid workspace">
         <div class="connection" id="connection" role="status">
-          <span class="status-dot"></span
-          ><span id="connection-text">Connecting…</span>
+          <span class="status-dot"></span><span id="connection-text">Connecting…</span>
         </div>
       </header>
       <nav class="tabs-bar" aria-label="Diagrams">
-        <div
-          id="tabs"
-          class="tabs"
-          role="tablist"
-          aria-label="Shared diagrams"
-        ></div>
-        <button id="add-tab" class="add-tab" disabled>
-          <span aria-hidden="true">＋</span> New tab
-          <span id="tab-count" class="tab-count">0/10</span>
-        </button>
+        <div class="tabs-scroll">
+          <div id="tabs" class="mono-tabs tabs" role="tablist" aria-label="Shared diagrams"></div>
+          <button
+            id="add-tab"
+            class="mono-button add-tab"
+            aria-label="New tab"
+            title="Create a shared diagram"
+            disabled
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+        </div>
       </nav>
       <div id="notice" class="notice" role="status" hidden></div>
       <main class="workspace" id="workspace" role="tabpanel" aria-busy="true">
@@ -80,37 +41,22 @@
               <h1>Mermaid source</h1>
             </div>
             <div class="toolbar-actions">
-              <button id="rename" class="quiet-button" disabled>Rename</button
-              ><button
-                id="delete"
-                class="icon-button"
-                title="Delete tab"
-                aria-label="Delete tab"
-                disabled
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 10v7m4-7v7" />
-                </svg>
-              </button>
+              <button id="rename" class="mono-button quiet-button" disabled>Rename</button>
             </div>
           </div>
           <div id="conflict" class="conflict" role="alert" hidden>
-            <p id="conflict-message">
-              Someone else edited this tab. Your draft is still here.
-            </p>
+            <p id="conflict-message">Someone else edited this tab. Your draft is still here.</p>
             <div>
-              <button id="use-shared" class="quiet-button">
-                Use shared version</button
-              ><button id="keep-mine" class="primary-button">
+              <button id="use-shared" class="mono-button quiet-button">Use shared version</button
+              ><button id="keep-mine" class="mono-button mono-button--primary primary-button">
                 Keep my source
               </button>
             </div>
           </div>
           <div class="editor-wrap">
-            <div class="line-numbers" id="line-numbers" aria-hidden="true">
-              1
-            </div>
+            <div class="line-numbers" id="line-numbers" aria-hidden="true">1</div>
             <textarea
+              class="mono-input"
               id="source"
               aria-label="Mermaid source"
               spellcheck="false"
@@ -144,13 +90,9 @@
               <h2>Live preview</h2>
             </div>
             <div class="toolbar-actions">
-              <button
-                id="toggle-source"
-                class="quiet-button"
-                aria-pressed="false"
-              >
+              <button id="toggle-source" class="mono-button quiet-button" aria-pressed="false">
                 Hide source</button
-              ><button id="download" class="quiet-button" disabled>
+              ><button id="download" class="mono-button quiet-button" disabled>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5" />
                 </svg>
@@ -158,7 +100,13 @@
               </button>
             </div>
           </div>
-          <div class="preview-scroll" id="preview-scroll">
+          <div
+            class="preview-scroll"
+            id="preview-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Diagram canvas. Scroll to zoom, drag to pan. Use arrow keys to pan, plus and minus to zoom, zero to fit."
+          >
             <div class="diagram" id="diagram">
               <p class="empty-preview">Your diagram will appear here.</p>
             </div>
@@ -168,7 +116,7 @@
             <div class="zoom-controls">
               <button
                 id="zoom-out"
-                class="icon-button"
+                class="mono-button icon-button"
                 aria-label="Zoom out"
                 title="Zoom out"
               >
@@ -176,12 +124,12 @@
               ><output id="zoom-level" aria-label="Zoom level">Fit</output
               ><button
                 id="zoom-in"
-                class="icon-button"
+                class="mono-button icon-button"
                 aria-label="Zoom in"
                 title="Zoom in"
               >
                 ＋</button
-              ><button id="fit" class="quiet-button">Fit</button>
+              ><button id="fit" class="mono-button quiet-button">Fit</button>
             </div>
           </div>
           <div id="render-error" class="render-error" role="status" hidden>
@@ -196,29 +144,31 @@
         ><span>Tabs last until this container is replaced.</span>
       </footer>
     </div>
-    <dialog id="rename-dialog">
+    <dialog class="mono-dialog" id="rename-dialog">
       <form id="rename-form">
         <h2>Rename tab</h2>
         <label for="tab-name">Tab name</label
-        ><input id="tab-name" maxlength="60" required autocomplete="off" />
+        ><input class="mono-input" id="tab-name" maxlength="60" required autocomplete="off" />
         <p id="rename-error" class="dialog-error" role="alert"></p>
         <div class="dialog-actions">
-          <button type="button" class="quiet-button" id="cancel-rename">
-            Cancel</button
-          ><button class="primary-button" id="save-name">Save name</button>
+          <button type="button" class="mono-button quiet-button" id="cancel-rename">Cancel</button
+          ><button class="mono-button mono-button--primary primary-button" id="save-name">
+            Save name
+          </button>
         </div>
       </form>
     </dialog>
-    <dialog id="delete-dialog">
+    <dialog class="mono-dialog" id="delete-dialog">
       <form id="delete-form">
         <h2>Delete this tab?</h2>
         <p id="delete-description"></p>
         <p>Everyone will lose access to its diagram.</p>
         <p id="delete-error" class="dialog-error" role="alert"></p>
         <div class="dialog-actions">
-          <button type="button" class="quiet-button" id="cancel-delete">
-            Cancel</button
-          ><button class="danger-button" id="confirm-delete">Delete tab</button>
+          <button type="button" class="mono-button quiet-button" id="cancel-delete">Cancel</button
+          ><button class="mono-button mono-button--primary danger-button" id="confirm-delete">
+            Delete tab
+          </button>
         </div>
       </form>
     </dialog>

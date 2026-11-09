@@ -4,14 +4,14 @@ Independent tools for self-hosting on an internal Kubernetes cluster. Each app h
 its own dependencies, lockfile, Dockerfile, and Docker build context. There is no
 shared npm workspace or root install step.
 
-| Folder | Image | Container port |
-| --- | --- | --- |
-| `car-cost-comparison` | `ghcr.io/carter-apas/car-cost-comparison:latest` | 80 |
-| `fishing-checklist` | `ghcr.io/carter-apas/fishing-checklist:latest` | 80 |
-| `reel-capacity` | `ghcr.io/carter-apas/reel-capacity:latest` | 80 |
-| `kiwi-fire-planner` | `ghcr.io/carter-apas/kiwi-fire-planner:latest` | 80 |
-| `mermaid` | `ghcr.io/carter-apas/mermaid:latest` | 80 |
-| `quiz-gen` | `ghcr.io/carter-apas/quiz-gen:latest` | 3001 |
+| Folder                | Image                                            | Container port |
+| --------------------- | ------------------------------------------------ | -------------- |
+| `car-cost-comparison` | `ghcr.io/carter-apas/car-cost-comparison:latest` | 80             |
+| `fishing-checklist`   | `ghcr.io/carter-apas/fishing-checklist:latest`   | 80             |
+| `reel-capacity`       | `ghcr.io/carter-apas/reel-capacity:latest`       | 80             |
+| `kiwi-fire-planner`   | `ghcr.io/carter-apas/kiwi-fire-planner:latest`   | 80             |
+| `mermaid`             | `ghcr.io/carter-apas/mermaid:latest`             | 80             |
+| `quiz-gen`            | `ghcr.io/carter-apas/quiz-gen:latest`            | 3001           |
 
 ## Development
 
@@ -30,8 +30,8 @@ See each app's README for its configuration and scripts.
 [`design-system/`](design-system/README.md) contains **Mono**, a standalone
 Storybook for the shared interface language. It includes Ayu-inspired Dark,
 Mirage, and Light appearances, reusable React components, framework-independent
-CSS tokens, and interactive examples from these tools. Existing apps have not
-been migrated yet.
+CSS tokens, and interactive examples from these tools. All six apps consume
+versioned local snapshots of this library.
 
 ```sh
 cd design-system
@@ -41,6 +41,67 @@ npm run dev
 
 Open [Storybook](http://localhost:6006/?path=/story/start-here-overview--design-language)
 to review the design.
+
+## Independent installs, shared components
+
+Each app keeps its own package manifest, lockfile, ESLint config, Prettier config,
+and Docker context. There is no root npm install and no npm workspace. Run these
+commands from any app folder, or from `design-system/`:
+
+```sh
+npm ci
+npm run lint
+npm run format:check
+npm run build
+npm run test --if-present
+```
+
+Use Node 22.13+ (22.x) or Node 24+. `npm run format` writes formatting changes;
+`npm run lint:fix` applies supported lint fixes. All projects use
+`@cartercree/eslint-config` v4, ESLint 10, and the same small Prettier settings.
+The shared ESLint package centralizes rules; local config files keep app-specific
+file scopes and exceptions independent. V4 disallows JavaScript/TypeScript comments;
+put explanations in READMEs and design/architecture docs. Empty catch blocks remain
+errors: recover with an explicit fallback, report a failed operation, or propagate
+the error to its caller. Existing calculation,
+request-routing, and game-screen entrypoints have explicit per-file complexity
+limits; shared UI and other files retain the preset's default limit of 10.
+
+Mono is shared as a built, versioned npm archive under each app's `vendor/`
+directory, referenced by its local package manifest and integrity-pinned lockfile.
+These archives are intentional source dependencies. Generated assets, node_modules,
+and build outputs stay ignored. This avoids sibling `file:../design-system`
+dependencies, which cannot be installed inside isolated Docker build contexts.
+The archive's browser module supports the plain JavaScript tools without adding
+React; React apps import the actual shared controls and application header.
+
+A library edit validates only the library until an app explicitly adopts a new
+snapshot. To release a change to selected tools:
+
+```sh
+cd design-system
+npm version patch --no-git-tag-version
+npm run package:apps -- car-cost-comparison fishing-checklist
+```
+
+Use `--all` for an intentional full rollout. The packaging command builds the
+library and updates selected archives, manifests, and lockfiles. Review and
+validate those app folders, then commit the library and consumer updates together.
+Each app can upgrade or roll back its snapshot independently.
+
+`.github/workflows/checks.yml` runs lint, formatting, builds, and existing tests
+only for changed project folders on PRs and main pushes. Each matrix job installs
+only its project's dependencies and uses that project's lockfile as its cache key.
+A library-only change does not trigger app image builds; snapshot updates change
+consumer folders and naturally select those apps in the existing Docker workflow.
+The publishing workflow and its folder-based image selection remain unchanged.
+
+The broader browser rollout checks are available from `design-system/` with
+`npm run test:apps` after the apps are installed and the quiz and Mermaid builds
+exist. They exercise appearance persistence, accessibility, mobile layouts,
+checklist storage, reel calculations, planner expenses, vehicle controls,
+quiz form navigation, and live Mermaid rendering/saving. These checks are opt-in
+so normal app CI jobs stay independent.
 
 ## Containers
 
@@ -123,11 +184,11 @@ kubectl -n <namespace> rollout restart deployment/<tool-name>
 These are source snapshots, without nested Git repositories or original release
 workflows. The original repositories and local checkouts remain independent.
 
-| App | Source | Commit |
-| --- | --- | --- |
+| App                 | Source                                             | Commit                                     |
+| ------------------- | -------------------------------------------------- | ------------------------------------------ |
 | car-cost-comparison | https://github.com/Carter-Apas/car-cost-comparison | `d989131d8d4ce592c39ac3c7e73f1c76d6cefc44` |
-| kiwi-fire-planner | https://github.com/Carter-Apas/kiwi-fire-planner | `1d185ff4be170b55ffc3af2001b24fdf87bcf5b7` |
-| quiz-gen | https://github.com/Carter-Apas/quiz-gen | `c27012462d611b606d246baf9f35481e80a38440` |
+| kiwi-fire-planner   | https://github.com/Carter-Apas/kiwi-fire-planner   | `1d185ff4be170b55ffc3af2001b24fdf87bcf5b7` |
+| quiz-gen            | https://github.com/Carter-Apas/quiz-gen            | `c27012462d611b606d246baf9f35481e80a38440` |
 
 Quiz-gen's former workspace was flattened into its app folder, retaining its
 locked dependencies and adapting its Dockerfile to the independent build context.

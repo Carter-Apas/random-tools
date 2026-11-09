@@ -1,0 +1,10 @@
+node_modules/
+vendor/
+dist/
+dist-server/
+coverage/
+.cache/
+.data/
+public/mono.css
+public/mono.js
+package-lock.json

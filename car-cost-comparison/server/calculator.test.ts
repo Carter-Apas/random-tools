@@ -15,11 +15,7 @@ test("EV uses electricity, correct licensing, RUC and amortised transaction fees
 });
 test("changing petrol to diesel automatically changes RUC and rego", () => {
   const petrol = calculate(defaultCars[0], defaultUsage, fallbackMarket);
-  const diesel = calculate(
-    { ...defaultCars[0], type: "diesel" },
-    defaultUsage,
-    fallbackMarket,
-  );
+  const diesel = calculate({ ...defaultCars[0], type: "diesel" }, defaultUsage, fallbackMarket);
   assert.equal(petrol.ruc, 0);
   assert.equal(petrol.rucAdmin, 0);
   assert.equal(diesel.ruc, 1140);
@@ -32,9 +28,7 @@ test("PHEV splits energy by distance, but pays RUC across all distance", () => {
     fallbackMarket,
   );
   assert.ok(
-    Math.abs(
-      result.energy - (((6000 * 5.6) / 100) * 2.7 + ((9000 * 16) / 100) * 0.3),
-    ) < 1e-9,
+    Math.abs(result.energy - (((6000 * 5.6) / 100) * 2.7 + ((9000 * 16) / 100) * 0.3)) < 1e-9,
   );
   assert.equal(result.ruc, 570);
   assert.equal(result.rego, 181.45);
@@ -60,11 +54,7 @@ test("custom rates remain independent of market updates; exclusions remove fees"
   assert.equal(result.rucAdmin, 0);
 });
 test("zero distance never gives fabricated or infinite per-kilometre costs", () => {
-  const result = calculate(
-    defaultCars[1],
-    { annualKm: 0, years: 5 },
-    fallbackMarket,
-  );
+  const result = calculate(defaultCars[1], { annualKm: 0, years: 5 }, fallbackMarket);
   assert.equal(result.perKm, null);
   assert.equal(result.runningPerKm, null);
   assert.equal(result.energy, 0);
@@ -90,25 +80,11 @@ test("checklist costs annualise quotes and intervals using distance and elapsed 
   assert.equal(result.insurance, 1000);
   assert.equal(result.tyres, 600);
   assert.equal(result.wof, 160);
-  assert.equal(
-    result.annual,
-    result.energy + result.rego + result.ruc + result.rucAdmin + 2160,
-  );
-  const lowMileage = calculate(
-    car,
-    { annualKm: 1000, years: 2 },
-    fallbackMarket,
-  );
-  assert.equal(
-    lowMileage.oil,
-    200,
-    "time-based oil interval wins at low mileage",
-  );
+  assert.equal(result.annual, result.energy + result.rego + result.ruc + result.rucAdmin + 2160);
+  const lowMileage = calculate(car, { annualKm: 1000, years: 2 }, fallbackMarket);
+  assert.equal(lowMileage.oil, 200, "time-based oil interval wins at low mileage");
   assert.equal(lowMileage.tyres, 30);
-  assert.equal(
-    calculate({ ...car, type: "electric" }, defaultUsage, fallbackMarket).oil,
-    0,
-  );
+  assert.equal(calculate({ ...car, type: "electric" }, defaultUsage, fallbackMarket).oil, 0);
 });
 test("zero checklist costs are excluded and WoF supports longer intervals", () => {
   const car = {
@@ -153,17 +129,12 @@ test("petrol motorcycles use Gaspy fuel and cc-based rego, with no default RUC",
     [751, 816.45],
   ]) {
     assert.equal(
-      calculate({ ...bike, motorcycleCc: cc }, defaultUsage, fallbackMarket)
-        .rego,
+      calculate({ ...bike, motorcycleCc: cc }, defaultUsage, fallbackMarket).rego,
       expected,
     );
   }
   assert.equal(
-    calculate(
-      { ...bike, motorcycleFuelGrade: "petrol95" },
-      defaultUsage,
-      fallbackMarket,
-    ).energy,
+    calculate({ ...bike, motorcycleFuelGrade: "petrol95" }, defaultUsage, fallbackMarket).energy,
     913.5,
   );
 });

@@ -13,7 +13,9 @@ import {
 
 const meta = { title: "Patterns/Tools" } satisfies Meta;
 export default meta;
+
 type Story = StoryObj;
+
 export const Calculator: Story = {
   render: () => (
     <Page

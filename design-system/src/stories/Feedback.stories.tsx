@@ -16,7 +16,9 @@ import {
 
 const meta = { title: "Components/Feedback" } satisfies Meta;
 export default meta;
+
 type Story = StoryObj;
+
 const EmptyExample = () => {
   const [created, setCreated] = useState(false);
   return (
@@ -45,6 +47,7 @@ const EmptyExample = () => {
     </Panel>
   );
 };
+
 export const Messages: Story = {
   render: () => (
     <Page

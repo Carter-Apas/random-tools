@@ -1,13 +1,8 @@
-import {
-  PE_SIZES,
-  convertLength,
-  peToDiameter,
-  diameterToPe,
-  toDiameter,
-  estimateCapacity,
-} from "./model.js";
+import { initMono } from "/mono.js";
+import { PE_SIZES, convertLength, diameterToPe, toDiameter, estimateCapacity } from "./model.js";
 
 const $ = (id) => document.getElementById(id);
+
 const storageKey = "reel-capacity:v1";
 const defaults = {
   length: "200",
@@ -30,19 +25,21 @@ let view = "pe";
 let rows = [];
 let known = null;
 const integer = new Intl.NumberFormat("en-NZ", { maximumFractionDigits: 0 });
+
 const decimal = (value, digits = 3) =>
-  new Intl.NumberFormat("en-NZ", { maximumFractionDigits: digits }).format(
-    value,
-  );
+  new Intl.NumberFormat("en-NZ", { maximumFractionDigits: digits }).format(value);
+
 const lengthLabel = (value) => (value < 0.5 ? "<1" : integer.format(value));
+
 const editable = (value) => String(Number(value.toFixed(8)));
 
-function restore() {
+const restore = () => {
   let saved;
   try {
     saved = JSON.parse(localStorage.getItem(storageKey));
-  } catch {
-    /* Storage may be unavailable. */
+  } catch (error) {
+    saved = {};
+    console.warn("Saved reel inputs could not be loaded; using defaults:", error);
   }
   if (!saved || typeof saved !== "object") saved = {};
   for (const [key, field] of Object.entries(fields)) {
@@ -56,34 +53,33 @@ function restore() {
     field.value = valid ? value : defaults[key];
   }
   view = saved.view === "mm" ? "mm" : "pe";
-}
+};
 
-function save() {
-  const data = Object.fromEntries(
-    Object.entries(fields).map(([key, field]) => [key, field.value]),
-  );
+const save = () => {
+  const data = Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.value]));
   try {
     localStorage.setItem(storageKey, JSON.stringify({ ...data, view }));
-  } catch {
-    /* The calculator also works without storage. */
+    $("storage-notice").hidden = true;
+  } catch (error) {
+    $("storage-notice").hidden = false;
+    console.warn("Reel inputs could not be saved:", error);
   }
-}
+};
 
-function describeDiameter(diameter) {
+const describeDiameter = (diameter) => {
   const pe = diameterToPe(diameter);
   return pe === null
     ? "Outside the PE reference range; using your diameter."
     : `≈ PE ${decimal(pe)} using the reference chart`;
-}
+};
 
-function setSizeBounds(input, unit, label, prefix) {
+const setSizeBounds = (input, unit, label, prefix) => {
   input.min = unit === "pe" ? "0.1" : "0.01";
   input.max = unit === "pe" ? "30" : "5";
-  label.textContent =
-    unit === "pe" ? `${prefix} PE size` : `${prefix} diameter`;
-}
+  label.textContent = unit === "pe" ? `${prefix} PE size` : `${prefix} diameter`;
+};
 
-function render() {
+const render = () => {
   known = null;
   rows = [];
   $("input-error").textContent = "";
@@ -94,40 +90,23 @@ function render() {
   $("capacity-change").textContent = "";
   $("result-metres").textContent = "—";
   $("result-yards").textContent = "— yards";
-  Object.values(fields).forEach((field) =>
-    field.removeAttribute("aria-invalid"),
-  );
-  setSizeBounds(
-    fields.size,
-    fields.sizeUnit.value,
-    $("known-size-label"),
-    "Known line",
-  );
-  setSizeBounds(
-    fields.target,
-    fields.targetUnit.value,
-    $("target-size-label"),
-    "Target",
-  );
+  Object.values(fields).forEach((field) => field.removeAttribute("aria-invalid"));
+  setSizeBounds(fields.size, fields.sizeUnit.value, $("known-size-label"), "Known line");
+  setSizeBounds(fields.target, fields.targetUnit.value, $("target-size-label"), "Target");
   let knownDiameter;
   let lengthMetres;
   try {
     const length = Number(fields.length.value);
     if (!fields.length.validity.valid || length <= 0) {
       fields.length.setAttribute("aria-invalid", "true");
-      throw new RangeError(
-        "Enter a known length greater than 0, up to 1,000,000.",
-      );
+      throw new RangeError("Enter a known length greater than 0, up to 1,000,000.");
     }
     lengthMetres = convertLength(length, fields.lengthUnit.value, "m");
     const otherUnit = fields.lengthUnit.value === "m" ? "yd" : "m";
     $("length-conversion").textContent =
       `= ${decimal(convertLength(length, fields.lengthUnit.value, otherUnit), 2)} ${otherUnit === "m" ? "metres" : "yards"}`;
     try {
-      knownDiameter = toDiameter(
-        Number(fields.size.value),
-        fields.sizeUnit.value,
-      );
+      knownDiameter = toDiameter(Number(fields.size.value), fields.sizeUnit.value);
     } catch (error) {
       fields.size.setAttribute("aria-invalid", "true");
       throw error;
@@ -143,23 +122,15 @@ function render() {
 
   let targetDiameter;
   try {
-    targetDiameter = toDiameter(
-      Number(fields.target.value),
-      fields.targetUnit.value,
-    );
+    targetDiameter = toDiameter(Number(fields.target.value), fields.targetUnit.value);
     $("target-conversion").textContent =
       fields.targetUnit.value === "pe"
         ? `≈ ${decimal(targetDiameter, 4)} mm (reference diameter)`
         : describeDiameter(targetDiameter);
     if (known) {
-      const capacity = estimateCapacity(
-        lengthMetres,
-        knownDiameter,
-        targetDiameter,
-      );
+      const capacity = estimateCapacity(lengthMetres, knownDiameter, targetDiameter);
       $("result-metres").textContent = lengthLabel(capacity);
-      $("result-yards").textContent =
-        `${lengthLabel(convertLength(capacity, "m", "yd"))} yards`;
+      $("result-yards").textContent = `${lengthLabel(convertLength(capacity, "m", "yd"))} yards`;
       const ratio = capacity / lengthMetres;
       const change = Math.abs((ratio - 1) * 100);
       $("capacity-change").textContent =
@@ -175,8 +146,7 @@ function render() {
   $("show-pe").setAttribute("aria-pressed", String(view === "pe"));
   $("show-mm").setAttribute("aria-pressed", String(view === "mm"));
   $("size-column").textContent = view === "pe" ? "PE size" : "Diameter";
-  $("equivalent-column").textContent =
-    view === "pe" ? "Approx. diameter" : "Approx. PE";
+  $("equivalent-column").textContent = view === "pe" ? "Approx. diameter" : "Approx. PE";
   $("capacity-rows").replaceChildren();
   $("export").disabled = !known;
   $("row-count").textContent = "";
@@ -208,22 +178,15 @@ function render() {
   for (const item of rows) {
     const row = document.createElement("tr");
     const selected =
-      targetDiameter !== undefined &&
-      Math.abs(item.diameter - targetDiameter) < 1e-8;
+      targetDiameter !== undefined && Math.abs(item.diameter - targetDiameter) < 1e-8;
     row.classList.toggle("selected", selected);
     const sizeCell = row.insertCell();
     const button = document.createElement("button");
     button.type = "button";
     button.className = "size-button";
-    button.textContent =
-      view === "pe"
-        ? `PE ${decimal(item.size)}`
-        : `${decimal(item.size, 2)} mm`;
+    button.textContent = view === "pe" ? `PE ${decimal(item.size)}` : `${decimal(item.size, 2)} mm`;
     button.setAttribute("aria-pressed", String(selected));
-    button.setAttribute(
-      "aria-label",
-      `Use ${button.textContent} as target size`,
-    );
+    button.setAttribute("aria-label", `Use ${button.textContent} as target size`);
     button.addEventListener("click", () => {
       fields.targetUnit.value = view === "pe" ? "pe" : "mm";
       previousTargetUnit = fields.targetUnit.value;
@@ -253,22 +216,21 @@ function render() {
     $("capacity-rows").append(row);
   }
   $("row-count").textContent =
-    view === "pe"
-      ? `${rows.length} PE sizes · 0.1–30`
-      : `${rows.length} diameters · 0.06–0.60 mm`;
+    view === "pe" ? `${rows.length} PE sizes · 0.1–30` : `${rows.length} diameters · 0.06–0.60 mm`;
   save();
-}
+};
 
-function switchSizeUnit(input, oldUnit, newUnit) {
+const switchSizeUnit = (input, oldUnit, newUnit) => {
   try {
     const diameter = toDiameter(Number(input.value), oldUnit);
     const converted = newUnit === "pe" ? diameterToPe(diameter) : diameter;
-    // A blank field is safer than inventing a PE size outside the reference chart.
+
     input.value = converted === null ? "" : editable(converted);
-  } catch {
-    /* Keep invalid input visible for correction. */
+  } catch (error) {
+    if (!(error instanceof RangeError)) throw error;
+    input.value = "";
   }
-}
+};
 
 restore();
 let previousLengthUnit = fields.lengthUnit.value;
@@ -278,14 +240,11 @@ let previousTargetUnit = fields.targetUnit.value;
 fields.lengthUnit.addEventListener("change", () => {
   try {
     fields.length.value = editable(
-      convertLength(
-        Number(fields.length.value),
-        previousLengthUnit,
-        fields.lengthUnit.value,
-      ),
+      convertLength(Number(fields.length.value), previousLengthUnit, fields.lengthUnit.value),
     );
-  } catch {
-    /* Validation explains invalid input. */
+  } catch (error) {
+    if (!(error instanceof RangeError)) throw error;
+    fields.length.value = "";
   }
   previousLengthUnit = fields.lengthUnit.value;
   render();
@@ -303,17 +262,14 @@ fields.targetUnit.addEventListener("change", () => {
 [fields.length, fields.size, fields.target].forEach((input) =>
   input.addEventListener("input", render),
 );
-$("capacity-form").addEventListener("submit", (event) =>
-  event.preventDefault(),
-);
+$("capacity-form").addEventListener("submit", (event) => event.preventDefault());
 for (const unit of ["pe", "mm"])
   $("show-" + unit).addEventListener("click", () => {
     view = unit;
     render();
   });
 $("reset").addEventListener("click", () => {
-  for (const [key, field] of Object.entries(fields))
-    field.value = defaults[key];
+  for (const [key, field] of Object.entries(fields)) field.value = defaults[key];
   previousLengthUnit = "m";
   previousSizeUnit = previousTargetUnit = "mm";
   view = "pe";
@@ -338,9 +294,7 @@ $("export").addEventListener("click", () => {
     known.diameter,
   ]);
   const csv = [header, ...lines].map((line) => line.join(",")).join("\r\n");
-  const url = URL.createObjectURL(
-    new Blob([csv], { type: "text/csv;charset=utf-8" }),
-  );
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
   const anchor = document.createElement("a");
   anchor.href = url;
   anchor.download = `reel-capacity-${view}.csv`;
@@ -351,12 +305,11 @@ $("export").addEventListener("click", () => {
 });
 
 for (let y = 119; y <= 214; y += 5) {
-  const ellipse = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path",
-  );
+  const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "path");
   ellipse.setAttribute("d", `M53 ${y}c0 23 43 42 97 42s97-19 97-42`);
   ellipse.setAttribute("opacity", String(0.35 + (y % 4) * 0.1));
   $("spool-lines").append(ellipse);
 }
 render();
+
+initMono();

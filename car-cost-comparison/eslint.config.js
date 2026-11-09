@@ -1,24 +1,28 @@
-import tsx from "@cartercree/eslint-config/configs/tsx.js";
+import preset from "@cartercree/eslint-config/configs/tsx.js";
 
 export default [
-  ...tsx,
   {
-    ignores: ["dist"],
+    ignores: [
+      "node_modules/**",
+      "vendor/**",
+      "dist/**",
+      "dist-server/**",
+      "coverage/**",
+      "public/mono.*",
+      ".data/**",
+      ".cache/**",
+    ],
   },
+  ...preset,
+  { files: ["**/*.config.*", "eslint.config.js"], rules: { "import/no-default-export": "off" } },
   {
-    files: ["vite.config.ts"],
-    rules: {
-      "import/no-default-export": "off",
-    },
-  },
-  {
-    files: ["src/components/ui/**/*.{ts,tsx}"],
-    rules: {
-      "@typescript-eslint/naming-convention": "off",
-      eqeqeq: "off",
-      "func-style": "off",
-      "prefer-arrow/prefer-arrow-functions": "off",
-      "react-refresh/only-export-components": "off",
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: "./tsconfig.eslint.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
 ];

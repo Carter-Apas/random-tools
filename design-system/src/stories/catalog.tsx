@@ -7,11 +7,8 @@ import {
   Command,
   Copy,
   Download,
-  Layers2,
-  Moon,
   Plus,
   SlidersHorizontal,
-  Sun,
   Terminal,
 } from "lucide-react";
 
@@ -19,6 +16,7 @@ import { CostCalculator, ChecklistDemo, PreferencesDemo } from "./demos";
 
 import { Badge, Button, Field, Panel } from "../components/primitives";
 import { themes, useTheme } from "../theme";
+import { ThemeToggle } from "../components/app";
 
 export {
   CostCalculator,
@@ -32,36 +30,16 @@ export {
 export const Mark = () => (
   <span className="catalog-mark" aria-hidden="true">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <path d="M5 19V5l7 8 7-8v14" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path
+        d="M18 6a8 8 0 1 0 0 12"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
     </svg>
   </span>
 );
-export const ThemePicker = () => {
-  const { theme, setTheme } = useTheme();
-  return (
-    <div className="theme-picker" role="group" aria-label="Appearance">
-      {themes.map((item) => (
-        <button
-          key={item}
-          type="button"
-          aria-pressed={theme === item}
-          aria-label={`Ayu ${item}`}
-          title={`Ayu ${item}`}
-          onClick={() => setTheme(item)}
-        >
-          {item === "light" ? (
-            <Sun size={14} />
-          ) : item === "dark" ? (
-            <Moon size={14} />
-          ) : (
-            <Layers2 size={14} />
-          )}
-          <span>{item[0].toUpperCase() + item.slice(1)}</span>
-        </button>
-      ))}
-    </div>
-  );
-};
+
 export const CatalogHeader = () => (
   <header className="catalog-header">
     <a
@@ -73,11 +51,11 @@ export const CatalogHeader = () => (
       <strong>
         mono<span>.</span>
       </strong>
-      <span className="catalog-brand-note">A shared interface for random tools</span>
     </a>
-    <ThemePicker />
+    <ThemeToggle />
   </header>
 );
+
 export const Page = ({
   title,
   description,
@@ -100,6 +78,7 @@ export const Page = ({
     <CatalogFooter />
   </>
 );
+
 export const CatalogFooter = () => (
   <footer className="catalog-footer">
     <span>
@@ -108,6 +87,7 @@ export const CatalogFooter = () => (
     <span className="mono-code">mono / v0.1.0</span>
   </footer>
 );
+
 export const Section = ({
   title,
   description,
@@ -127,6 +107,7 @@ export const Section = ({
     {children}
   </section>
 );
+
 export const Example = ({
   title,
   note,
@@ -296,6 +277,7 @@ export const Overview = () => (
     <CatalogFooter />
   </>
 );
+
 export const ThemeCards = () => {
   const { theme, setTheme } = useTheme();
   return (

@@ -1,9 +1,7 @@
-export function StatCard({ title, value, subtitle }) {
-  return (
-    <article className="stat-panel">
-      <p>{title}</p>
-      <strong>{value}</strong>
-      <span>{subtitle}</span>
-    </article>
-  );
-}
+import { Panel, Stat } from "@random-tools/mono";
+
+export const StatCard = ({ title, value, subtitle }) => (
+  <Panel className="planner-stat">
+    <Stat label={title} value={value} detail={subtitle} />
+  </Panel>
+);

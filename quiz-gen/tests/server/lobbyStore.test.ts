@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { createLobbyStore } from "../../server/game/lobbyStore";
 import type { Quiz } from "../../server/game/types";
 

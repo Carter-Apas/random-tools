@@ -1,14 +1,10 @@
 import { useState } from "react";
 
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max);
-}
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-function formatMonthsAsYears(months) {
-  return `${(months / 12).toFixed(1)}y`;
-}
+const formatMonthsAsYears = (months) => `${(months / 12).toFixed(1)}y`;
 
-function formatTimeFromMonths(months) {
+const formatTimeFromMonths = (months) => {
   const roundedMonths = Math.max(Math.round(months), 0);
   const years = Math.floor(roundedMonths / 12);
   const remainingMonths = roundedMonths % 12;
@@ -22,15 +18,15 @@ function formatTimeFromMonths(months) {
   }
 
   return `${years}y ${remainingMonths}m`;
-}
+};
 
-export function PortfolioGrowthChart({
+export const PortfolioGrowthChart = ({
   growthSeries,
   growthProjectionMonths,
   selectedPortfolioTarget,
   inflationRateApplied,
   formatCurrency,
-}) {
+}) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   if (!growthSeries || growthSeries.length < 2) {
@@ -53,12 +49,10 @@ export function PortfolioGrowthChart({
   );
 
   const x = (month) => padding.left + (month / growthProjectionMonths) * plotWidth;
-  const y = (balance) =>
-    padding.top + (1 - Math.max(balance, 0) / maxBalance) * plotHeight;
 
-  const linePoints = growthSeries
-    .map((point) => `${x(point.month)},${y(point.balance)}`)
-    .join(" ");
+  const y = (balance) => padding.top + (1 - Math.max(balance, 0) / maxBalance) * plotHeight;
+
+  const linePoints = growthSeries.map((point) => `${x(point.month)},${y(point.balance)}`).join(" ");
 
   const areaPath = [
     `M ${x(first.month)} ${padding.top + plotHeight}`,
@@ -71,13 +65,11 @@ export function PortfolioGrowthChart({
   const xTicks = [0, growthProjectionMonths / 2, growthProjectionMonths];
   const yTicks = [0, maxBalance * 0.5, maxBalance];
 
-  const hoveredPoint =
-    hoveredIndex === null ? null : growthSeries[hoveredIndex] ?? null;
+  const hoveredPoint = hoveredIndex === null ? null : (growthSeries[hoveredIndex] ?? null);
   const hoveredTodayValue =
     hoveredPoint === null
       ? null
-      : hoveredPoint.balance /
-        Math.pow(1 + inflationRateApplied / 100, hoveredPoint.month / 12);
+      : hoveredPoint.balance / Math.pow(1 + inflationRateApplied / 100, hoveredPoint.month / 12);
   const hoverX = hoveredPoint ? x(hoveredPoint.month) : null;
   const hoverY = hoveredPoint ? y(hoveredPoint.balance) : null;
 
@@ -86,11 +78,7 @@ export function PortfolioGrowthChart({
   const tooltipX =
     hoverX === null
       ? 0
-      : clamp(
-          hoverX + 12,
-          padding.left + 4,
-          padding.left + plotWidth - tooltipWidth - 4,
-        );
+      : clamp(hoverX + 12, padding.left + 4, padding.left + plotWidth - tooltipWidth - 4);
   const tooltipY =
     hoverY === null
       ? 0
@@ -100,11 +88,10 @@ export function PortfolioGrowthChart({
           padding.top + plotHeight - tooltipHeight - 4,
         );
 
-  function updateHover(clientX, rect) {
+  const updateHover = (clientX, rect) => {
     const rawX = ((clientX - rect.left) / rect.width) * width;
     const clampedX = clamp(rawX, padding.left, padding.left + plotWidth);
-    const monthAtPointer =
-      ((clampedX - padding.left) / plotWidth) * growthProjectionMonths;
+    const monthAtPointer = ((clampedX - padding.left) / plotWidth) * growthProjectionMonths;
 
     let nearestIndex = 0;
     let nearestDistance = Number.POSITIVE_INFINITY;
@@ -118,34 +105,30 @@ export function PortfolioGrowthChart({
     }
 
     setHoveredIndex(nearestIndex);
-  }
+  };
 
-  function handleMouseMove(event) {
+  const handleMouseMove = (event) => {
     updateHover(event.clientX, event.currentTarget.getBoundingClientRect());
-  }
+  };
 
-  function handleTouchMove(event) {
+  const handleTouchMove = (event) => {
     if (!event.touches[0]) {
       return;
     }
 
     updateHover(event.touches[0].clientX, event.currentTarget.getBoundingClientRect());
-  }
+  };
 
   return (
-    <div className="rounded-2xl border border-slate-200/15 bg-slate-900/45 p-4">
+    <div className="mono-rounded border mono-border mono-bg-inset p-4">
       <div className="mb-2 flex flex-wrap items-end justify-between gap-2">
         <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-slate-300/80">
-            Portfolio Growth Projection
-          </p>
-          <p className="text-sm text-slate-300/85">
+          <p className="text-xs mono-muted">Portfolio Growth Projection</p>
+          <p className="text-sm mono-muted">
             From {formatCurrency(first.balance)} to {formatCurrency(finalBalance)}
           </p>
         </div>
-        <p className="text-xs text-slate-300/85">
-          Horizon: {formatMonthsAsYears(growthProjectionMonths)}
-        </p>
+        <p className="text-xs mono-muted">Horizon: {formatMonthsAsYears(growthProjectionMonths)}</p>
       </div>
 
       <svg
@@ -161,8 +144,8 @@ export function PortfolioGrowthChart({
       >
         <defs>
           <linearGradient id="growthAreaGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(74, 222, 128, 0.46)" />
-            <stop offset="100%" stopColor="rgba(74, 222, 128, 0.02)" />
+            <stop offset="0%" stopColor="var(--mono-accent)" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="var(--mono-accent)" stopOpacity="0.01" />
           </linearGradient>
         </defs>
 
@@ -173,14 +156,14 @@ export function PortfolioGrowthChart({
               y1={y(tick)}
               x2={padding.left + plotWidth}
               y2={y(tick)}
-              stroke="rgba(226, 232, 240, 0.14)"
+              stroke="var(--mono-border)"
               strokeWidth="1"
             />
             <text
               x={padding.left - 8}
               y={y(tick) + 4}
               textAnchor="end"
-              fill="rgba(203, 213, 225, 0.9)"
+              fill="var(--mono-muted)"
               fontSize="11"
             >
               {formatCurrency(tick)}
@@ -195,14 +178,14 @@ export function PortfolioGrowthChart({
               y1={padding.top}
               x2={x(tick)}
               y2={padding.top + plotHeight}
-              stroke="rgba(226, 232, 240, 0.08)"
+              stroke="var(--mono-border)"
               strokeWidth="1"
             />
             <text
               x={x(tick)}
               y={padding.top + plotHeight + 20}
               textAnchor="middle"
-              fill="rgba(203, 213, 225, 0.9)"
+              fill="var(--mono-muted)"
               fontSize="11"
             >
               {tick === 0 ? "Now" : formatMonthsAsYears(tick)}
@@ -215,7 +198,7 @@ export function PortfolioGrowthChart({
           y1={padding.top}
           x2={padding.left}
           y2={padding.top + plotHeight}
-          stroke="rgba(226, 232, 240, 0.34)"
+          stroke="var(--mono-border)"
           strokeWidth="1.2"
         />
         <line
@@ -223,14 +206,14 @@ export function PortfolioGrowthChart({
           y1={padding.top + plotHeight}
           x2={padding.left + plotWidth}
           y2={padding.top + plotHeight}
-          stroke="rgba(226, 232, 240, 0.34)"
+          stroke="var(--mono-border)"
           strokeWidth="1.2"
         />
 
         <path d={areaPath} fill="url(#growthAreaGradient)" />
         <polyline
           fill="none"
-          stroke="rgba(52, 211, 153, 0.95)"
+          stroke="var(--mono-accent-text)"
           strokeWidth="3"
           points={linePoints}
           strokeLinejoin="round"
@@ -242,7 +225,7 @@ export function PortfolioGrowthChart({
           y1={targetLineY}
           x2={padding.left + plotWidth}
           y2={targetLineY}
-          stroke="rgba(251, 191, 36, 0.85)"
+          stroke="var(--mono-border)"
           strokeWidth="1.5"
           strokeDasharray="6 6"
         />
@@ -250,7 +233,7 @@ export function PortfolioGrowthChart({
           x={padding.left + plotWidth - 6}
           y={Math.max(targetLineY - 6, padding.top + 12)}
           textAnchor="end"
-          fill="rgba(251, 191, 36, 0.95)"
+          fill="var(--mono-muted)"
           fontSize="12"
         >
           Target {formatCurrency(selectedPortfolioTarget)}
@@ -271,7 +254,7 @@ export function PortfolioGrowthChart({
               y1={padding.top}
               x2={hoverX}
               y2={padding.top + plotHeight}
-              stroke="rgba(148, 163, 184, 0.5)"
+              stroke="var(--mono-border)"
               strokeDasharray="4 4"
               strokeWidth="1"
             />
@@ -280,7 +263,7 @@ export function PortfolioGrowthChart({
               y1={hoverY}
               x2={padding.left + plotWidth}
               y2={hoverY}
-              stroke="rgba(148, 163, 184, 0.38)"
+              stroke="var(--mono-border)"
               strokeDasharray="4 4"
               strokeWidth="1"
             />
@@ -288,8 +271,8 @@ export function PortfolioGrowthChart({
               cx={hoverX}
               cy={hoverY}
               r="5"
-              fill="rgba(16, 185, 129, 1)"
-              stroke="rgba(240, 253, 250, 0.9)"
+              fill="var(--mono-muted)"
+              stroke="var(--mono-border)"
               strokeWidth="1.5"
             />
 
@@ -300,14 +283,14 @@ export function PortfolioGrowthChart({
                 width={tooltipWidth}
                 height={tooltipHeight}
                 rx="10"
-                fill="rgba(15, 23, 42, 0.92)"
-                stroke="rgba(148, 163, 184, 0.48)"
+                fill="var(--mono-muted)"
+                stroke="var(--mono-border)"
                 strokeWidth="1"
               />
               <text
                 x={tooltipX + 12}
                 y={tooltipY + 30}
-                fill="rgba(240, 253, 250, 0.96)"
+                fill="var(--mono-muted)"
                 fontSize="18"
                 fontWeight="700"
               >
@@ -316,7 +299,7 @@ export function PortfolioGrowthChart({
               <text
                 x={tooltipX + 12}
                 y={tooltipY + 58}
-                fill="rgba(226, 232, 240, 0.96)"
+                fill="var(--mono-muted)"
                 fontSize="16"
                 fontWeight="600"
               >
@@ -325,7 +308,7 @@ export function PortfolioGrowthChart({
               <text
                 x={tooltipX + 12}
                 y={tooltipY + 86}
-                fill="rgba(226, 232, 240, 0.96)"
+                fill="var(--mono-muted)"
                 fontSize="16"
                 fontWeight="600"
               >
@@ -338,7 +321,7 @@ export function PortfolioGrowthChart({
             x={padding.left + plotWidth - 4}
             y={padding.top + 14}
             textAnchor="end"
-            fill="rgba(203, 213, 225, 0.86)"
+            fill="var(--mono-muted)"
             fontSize="11"
           >
             Hover chart for details
@@ -347,4 +330,4 @@ export function PortfolioGrowthChart({
       </svg>
     </div>
   );
-}
+};

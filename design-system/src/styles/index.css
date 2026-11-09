@@ -2,6 +2,7 @@
 @import "@fontsource-variable/geist-mono";
 @import "./tokens.css";
 @import "./components.css";
+@import "./app.css";
 
 body {
   margin: 0;

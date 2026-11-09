@@ -121,10 +121,7 @@ test("electricity handles MBIE summary offsets, repeated Retail columns and blan
   sheet.getCell("J14").value = 0.002524;
   sheet.getCell("N14").value = 0.106116;
   sheet.getCell("A9").value = { formula: "IFERROR(A1,0)", result: undefined };
-  const result = await parseElectricity(
-    Buffer.from(await book.xlsx.writeBuffer()),
-    "2026-08-15",
-  );
+  const result = await parseElectricity(Buffer.from(await book.xlsx.writeBuffer()), "2026-08-15");
   assert.ok(Math.abs(result.value - 0.421476585176786) < 1e-9);
 });
 
@@ -149,8 +146,8 @@ test("NZTA current common vehicle schedule maps combined diesel/electric fees", 
 test("rego parser selects the active dated schedule and rejects incomplete passenger data", () => {
   const schedule = (date: string, petrol: number, other: number) =>
     `<h2>Common vehicle types and use (if your licence starts AFTER ${date}):</h2><div>Private passenger vehicle – petrol 12 months: $${petrol} Private passenger vehicle – diesel or electric 12 months: $${other}</div>`;
-  const html =
-    schedule("1 July 2026", 181.45, 248.83) + schedule("1 July 2027", 190, 260);
+
+  const html = schedule("1 July 2026", 181.45, 248.83) + schedule("1 July 2027", 190, 260);
   assert.equal(parseRego(html, new Date("2026-10-15")).petrol, 181.45);
   assert.equal(parseRego(html, new Date("2027-07-01")).petrol, 190);
   assert.throws(() =>

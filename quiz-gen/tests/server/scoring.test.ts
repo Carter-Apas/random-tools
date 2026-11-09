@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { calculateScore } from "../../server/game/scoring";
 
 describe("calculateScore", () => {

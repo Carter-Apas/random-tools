@@ -7,7 +7,9 @@ import { Alert, Button, Dialog, Field } from "../components/primitives";
 
 const meta = { title: "Components/Dialog" } satisfies Meta;
 export default meta;
+
 type Story = StoryObj;
+
 const DialogExample = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("Daily commute");
@@ -58,6 +60,7 @@ const DialogExample = () => {
     </div>
   );
 };
+
 export const SaveComparison: Story = {
   render: () => (
     <Page

@@ -1,7 +1,16 @@
+FROM node:24-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY vendor ./vendor
+RUN npm ci
+COPY public ./public
+COPY scripts ./scripts
+RUN npm run build
+
 FROM nginx:stable-alpine
 
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY public/ /usr/share/nginx/html/
+COPY --from=build /app/public/ /usr/share/nginx/html/
 
 EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \

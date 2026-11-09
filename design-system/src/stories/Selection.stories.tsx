@@ -27,7 +27,9 @@ const meta = {
   ],
 } satisfies Meta<typeof Checkbox>;
 export default meta;
+
 type Story = StoryObj<typeof meta>;
+
 export const Playground: Story = {};
 export const Animated: Story = {
   args: { animated: true, description: "Check to play the optional completion animation." },

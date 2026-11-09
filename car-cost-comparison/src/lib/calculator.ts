@@ -10,6 +10,7 @@ export type Maintenance = {
   wofCost: number;
   wofMonths: number;
 };
+
 export type Car = {
   type: FuelType;
   purchase: number;
@@ -33,7 +34,9 @@ export type Car = {
   rucBlock: number;
   rucMethod: "online" | "agent";
 };
+
 export type Usage = { annualKm: number; years: number };
+
 export const defaultUsage: Usage = { annualKm: 15000, years: 5 };
 export const defaultCars: [Car, Car] = [
   {
@@ -109,36 +112,38 @@ export const fuelLabels: Record<FuelType, string> = {
   phev: "Plug-in petrol hybrid",
   motorcycle: "Motorcycle (petrol)",
 };
+
 const nonNegative = (n: number) => (Number.isFinite(n) ? Math.max(0, n) : 0);
+
 export const priceKey = (car: Car) => {
   if (car.type === "motorcycle") return car.motorcycleFuelGrade;
   return car.type === "phev" ? car.phevFuelGrade : car.type;
 };
+
 export const motorcycleRegoBand = (cc: number): keyof MotorcycleRego => {
   if (cc <= 60) return "upTo60";
   if (cc <= 250) return "from61To250";
   if (cc <= 750) return "from251To750";
   return "over750";
 };
+
 export const officialRegoRate = (car: Car, market: MarketData) => {
-  if (car.type === "motorcycle")
-    return market.motorcycleRego[motorcycleRegoBand(car.motorcycleCc)];
+  if (car.type === "motorcycle") return market.motorcycleRego[motorcycleRegoBand(car.motorcycleCc)];
   return market.rego[
-    car.type === "electric"
-      ? "electric"
-      : car.type === "diesel"
-        ? "diesel"
-        : "petrol"
+    car.type === "electric" ? "electric" : car.type === "diesel" ? "diesel" : "petrol"
   ];
 };
+
 export const energyPrice = (car: Car, market: MarketData) =>
   car.useAverage ? market.prices[priceKey(car)].value : nonNegative(car.price);
+
 export const regoRate = (car: Car, market: MarketData) =>
   car.regoMode === "excluded"
     ? 0
     : car.regoMode === "custom"
       ? nonNegative(car.customRego)
       : officialRegoRate(car, market);
+
 export const rucRate = (car: Car, market: MarketData) =>
   car.rucMode === "excluded"
     ? 0
@@ -149,6 +154,7 @@ export const rucRate = (car: Car, market: MarketData) =>
         : car.type === "diesel" || car.type === "electric"
           ? market.ruc.light
           : 0;
+
 export const maintenanceCosts = (car: Car, annualKm: number) => {
   const km = nonNegative(annualKm);
   const m = car.maintenance;
@@ -161,12 +167,11 @@ export const maintenanceCosts = (car: Car, annualKm: number) => {
         );
   const oil = nonNegative(m.oilChangeCost) * oilChanges;
   const insurance = nonNegative(m.insuranceAnnual);
-  const tyres =
-    (nonNegative(m.tyreSetCost) * km) / Math.max(1, nonNegative(m.tyreLifeKm));
-  const wof =
-    (nonNegative(m.wofCost) * 12) / Math.max(1, nonNegative(m.wofMonths));
+  const tyres = (nonNegative(m.tyreSetCost) * km) / Math.max(1, nonNegative(m.tyreLifeKm));
+  const wof = (nonNegative(m.wofCost) * 12) / Math.max(1, nonNegative(m.wofMonths));
   return { oil, insurance, tyres, wof, total: oil + insurance + tyres + wof };
 };
+
 const energyCost = (car: Car, km: number, market: MarketData) => {
   const electricShare =
     car.type === "electric"
@@ -177,12 +182,10 @@ const energyCost = (car: Car, km: number, market: MarketData) => {
   const electricityPrice = car.useAverage
     ? market.prices.electric.value
     : nonNegative(car.electricityPrice);
-  const chargedFuel =
-    car.type === "phev" ? nonNegative(car.electricFuelEfficiency) : 0;
+  const chargedFuel = car.type === "phev" ? nonNegative(car.electricFuelEfficiency) : 0;
   const fuelCost =
     (km / 100) *
-    ((1 - electricShare) * nonNegative(car.efficiency) +
-      electricShare * chargedFuel) *
+    ((1 - electricShare) * nonNegative(car.efficiency) + electricShare * chargedFuel) *
     energyPrice(car, market);
   const chargingCost =
     ((km * electricShare * nonNegative(car.electricEfficiency)) / 100) *
@@ -195,11 +198,10 @@ export const calculate = (car: Car, usage: Usage, market: MarketData) => {
   const years = nonNegative(usage.years);
   const energy = energyCost(car, km, market);
   const ruc = (km / 1000) * rucRate(car, market);
-  // Amortised admin cost; distance licences carry forward across years.
+
   const rucAdmin =
     ruc > 0 && car.includeRucAdmin
-      ? (km / Math.max(1000, nonNegative(car.rucBlock))) *
-        market.ruc[car.rucMethod]
+      ? (km / Math.max(1000, nonNegative(car.rucBlock))) * market.ruc[car.rucMethod]
       : 0;
   const rego = regoRate(car, market);
   const maintenance = maintenanceCosts(car, km);

@@ -50,10 +50,7 @@ test("fuel uses only Gaspy, discards legacy MBIE cache, and retains Gaspy data o
   const requests: string[] = [];
   globalThis.fetch = async (url) => {
     requests.push(String(url));
-    if (
-      electricityReport !== null &&
-      String(url) === candidates[electricityReport].url
-    )
+    if (electricityReport !== null && String(url) === candidates[electricityReport].url)
       return new Response(new Uint8Array(buffers[electricityReport]));
     if (feesAvailable && String(url) === sourceUrls.rego)
       return new Response(
@@ -64,9 +61,7 @@ test("fuel uses only Gaspy, discards legacy MBIE cache, and retains Gaspy data o
         "<table><tr><td>Online NZTA app</td><td>$14</td></tr><tr><td>Counter sales at agents</td><td>$15</td></tr><tr><td>1</td><td>Up to 3500kg</td><td>86</td></tr><tr><td>12</td><td>1001 - 3500kg</td><td>48</td></tr></table>",
       );
     if ([sourceUrls.rego, sourceUrls.ruc].includes(String(url)))
-      return new Response(
-        '<html><script src="/_Incapsula_Resource"></script></html>',
-      );
+      return new Response('<html><script src="/_Incapsula_Resource"></script></html>');
     if (String(url) !== sourceUrls.gaspyData || gaspyUnavailable)
       return new Response("blocked", { status: 503 });
     return Response.json({
@@ -87,37 +82,21 @@ test("fuel uses only Gaspy, discards legacy MBIE cache, and retains Gaspy data o
     assert.equal(initial.feesCheckedAt.rego, null);
     assert.equal(initial.rego.petrol, 181.45);
     assert.equal(initial.ruc.light, 76);
-    assert.ok(
-      initial.errors.some((error) =>
-        /Rego fees blocked automated access/.test(error),
-      ),
-    );
-    assert.ok(
-      initial.errors.some((error) =>
-        /RUC fees blocked automated access/.test(error),
-      ),
-    );
+    assert.ok(initial.errors.some((error) => /Rego fees blocked automated access/.test(error)));
+    assert.ok(initial.errors.some((error) => /RUC fees blocked automated access/.test(error)));
     assert.equal(initial.prices.petrol91.source, sourceUrls.gaspy);
-    assert.equal(
-      initial.prices.petrol91.value,
-      fallbackMarket.prices.petrol91.value,
-    );
+    assert.equal(initial.prices.petrol91.value, fallbackMarket.prices.petrol91.value);
     assert.equal(requests.length, 8);
     gaspyUnavailable = false;
     Date.now = () => originalNow() + 61000;
-    const [first, duplicate] = await Promise.all([
-      getMarket(true),
-      getMarket(true),
-    ]);
+    const [first, duplicate] = await Promise.all([getMarket(true), getMarket(true)]);
     assert.deepEqual(first, duplicate);
     assert.equal(requests.length, 16);
     assert.equal(first.prices.petrol91.status, "live");
     assert.equal(first.prices.petrol91.value, 3);
     assert.equal(first.prices.petrol91.source, sourceUrls.gaspy);
     assert.equal(first.errors.length, 3);
-    const persisted = JSON.parse(
-      await readFile(process.env.MARKET_CACHE_FILE, "utf8"),
-    );
+    const persisted = JSON.parse(await readFile(process.env.MARKET_CACHE_FILE, "utf8"));
     assert.equal(persisted.prices.petrol91.value, 3);
     await getMarket(true);
     assert.equal(requests.length, 16, "refresh is rate limited for one minute");
@@ -149,22 +128,15 @@ test("fuel uses only Gaspy, discards legacy MBIE cache, and retains Gaspy data o
     assert.equal(retained.prices.electric.date, candidates[0].date);
     assert.equal(retained.prices.electric.status, "cached");
     assert.ok(
-      retained.errors.some((error) =>
-        /Retaining newer saved electricity data/.test(error),
-      ),
+      retained.errors.some((error) => /Retaining newer saved electricity data/.test(error)),
     );
-    assert.ok(
-      retained.errors.some((error) => /previously downloaded fees/.test(error)),
-    );
+    assert.ok(retained.errors.some((error) => /previously downloaded fees/.test(error)));
     assert.ok(
       requests.every(
         (url) =>
-          [
-            sourceUrls.gaspyData,
-            sourceUrls.electricity,
-            sourceUrls.rego,
-            sourceUrls.ruc,
-          ].includes(url) ||
+          [sourceUrls.gaspyData, sourceUrls.electricity, sourceUrls.rego, sourceUrls.ruc].includes(
+            url,
+          ) ||
           url.startsWith(
             "https://www.mbie.govt.nz/assets/Data-Files/Energy/nz-energy-quarterly-and-energy-in-nz/qsdep-report-",
           ),

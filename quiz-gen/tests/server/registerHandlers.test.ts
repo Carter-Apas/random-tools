@@ -1,25 +1,23 @@
 import { describe, expect, it, vi } from "vitest";
+
 import { createLobbyStore } from "../../server/game/lobbyStore";
 import { registerHandlers } from "../../server/socket/registerHandlers";
 import type { LobbySnapshot } from "../../shared/lobby";
 
-function createFakeIo() {
-  const emitted: Array<{ target: string; event: string; payload: unknown }> =
-    [];
+const createFakeIo = () => {
+  const emitted: Array<{ target: string; event: string; payload: unknown }> = [];
 
   return {
     emitted,
-    to(target: string) {
-      return {
-        emit(event: string, payload: unknown) {
-          emitted.push({ target, event, payload });
-        },
-      };
-    },
+    to: (target: string) => ({
+      emit: (event: string, payload: unknown) => {
+        emitted.push({ target, event, payload });
+      },
+    }),
   };
-}
+};
 
-function createFakeSocket(id: string) {
+const createFakeSocket = (id: string) => {
   const handlers = new Map<string, (payload: any) => unknown>();
   const emitted: Array<{ event: string; payload: unknown }> = [];
   const joined: string[] = [];
@@ -28,16 +26,16 @@ function createFakeSocket(id: string) {
     id,
     emitted,
     joined,
-    on(event: string, handler: (payload: any) => unknown) {
+    on: (event: string, handler: (payload: any) => unknown) => {
       handlers.set(event, handler);
     },
-    emit(event: string, payload: unknown) {
+    emit: (event: string, payload: unknown) => {
       emitted.push({ event, payload });
     },
-    join(code: string) {
+    join: (code: string) => {
       joined.push(code);
     },
-    async trigger(event: string, payload: any) {
+    trigger: async (event: string, payload: any) => {
       const handler = handlers.get(event);
       if (!handler) {
         throw new Error(`Missing handler for ${event}`);
@@ -46,15 +44,13 @@ function createFakeSocket(id: string) {
       return handler(payload);
     },
   };
-}
+};
 
-function lastSnapshotFor(io: ReturnType<typeof createFakeIo>, target: string) {
-  return [...io.emitted]
+const lastSnapshotFor = (io: ReturnType<typeof createFakeIo>, target: string) =>
+  [...io.emitted]
     .reverse()
-    .find(
-      (entry) => entry.target === target && entry.event === "lobby:snapshot",
-    )?.payload as LobbySnapshot | undefined;
-}
+    .find((entry) => entry.target === target && entry.event === "lobby:snapshot")?.payload as
+    LobbySnapshot | undefined;
 
 describe("registerHandlers", () => {
   it("emits a ready snapshot after successful quiz generation", async () => {
@@ -105,9 +101,7 @@ describe("registerHandlers", () => {
       questionCount: 1,
     });
     expect(socket.joined[0]).toMatch(/^[A-Z]{4}$/);
-    expect(io.emitted.some((entry) => entry.event === "lobby:snapshot")).toBe(
-      true,
-    );
+    expect(io.emitted.some((entry) => entry.event === "lobby:snapshot")).toBe(true);
   });
 
   it("finalizes the round early when all connected players answer", async () => {
@@ -116,8 +110,7 @@ describe("registerHandlers", () => {
     const playerOneSocket = createFakeSocket("player-1");
     const playerTwoSocket = createFakeSocket("player-2");
     const store = createLobbyStore(() => 0);
-    const handles: Array<{ id: number; callback: () => void; delay: number }> =
-      [];
+    const handles: Array<{ id: number; callback: () => void; delay: number }> = [];
     let nextId = 1;
     const clearTimeout = vi.fn();
     const quizGenerator = {
@@ -152,7 +145,7 @@ describe("registerHandlers", () => {
         quizGenerator,
         config,
         timers: {
-          setTimeout(callback, delay) {
+          setTimeout: (callback, delay) => {
             const handle = { id: nextId++, callback, delay };
             handles.push(handle);
             return handle as never;
@@ -179,9 +172,7 @@ describe("registerHandlers", () => {
     await hostSocket.trigger("game:start", { code });
 
     expect(lastSnapshotFor(io, "host-1")?.status).toBe("question_live");
-    expect(
-      handles.some((handle) => handle.delay === config.questionDurationMs),
-    ).toBe(true);
+    expect(handles.some((handle) => handle.delay === config.questionDurationMs)).toBe(true);
 
     await playerOneSocket.trigger("player:submitAnswer", {
       code,
@@ -196,17 +187,14 @@ describe("registerHandlers", () => {
 
     expect(clearTimeout).toHaveBeenCalled();
     expect(lastSnapshotFor(io, "host-1")?.status).toBe("question_result");
-    expect(
-      handles.some((handle) => handle.delay === config.resultDurationMs),
-    ).toBe(true);
+    expect(handles.some((handle) => handle.delay === config.resultDurationMs)).toBe(true);
   });
 
   it("shows a leaderboard countdown before advancing to the next round", async () => {
     const io = createFakeIo();
     const hostSocket = createFakeSocket("host-1");
     const store = createLobbyStore(() => 0);
-    const handles: Array<{ id: number; callback: () => void; delay: number }> =
-      [];
+    const handles: Array<{ id: number; callback: () => void; delay: number }> = [];
     let nextId = 1;
     const quizGenerator = {
       generateQuiz: vi.fn().mockResolvedValue({
@@ -245,7 +233,7 @@ describe("registerHandlers", () => {
       quizGenerator,
       config,
       timers: {
-        setTimeout(callback, delay) {
+        setTimeout: (callback, delay) => {
           const handle = { id: nextId++, callback, delay };
           handles.push(handle);
           return handle as never;
@@ -261,12 +249,8 @@ describe("registerHandlers", () => {
     const code = hostSocket.joined[0]!;
     await hostSocket.trigger("game:start", { code });
 
-    handles
-      .find((handle) => handle.delay === config.questionDurationMs)!
-      .callback();
-    handles
-      .find((handle) => handle.delay === config.resultDurationMs)!
-      .callback();
+    handles.find((handle) => handle.delay === config.questionDurationMs)!.callback();
+    handles.find((handle) => handle.delay === config.resultDurationMs)!.callback();
 
     const leaderboardSnapshot = lastSnapshotFor(io, "host-1");
     expect(leaderboardSnapshot?.status).toBe("leaderboard");
@@ -276,9 +260,7 @@ describe("registerHandlers", () => {
       (leaderboardSnapshot?.phaseStartedAt ?? 0) + config.nextRoundDelayMs,
     );
 
-    handles
-      .findLast((handle) => handle.delay === config.nextRoundDelayMs)!
-      .callback();
+    handles.findLast((handle) => handle.delay === config.nextRoundDelayMs)!.callback();
 
     const nextQuestionSnapshot = lastSnapshotFor(io, "host-1");
     expect(nextQuestionSnapshot?.status).toBe("question_live");
@@ -289,8 +271,7 @@ describe("registerHandlers", () => {
     const io = createFakeIo();
     const hostSocket = createFakeSocket("host-1");
     const store = createLobbyStore(() => 0);
-    const handles: Array<{ id: number; callback: () => void; delay: number }> =
-      [];
+    const handles: Array<{ id: number; callback: () => void; delay: number }> = [];
     let nextId = 1;
     const quizGenerator = {
       generateQuiz: vi.fn().mockResolvedValue({
@@ -323,7 +304,7 @@ describe("registerHandlers", () => {
       quizGenerator,
       config,
       timers: {
-        setTimeout(callback, delay) {
+        setTimeout: (callback, delay) => {
           const handle = { id: nextId++, callback, delay };
           handles.push(handle);
           return handle as never;
@@ -339,17 +320,11 @@ describe("registerHandlers", () => {
     const code = hostSocket.joined[0]!;
     await hostSocket.trigger("game:start", { code });
 
-    handles
-      .find((handle) => handle.delay === config.questionDurationMs)!
-      .callback();
-    handles
-      .find((handle) => handle.delay === config.resultDurationMs)!
-      .callback();
+    handles.find((handle) => handle.delay === config.questionDurationMs)!.callback();
+    handles.find((handle) => handle.delay === config.resultDurationMs)!.callback();
     expect(lastSnapshotFor(io, "host-1")?.status).toBe("leaderboard");
 
-    handles
-      .findLast((handle) => handle.delay === config.leaderboardDurationMs)!
-      .callback();
+    handles.findLast((handle) => handle.delay === config.leaderboardDurationMs)!.callback();
 
     const finishedSnapshot = lastSnapshotFor(io, "host-1");
     expect(finishedSnapshot?.status).toBe("finished");

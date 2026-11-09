@@ -24,6 +24,7 @@ test("completion feedback is opt in, skips initial values, and replays with the 
   expect(await page.locator("html").getAttribute("data-animations")).toBeNull();
 
   const checkbox = page.getByRole("checkbox", { name: /Pack the life jacket/ });
+
   const layout = () =>
     checkbox.evaluate((input) => {
       const label = input.closest("label")!;
@@ -34,10 +35,11 @@ test("completion feedback is opt in, skips initial values, and replays with the 
         label.querySelector(".mono-checkbox-label")!,
       ].map((element) => {
         const { x, y, width, height } = element.getBoundingClientRect();
-        // Document coordinates exclude the browser scrolling a focused input into view.
+
         return { x: x + window.scrollX, y: y + window.scrollY, width, height };
       });
     });
+
   const initialLayout = await layout();
   await checkbox.focus();
   await page.keyboard.press("Space");

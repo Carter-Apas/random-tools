@@ -1,10 +1,5 @@
 import { NumberField } from "@/components/calculator-fields";
-import {
-  FieldDescription,
-  FieldGroup,
-  FieldLegend,
-  FieldSet,
-} from "@/components/ui/field";
+import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import type { Car, Maintenance } from "@/lib/calculator";
 
@@ -20,22 +15,22 @@ export const MaintenanceFields = ({
   const id = `car-${index}`;
   const m = car.maintenance;
   const isElectric = car.type === "electric";
-  const update = (patch: Partial<Maintenance>) =>
-    onChange({ maintenance: { ...m, ...patch } });
+
+  const update = (patch: Partial<Maintenance>) => onChange({ maintenance: { ...m, ...patch } });
+
   return (
     <FieldSet>
       <FieldLegend>Running-cost checklist</FieldLegend>
       <FieldDescription>
-        Work through each expense using your quotes and service schedule. These
-        starting values are examples; set a cost to $0 to exclude it.
+        Work through each expense using your quotes and service schedule. These starting values are
+        examples; set a cost to $0 to exclude it.
       </FieldDescription>
       <FieldGroup>
         <FieldSet>
           <FieldLegend variant="label">01 · Oil changes</FieldLegend>
           {isElectric ? (
             <FieldDescription>
-              Battery EVs don’t need engine oil changes. This cost is
-              automatically $0.
+              Battery EVs don’t need engine oil changes. This cost is automatically $0.
             </FieldDescription>
           ) : (
             <>
@@ -67,8 +62,8 @@ export const MaintenanceFields = ({
                 />
               </FieldGroup>
               <FieldDescription>
-                Whichever comes first. Use the manufacturer’s interval and the
-                oil/filter service price, excluding work counted elsewhere.
+                Whichever comes first. Use the manufacturer’s interval and the oil/filter service
+                price, excluding work counted elsewhere.
               </FieldDescription>
             </>
           )}
@@ -92,11 +87,7 @@ export const MaintenanceFields = ({
           <FieldGroup className="grid grid-cols-2 gap-4">
             <NumberField
               id={`${id}-tyre-cost`}
-              label={
-                car.type === "motorcycle"
-                  ? "Replacement tyre pair"
-                  : "Replacement set"
-              }
+              label={car.type === "motorcycle" ? "Replacement tyre pair" : "Replacement set"}
               value={m.tyreSetCost}
               onChange={(tyreSetCost) => update({ tyreSetCost })}
               unit="$"
@@ -140,8 +131,7 @@ export const MaintenanceFields = ({
             />
           </FieldGroup>
           <FieldDescription>
-            Enter the interval that applies to your vehicle. Rego is calculated
-            separately below.
+            Enter the interval that applies to your vehicle. Rego is calculated separately below.
           </FieldDescription>
         </FieldSet>
       </FieldGroup>

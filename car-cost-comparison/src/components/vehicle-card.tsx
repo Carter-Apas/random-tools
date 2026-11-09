@@ -10,19 +10,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  FieldDescription,
-  FieldGroup,
-  FieldLegend,
-  FieldSet,
-} from "@/components/ui/field";
+import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/components/ui/field";
 import { NativeSelectOption } from "@/components/ui/native-select";
 import { Separator } from "@/components/ui/separator";
-import {
-  NumberField,
-  SelectField,
-  ToggleField,
-} from "@/components/calculator-fields";
+import { NumberField, SelectField, ToggleField } from "@/components/calculator-fields";
 import { ConsumptionSelector } from "@/components/consumption-selector";
 import { MaintenanceFields } from "@/components/maintenance-fields";
 import type { Car } from "@/lib/calculator";
@@ -37,12 +28,8 @@ import {
 import { vehicleLabel } from "@/lib/consumption-presets";
 import { dateLabel, observationSource, precise } from "@/lib/format";
 
-const averageDescription = (
-  car: Car,
-  observation: MarketData["prices"]["electric"],
-) => {
-  if (!car.useAverage)
-    return "Set prices for your usual fuel station or charging plan.";
+const averageDescription = (car: Car, observation: MarketData["prices"]["electric"]) => {
+  if (!car.useAverage) return "Set prices for your usual fuel station or charging plan.";
   if (observation.status === "estimate")
     return "Using example prices until source data is available.";
   return `Automatically follows ${observationSource(observation)} · ${dateLabel(observation.date)}`;
@@ -60,14 +47,12 @@ const PetrolGradeField = ({
   if (car.type !== "phev" && car.type !== "motorcycle") return null;
   const isBike = car.type === "motorcycle";
   const grade = isBike ? car.motorcycleFuelGrade : car.phevFuelGrade;
+
   const choose = (value: string) => {
     const fuelGrade = value as "petrol91" | "petrol95";
-    onChange(
-      isBike
-        ? { motorcycleFuelGrade: fuelGrade }
-        : { phevFuelGrade: fuelGrade },
-    );
+    onChange(isBike ? { motorcycleFuelGrade: fuelGrade } : { phevFuelGrade: fuelGrade });
   };
+
   return (
     <SelectField
       id={`car-${index}-${isBike ? "motorcycle" : "phev"}-fuel-grade`}
@@ -147,11 +132,7 @@ const EnergyFields = ({
               <NumberField
                 id={`${id}-electric-price`}
                 label="Electricity price"
-                value={
-                  car.useAverage
-                    ? market.prices.electric.value
-                    : car.electricityPrice
-                }
+                value={car.useAverage ? market.prices.electric.value : car.electricityPrice}
                 disabled={car.useAverage}
                 onChange={(electricityPrice) => onChange({ electricityPrice })}
                 unit="$/kWh"
@@ -241,9 +222,7 @@ const FeeFields = ({
             id={`${id}-motorcycle-cc`}
             label="Engine capacity"
             value={car.motorcycleCc}
-            onChange={(motorcycleCc) =>
-              onChange({ motorcycleCc, consumptionPresetId: null })
-            }
+            onChange={(motorcycleCc) => onChange({ motorcycleCc, consumptionPresetId: null })}
             unit="cc"
             min={1}
             description="NZTA motorcycle licensing is based on engine capacity. Mopeds have a separate schedule."
@@ -256,15 +235,11 @@ const FeeFields = ({
           onChange={(value) => onChange({ regoMode: value as Car["regoMode"] })}
         >
           <NativeSelectOption value="official">
-            {car.type === "motorcycle"
-              ? "NZTA motorcycle"
-              : "NZTA passenger car"}{" "}
-            · {precise.format(officialRegoRate(car, market))}
+            {car.type === "motorcycle" ? "NZTA motorcycle" : "NZTA passenger car"} ·{" "}
+            {precise.format(officialRegoRate(car, market))}
             /year
           </NativeSelectOption>
-          <NativeSelectOption value="custom">
-            Enter my own fee
-          </NativeSelectOption>
+          <NativeSelectOption value="custom">Enter my own fee</NativeSelectOption>
           <NativeSelectOption value="excluded">Exclude rego</NativeSelectOption>
         </SelectField>
         <FeeVerification car={car} market={market} kind="rego" />
@@ -284,12 +259,8 @@ const FeeFields = ({
           value={car.rucMode}
           onChange={(value) => onChange({ rucMode: value as Car["rucMode"] })}
         >
-          <NativeSelectOption value="official">
-            NZTA light vehicle rate
-          </NativeSelectOption>
-          <NativeSelectOption value="custom">
-            Enter my own rate
-          </NativeSelectOption>
+          <NativeSelectOption value="official">NZTA light vehicle rate</NativeSelectOption>
+          <NativeSelectOption value="custom">Enter my own rate</NativeSelectOption>
           <NativeSelectOption value="excluded">Exclude RUC</NativeSelectOption>
         </SelectField>
         <FeeVerification car={car} market={market} kind="ruc" />
@@ -335,9 +306,7 @@ const FeeFields = ({
                   id={`${id}-ruc-method`}
                   label="Buy RUC through"
                   value={car.rucMethod}
-                  onChange={(value) =>
-                    onChange({ rucMethod: value as Car["rucMethod"] })
-                  }
+                  onChange={(value) => onChange({ rucMethod: value as Car["rucMethod"] })}
                 >
                   <NativeSelectOption value="online">
                     Online · {precise.format(market.ruc.online)}
@@ -378,9 +347,7 @@ export const VehicleCard = ({
         </CardTitle>
         <CardDescription>{vehicleLabel(car)}</CardDescription>
         <CardAction>
-          <Badge variant={hasElectric ? "default" : "secondary"}>
-            {fuelLabels[car.type]}
-          </Badge>
+          <Badge variant={hasElectric ? "default" : "secondary"}>{fuelLabels[car.type]}</Badge>
         </CardAction>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
@@ -407,29 +374,17 @@ export const VehicleCard = ({
           />
         </FieldGroup>
         <Separator />
-        <EnergyFields
-          car={car}
-          index={index}
-          market={market}
-          onChange={onChange}
-        />
+        <EnergyFields car={car} index={index} market={market} onChange={onChange} />
         <Separator />
         <MaintenanceFields car={car} index={index} onChange={onChange} />
         <Separator />
-        <FeeFields
-          car={car}
-          index={index}
-          market={market}
-          onChange={onChange}
-        />
+        <FeeFields car={car} index={index} market={market} onChange={onChange} />
       </CardContent>
       <CardFooter className="justify-between gap-3">
         <span className="text-xs text-muted-foreground">
           Rego: 12-month online licence, GST included
         </span>
-        <span className="font-medium">
-          {precise.format(regoRate(car, market))}/yr
-        </span>
+        <span className="font-medium">{precise.format(regoRate(car, market))}/yr</span>
       </CardFooter>
     </Card>
   );

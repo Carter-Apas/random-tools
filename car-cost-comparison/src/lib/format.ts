@@ -12,6 +12,7 @@ export const precise = new Intl.NumberFormat("en-NZ", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
+
 export const dateLabel = (date: string | null) =>
   date
     ? new Intl.DateTimeFormat("en-NZ", {
@@ -21,6 +22,7 @@ export const dateLabel = (date: string | null) =>
         timeZone: "Pacific/Auckland",
       }).format(new Date(date))
     : "Awaiting source data";
+
 export const numberValue = (value: string) => Math.max(0, Number(value) || 0);
 
 export const observationSource = (observation: Observation) =>

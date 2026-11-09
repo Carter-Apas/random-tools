@@ -1,26 +1,31 @@
-import tsx from "@cartercree/eslint-config/configs/tsx.js";
+import preset from "@cartercree/eslint-config/configs/tsx.js";
 
 export default [
   {
-    ignores: ["dist/**", "dist-server/**", "node_modules/**"],
+    ignores: [
+      "node_modules/**",
+      "vendor/**",
+      "dist/**",
+      "dist-server/**",
+      "coverage/**",
+      "public/mono.*",
+      ".data/**",
+      ".cache/**",
+    ],
   },
-  ...tsx.map((config) => ({
-    ...config,
-    files: ["**/*.{ts,tsx}"],
-  })),
+  ...preset,
+  { files: ["**/*.config.*", "eslint.config.js"], rules: { "import/no-default-export": "off" } },
   {
     files: ["**/*.{ts,tsx}"],
-    rules: {
-      "@typescript-eslint/naming-convention": "off",
-      "comma-dangle": "off",
-      complexity: "off",
-      "func-style": "off",
-      indent: "off",
-      "import/order": "off",
-      "no-undef": "off",
-      "no-unused-vars": "off",
-      "prefer-arrow-callback": "off",
-      "prefer-arrow/prefer-arrow-functions": "off",
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: "./tsconfig.eslint.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
+  { files: ["server/game/lobbyStore.ts"], rules: { complexity: ["error", 20] } },
+  { files: ["src/features/host/HostScreen.tsx"], rules: { complexity: ["error", 40] } },
+  { files: ["src/features/player/PlayerScreen.tsx"], rules: { complexity: ["error", 85] } },
 ];

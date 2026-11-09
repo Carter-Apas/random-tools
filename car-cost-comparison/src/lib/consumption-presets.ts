@@ -27,14 +27,16 @@ export type ConsumptionPreset = {
     chargedGallonsPer100Miles?: number;
   };
 };
+
 export const consumptionPresets = presetData as ConsumptionPreset[];
+
 export const presetsFor = (type: FuelType) =>
   consumptionPresets.filter((preset) => preset.category === type);
+
 export const presetPatch = (preset: ConsumptionPreset): Partial<Car> => {
   const patch: Partial<Car> = { consumptionPresetId: preset.id };
   if (preset.efficiency !== undefined) patch.efficiency = preset.efficiency;
-  if (preset.electricEfficiency !== undefined)
-    patch.electricEfficiency = preset.electricEfficiency;
+  if (preset.electricEfficiency !== undefined) patch.electricEfficiency = preset.electricEfficiency;
   if (preset.category === "phev") {
     patch.electricFuelEfficiency = preset.electricFuelEfficiency ?? 0;
     patch.phevFuelGrade = preset.petrolGrade ?? "petrol91";
@@ -45,9 +47,9 @@ export const presetPatch = (preset: ConsumptionPreset): Partial<Car> => {
   }
   return patch;
 };
+
 export const presetSummary = (preset: ConsumptionPreset) => {
-  if (preset.category === "electric")
-    return `${preset.electricEfficiency?.toFixed(1)} kWh/100 km`;
+  if (preset.category === "electric") return `${preset.electricEfficiency?.toFixed(1)} kWh/100 km`;
   if (preset.category === "phev")
     return `${preset.efficiency?.toFixed(1)} L/100 km petrol · ${preset.electricEfficiency?.toFixed(1)} kWh/100 km charged`;
   return `${preset.efficiency?.toFixed(1)} L/100 km`;
@@ -55,8 +57,7 @@ export const presetSummary = (preset: ConsumptionPreset) => {
 
 export const vehicleLabel = (car: Car): string => {
   const preset = consumptionPresets.find(
-    (example) =>
-      example.id === car.consumptionPresetId && example.category === car.type,
+    (example) => example.id === car.consumptionPresetId && example.category === car.type,
   );
   const powertrain =
     car.type === "motorcycle"

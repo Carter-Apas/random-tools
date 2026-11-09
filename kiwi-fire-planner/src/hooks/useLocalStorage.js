@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export function useLocalStorage(key, initialValue) {
+export const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return initialValue;
     }
 
@@ -17,10 +17,13 @@ export function useLocalStorage(key, initialValue) {
   useEffect(() => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
-    } catch {
-      // Ignore write errors (private mode, disabled storage, etc.)
+    } catch (error) {
+      console.warn(
+        `Planner changes for ${key} could not be saved; they will be lost on reload:`,
+        error,
+      );
     }
   }, [key, value]);
 
   return [value, setValue];
-}
+};

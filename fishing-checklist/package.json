@@ -6,6 +6,24 @@
   "scripts": {
     "dev": "node --watch server.mjs",
     "start": "node server.mjs",
-    "check": "node --check public/app.js && node --check server.mjs"
+    "check": "node --check public/app.js && node --check server.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build": "node scripts/build-assets.mjs",
+    "predev": "npm run build",
+    "prestart": "npm run build"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=24.0.0"
+  },
+  "devDependencies": {
+    "@cartercree/eslint-config": "^4.1.0",
+    "eslint": "^10.14.0",
+    "prettier": "^3.9.10"
+  },
+  "dependencies": {
+    "@random-tools/mono": "file:vendor/random-tools-mono-0.2.3.tgz"
   }
 }

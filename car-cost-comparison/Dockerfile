@@ -3,6 +3,7 @@ FROM node:24-alpine AS build
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+COPY vendor ./vendor
 RUN npm ci
 
 COPY . .
@@ -12,6 +13,7 @@ FROM node:24-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production PORT=80 MARKET_CACHE_FILE=/app/.cache/market.json
 COPY package.json package-lock.json ./
+COPY vendor ./vendor
 RUN npm ci --omit=dev
 COPY --from=build /app/dist ./dist
 COPY server ./server

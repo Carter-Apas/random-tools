@@ -4,19 +4,27 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.12.0"
+    "node": "^22.13.0 || >=24.0.0"
   },
   "scripts": {
     "dev": "node --watch server.mjs --dev",
     "start": "node server.mjs",
     "build": "vite build",
     "check": "node --check server.mjs && node --check store.mjs && node --check src/main.js",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@random-tools/mono": "file:vendor/random-tools-mono-0.2.3.tgz",
     "mermaid": "12.3.0"
   },
   "devDependencies": {
+    "@cartercree/eslint-config": "^4.1.0",
+    "eslint": "^10.14.0",
+    "prettier": "^3.9.10",
     "vite": "8.3.6"
   }
 }

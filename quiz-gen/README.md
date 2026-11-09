@@ -61,3 +61,28 @@ LEADERBOARD_DURATION_MS=5000
 - Lobby state is in memory only.
 - Restart reuses the generated quiz payload and resets scores.
 - A full server restart clears active lobbies.
+
+## Shared interface and quality checks
+
+This app consumes a versioned Mono archive from `vendor/`. The manifest and
+lockfile pin its version and integrity, so `npm ci` and the Docker build work
+using only this folder. The shared C header follows the system light/dark setting
+until you choose a theme. Its sun/dusk/moon icon cycles Light, Mirage, and Dark;
+the choice is saved separately from app data. See the
+[root development guide](../README.md#independent-installs-shared-components)
+for updating the library snapshot and the rationale for per-app tooling.
+
+Use Node 22.13+ (22.x) or Node 24+:
+
+```sh
+npm ci
+npm run lint
+npm run format:check
+npm run build
+npm run test --if-present
+```
+
+`npm run format` writes formatting and `npm run lint:fix` applies lint fixes.
+ESLint uses `@cartercree/eslint-config` v4. Local configs cover this app's source,
+server, tests, and config files while excluding generated and vendored assets.
+Source explanations belong in documentation under the v4 comment convention.

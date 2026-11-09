@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { quizSchema } from "../../server/game/quizSchema";
 
 describe("quizSchema", () => {

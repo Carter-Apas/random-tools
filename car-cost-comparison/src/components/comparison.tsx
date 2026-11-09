@@ -52,8 +52,7 @@ export const Comparison = ({
         <CardTitle>Your comparison</CardTitle>
         <CardDescription>
           {usage.years} years ·{" "}
-          {new Intl.NumberFormat("en-NZ").format(usage.annualKm * usage.years)}{" "}
-          km
+          {new Intl.NumberFormat("en-NZ").format(usage.annualKm * usage.years)} km
         </CardDescription>
         <CardAction>
           <Badge variant="secondary">NZD</Badge>
@@ -66,9 +65,7 @@ export const Comparison = ({
               ? "Equal ownership cost"
               : `Lower total cost · Option ${cheaper + 1}`}
           </p>
-          <p className="winner-name">
-            {difference < 0.01 ? "It’s a tie" : labels[cheaper]}
-          </p>
+          <p className="winner-name">{difference < 0.01 ? "It’s a tie" : labels[cheaper]}</p>
           <p className="saving-value">
             {dollars.format(difference)}
             <ArrowDownRight aria-hidden="true" />
@@ -84,9 +81,7 @@ export const Comparison = ({
             <div key={i}>
               <div className="mb-2 flex justify-between gap-3 text-sm">
                 <div className="min-w-0">
-                  <p className="text-xs text-muted-foreground">
-                    Option {i + 1}
-                  </p>
+                  <p className="text-xs text-muted-foreground">Option {i + 1}</p>
                   <p className="break-words" title={label}>
                     {label}
                   </p>
@@ -97,10 +92,7 @@ export const Comparison = ({
               </div>
               <div className="comparison-track">
                 <div
-                  className={cn(
-                    "comparison-bar",
-                    i === 1 && "comparison-bar-electric",
-                  )}
+                  className={cn("comparison-bar", i === 1 && "comparison-bar-electric")}
                   style={{ width: `${(totals[i].total / maxTotal) * 100}%` }}
                 />
               </div>
@@ -115,11 +107,7 @@ export const Comparison = ({
               <tr>
                 <th scope="col">Cost</th>
                 {labels.map((label, i) => (
-                  <th
-                    key={i}
-                    scope="col"
-                    aria-label={`Option ${i + 1}: ${label}`}
-                  >
+                  <th key={i} scope="col" aria-label={`Option ${i + 1}: ${label}`}>
                     <span title={label}>{`Option ${i + 1}`}</span>
                   </th>
                 ))}
@@ -143,19 +131,13 @@ export const Comparison = ({
               <tr>
                 <th scope="row">Running / km</th>
                 {totals.map((t, i) => (
-                  <td key={i}>
-                    {t.runningPerKm === null
-                      ? "—"
-                      : precise.format(t.runningPerKm)}
-                  </td>
+                  <td key={i}>{t.runningPerKm === null ? "—" : precise.format(t.runningPerKm)}</td>
                 ))}
               </tr>
               <tr>
                 <th scope="row">Ownership / km</th>
                 {totals.map((t, i) => (
-                  <td key={i}>
-                    {t.perKm === null ? "—" : precise.format(t.perKm)}
-                  </td>
+                  <td key={i}>{t.perKm === null ? "—" : precise.format(t.perKm)}</td>
                 ))}
               </tr>
             </tbody>
@@ -165,19 +147,16 @@ export const Comparison = ({
           <p className="text-sm leading-6 text-muted-foreground">
             <ArrowUpRight className="mr-1 inline size-4" />
             The higher purchase price is recovered after about{" "}
-            <strong className="text-foreground">
-              {breakEven.toFixed(1)} years
-            </strong>{" "}
-            at these running costs.
+            <strong className="text-foreground">{breakEven.toFixed(1)} years</strong> at these
+            running costs.
           </p>
         )}
       </CardContent>
       <CardFooter>
         <p className="text-xs leading-5 text-muted-foreground">
-          Includes purchase and running costs. Excludes resale value,
-          depreciation adjustments and finance. Prices stay constant across the
-          ownership period. Oil changes, tyres and WoF are annualised from your
-          intervals; RUC admin fees are amortised over distance.
+          Includes purchase and running costs. Excludes resale value, depreciation adjustments and
+          finance. Prices stay constant across the ownership period. Oil changes, tyres and WoF are
+          annualised from your intervals; RUC admin fees are amortised over distance.
         </p>
       </CardFooter>
     </Card>

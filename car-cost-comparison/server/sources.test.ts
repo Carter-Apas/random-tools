@@ -13,8 +13,8 @@ import {
 
 import { sourceUrls } from "../shared/market.ts";
 
-const challenge =
-  '<html><script src="/_Incapsula_Resource"></script><body></body></html>';
+const challenge = '<html><script src="/_Incapsula_Resource"></script><body></body></html>';
+
 const report = async (date: string, price = 42.1) => {
   const book = new ExcelJS.Workbook();
   const sheet = book.addWorksheet("QSDEP_Summary_Report");
@@ -27,10 +27,7 @@ const report = async (date: string, price = 42.1) => {
 };
 
 test("HTTP 200 access checks are identified before parsing government pages", async () => {
-  await assert.rejects(
-    () => sourceHtml(new Response(challenge)),
-    SourceAccessError,
-  );
+  await assert.rejects(() => sourceHtml(new Response(challenge)), SourceAccessError);
   assert.equal(
     await sourceHtml(new Response("<h1>Licensing fees</h1>")),
     "<h1>Licensing fees</h1>",
@@ -53,8 +50,7 @@ test("blocked release page still downloads verified official electricity report"
   const result = await fetchElectricity(async (url) => {
     requests.push(url);
     if (url === sourceUrls.electricity) return new Response(challenge);
-    if (url.endsWith("15Aug2026.xlsx"))
-      return new Response(new Uint8Array(buffer));
+    if (url.endsWith("15Aug2026.xlsx")) return new Response(new Uint8Array(buffer));
     return new Response("Missing", { status: 404 });
   }, new Date("2026-10-15"));
   assert.equal(result.observation.date, "2026-08-15");
@@ -82,10 +78,7 @@ test("accessible release index takes priority over filename candidates", async (
 
 test("older direct reports retain their true date and wrong-date workbooks are rejected", async () => {
   const buffer = await report("15 May 2026", 40);
-  await assert.rejects(
-    () => parseElectricity(buffer, "2026-08-15"),
-    /publication date/,
-  );
+  await assert.rejects(() => parseElectricity(buffer, "2026-08-15"), /publication date/);
   const result = await fetchElectricity(
     async (url) =>
       url.endsWith("15May2026.xlsx")
@@ -99,11 +92,7 @@ test("older direct reports retain their true date and wrong-date workbooks are r
 
 test("no HTML access check is treated as a workbook", async () => {
   await assert.rejects(
-    () =>
-      fetchElectricity(
-        async () => new Response(challenge),
-        new Date("2026-10-15"),
-      ),
+    () => fetchElectricity(async () => new Response(challenge), new Date("2026-10-15")),
     /quarterly downloads unavailable/,
   );
 });

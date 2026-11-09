@@ -27,11 +27,7 @@ const server = createServer(async (request, response) => {
         "Content-Type": "application/json",
         "Cache-Control": "no-store",
       });
-      response.end(
-        JSON.stringify(
-          await getMarket(url.searchParams.get("refresh") === "1"),
-        ),
-      );
+      response.end(JSON.stringify(await getMarket(url.searchParams.get("refresh") === "1")));
       return;
     }
     const filename = path.resolve(
@@ -46,8 +42,7 @@ const server = createServer(async (request, response) => {
     try {
       const body = await readFile(filename);
       response.writeHead(200, {
-        "Content-Type":
-          contentTypes[path.extname(filename)] ?? "application/octet-stream",
+        "Content-Type": contentTypes[path.extname(filename)] ?? "application/octet-stream",
         "X-Content-Type-Options": "nosniff",
       });
       if (request.method === "HEAD") response.end();

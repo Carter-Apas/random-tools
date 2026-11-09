@@ -1,7 +1,7 @@
 import { clamp, toNumber } from "./number";
 import { calculateNzTakeHome } from "./tax";
 
-function toMonthlyExpense(amount, cadence) {
+const toMonthlyExpense = (amount, cadence) => {
   const normalizedAmount = toNumber(amount);
 
   if (normalizedAmount < 0) {
@@ -17,18 +17,17 @@ function toMonthlyExpense(amount, cadence) {
   }
 
   return normalizedAmount;
-}
+};
 
-function inflationAdjustValue(todayValue, annualInflationPercent, years) {
-  return todayValue * Math.pow(1 + annualInflationPercent / 100, years);
-}
+const inflationAdjustValue = (todayValue, annualInflationPercent, years) =>
+  todayValue * Math.pow(1 + annualInflationPercent / 100, years);
 
-export function projectMonthsToTarget({
+export const projectMonthsToTarget = ({
   currentPortfolio,
   monthlyContribution,
   annualReturnPercent,
   targetPortfolio,
-}) {
+}) => {
   if (targetPortfolio <= 0 || currentPortfolio >= targetPortfolio) {
     return 0;
   }
@@ -44,15 +43,15 @@ export function projectMonthsToTarget({
   }
 
   return Infinity;
-}
+};
 
-export function projectMonthsToInflationAdjustedTarget({
+export const projectMonthsToInflationAdjustedTarget = ({
   currentPortfolio,
   monthlyContribution,
   annualReturnPercent,
   baseTargetTodayValue,
   annualInflationPercent,
-}) {
+}) => {
   if (baseTargetTodayValue <= 0 || currentPortfolio >= baseTargetTodayValue) {
     return 0;
   }
@@ -72,14 +71,14 @@ export function projectMonthsToInflationAdjustedTarget({
   }
 
   return Infinity;
-}
+};
 
-export function buildGrowthSeries({
+export const buildGrowthSeries = ({
   currentPortfolio,
   monthlyContribution,
   annualReturnPercent,
   monthsToTarget,
-}) {
+}) => {
   const fallbackMonths = 30 * 12;
   const maxMonths = 50 * 12;
   const baseMonths = Number.isFinite(monthsToTarget)
@@ -105,9 +104,9 @@ export function buildGrowthSeries({
     growthProjectionMonths: totalMonths,
     growthSamplingStepMonths: samplingStep,
   };
-}
+};
 
-export function calculateDashboardMetrics({
+export const calculateDashboardMetrics = ({
   expenses,
   portfolio,
   annualReturn,
@@ -121,23 +120,16 @@ export function calculateDashboardMetrics({
   targetMode,
   customPortfolioTarget,
   goalSalary,
-}) {
+}) => {
   const expenseValues = expenses
     .map((item) => toMonthlyExpense(item.amount, item.cadence))
     .filter((value) => value >= 0);
 
-  const totalMonthlyExpense = expenseValues.reduce(
-    (total, value) => total + value,
-    0,
-  );
+  const totalMonthlyExpense = expenseValues.reduce((total, value) => total + value, 0);
   const annualExpenses = totalMonthlyExpense * 12;
 
   const salary = Math.max(toNumber(currentSalary), 0);
-  const kiwiSaverRateApplied = clamp(
-    toNumber(kiwiSaverRate),
-    0,
-    100,
-  );
+  const kiwiSaverRateApplied = clamp(toNumber(kiwiSaverRate), 0, 100);
   const employeeKiwiSaverAnnual = salary * (kiwiSaverRateApplied / 100);
   const employeeKiwiSaverMonthly = employeeKiwiSaverAnnual / 12;
   const employerKiwiSaverAnnual = employeeKiwiSaverAnnual;
@@ -156,23 +148,13 @@ export function calculateDashboardMetrics({
     includeStudentLoan: Boolean(studentLoanEnabled),
   });
 
-  const spendableTakeHomeAnnual = Math.max(
-    takeHomeAnnual - employeeKiwiSaverAnnual,
-    0,
-  );
+  const spendableTakeHomeAnnual = Math.max(takeHomeAnnual - employeeKiwiSaverAnnual, 0);
   const spendableTakeHomeMonthly = spendableTakeHomeAnnual / 12;
-  const investableMonthly = Math.max(
-    spendableTakeHomeMonthly - totalMonthlyExpense,
-    0,
-  );
+  const investableMonthly = Math.max(spendableTakeHomeMonthly - totalMonthlyExpense, 0);
   const normalizedSavingsMode = savingsMode === "fixed" ? "fixed" : "percent";
   const fixedMonthlySpendDesired = Math.max(toNumber(fixedMonthlySpend), 0);
-  const fixedMonthlySpendApplied = Math.min(
-    fixedMonthlySpendDesired,
-    investableMonthly,
-  );
-  const fixedSpendExceedsAvailable =
-    fixedMonthlySpendDesired > investableMonthly;
+  const fixedMonthlySpendApplied = Math.min(fixedMonthlySpendDesired, investableMonthly);
+  const fixedSpendExceedsAvailable = fixedMonthlySpendDesired > investableMonthly;
   const inflationRateApplied = clamp(toNumber(inflationRate), -20, 20);
 
   const employeeMonthlyInvestment =
@@ -180,9 +162,7 @@ export function calculateDashboardMetrics({
       ? Math.max(investableMonthly - fixedMonthlySpendApplied, 0)
       : investableMonthly * (savingsRateApplied / 100);
   const plannedMonthlyInvestment =
-    employeeMonthlyInvestment +
-    employeeKiwiSaverMonthly +
-    employerKiwiSaverMonthly;
+    employeeMonthlyInvestment + employeeKiwiSaverMonthly + employerKiwiSaverMonthly;
   const leftoverAfterInvestmentMonthly =
     normalizedSavingsMode === "fixed"
       ? fixedMonthlySpendApplied
@@ -196,9 +176,7 @@ export function calculateDashboardMetrics({
 
   const normalizedTargetMode = targetMode === "portfolio" ? "portfolio" : "fire";
   const selectedTargetLabel =
-    normalizedTargetMode === "portfolio"
-      ? "Custom Portfolio Target"
-      : "FIRE Portfolio Target";
+    normalizedTargetMode === "portfolio" ? "Custom Portfolio Target" : "FIRE Portfolio Target";
   const customTarget = Math.max(toNumber(customPortfolioTarget), 0);
   const currentPortfolio = toNumber(portfolio);
   const annualReturnPercent = toNumber(annualReturn);
@@ -219,9 +197,7 @@ export function calculateDashboardMetrics({
           targetPortfolio: customTarget,
         });
 
-  const yearsToTarget = Number.isFinite(monthsToTarget)
-    ? monthsToTarget / 12
-    : null;
+  const yearsToTarget = Number.isFinite(monthsToTarget) ? monthsToTarget / 12 : null;
   const firePortfolioTarget =
     yearsToTarget === null
       ? fireNumber
@@ -229,15 +205,9 @@ export function calculateDashboardMetrics({
   const selectedPortfolioTarget =
     normalizedTargetMode === "fire" ? firePortfolioTarget : customTarget;
   const selectedTargetAt4Percent =
-    normalizedTargetMode === "fire"
-      ? fireNumber * 0.04
-      : selectedPortfolioTarget * 0.04;
+    normalizedTargetMode === "fire" ? fireNumber * 0.04 : selectedPortfolioTarget * 0.04;
 
-  const {
-    growthSeries,
-    growthProjectionMonths,
-    growthSamplingStepMonths,
-  } = buildGrowthSeries({
+  const { growthSeries, growthProjectionMonths, growthSamplingStepMonths } = buildGrowthSeries({
     currentPortfolio,
     monthlyContribution: plannedMonthlyInvestment,
     annualReturnPercent,
@@ -248,8 +218,7 @@ export function calculateDashboardMetrics({
       ? fireNumber
       : yearsToTarget === null
         ? null
-        : selectedPortfolioTarget /
-          Math.pow(1 + inflationRateApplied / 100, yearsToTarget);
+        : selectedPortfolioTarget / Math.pow(1 + inflationRateApplied / 100, yearsToTarget);
 
   const portfolioProgress =
     selectedPortfolioTarget > 0
@@ -300,4 +269,4 @@ export function calculateDashboardMetrics({
     growthSamplingStepMonths,
     portfolioProgress,
   };
-}
+};

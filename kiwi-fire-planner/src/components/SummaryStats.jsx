@@ -1,6 +1,6 @@
 import { StatCard } from "./StatCard";
 
-export function SummaryStats({ metrics, expensesCount, formatCurrency }) {
+export const SummaryStats = ({ metrics, expensesCount, formatCurrency }) => {
   const {
     totalMonthlyExpense,
     annualExpenses,
@@ -28,7 +28,7 @@ export function SummaryStats({ metrics, expensesCount, formatCurrency }) {
   } = metrics;
 
   return (
-    <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+    <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       <StatCard
         title="Monthly Spendable Pay"
         value={formatCurrency(spendableTakeHomeMonthly)}
@@ -49,22 +49,19 @@ export function SummaryStats({ metrics, expensesCount, formatCurrency }) {
         }
       />
       <StatCard
-        title="Left Over After Investing ( Spending money )"
+        title="Left after investing"
         value={formatCurrency(leftoverAfterInvestmentMonthly)}
         subtitle={`${formatCurrency(leftoverAfterInvestmentAnnual)} per year`}
       />
-      <article className="stat-panel">
-        <p>{selectedTargetLabel}</p>
-        <strong>{formatCurrency(selectedPortfolioTarget)}</strong>
-        {normalizedTargetMode === "fire" ? (
-          <span>
-            4% target income (today&apos;s value):{" "}
-            {formatCurrency(selectedTargetAt4Percent)}
-          </span>
-        ) : (
-          <span>Manual portfolio milestone</span>
-        )}
-      </article>
+      <StatCard
+        title={selectedTargetLabel}
+        value={formatCurrency(selectedPortfolioTarget)}
+        subtitle={
+          normalizedTargetMode === "fire"
+            ? `4% target income: ${formatCurrency(selectedTargetAt4Percent)}`
+            : "Manual portfolio milestone"
+        }
+      />
       <StatCard
         title="Current-Value Target"
         value={
@@ -82,4 +79,4 @@ export function SummaryStats({ metrics, expensesCount, formatCurrency }) {
       />
     </section>
   );
-}
+};

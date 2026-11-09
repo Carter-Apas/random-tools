@@ -12,14 +12,10 @@ const quizQuestionSchema = z.object({
   explanation: z.string().trim().min(1),
 });
 
-export function quizSchema(questionCount: number) {
-  return z.object({
+export const quizSchema = (questionCount: number) =>
+  z.object({
     title: z.string().trim().min(1),
     questions: z
       .array(quizQuestionSchema)
-      .length(
-        questionCount,
-        `Quiz must include exactly ${questionCount} questions`,
-      ),
+      .length(questionCount, `Quiz must include exactly ${questionCount} questions`),
   });
-}

@@ -1,0 +1,75 @@
+name: Check changed projects
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.projects.outputs.projects }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Select changed projects
+        id: projects
+        env:
+          BEFORE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          projects = sorted(path.parent.name for path in Path('.').glob('*/package.json'))
+          before = os.environ['BEFORE']
+          available = before and set(before) != {'0'} and subprocess.run(
+              ['git', 'cat-file', '-e', before + '^{commit}'], capture_output=True
+          ).returncode == 0
+          if available:
+              changed = subprocess.check_output([
+                  'git', 'diff', '--name-only', '--no-renames', '-z', before, os.environ['AFTER']
+              ]).decode().split('\0')
+              if '.github/workflows/checks.yml' not in changed:
+                  folders = {path.split('/', 1)[0] for path in changed if '/' in path}
+                  projects = [project for project in projects if project in folders]
+          print('projects=' + json.dumps(projects))
+          PY
+
+  check:
+    needs: discover
+    if: needs.discover.outputs.projects != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJSON(needs.discover.outputs.projects) }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: ${{ matrix.project }}/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run build
+      - name: Build reusable library
+        if: matrix.project == 'design-system'
+        run: npm run build:lib
+      - name: Install Storybook test browser
+        if: matrix.project == 'design-system'
+        run: npx playwright install --with-deps chromium
+      - run: npm run test --if-present

@@ -6,6 +6,16 @@ same workspace at `/`; a fresh visit always selects the first tab. Create up to
 Changes to source, names, and tabs are broadcast to all connected browsers.
 Selecting a tab, hiding the editor, and zooming are local to each viewer.
 
+Use the **+** after the tabs to create a diagram. The **×** on each tab opens
+its delete confirmation; keyboard users can focus a tab and press Delete.
+The last tab cannot be removed, and unsaved drafts must save before closing.
+
+Scroll over the preview to zoom toward the pointer, or drag with the left or
+middle mouse button to pan. **Fit** centers the entire diagram again. The canvas
+also accepts arrow keys to pan, +/− to zoom, and 0 to fit. Zoom and pan survive
+live renders and theme changes; switching tabs resets the view. Diagram boxes use
+the shared neutral one-pixel border and six-pixel control radius.
+
 Source saves automatically after a short typing pause, including incomplete
 syntax. Invalid syntax displays an error and keeps the last valid preview visible.
 Export the current valid diagram as SVG. The editor supports four-space Tab
@@ -81,3 +91,28 @@ Allow long-lived HTTP responses for `GET /api/events` (Server-Sent Events), disa
 proxy buffering for that route, and use an idle timeout above the 15-second
 heartbeat interval. The server also sends `X-Accel-Buffering: no`. WebSocket
 upgrades are unnecessary. Keep the writable layer enabled for `/app/.data`.
+
+## Shared interface and quality checks
+
+This app consumes a versioned Mono archive from `vendor/`. The manifest and
+lockfile pin its version and integrity, so `npm ci` and the Docker build work
+using only this folder. The shared C header follows the system light/dark setting
+until you choose a theme. Its sun/dusk/moon icon cycles Light, Mirage, and Dark;
+the choice is saved separately from app data. See the
+[root development guide](../README.md#independent-installs-shared-components)
+for updating the library snapshot and the rationale for per-app tooling.
+
+Use Node 22.13+ (22.x) or Node 24+:
+
+```sh
+npm ci
+npm run lint
+npm run format:check
+npm run build
+npm run test --if-present
+```
+
+`npm run format` writes formatting and `npm run lint:fix` applies lint fixes.
+ESLint uses `@cartercree/eslint-config` v4. Local configs cover this app's source,
+server, tests, and config files while excluding generated and vendored assets.
+Source explanations belong in documentation under the v4 comment convention.

@@ -2,6 +2,8 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 
 const files = {
+  "/mono.css": ["mono.css", "text/css; charset=utf-8"],
+  "/mono.js": ["mono.js", "text/javascript; charset=utf-8"],
   "/": ["index.html", "text/html; charset=utf-8"],
   "/index.html": ["index.html", "text/html; charset=utf-8"],
   "/app.js": ["app.js", "text/javascript; charset=utf-8"],
@@ -28,9 +30,7 @@ const server = createServer(async (request, response) => {
     return;
   }
   try {
-    const content = await readFile(
-      new URL(`./public/${file[0]}`, import.meta.url),
-    );
+    const content = await readFile(new URL(`./public/${file[0]}`, import.meta.url));
     response.writeHead(200, {
       "Content-Type": file[1],
       "Cache-Control": "no-cache",

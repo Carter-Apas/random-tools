@@ -1,4 +1,5 @@
-import { CarFront, Check, RotateCcw } from "lucide-react";
+import { AppHeader } from "@random-tools/mono";
+import { Check, RotateCcw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 import { fallbackMarket, sourceUrls } from "../shared/market";
@@ -23,10 +24,7 @@ import { defaultCars, defaultUsage, priceKey } from "@/lib/calculator";
 import type { Car, Usage } from "@/lib/calculator";
 import { dateLabel } from "@/lib/format";
 
-const fetchMarket = async (
-  force: boolean,
-  signal?: AbortSignal,
-): Promise<MarketData> => {
+const fetchMarket = async (force: boolean, signal?: AbortSignal): Promise<MarketData> => {
   const response = await fetch(`/api/market${force ? "?refresh=1" : ""}`, {
     signal,
   });
@@ -40,9 +38,7 @@ const fetchMarket = async (
 export const App = () => {
   const [market, setMarket] = useState<MarketData>(fallbackMarket);
   const [loading, setLoading] = useState(true);
-  const [cars, setCars] = useState<[Car, Car]>(() =>
-    structuredClone(defaultCars),
-  );
+  const [cars, setCars] = useState<[Car, Car]>(() => structuredClone(defaultCars));
   const [usage, setUsage] = useState<Usage>(defaultUsage);
   const refresh = useCallback(async (force = false, signal?: AbortSignal) => {
     setLoading(true);
@@ -62,7 +58,9 @@ export const App = () => {
   }, []);
   useEffect(() => {
     const controller = new AbortController();
-    void refresh(false, controller.signal);
+    const initialRefresh = window.setTimeout(() => {
+      void refresh(false, controller.signal);
+    }, 0);
     const timer = window.setInterval(
       () => {
         void refresh();
@@ -71,9 +69,11 @@ export const App = () => {
     );
     return () => {
       controller.abort();
+      window.clearTimeout(initialRefresh);
       window.clearInterval(timer);
     };
   }, [refresh]);
+
   const update = (index: number, patch: Partial<Car>) => {
     if (patch.type) {
       const key = priceKey({ ...cars[index], ...patch });
@@ -86,46 +86,22 @@ export const App = () => {
     }
     setCars(
       (current) =>
-        current.map((car, i) => (i === index ? { ...car, ...patch } : car)) as [
-          Car,
-          Car,
-        ],
+        current.map((car, i) => (i === index ? { ...car, ...patch } : car)) as [Car, Car],
     );
   };
+
   return (
     <main className="min-h-svh">
       <div className="app-shell">
-        <nav aria-label="Brand" className="app-nav">
-          <a className="brand" href="#">
-            <span className="brand-mark">
-              <CarFront aria-hidden="true" />
-            </span>
-            roadwise<span className="brand-country">NZ</span>
-          </a>
-          <span className="text-xs text-muted-foreground">
-            Make your next vehicle add up.
-          </span>
-        </nav>
+        <AppHeader title="Car cost comparison" />
         <header className="page-heading">
           <div>
             <Badge variant="outline">
               <Check data-icon="inline-start" />
               Built for New Zealand
             </Badge>
-            <h1>
-              A smarter way
-              <br />
-              to compare vehicles<span>.</span>
-            </h1>
-            <p>
-              From the pump to the plug, see what your next vehicle really
-              costs.
-            </p>
-          </div>
-          <div className="heading-note">
-            <span className="eyebrow">The whole picture</span>
-            <p>Two vehicles. One clear comparison.</p>
-            <span>Energy, rego and road charges included.</span>
+            <h1>Car cost comparison</h1>
+            <p>From the pump to the plug, see what your next vehicle really costs.</p>
           </div>
         </header>
         <MarketTracker
@@ -138,9 +114,7 @@ export const App = () => {
         <Card className="usage-card">
           <CardHeader>
             <CardTitle>Your time on the road</CardTitle>
-            <CardDescription>
-              A shared driving plan for both options.
-            </CardDescription>
+            <CardDescription>A shared driving plan for both options.</CardDescription>
             <CardAction>
               <Button
                 size="sm"
@@ -177,10 +151,7 @@ export const App = () => {
             </FieldGroup>
           </CardContent>
         </Card>
-        <section
-          className="calculator-layout"
-          aria-label="Vehicle cost comparison"
-        >
+        <section className="calculator-layout" aria-label="Vehicle cost comparison">
           <div className="vehicle-grid">
             {cars.map((car, index) => (
               <VehicleCard

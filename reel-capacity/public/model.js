@@ -1,7 +1,5 @@
 export const METRES_PER_YARD = 0.9144;
 
-// Approximate PE diameters, not a universal PE diameter standard.
-// Source: https://www.varivas.fishing/japanese-fishing-line-size/ (PE table).
 export const PE_SIZES = Object.freeze(
   [
     [0.1, 0.054],
@@ -35,24 +33,20 @@ export const PE_SIZES = Object.freeze(
   ].map(Object.freeze),
 );
 
-function positive(value, name) {
+const positive = (value, name) => {
   if (!Number.isFinite(value) || value <= 0)
     throw new RangeError(`${name} must be greater than zero.`);
   return value;
-}
+};
 
-export function convertLength(value, from, to) {
+export const convertLength = (value, from, to) => {
   positive(value, "Length");
   if (![from, to].every((unit) => ["m", "yd"].includes(unit)))
     throw new RangeError("Choose metres or yards.");
-  return (
-    (value * (from === "yd" ? METRES_PER_YARD : 1)) /
-    (to === "yd" ? METRES_PER_YARD : 1)
-  );
-}
+  return (value * (from === "yd" ? METRES_PER_YARD : 1)) / (to === "yd" ? METRES_PER_YARD : 1);
+};
 
-// Interpolate cross-sectional area between reference entries. Never extrapolate.
-export function peToDiameter(pe) {
+export const peToDiameter = (pe) => {
   positive(pe, "PE size");
   if (pe < PE_SIZES[0][0] || pe > PE_SIZES.at(-1)[0])
     throw new RangeError("Enter a PE size from 0.1 to 30.");
@@ -61,38 +55,33 @@ export function peToDiameter(pe) {
   const [lowPe, lowDiameter] = PE_SIZES[upper - 1];
   const [highPe, highDiameter] = PE_SIZES[upper];
   const fraction = (pe - lowPe) / (highPe - lowPe);
-  return Math.sqrt(
-    lowDiameter ** 2 + fraction * (highDiameter ** 2 - lowDiameter ** 2),
-  );
-}
+  return Math.sqrt(lowDiameter ** 2 + fraction * (highDiameter ** 2 - lowDiameter ** 2));
+};
 
-export function diameterToPe(diameter) {
+export const diameterToPe = (diameter) => {
   positive(diameter, "Diameter");
   if (diameter < PE_SIZES[0][1] || diameter > PE_SIZES.at(-1)[1]) return null;
   const upper = PE_SIZES.findIndex(([, mm]) => mm >= diameter);
   if (PE_SIZES[upper][1] === diameter) return PE_SIZES[upper][0];
   const [lowPe, lowDiameter] = PE_SIZES[upper - 1];
   const [highPe, highDiameter] = PE_SIZES[upper];
-  const fraction =
-    (diameter ** 2 - lowDiameter ** 2) / (highDiameter ** 2 - lowDiameter ** 2);
+  const fraction = (diameter ** 2 - lowDiameter ** 2) / (highDiameter ** 2 - lowDiameter ** 2);
   return lowPe + fraction * (highPe - lowPe);
-}
+};
 
-export function toDiameter(value, unit) {
+export const toDiameter = (value, unit) => {
   positive(value, unit === "pe" ? "PE size" : "Diameter");
   if (unit === "pe") return peToDiameter(value);
   if (unit !== "mm") throw new RangeError("Choose mm or PE.");
-  if (value < 0.01 || value > 5)
-    throw new RangeError("Enter a diameter from 0.01 to 5 mm.");
+  if (value < 0.01 || value > 5) throw new RangeError("Enter a diameter from 0.01 to 5 mm.");
   return value;
-}
+};
 
-export function estimateCapacity(lengthMetres, knownDiameter, targetDiameter) {
+export const estimateCapacity = (lengthMetres, knownDiameter, targetDiameter) => {
   positive(lengthMetres, "Known length");
   positive(knownDiameter, "Known diameter");
   positive(targetDiameter, "Target diameter");
   const result = lengthMetres * (knownDiameter / targetDiameter) ** 2;
-  if (!Number.isFinite(result))
-    throw new RangeError("These values are too large to calculate.");
+  if (!Number.isFinite(result)) throw new RangeError("These values are too large to calculate.");
   return result;
-}
+};

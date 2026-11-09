@@ -1,7 +1,9 @@
 import { randomUUID } from "node:crypto";
+
 import { calculateScore } from "./scoring.js";
 import { createRoomCode, normalizeRoomCode } from "./roomCode.js";
 import type { Lobby, Player, Quiz, SubmittedAnswer } from "./types.js";
+
 import type { LobbySnapshot, SnapshotRole } from "../../shared/lobby.js";
 import { quizQuestionCountLimits } from "../../shared/quiz.js";
 
@@ -37,17 +39,12 @@ type FinalizeQuestionInput = {
 };
 
 type CodeInput = { code: string };
+
 type RemovePlayerInput = { code: string; playerId: string };
 
-function rankPlayers(
-  lobby: Lobby,
-  currentQuestionAnswers: Record<string, SubmittedAnswer>,
-) {
-  return [...lobby.players]
-    .sort(
-      (left, right) =>
-        right.score - left.score || left.nickname.localeCompare(right.nickname),
-    )
+const rankPlayers = (lobby: Lobby, currentQuestionAnswers: Record<string, SubmittedAnswer>) =>
+  [...lobby.players]
+    .sort((left, right) => right.score - left.score || left.nickname.localeCompare(right.nickname))
     .map((player, index) => ({
       id: player.id,
       nickname: player.nickname,
@@ -56,14 +53,10 @@ function rankPlayers(
       rank: index + 1,
       hasAnswered: Boolean(currentQuestionAnswers[player.id]),
     }));
-}
 
-function buildQuestionView(lobby: Lobby) {
+const buildQuestionView = (lobby: Lobby) => {
   const question = lobby.quiz?.questions[lobby.currentQuestionIndex];
-  if (
-    !question ||
-    ["collecting", "ready", "leaderboard", "finished"].includes(lobby.status)
-  ) {
+  if (!question || ["collecting", "ready", "leaderboard", "finished"].includes(lobby.status)) {
     return null;
   }
 
@@ -76,15 +69,13 @@ function buildQuestionView(lobby: Lobby) {
     correctIndex: revealed ? question.correctIndex : undefined,
     explanation: revealed ? question.explanation : undefined,
   };
-}
+};
 
-function buildSnapshot(lobby: Lobby, role: SnapshotRole): LobbySnapshot {
+const buildSnapshot = (lobby: Lobby, role: SnapshotRole): LobbySnapshot => {
   const currentAnswers = lobby.answers[lobby.currentQuestionIndex] ?? {};
   const players = rankPlayers(lobby, currentAnswers);
   const playerId = typeof role === "string" ? null : role.playerId;
-  const me = playerId
-    ? (lobby.players.find((player) => player.id === playerId) ?? null)
-    : null;
+  const me = playerId ? (lobby.players.find((player) => player.id === playerId) ?? null) : null;
   const myAnswer = me ? (currentAnswers[me.id] ?? null) : null;
 
   return {
@@ -112,9 +103,9 @@ function buildSnapshot(lobby: Lobby, role: SnapshotRole): LobbySnapshot {
         }
       : null,
   };
-}
+};
 
-function requireLobby(map: Map<string, Lobby>, code: string) {
+const requireLobby = (map: Map<string, Lobby>, code: string) => {
   const normalized = normalizeRoomCode(code);
   const lobby = map.get(normalized);
 
@@ -123,41 +114,39 @@ function requireLobby(map: Map<string, Lobby>, code: string) {
   }
 
   return lobby;
-}
+};
 
-function requireQuiz(lobby: Lobby): Quiz {
+const requireQuiz = (lobby: Lobby): Quiz => {
   if (!lobby.quiz) {
     throw new Error("Quiz has not been generated");
   }
 
   return lobby.quiz;
-}
+};
 
-function requirePlayerBySocket(lobby: Lobby, socketId: string): Player {
-  const player = lobby.players.find(
-    (entry) => entry.socketId === socketId && entry.isConnected,
-  );
+const requirePlayerBySocket = (lobby: Lobby, socketId: string): Player => {
+  const player = lobby.players.find((entry) => entry.socketId === socketId && entry.isConnected);
 
   if (!player) {
     throw new Error("Player not found");
   }
 
   return player;
-}
+};
 
-function requireAnswerBucket(lobby: Lobby, questionIndex: number) {
+const requireAnswerBucket = (lobby: Lobby, questionIndex: number) => {
   if (!lobby.answers[questionIndex]) {
     lobby.answers[questionIndex] = {};
   }
 
   return lobby.answers[questionIndex] as Record<string, SubmittedAnswer>;
-}
+};
 
-export function createLobbyStore(random = Math.random) {
+export const createLobbyStore = (random = Math.random) => {
   const lobbies = new Map<string, Lobby>();
 
   return {
-    createLobby(input: CreateLobbyInput) {
+    createLobby: (input: CreateLobbyInput) => {
       if (
         !Number.isInteger(input.questionCount) ||
         input.questionCount < quizQuestionCountLimits.min ||
@@ -168,7 +157,7 @@ export function createLobbyStore(random = Math.random) {
         );
       }
 
-      let code = "";
+      let code: string;
 
       do {
         code = createRoomCode(random);
@@ -194,11 +183,9 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    getLobby(code: string) {
-      return requireLobby(lobbies, code);
-    },
+    getLobby: (code: string) => requireLobby(lobbies, code),
 
-    findLobbyBySocketId(socketId: string) {
+    findLobbyBySocketId: (socketId: string) => {
       for (const lobby of lobbies.values()) {
         if (
           lobby.hostSocketId === socketId ||
@@ -211,7 +198,7 @@ export function createLobbyStore(random = Math.random) {
       return null;
     },
 
-    attachQuiz(code: string, quiz: Quiz) {
+    attachQuiz: (code: string, quiz: Quiz) => {
       const lobby = requireLobby(lobbies, code);
       lobby.quiz = quiz;
       lobby.status = "ready";
@@ -219,7 +206,7 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    addPlayer(input: AddPlayerInput) {
+    addPlayer: (input: AddPlayerInput) => {
       const lobby = requireLobby(lobbies, input.code);
       const nickname = input.nickname.trim();
 
@@ -253,11 +240,9 @@ export function createLobbyStore(random = Math.random) {
       return player;
     },
 
-    setPlayerConnection(socketId: string, isConnected: boolean) {
+    setPlayerConnection: (socketId: string, isConnected: boolean) => {
       for (const lobby of lobbies.values()) {
-        const player = lobby.players.find(
-          (entry) => entry.socketId === socketId,
-        );
+        const player = lobby.players.find((entry) => entry.socketId === socketId);
         if (player) {
           player.isConnected = isConnected;
           return lobby;
@@ -272,13 +257,13 @@ export function createLobbyStore(random = Math.random) {
       return null;
     },
 
-    setHostSocket(code: string, socketId: string) {
+    setHostSocket: (code: string, socketId: string) => {
       const lobby = requireLobby(lobbies, code);
       lobby.hostSocketId = socketId;
       return lobby;
     },
 
-    startQuestion(input: StartQuestionInput) {
+    startQuestion: (input: StartQuestionInput) => {
       const lobby = requireLobby(lobbies, input.code);
       const quiz = requireQuiz(lobby);
 
@@ -297,7 +282,7 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    submitAnswer(input: SubmitAnswerInput) {
+    submitAnswer: (input: SubmitAnswerInput) => {
       const lobby = requireLobby(lobbies, input.code);
       const quiz = requireQuiz(lobby);
       const player = requirePlayerBySocket(lobby, input.socketId);
@@ -306,10 +291,7 @@ export function createLobbyStore(random = Math.random) {
         throw new Error("Question is not live");
       }
 
-      if (
-        lobby.currentQuestionEndsAt !== null &&
-        input.submittedAt > lobby.currentQuestionEndsAt
-      ) {
+      if (lobby.currentQuestionEndsAt !== null && input.submittedAt > lobby.currentQuestionEndsAt) {
         throw new Error("Question timer has ended");
       }
 
@@ -335,7 +317,7 @@ export function createLobbyStore(random = Math.random) {
       return answer;
     },
 
-    finalizeQuestion(input: FinalizeQuestionInput) {
+    finalizeQuestion: (input: FinalizeQuestionInput) => {
       const lobby = requireLobby(lobbies, input.code);
 
       if (lobby.status !== "question_live") {
@@ -345,40 +327,33 @@ export function createLobbyStore(random = Math.random) {
       const questionIndex = lobby.currentQuestionIndex;
       const answers = requireAnswerBucket(lobby, questionIndex);
       const durationMs =
-        lobby.currentQuestionStartedAt !== null &&
-        lobby.currentQuestionEndsAt !== null
+        lobby.currentQuestionStartedAt !== null && lobby.currentQuestionEndsAt !== null
           ? lobby.currentQuestionEndsAt - lobby.currentQuestionStartedAt
           : 0;
 
-      (Object.values(answers) as SubmittedAnswer[]).forEach(
-        (answer: SubmittedAnswer) => {
-          const player = lobby.players.find(
-            (entry: Player) => entry.id === answer.playerId,
-          );
-          if (!player) {
-            return;
-          }
+      (Object.values(answers) as SubmittedAnswer[]).forEach((answer: SubmittedAnswer) => {
+        const player = lobby.players.find((entry: Player) => entry.id === answer.playerId);
+        if (!player) {
+          return;
+        }
 
-          const answeredAtMs =
-            lobby.currentQuestionStartedAt === null
-              ? input.finalizedAt
-              : answer.submittedAt - lobby.currentQuestionStartedAt;
-          answer.scoreAwarded = calculateScore({
-            isCorrect: answer.isCorrect,
-            answeredAtMs,
-            durationMs,
-          });
-          player.score += answer.scoreAwarded;
-        },
-      );
+        const answeredAtMs =
+          lobby.currentQuestionStartedAt === null
+            ? input.finalizedAt
+            : answer.submittedAt - lobby.currentQuestionStartedAt;
+        answer.scoreAwarded = calculateScore({
+          isCorrect: answer.isCorrect,
+          answeredAtMs,
+          durationMs,
+        });
+        player.score += answer.scoreAwarded;
+      });
 
       lobby.status = "question_result";
       return lobby;
     },
 
-    showLeaderboard(
-      input: CodeInput & { startedAt: number; durationMs: number },
-    ) {
+    showLeaderboard: (input: CodeInput & { startedAt: number; durationMs: number }) => {
       const lobby = requireLobby(lobbies, input.code);
       lobby.status = "leaderboard";
       lobby.phaseStartedAt = input.startedAt;
@@ -386,7 +361,7 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    finishGame(input: CodeInput) {
+    finishGame: (input: CodeInput) => {
       const lobby = requireLobby(lobbies, input.code);
       lobby.status = "finished";
       lobby.phaseStartedAt = null;
@@ -394,7 +369,7 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    restartLobby(input: CodeInput) {
+    restartLobby: (input: CodeInput) => {
       const lobby = requireLobby(lobbies, input.code);
       lobby.status = lobby.quiz ? "ready" : "collecting";
       lobby.players = lobby.players.map((player) => ({ ...player, score: 0 }));
@@ -407,11 +382,9 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    removePlayer(input: RemovePlayerInput) {
+    removePlayer: (input: RemovePlayerInput) => {
       const lobby = requireLobby(lobbies, input.code);
-      lobby.players = lobby.players.filter(
-        (player) => player.id !== input.playerId,
-      );
+      lobby.players = lobby.players.filter((player) => player.id !== input.playerId);
 
       Object.values(lobby.answers).forEach((answerBucket) => {
         delete answerBucket[input.playerId];
@@ -420,9 +393,9 @@ export function createLobbyStore(random = Math.random) {
       return lobby;
     },
 
-    getSnapshot(code: string, role: SnapshotRole) {
+    getSnapshot: (code: string, role: SnapshotRole) => {
       const lobby = requireLobby(lobbies, code);
       return buildSnapshot(lobby, role);
     },
   };
-}
+};

@@ -1,3 +1,4 @@
+import { Button, Input, Textarea } from "@random-tools/mono";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -9,15 +10,10 @@ import {
   UserRoundX,
   Users,
 } from "lucide-react";
+
 import type { LobbySnapshot } from "../shared/types";
 import { getSocket, type ClientSocketLike } from "../../lib/socket";
-import {
-  Panel,
-  AccentButton,
-  GhostButton,
-  SectionLabel,
-  Shell,
-} from "../../components/ui";
+import { Panel, AccentButton, GhostButton, SectionLabel, Shell } from "../../components/ui";
 import { TimerBar } from "../../components/TimerBar";
 import { quizQuestionCountLimits } from "../../../shared/quiz";
 
@@ -25,12 +21,10 @@ type HostScreenProps = {
   socket?: ClientSocketLike;
 };
 
-export function HostScreen({ socket = getSocket() }: HostScreenProps) {
+export const HostScreen = ({ socket = getSocket() }: HostScreenProps) => {
   const [searchParams] = useSearchParams();
   const [topic, setTopic] = useState(() => searchParams.get("topic") ?? "");
-  const [questionCount, setQuestionCount] = useState(
-    String(quizQuestionCountLimits.default),
-  );
+  const [questionCount, setQuestionCount] = useState(String(quizQuestionCountLimits.default));
   const [snapshot, setSnapshot] = useState<LobbySnapshot | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -41,6 +35,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
       setIsGenerating(false);
       setSnapshot(nextSnapshot);
     };
+
     const handleError = (payload: { message: string }) => {
       setIsGenerating(false);
       setError(payload.message);
@@ -67,8 +62,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
   const isFinished = snapshot?.status === "finished";
   const currentQuestion = snapshot?.currentQuestion;
   const isFormLocked = isGenerating;
-  const connectedPlayers =
-    snapshot?.players.filter((player) => player.isConnected).length ?? 0;
+  const connectedPlayers = snapshot?.players.filter((player) => player.isConnected).length ?? 0;
   const hasNextQuestion =
     typeof snapshot?.currentQuestionIndex === "number" &&
     snapshot.currentQuestionIndex < snapshot.totalQuestions - 1;
@@ -103,7 +97,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
             <div className="setup-fields">
               <label className="field">
                 <span>Topic</span>
-                <textarea
+                <Textarea
                   aria-label="Topic"
                   value={topic}
                   onChange={(event) => setTopic(event.target.value)}
@@ -115,24 +109,21 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
               <div className="question-count-row">
                 <label className="field">
                   <span>Questions</span>
-                  <input
+                  <Input
                     aria-label="Questions"
                     value={questionCount}
                     type="number"
                     min={quizQuestionCountLimits.min}
                     max={quizQuestionCountLimits.max}
                     inputMode="numeric"
-                    onChange={(event) =>
-                      setQuestionCount(event.target.value.replace(/[^\d]/g, ""))
-                    }
+                    onChange={(event) => setQuestionCount(event.target.value.replace(/[^\d]/g, ""))}
                     disabled={isFormLocked}
                   />
                 </label>
                 <p>
                   Keep it quick or settle in.
                   <br />
-                  Choose {quizQuestionCountLimits.min}–
-                  {quizQuestionCountLimits.max} questions.
+                  Choose {quizQuestionCountLimits.min}–{quizQuestionCountLimits.max} questions.
                 </p>
               </div>
             </div>
@@ -160,9 +151,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
                 )}
               </AccentButton>
               <span>
-                {isGenerating
-                  ? "Good questions take a moment."
-                  : "Made fresh for your room."}
+                {isGenerating ? "Good questions take a moment." : "Made fresh for your room."}
               </span>
             </div>
             {error ? (
@@ -187,8 +176,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
               {currentQuestion ? (
                 <div className="question-content">
                   <SectionLabel>
-                    Question {snapshot.currentQuestionIndex + 1} of{" "}
-                    {snapshot.totalQuestions}
+                    Question {snapshot.currentQuestionIndex + 1} of {snapshot.totalQuestions}
                   </SectionLabel>
                   <h3 className="question-title">{currentQuestion.prompt}</h3>
                   <TimerBar
@@ -214,9 +202,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
               ) : snapshot.status === "leaderboard" ? (
                 <div className="phase-message">
                   <SectionLabel>
-                    {hasNextQuestion
-                      ? "Round leaderboard"
-                      : "Final leaderboard"}
+                    {hasNextQuestion ? "Round leaderboard" : "Final leaderboard"}
                   </SectionLabel>
                   <h3>
                     {hasNextQuestion
@@ -245,24 +231,19 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
                 </div>
               ) : (
                 <p className="panel-description">
-                  Share the room code, get everyone in, and start when you’re
-                  ready.
+                  Share the room code, get everyone in, and start when you’re ready.
                 </p>
               )}
               <div className="game-actions">
                 <AccentButton
-                  onClick={() =>
-                    socket.emit("game:start", { code: snapshot.code })
-                  }
+                  onClick={() => socket.emit("game:start", { code: snapshot.code })}
                   disabled={!canStart || isFormLocked}
                 >
                   <Play size={16} />
                   Start game
                 </AccentButton>
                 <GhostButton
-                  onClick={() =>
-                    socket.emit("game:restart", { code: snapshot.code })
-                  }
+                  onClick={() => socket.emit("game:restart", { code: snapshot.code })}
                   disabled={!isFinished || isFormLocked}
                 >
                   <RotateCcw size={16} />
@@ -274,8 +255,8 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
             <div className="host-tip">
               <span>↳</span>
               <p>
-                <strong>Make it a shared screen.</strong> Open this page on a
-                laptop or TV. Everyone else can join on their phones.
+                <strong>Make it a shared screen.</strong> Open this page on a laptop or TV. Everyone
+                else can join on their phones.
               </p>
             </div>
           )}
@@ -314,14 +295,10 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
                     </span>
                     <div className="player-detail">
                       <strong>{player.nickname}</strong>
-                      <span>
-                        {player.isConnected ? "Connected" : "Disconnected"}
-                      </span>
+                      <span>{player.isConnected ? "Connected" : "Disconnected"}</span>
                     </div>
-                    <strong className="player-score">
-                      {player.score.toLocaleString()}
-                    </strong>
-                    <button
+                    <strong className="player-score">{player.score.toLocaleString()}</strong>
+                    <Button
                       type="button"
                       aria-label={`Kick ${player.nickname}`}
                       onClick={() =>
@@ -333,7 +310,7 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
                       className="kick-button"
                     >
                       <UserRoundX size={16} />
-                    </button>
+                    </Button>
                   </div>
                 ))}
               </div>
@@ -355,8 +332,6 @@ export function HostScreen({ socket = getSocket() }: HostScreenProps) {
       </div>
     </Shell>
   );
-}
+};
 
-function MonitorIcon() {
-  return <span aria-hidden="true" className="console-dot" />;
-}
+const MonitorIcon = () => <span aria-hidden="true" className="console-dot" />;

@@ -4,7 +4,7 @@ type ScoreInput = {
   durationMs: number;
 };
 
-export function calculateScore(input: ScoreInput) {
+export const calculateScore = (input: ScoreInput) => {
   if (!input.isCorrect) {
     return 0;
   }
@@ -12,4 +12,4 @@ export function calculateScore(input: ScoreInput) {
   const clamped = Math.max(0, Math.min(input.answeredAtMs, input.durationMs));
   const ratio = 1 - clamped / input.durationMs;
   return Math.max(100, Math.round(100 + ratio * 900));
-}
+};

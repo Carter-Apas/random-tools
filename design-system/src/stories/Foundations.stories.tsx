@@ -6,7 +6,9 @@ import { Badge, Panel } from "../components/primitives";
 
 const meta = { title: "Foundations/Design tokens" } satisfies Meta;
 export default meta;
+
 type Story = StoryObj;
+
 const colours = [
   ["Canvas", "--mono-bg"],
   ["Surface", "--mono-surface"],

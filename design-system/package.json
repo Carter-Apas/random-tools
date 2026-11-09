@@ -1,6 +1,6 @@
 {
   "name": "@random-tools/mono",
-  "version": "0.1.0",
+  "version": "0.2.3",
   "private": true,
   "type": "module",
   "description": "Ayu-inspired interface foundations for Random Tools.",
@@ -17,33 +17,36 @@
       "import": "./dist/mono.js"
     },
     "./styles.css": "./dist/mono.css",
-    "./tokens.css": "./src/styles/tokens.css"
+    "./tokens.css": "./src/styles/tokens.css",
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    }
   },
   "scripts": {
     "dev": "storybook dev -p 6006 --host 0.0.0.0 --no-open --disable-telemetry",
     "storybook": "npm run dev",
     "build": "tsc --noEmit && storybook build --disable-telemetry",
-    "build:lib": "vite build && tsc -p tsconfig.lib.json",
+    "build:lib": "vite build && vite build --mode browser && tsc -p tsconfig.lib.json",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
     "preview": "vite preview --outDir storybook-static --host 0.0.0.0 --port 6006",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "package:apps": "npm run build:lib && node scripts/package-apps.mjs",
+    "test:apps": "playwright test -c playwright.apps.config.ts"
   },
   "peerDependencies": {
     "react": "^18.2.0 || ^19.0.0",
     "react-dom": "^18.2.0 || ^19.0.0"
   },
-  "dependencies": {
-    "@fontsource-variable/geist": "^5.3.0",
-    "@fontsource-variable/geist-mono": "^5.3.0",
-    "lucide-react": "^1.70.0"
-  },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
-    "@cartercree/eslint-config": "^3.0.0",
+    "@cartercree/eslint-config": "^4.1.0",
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/geist-mono": "^5.3.0",
     "@playwright/test": "^1.65.0",
     "@storybook/addon-a11y": "10.6.6",
     "@storybook/addon-docs": "10.6.6",
@@ -53,6 +56,7 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^10.14.0",
+    "lucide-react": "^1.70.0",
     "prettier": "^3.9.10",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
@@ -62,5 +66,13 @@
   },
   "engines": {
     "node": "^22.13.0 || >=24.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   }
 }

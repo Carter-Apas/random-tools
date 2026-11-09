@@ -6,7 +6,6 @@ import path from "node:path";
 
 import { getMarket } from "./server/market";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -22,9 +21,7 @@ export default defineConfig({
             response.end(JSON.stringify(data));
           } catch {
             response.statusCode = 503;
-            response.end(
-              JSON.stringify({ error: "Market sources unavailable" }),
-            );
+            response.end(JSON.stringify({ error: "Market sources unavailable" }));
           }
         });
       },

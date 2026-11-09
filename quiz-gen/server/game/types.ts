@@ -11,12 +11,7 @@ export type Quiz = {
 };
 
 export type LobbyStatus =
-  | "collecting"
-  | "ready"
-  | "question_live"
-  | "question_result"
-  | "leaderboard"
-  | "finished";
+  "collecting" | "ready" | "question_live" | "question_result" | "leaderboard" | "finished";
 
 export type Player = {
   id: string;

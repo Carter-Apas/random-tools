@@ -7,7 +7,7 @@ export type ClientSocketLike = Pick<
 
 let socket: ClientSocketLike | null = null;
 
-export function getSocket(): ClientSocketLike {
+export const getSocket = (): ClientSocketLike => {
   if (!socket) {
     socket = io({
       autoConnect: false,
@@ -15,4 +15,4 @@ export function getSocket(): ClientSocketLike {
   }
 
   return socket;
-}
+};

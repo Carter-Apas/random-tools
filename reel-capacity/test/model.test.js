@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+
 import {
   PE_SIZES,
   convertLength,
@@ -10,10 +11,7 @@ import {
 } from "../public/model.js";
 
 const close = (actual, expected, tolerance = 1e-9) =>
-  assert.ok(
-    Math.abs(actual - expected) <= tolerance,
-    `${actual} should equal ${expected}`,
-  );
+  assert.ok(Math.abs(actual - expected) <= tolerance, `${actual} should equal ${expected}`);
 
 test("capacity follows cross-sectional area rather than diameter alone", () => {
   close(estimateCapacity(200, 0.2, 0.2), 200);

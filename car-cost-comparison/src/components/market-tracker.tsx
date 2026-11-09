@@ -18,16 +18,9 @@ import { fuelLabels } from "@/lib/calculator";
 import { dateLabel, observationSource, precise } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
-const priceStatus = (
-  price: MarketData["prices"]["electric"],
-  electric: boolean,
-) => {
+const priceStatus = (price: MarketData["prices"]["electric"], electric: boolean) => {
   if (price.status === "estimate") return "Example";
-  if (
-    price.date &&
-    Date.now() - new Date(price.date).getTime() >
-      (electric ? 120 : 21) * 86400000
-  )
+  if (price.date && Date.now() - new Date(price.date).getTime() > (electric ? 120 : 21) * 86400000)
     return "Older data";
   return price.status === "cached" ? "Saved" : observationSource(price);
 };
@@ -52,10 +45,7 @@ export const MarketTracker = ({
         </p>
       </div>
       <Button variant="outline" size="sm" disabled={loading} onClick={refresh}>
-        <RefreshCw
-          data-icon="inline-start"
-          className={cn(loading && "animate-spin")}
-        />
+        <RefreshCw data-icon="inline-start" className={cn(loading && "animate-spin")} />
         {loading ? "Checking sources…" : "Refresh prices"}
       </Button>
     </div>
@@ -67,17 +57,11 @@ export const MarketTracker = ({
           <Card size="sm" key={key} className="price-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                {key === "electric" ? (
-                  <Zap aria-hidden="true" />
-                ) : (
-                  <Fuel aria-hidden="true" />
-                )}
+                {key === "electric" ? <Zap aria-hidden="true" /> : <Fuel aria-hidden="true" />}
                 {key === "electric" ? "Home electricity" : fuelLabels[key]}
               </CardTitle>
               <CardAction>
-                <Badge variant="outline">
-                  {priceStatus(price, key === "electric")}
-                </Badge>
+                <Badge variant="outline">{priceStatus(price, key === "electric")}</Badge>
               </CardAction>
             </CardHeader>
             <CardContent>
@@ -90,9 +74,7 @@ export const MarketTracker = ({
             </CardContent>
             <CardFooter className="justify-between gap-2">
               <span className="text-xs text-muted-foreground">
-                {isEstimate
-                  ? "Example input · not a fetched average"
-                  : dateLabel(price.date)}
+                {isEstimate ? "Example input · not a fetched average" : dateLabel(price.date)}
               </span>
               <a
                 href={price.source}
@@ -121,17 +103,10 @@ export const MarketTracker = ({
         </Alert>
       )}
     <details className="rounded-lg border p-4 text-sm">
-      <summary className="cursor-pointer font-medium">
-        Fee sources & rates in use
-      </summary>
+      <summary className="cursor-pointer font-medium">Fee sources & rates in use</summary>
       <div className="mt-3 grid gap-4 sm:grid-cols-2">
         <div>
-          <a
-            href={sourceUrls.rego}
-            target="_blank"
-            rel="noreferrer"
-            className="underline"
-          >
+          <a href={sourceUrls.rego} target="_blank" rel="noreferrer" className="underline">
             NZTA rego
           </a>
           <p className="mt-1 text-xs text-muted-foreground">
@@ -144,8 +119,7 @@ export const MarketTracker = ({
             {precise.format(market.rego.diesel)} per year.
           </p>
           <p className="mt-1">
-            Petrol motorcycles: up to 60cc{" "}
-            {precise.format(market.motorcycleRego.upTo60)}; 61–250cc{" "}
+            Petrol motorcycles: up to 60cc {precise.format(market.motorcycleRego.upTo60)}; 61–250cc{" "}
             {precise.format(market.motorcycleRego.from61To250)}; 251–750cc{" "}
             {precise.format(market.motorcycleRego.from251To750)}; over 750cc{" "}
             {precise.format(market.motorcycleRego.over750)} per year.
@@ -155,12 +129,7 @@ export const MarketTracker = ({
           </p>
         </div>
         <div>
-          <a
-            href={sourceUrls.ruc}
-            target="_blank"
-            rel="noreferrer"
-            className="underline"
-          >
+          <a href={sourceUrls.ruc} target="_blank" rel="noreferrer" className="underline">
             NZTA RUC
           </a>
           <p className="mt-1 text-xs text-muted-foreground">
@@ -173,23 +142,20 @@ export const MarketTracker = ({
             {precise.format(market.ruc.phev)} per 1,000 km.
           </p>
           <p className="mt-1">
-            Administration per licence: online{" "}
-            {precise.format(market.ruc.online)}; agent{" "}
+            Administration per licence: online {precise.format(market.ruc.online)}; agent{" "}
             {precise.format(market.ruc.agent)}.
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Petrol cars and petrol motorcycles have no separate RUC. Vehicle
-            weight and exemptions can change the applicable rate. Custom fees
-            below override these presets.
+            Petrol cars and petrol motorcycles have no separate RUC. Vehicle weight and exemptions
+            can change the applicable rate. Custom fees below override these presets.
           </p>
         </div>
       </div>
     </details>
     <p className="text-xs leading-5 text-muted-foreground">
-      Fuel uses Gaspy’s live national averages; residential electricity is
-      published quarterly. Electricity includes household fixed charges and is a
-      benchmark, not an EV charging tariff. Use your own rate for off-peak or
-      public charging.{" "}
+      Fuel uses Gaspy’s live national averages; residential electricity is published quarterly.
+      Electricity includes household fixed charges and is a benchmark, not an EV charging tariff.
+      Use your own rate for off-peak or public charging.{" "}
       {market.checkedAt && `Last checked ${dateLabel(market.checkedAt)}.`}
     </p>
   </section>

@@ -1,24 +1,19 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import {
-  parseGaspy,
-  parseMotorcycleRego,
-  parseRego,
-  parseRuc,
-} from "./parsers.ts";
+import { parseGaspy, parseMotorcycleRego, parseRego, parseRuc } from "./parsers.ts";
 import { fetchElectricity, sourceHtml, SourceAccessError } from "./sources.ts";
 
 import { fallbackMarket, sourceUrls } from "../shared/market.ts";
 import type { MarketData } from "../shared/market.ts";
 
-const cacheFile =
-  process.env.MARKET_CACHE_FILE ?? path.resolve(".cache/market.json");
+const cacheFile = process.env.MARKET_CACHE_FILE ?? path.resolve(".cache/market.json");
 const refreshInterval = 6 * 60 * 60 * 1000;
 let current: MarketData = structuredClone(fallbackMarket);
 let lastAttempt = 0;
 let pending: Promise<MarketData> | undefined;
 let initialized = false;
+
 const fetchSource = async (url: string) => {
   const parsed = new URL(url);
   if (
@@ -39,6 +34,7 @@ const fetchSource = async (url: string) => {
   if (!response.ok) throw new Error(`Source returned HTTP ${response.status}`);
   return response;
 };
+
 const discardLegacyFuel = (data: MarketData) => {
   for (const key of ["petrol91", "petrol95", "diesel"] as const) {
     if (data.prices[key].source !== sourceUrls.gaspy)
@@ -46,6 +42,7 @@ const discardLegacyFuel = (data: MarketData) => {
   }
   return data;
 };
+
 const backfillMotorcycleRego = (data: MarketData) => {
   if (!data.motorcycleRego) {
     data.motorcycleRego = structuredClone(fallbackMarket.motorcycleRego);
@@ -53,6 +50,10 @@ const backfillMotorcycleRego = (data: MarketData) => {
   }
   return data;
 };
+
+const isMissingFile = (error: unknown) =>
+  error instanceof Error && "code" in error && error.code === "ENOENT";
+
 const initialize = async () => {
   if (initialized) return;
   initialized = true;
@@ -68,10 +69,13 @@ const initialize = async () => {
       saved.feesCheckedAt
     )
       current = discardLegacyFuel(backfillMotorcycleRego(saved));
-  } catch {
-    /* First boot uses explicitly labelled example prices. */
+  } catch (error) {
+    current = structuredClone(fallbackMarket);
+    if (!isMissingFile(error))
+      console.warn("Could not load market cache; using reference data:", String(error));
   }
 };
+
 const fetchFuelPrices = async () =>
   parseGaspy(await (await fetchSource(sourceUrls.gaspyData)).json());
 
@@ -88,10 +92,7 @@ const refresh = async (): Promise<MarketData> => {
     })(),
     (async () => {
       const { observation, notice } = await fetchElectricity(fetchSource);
-      if (
-        !next.prices.electric.date ||
-        observation.date! >= next.prices.electric.date
-      )
+      if (!next.prices.electric.date || observation.date! >= next.prices.electric.date)
         next.prices.electric = observation;
       if (notice)
         next.errors.push(
@@ -113,12 +114,7 @@ const refresh = async (): Promise<MarketData> => {
       next.feesCheckedAt.ruc = new Date().toISOString();
     })(),
   ]);
-  const labels = [
-    "Fuel averages",
-    "Electricity average",
-    "Rego fees",
-    "RUC fees",
-  ];
+  const labels = ["Fuel averages", "Electricity average", "Rego fees", "RUC fees"];
   results.forEach((result, index) => {
     if (result.status === "rejected") {
       next.errors.push(
@@ -138,13 +134,13 @@ const refresh = async (): Promise<MarketData> => {
   }
   return structuredClone(current);
 };
+
 export const getMarket = async (force = false) => {
   await initialize();
-  // Shared promise and one-minute limit prevent repeated clicks hammering sources.
+
   if (
     !pending &&
-    (Date.now() - lastAttempt >= refreshInterval ||
-      (force && Date.now() - lastAttempt >= 60000))
+    (Date.now() - lastAttempt >= refreshInterval || (force && Date.now() - lastAttempt >= 60000))
   ) {
     pending = refresh().finally(() => {
       pending = undefined;

@@ -2,7 +2,7 @@
 
 A shared interface language for Random Tools: minimal, clean, technical, and
 inspired by Ayu. This folder is an independent Storybook and a reusable component
-package. Existing applications have not been migrated.
+package. All six applications consume versioned snapshots of this package.
 
 ## Preview
 
@@ -15,8 +15,9 @@ npm run dev
 ```
 
 Open [Storybook](http://localhost:6006/?path=/story/start-here-overview--design-language).
-The **Overview** is the visual starting point. Use its appearance switcher or the
-Storybook toolbar to choose **Dark**, **Mirage** (default), or **Light**. Theme
+The **Overview** is the visual starting point. Its icon button cycles **Light**,
+**Mirage**, and **Dark**; the Storybook toolbar can select a theme directly.
+The initial theme follows your system light/dark setting. Theme
 selection is reflected in the Storybook URL, so a particular appearance can be
 bookmarked or shared.
 
@@ -80,7 +81,7 @@ alongside each other. Fonts are bundled, without external font service requests.
 ## Validation
 
 ```sh
-npm run lint          # @cartercree/eslint-config v3 with ESLint 10
+npm run lint          # @cartercree/eslint-config v4 with ESLint 10
 npm run format:check  # Prettier
 npm run typecheck
 npm run build         # Static Storybook in storybook-static/
@@ -96,15 +97,16 @@ rendering every story. Automated accessibility checks complement manual review.
 
 Preview the production Storybook with `npm run preview` after `npm run build`.
 
-## Future adoption
+## Using the library
 
 Build the library before consuming it. The package exports:
 
-| Import                          | Purpose                                              |
-| ------------------------------- | ---------------------------------------------------- |
-| `@random-tools/mono`            | React components, ThemeProvider, useTheme, and types |
-| `@random-tools/mono/styles.css` | Full component stylesheet and bundled fonts          |
-| `@random-tools/mono/tokens.css` | Font-free tokens for any framework                   |
+| Import                          | Purpose                                                  |
+| ------------------------------- | -------------------------------------------------------- |
+| `@random-tools/mono`            | React components, ThemeProvider, useTheme, and types     |
+| `@random-tools/mono/styles.css` | Full component stylesheet and bundled fonts              |
+| `@random-tools/mono/tokens.css` | Font-free tokens for any framework                       |
+| `@random-tools/mono/browser`    | Plain browser header, appearance, and checkbox behaviour |
 
 ```tsx
 import { Button, Field, ThemeProvider } from "@random-tools/mono";
@@ -116,11 +118,64 @@ import "@random-tools/mono/styles.css";
 </ThemeProvider>;
 ```
 
-The package is private during design review. When ready to adopt it, use a
-versioned package or packed dependency that each tool's independent Docker build
-can access. A sibling `file:../design-system` dependency alone will not work in
-the existing isolated Docker contexts. Plain JavaScript tools can adopt tokens
-without converting to React.
+The package stays private. Each app carries a versioned `vendor/random-tools-mono-*.tgz`
+archive plus its own manifest and lockfile. Its Docker build needs only that app's
+folder. Updating this source does not rebuild or silently change every application.
+
+After changing the library, increment its version, then package it for selected apps:
+
+```sh
+npm version patch --no-git-tag-version
+npm run package:apps -- car-cost-comparison fishing-checklist
+```
+
+Use `npm run package:apps -- --all` for an intentional full rollout. The command
+builds the library, copies the archive, updates each selected dependency, removes
+its previous archive, and refreshes its lockfile. Validate the affected apps and
+review their changes before committing. Restart running app dev servers after an
+upgrade so their dependency cache reloads; use Vite’s `--force` if needed.
+Commit their archives and lockfiles with
+the source change; installs and Docker builds never regenerate the snapshots.
+
+React apps use `AppThemeProvider`, `AppHeader`, and the exported form, card,
+feedback, and selection primitives. `AppHeader` displays a C mark and an icon-only
+`ThemeToggle`; omit `description` for a header without a subtitle.
+
+`AppThemeProvider` follows `prefers-color-scheme` (Light or Dark) until a user
+chooses a theme. It keeps following live system changes without writing a
+preference on first visit. Clicking `ThemeToggle` cycles Light → Mirage → Dark,
+persists `mono.appearance`, and synchronizes that choice between same-origin tabs.
+Existing saved choices are respected. Removing that key and reloading restores
+system defaults. Clearing it in another tab immediately restores the system
+setting in listening tabs. The standalone `ThemeProvider` defaults to the system theme at
+mount; use `AppThemeProvider` for persistence and live system synchronization.
+
+`ThemeToggle` uses sun, dusk, and moon glyphs with a rotating crossfade, a tooltip,
+an accessible action label, and native keyboard interaction. Reduced motion
+removes the transition. It is available in **Components / Theme toggle**, including
+an interactive system-default application preview. `AppearancePicker` remains
+an alias for compatibility.
+
+Plain JavaScript apps import `initMono` from `@random-tools/mono/browser` and
+use the matching `.mono-*` component classes. A header with
+`data-mono-app-header` and `data-title` receives the shared C mark and icon theme
+control with the same system-default, storage, and animation behaviour. Checkboxes opt into completion feedback with `.mono-checkbox` and
+`data-mono-animated`. The browser module is self-contained and has no React dependency or sibling JavaScript chunks. The two static
+apps copy the built stylesheet and browser module into public assets during
+`npm run build`, `predev`, and `prestart`; those generated files are ignored.
+
+Native primitives include `Input`, `NativeSelect`, `Textarea`, `Toggle`, and the
+`Card` family for existing field layouts. See **Patterns / Application shell**
+for an example. Keep domain-specific calculations and editor behaviour in each app.
+
+The React and browser APIs share CSS and tokens. Fonts and icons are bundled in
+the library build, so apps have no runtime font-service requests. Source comment
+conventions, formatting, and per-app quality checks are documented in the root README.
+
+Cross-app browser checks are opt-in: after installing all apps and building
+`quiz-gen` and `mermaid`, run `npm run test:apps` here. They use ports 6101–6106,
+an isolated Mermaid data directory under `/tmp`, and a placeholder quiz API key;
+quiz generation is covered by mocked unit tests, not external API calls.
 
 Examples use local React state and illustrative data. They do not call app
 backends, persist comparisons, or replace the existing tools' business logic.

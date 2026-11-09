@@ -2,16 +2,17 @@ import type { Preview } from "@storybook/react-vite";
 import { useGlobals } from "storybook/preview-api";
 
 import { ThemeProvider, type Theme } from "../src/theme";
+import { systemTheme } from "../src/appearance";
 import "../src/styles/index.css";
 import "../src/stories/catalog.css";
 
 const preview: Preview = {
-  initialGlobals: { theme: "mirage" },
+  initialGlobals: { theme: systemTheme() },
   globalTypes: {
     theme: {
-      description: "Ayu appearance",
+      description: "Ayu theme",
       toolbar: {
-        title: "Appearance",
+        title: "Theme",
         icon: "paintbrush",
         dynamicTitle: true,
         items: [

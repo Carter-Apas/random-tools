@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+
 import { createQuizGenerator } from "../../server/game/openaiQuiz";
 
 describe("createQuizGenerator", () => {
@@ -41,8 +42,8 @@ describe("createQuizGenerator", () => {
       model: "gpt-4.1-mini",
     });
 
-    await expect(
-      generator.generateQuiz({ topic: "Oceans", questionCount: 1 }),
-    ).rejects.toThrow(/exactly 1 questions/i);
+    await expect(generator.generateQuiz({ topic: "Oceans", questionCount: 1 })).rejects.toThrow(
+      /exactly 1 questions/i,
+    );
   });
 });

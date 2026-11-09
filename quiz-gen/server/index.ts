@@ -1,9 +1,11 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import http from "node:http";
 import express from "express";
 import OpenAI from "openai";
 import { Server } from "socket.io";
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import http from "node:http";
+
 import { loadEnvFile, readConfig } from "./config.js";
 import { createLobbyStore } from "./game/lobbyStore.js";
 import { createQuizGenerator } from "./game/openaiQuiz.js";
@@ -29,11 +31,11 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const clientDistPath = __dirname.includes(`${path.sep}dist-server${path.sep}`)
-  ? path.resolve(__dirname, "../../dist")
-  : path.resolve(__dirname, "../dist");
+const serverFilename = fileURLToPath(import.meta.url);
+const serverDirectory = path.dirname(serverFilename);
+const clientDistPath = serverDirectory.includes(`${path.sep}dist-server${path.sep}`)
+  ? path.resolve(serverDirectory, "../../dist")
+  : path.resolve(serverDirectory, "../dist");
 
 app.use(express.static(clientDistPath));
 app.get("/{*path}", (_req, res) => {

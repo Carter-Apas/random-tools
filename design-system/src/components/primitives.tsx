@@ -19,6 +19,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md";
   loading?: boolean;
 }
+
 export const Button = ({
   variant = "secondary",
   size = "md",
@@ -47,6 +48,7 @@ export interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   suffix?: string;
 }
+
 export const Field = ({ label, hint, error, suffix, id, className = "", ...props }: FieldProps) => {
   const generatedId = useId();
   const fieldId = id ?? generatedId;
@@ -82,6 +84,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   hint?: string;
 }
+
 export const Select = ({ label, hint, id, children, className = "", ...props }: SelectProps) => {
   const generatedId = useId();
   const selectId = id ?? generatedId;
@@ -112,9 +115,10 @@ export const Select = ({ label, hint, id, children, className = "", ...props }: 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
   label: string;
   description?: string;
-  /** Play the fishing checklist's completion animation on user selection. */
+
   animated?: boolean;
 }
+
 export const Checkbox = ({
   label,
   description,
@@ -157,6 +161,7 @@ export const Checkbox = ({
     </label>
   );
 };
+
 export const Switch = ({
   label,
   description,
@@ -185,11 +190,13 @@ export const Badge = ({
     {children}
   </span>
 );
+
 export const Panel = ({ children, className = "", ...props }: HTMLAttributes<HTMLElement>) => (
   <section {...props} className={`mono-panel ${className}`}>
     {children}
   </section>
 );
+
 export const Progress = ({ value, label }: { value: number; label: string }) => {
   const bounded = Math.max(0, Math.min(100, Number.isFinite(value) ? value : 0));
   return (
@@ -205,6 +212,7 @@ export const Progress = ({ value, label }: { value: number; label: string }) => 
     </div>
   );
 };
+
 export const Alert = ({
   title,
   children,
@@ -236,6 +244,7 @@ export interface TabItem {
   label: string;
   count?: number;
 }
+
 export const Tabs = ({
   items,
   value,
@@ -307,7 +316,7 @@ export const Dialog = ({
     }
     if (!open && dialog?.open) dialog.close();
   }, [open]);
-  // Native dialog supplies focus trapping, Escape, inert background and focus return.
+
   return (
     <dialog
       ref={ref}
@@ -357,6 +366,7 @@ export const EmptyState = ({
     {action}
   </div>
 );
+
 export const Skeleton = ({
   width = "100%",
   height = 16,
@@ -364,6 +374,7 @@ export const Skeleton = ({
   width?: string | number;
   height?: string | number;
 }) => <span className="mono-skeleton" style={{ width, height }} aria-hidden="true" />;
+
 export const Stat = ({
   label,
   value,

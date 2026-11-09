@@ -1,11 +1,6 @@
 import type { ReactNode } from "react";
 
-import {
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldContent, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Switch } from "@/components/ui/switch";
@@ -46,22 +41,16 @@ export const NumberField = ({
         value={value}
         disabled={disabled}
         onChange={(e) =>
-          onChange(
-            Math.min(
-              max ?? Infinity,
-              Math.max(min, numberValue(e.target.value)),
-            ),
-          )
+          onChange(Math.min(max ?? Infinity, Math.max(min, numberValue(e.target.value))))
         }
         aria-describedby={description ? `${id}-help` : undefined}
       />
       {unit && <span aria-hidden="true">{unit}</span>}
     </div>
-    {description && (
-      <FieldDescription id={`${id}-help`}>{description}</FieldDescription>
-    )}
+    {description && <FieldDescription id={`${id}-help`}>{description}</FieldDescription>}
   </Field>
 );
+
 export const SelectField = ({
   id,
   label,
@@ -87,6 +76,7 @@ export const SelectField = ({
     </NativeSelect>
   </Field>
 );
+
 export const ToggleField = ({
   id,
   label,
@@ -105,11 +95,6 @@ export const ToggleField = ({
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       {description && <FieldDescription>{description}</FieldDescription>}
     </FieldContent>
-    <Switch
-      aria-label={label}
-      id={id}
-      checked={checked}
-      onCheckedChange={onChange}
-    />
+    <Switch aria-label={label} id={id} checked={checked} onCheckedChange={onChange} />
   </Field>
 );

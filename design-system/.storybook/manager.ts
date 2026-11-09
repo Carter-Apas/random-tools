@@ -4,7 +4,7 @@ import { create } from "storybook/theming";
 addons.setConfig({
   theme: create({
     base: "dark",
-    brandTitle: "mono / random tools",
+    brandTitle: "Mono",
     brandImage: "/mono.svg",
     brandUrl: "?path=/story/start-here-overview--design-language",
     brandTarget: "_self",

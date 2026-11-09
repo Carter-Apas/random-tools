@@ -6,7 +6,9 @@ import { Badge, Panel, Stat } from "../components/primitives";
 
 const meta = { title: "Components/Data display" } satisfies Meta;
 export default meta;
+
 type Story = StoryObj;
+
 export const ValuesAndTables: Story = {
   render: () => (
     <Page

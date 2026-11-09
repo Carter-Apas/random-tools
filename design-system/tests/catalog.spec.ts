@@ -23,15 +23,14 @@ for (const theme of ["dark", "mirage", "light"]) {
 }
 
 test("theme controls update the whole canvas", async ({ page }) => {
-  await page.goto(overview);
-  await page.getByRole("button", { name: "Ayu light", exact: true }).click();
+  await page.goto(`${overview}&globals=theme:dark`);
+  await page.getByRole("button", { name: "Dark theme. Switch to Light.", exact: true }).click();
   await expect(page.locator(".mono-root")).toHaveAttribute("data-mono-theme", "light");
   await page.getByRole("button", { name: "Preview Ayu dark" }).click();
   await expect(page.locator(".mono-root")).toHaveAttribute("data-mono-theme", "dark");
-  await expect(page.getByRole("button", { name: "Ayu dark", exact: true })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(
+    page.getByRole("button", { name: "Dark theme. Switch to Light.", exact: true }),
+  ).toBeVisible();
 });
 
 test("calculator updates values and supports keyboard tabs", async ({ page }) => {
@@ -70,8 +69,7 @@ test("dialog manages focus, closes with Escape, returns focus, and saves", async
   await expect(page.getByRole("textbox", { name: "Comparison name" })).toBeFocused();
   for (let index = 0; index < 6; index++) {
     await page.keyboard.press("Tab");
-    // Native dialogs allow tabbing into browser chrome (activeElement becomes body),
-    // while preventing focus from moving to the inert page behind the modal.
+
     expect(
       await dialog.evaluate(
         (element) =>

@@ -7,7 +7,9 @@ import { Tabs } from "../components/primitives";
 
 const meta = { title: "Components/Navigation" } satisfies Meta;
 export default meta;
+
 type Story = StoryObj;
+
 const TabExample = () => {
   const [tab, setTab] = useState("costs");
   return (
@@ -42,6 +44,7 @@ const TabExample = () => {
     </>
   );
 };
+
 export const TabsAndDirectory: Story = {
   render: () => (
     <Page

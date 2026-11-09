@@ -7,12 +7,12 @@ type TimerBarProps = {
   label?: string;
 };
 
-export function TimerBar({
+export const TimerBar = ({
   startedAt,
   endsAt,
   isActive = true,
   label = "Round timer",
-}: TimerBarProps) {
+}: TimerBarProps) => {
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export function TimerBar({
     }
 
     let frame = 0;
+
     const tick = () => {
       const next = Date.now();
       setNow(next >= endsAt ? endsAt : next);
@@ -32,7 +33,6 @@ export function TimerBar({
       frame = window.requestAnimationFrame(tick);
     };
 
-    setNow(Date.now());
     frame = window.requestAnimationFrame(tick);
 
     return () => window.cancelAnimationFrame(frame);
@@ -60,11 +60,8 @@ export function TimerBar({
         aria-valuemax={Math.ceil(duration / 1000)}
         aria-valuenow={Math.ceil(remaining / 1000)}
       >
-        <div
-          className="timer-fill"
-          style={{ transform: `scaleX(${progress})` }}
-        />
+        <div className="timer-fill" style={{ transform: `scaleX(${progress})` }} />
       </div>
     </div>
   );
-}
+};

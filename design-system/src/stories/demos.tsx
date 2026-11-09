@@ -151,6 +151,7 @@ export const CostCalculator = ({ compact = false }: { compact?: boolean }) => {
     </Panel>
   );
 };
+
 const CostChart = ({ electric, annual }: { electric: boolean; annual: number }) => {
   const id = `chart-${electric ? "ev" : "petrol"}`;
   return (
@@ -197,6 +198,7 @@ const initialGear = [
   { label: "Life jacket", checked: false },
   { label: "Fishing licence", checked: false },
 ];
+
 export const ChecklistDemo = () => {
   const [items, setItems] = useState(initialGear);
   const checked = items.filter((item) => item.checked).length;
@@ -248,6 +250,7 @@ export const ChecklistDemo = () => {
     </Panel>
   );
 };
+
 export const PreferencesDemo = () => {
   const [remember, setRemember] = useState(true);
   const [sound, setSound] = useState(false);
@@ -320,6 +323,7 @@ export const PlannerDemo = () => {
     </Panel>
   );
 };
+
 export const QuizDemo = () => {
   const [selected, setSelected] = useState<string | null>(null);
   return (
@@ -365,6 +369,7 @@ export const QuizDemo = () => {
     </Panel>
   );
 };
+
 export const ToolDirectory = () => {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");

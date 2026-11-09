@@ -4,11 +4,9 @@ const nzdFormatter = new Intl.NumberFormat("en-NZ", {
   maximumFractionDigits: 0,
 });
 
-export function formatCurrency(value) {
-  return nzdFormatter.format(value);
-}
+export const formatCurrency = (value) => nzdFormatter.format(value);
 
-export function formatTargetDate(months) {
+export const formatTargetDate = (months) => {
   if (!Number.isFinite(months)) {
     return "Not reachable with current inputs";
   }
@@ -20,4 +18,4 @@ export function formatTargetDate(months) {
     month: "long",
     year: "numeric",
   });
-}
+};

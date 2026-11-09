@@ -4,3 +4,9 @@
 !nginx/default.conf
 !public/
 !public/**
+!package.json
+!package-lock.json
+!vendor/
+!vendor/**
+!scripts/
+!scripts/**

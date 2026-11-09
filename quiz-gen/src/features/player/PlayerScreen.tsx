@@ -1,12 +1,7 @@
+import { Button, Input } from "@random-tools/mono";
 import { useEffect, useState } from "react";
-import {
-  ArrowRight,
-  Check,
-  CheckCircle2,
-  CircleHelp,
-  Radio,
-  Trophy,
-} from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, CircleHelp, Radio, Trophy } from "lucide-react";
+
 import type { LobbySnapshot } from "../shared/types";
 import { getSocket, type ClientSocketLike } from "../../lib/socket";
 import { Leaderboard } from "../../components/Leaderboard";
@@ -17,7 +12,7 @@ type PlayerScreenProps = {
   socket?: ClientSocketLike;
 };
 
-export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
+export const PlayerScreen = ({ socket = getSocket() }: PlayerScreenProps) => {
   const [code, setCode] = useState("");
   const [nickname, setNickname] = useState("");
   const [snapshot, setSnapshot] = useState<LobbySnapshot | null>(null);
@@ -28,8 +23,9 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
       setError(null);
       setSnapshot(nextSnapshot);
     };
-    const handleError = (payload: { message: string }) =>
-      setError(payload.message);
+
+    const handleError = (payload: { message: string }) => setError(payload.message);
+
     const handleKicked = () => {
       setSnapshot(null);
       setError("You were removed from the lobby.");
@@ -67,8 +63,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
   const isJoined = Boolean(snapshot?.me);
   const currentQuestion = snapshot?.currentQuestion;
   const showCorrectCelebration =
-    snapshot?.status === "question_result" &&
-    snapshot.me?.answerWasCorrect === true;
+    snapshot?.status === "question_result" && snapshot.me?.answerWasCorrect === true;
   const isQuestionVisible =
     Boolean(currentQuestion) &&
     ["question_live", "question_result"].includes(snapshot?.status ?? "");
@@ -79,9 +74,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
 
   return (
     <Shell>
-      <div
-        className={`page-heading ${isJoined ? "player-heading-joined" : ""}`}
-      >
+      <div className={`page-heading ${isJoined ? "player-heading-joined" : ""}`}>
         <div>
           <p className="eyebrow">A seat at the table</p>
           <h1>{isJoined ? "You’re in good company." : "Come on in."}</h1>
@@ -95,9 +88,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
           <Radio size={15} /> Player view
         </span>
       </div>
-      <div
-        className={`player-layout ${isJoined ? "player-layout-joined" : ""}`}
-      >
+      <div className={`player-layout ${isJoined ? "player-layout-joined" : ""}`}>
         <div className="side-column">
           <Panel className="join-panel">
             {!isJoined ? (
@@ -114,17 +105,13 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
               >
                 <SectionLabel>Your invite</SectionLabel>
                 <h2>Join a lobby</h2>
-                <p className="panel-description">
-                  The host has your room code.
-                </p>
+                <p className="panel-description">The host has your room code.</p>
                 <label className="field">
                   <span>Room code</span>
-                  <input
+                  <Input
                     aria-label="Room code"
                     value={code}
-                    onChange={(event) =>
-                      setCode(event.target.value.toUpperCase())
-                    }
+                    onChange={(event) => setCode(event.target.value.toUpperCase())}
                     className="code-input"
                     placeholder="ABCD"
                     autoCapitalize="characters"
@@ -135,7 +122,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
                 </label>
                 <label className="field">
                   <span>Nickname</span>
-                  <input
+                  <Input
                     aria-label="Nickname"
                     value={nickname}
                     onChange={(event) => setNickname(event.target.value)}
@@ -152,9 +139,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
                   Join lobby
                   <ArrowRight size={18} />
                 </AccentButton>
-                <p className="form-footnote">
-                  No sign-up. No downloads. Just play.
-                </p>
+                <p className="form-footnote">No sign-up. No downloads. Just play.</p>
               </form>
             ) : (
               <div className="player-identity">
@@ -176,8 +161,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
                 </div>
                 <p className="player-status">
                   <span className="status-dot" />
-                  {snapshot?.status === "ready" ||
-                  snapshot?.status === "collecting"
+                  {snapshot?.status === "ready" || snapshot?.status === "collecting"
                     ? "Waiting for the host to start the game."
                     : snapshot?.status === "leaderboard"
                       ? hasNextQuestion
@@ -201,17 +185,13 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
                 <SectionLabel>Leaderboard</SectionLabel>
                 <Trophy size={17} className="muted-icon" />
               </div>
-              <Leaderboard
-                players={snapshot?.players ?? []}
-                highlightPlayerId={snapshot?.me?.id}
-              />
+              <Leaderboard players={snapshot?.players ?? []} highlightPlayerId={snapshot?.me?.id} />
             </Panel>
           ) : (
             <div className="host-tip">
               <span>↳</span>
               <p>
-                Playing together? Keep the host’s screen in view and use your
-                phone for answers.
+                Playing together? Keep the host’s screen in view and use your phone for answers.
               </p>
             </div>
           )}
@@ -223,8 +203,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
             <>
               <div className="question-heading">
                 <SectionLabel>
-                  Question {snapshot!.currentQuestionIndex + 1} of{" "}
-                  {snapshot!.totalQuestions}
+                  Question {snapshot!.currentQuestionIndex + 1} of {snapshot!.totalQuestions}
                 </SectionLabel>
                 {snapshot?.me?.answerLocked ? (
                   <span className="locked-badge">
@@ -253,14 +232,13 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
               <div className="answer-grid">
                 {currentQuestion.options.map((option, index) => {
                   const selected = snapshot?.me?.selectedAnswerIndex === index;
-                  const revealedCorrect =
-                    currentQuestion.correctIndex === index;
+                  const revealedCorrect = currentQuestion.correctIndex === index;
                   const revealedWrong =
                     typeof currentQuestion.correctIndex === "number" &&
                     selected &&
                     !revealedCorrect;
                   return (
-                    <button
+                    <Button
                       key={option}
                       onClick={() =>
                         snapshot &&
@@ -269,10 +247,7 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
                           answerIndex: index,
                         })
                       }
-                      disabled={
-                        snapshot?.status !== "question_live" ||
-                        snapshot?.me?.answerLocked
-                      }
+                      disabled={snapshot?.status !== "question_live" || snapshot?.me?.answerLocked}
                       aria-pressed={selected}
                       className={[
                         "answer-tile",
@@ -283,10 +258,8 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
                     >
                       <span className="answer-letter">{"ABCD"[index]}</span>
                       <span>{option}</span>
-                      {revealedCorrect ? (
-                        <Check size={18} className="answer-check" />
-                      ) : null}
-                    </button>
+                      {revealedCorrect ? <Check size={18} className="answer-check" /> : null}
+                    </Button>
                   );
                 })}
               </div>
@@ -313,12 +286,8 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
               <span className="empty-icon">
                 <Trophy size={28} />
               </span>
-              <SectionLabel>
-                {hasNextQuestion ? "Round results" : "Final leaderboard"}
-              </SectionLabel>
-              <h2>
-                {hasNextQuestion ? "Next round in" : "And that’s a game."}
-              </h2>
+              <SectionLabel>{hasNextQuestion ? "Round results" : "Final leaderboard"}</SectionLabel>
+              <h2>{hasNextQuestion ? "Next round in" : "And that’s a game."}</h2>
               <p>
                 {hasNextQuestion
                   ? "Take a breath. Check the scores. We’ll be right back."
@@ -373,4 +342,4 @@ export function PlayerScreen({ socket = getSocket() }: PlayerScreenProps) {
       </div>
     </Shell>
   );
-}
+};
