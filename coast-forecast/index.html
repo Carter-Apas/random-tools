@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#1f2430" />
     <meta
       name="description"
-      content="Tomorrow’s swell, wind and weather for Piha, Māori Bay and Te Ārai. An hourly coastal outlook with a simple JSON API."
+      content="Swell, wind and weather for your coastal places. An hourly coastal outlook with a simple JSON API."
     />
-    <title>Coast forecast · Piha & Te Ārai</title>
+    <title>Coast forecast</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script type="module" src="/src/main.ts"></script>
   </head>
@@ -22,14 +22,14 @@
         <section class="intro">
           <div>
             <h1 id="page-title">Tomorrow, on the coast.</h1>
-            <p>Swell, wind and weather. Two coasts, one outlook.</p>
+            <p>Swell, wind and weather. Find your next day on the coast.</p>
           </div>
           <div class="date-control">
             <label for="date">Forecast date <span>New Zealand time</span></label
             ><input class="mono-input" id="date" type="date" required />
           </div>
         </section>
-        <nav class="spot-switch" aria-label="Forecast location">
+        <nav id="forecast-places" class="spot-switch" aria-label="Forecast location">
           <button type="button" class="spot-button" data-spot="piha" aria-pressed="true">
             <span class="spot-coast">West coast</span><strong>Piha / Māori Bay</strong
             ><span id="preview-piha" class="spot-preview">Loading forecast…</span
@@ -41,6 +41,46 @@
             ><span class="spot-check" aria-hidden="true">✓</span>
           </button>
         </nav>
+        <section id="week-outlook" class="week-outlook" aria-labelledby="outlook-title" hidden>
+          <div class="outlook-strip-heading">
+            <div>
+              <h2 id="outlook-title">Next seven days <span id="outlook-place"></span></h2>
+              <p>Surf height · wind in km/h · daylight scores /100</p>
+            </div>
+            <div
+              id="outlook-activities"
+              class="outlook-activities"
+              role="group"
+              aria-label="Outlook scoring activity"
+            >
+              <button type="button" data-outlook-activity="surfing" aria-pressed="true">
+                Surfing
+              </button>
+              <button type="button" data-outlook-activity="rockFishing" aria-pressed="false">
+                Rock fishing
+              </button>
+              <button type="button" data-outlook-activity="inshoreFishing" aria-pressed="false">
+                Inshore boat
+              </button>
+            </div>
+          </div>
+          <div
+            id="outlook-days"
+            class="outlook-days"
+            role="group"
+            aria-label="Choose a forecast day"
+            aria-busy="true"
+          ></div>
+          <div class="outlook-strip-footer">
+            <p>Wind arrows & score bars: 6am · noon · 6pm. Select a day to explore.</p>
+            <div>
+              <span id="outlook-status" role="status" aria-live="polite"></span
+              ><button id="outlook-retry" class="mono-button mono-button--sm" type="button" hidden>
+                Retry outlook
+              </button>
+            </div>
+          </div>
+        </section>
         <div class="load-status" id="status" role="status" aria-live="polite">
           Fetching the coastal outlook…
         </div>
@@ -167,7 +207,10 @@
             <summary>Parameters & data notes</summary>
             <dl class="api-parameters">
               <dt>spot</dt>
-              <dd><code>piha</code> or <code>te-arai</code>. Leave out for both.</dd>
+              <dd>
+                A configured place ID from <a href="/api/v1/spots">/api/v1/spots</a>. Leave out for
+                all places.
+              </dd>
               <dt>date</dt>
               <dd>
                 Defaults to <code>tomorrow</code> in Pacific/Auckland. Also accepts

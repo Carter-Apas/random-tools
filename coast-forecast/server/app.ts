@@ -11,6 +11,7 @@ import type { SettingsStore } from "./settings.js";
 import { createAdminAuth } from "./auth.js";
 import type { AdminAuth } from "./auth.js";
 import { InvalidRequest } from "./http-json.js";
+import { outlookResponse } from "./outlook.js";
 
 import type { Forecast, Spot } from "../shared/types.js";
 
@@ -49,10 +50,10 @@ export const createHandler = ({
   const authPromise = auth ? Promise.resolve(auth) : createAdminAuth();
   return async (request: IncomingMessage, response: ServerResponse) => {
     response.setHeader("X-Content-Type-Options", "nosniff");
-    response.setHeader("Referrer-Policy", "same-origin");
+    response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
     response.setHeader(
       "Content-Security-Policy",
-      "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'",
+      "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'",
     );
     const head = request.method === "HEAD";
     try {
@@ -74,8 +75,9 @@ export const createHandler = ({
       else if (path === "/api/spots")
         json(response, 200, { timezone, spots: store.read().spots }, head);
       else if (path === "/api/openapi.json") json(response, 200, openapi, head);
-      else if (path === "/api/forecast") {
-        const result = await forecastResponse(
+      else if (["/api/forecast", "/api/outlook"].includes(path)) {
+        const result = await publicForecastResponse(
+          path,
           url.searchParams,
           store.read().spots,
           getForecast,
@@ -136,7 +138,7 @@ const forecastResponse = async (
     date = forecastDate(params.get("date") ?? "tomorrow", now);
     const id = params.get("spot");
     selected = id === null ? spots : spots.filter((spot) => spot.id === id);
-    if (!selected.length) throw new Error("Unknown spot. Use piha or te-arai.");
+    if (!selected.length) throw new Error("Unknown place ID. See /api/spots.");
     if (!id && (params.has("surf_factor") || params.has("offshore_from")))
       throw new Error("Select a spot when applying tuning parameters.");
     selected = selected.map((spot) => tuneSpot(spot, params));
@@ -190,3 +192,14 @@ const serveFile = async (response: ServerResponse, path: string, head: boolean) 
     );
   }
 };
+
+const publicForecastResponse = (
+  path: string,
+  params: URLSearchParams,
+  spots: Spot[],
+  getForecast: GetForecast,
+  now: Date,
+) =>
+  path === "/api/outlook"
+    ? outlookResponse(params, spots, getForecast, now)
+    : forecastResponse(params, spots, getForecast, now);

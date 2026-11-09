@@ -3,19 +3,21 @@ import "@random-tools/mono/styles.css";
 import "./styles.css";
 import "./admin.css";
 
+import { openPlaceEditor } from "./place-editor";
+import { directionGuide } from "./direction-guide";
 import { curveSvg, graphView } from "./curve-graph";
 import { openCurveEditor } from "./curve-editor";
 import { element, escape, number } from "./format";
 import { maximumScenario, renderSimulation, renderSimulatorInputs } from "./lab-simulator";
 
+import { newPlace, placeId, configurationDocument } from "../shared/places";
 import { parseProfile, boundedNumber } from "../shared/config-validation";
 import { curveMaximum } from "../shared/curves";
 import { evaluateProfile } from "../shared/point-scoring";
-import { makeCurve } from "../shared/scoring-config";
+import { makeCurve, defaultScoring } from "../shared/scoring-config";
 import { activityNames, initialScenario, profileActivities, variables } from "../shared/variables";
 import type {
   AdminSettings,
-  ConfigurationDocument,
   Forecast,
   PointCurve,
   ProfileActivity,
@@ -34,7 +36,7 @@ class ApiError extends Error {
 
 let settings: AdminSettings;
 let drafts: Spot[] = [];
-let place = new URLSearchParams(location.search).get("spot") === "te-arai" ? "te-arai" : "piha";
+let place = new URLSearchParams(location.search).get("spot") ?? "piha";
 let activity: ProfileActivity = "surfing";
 let scenario = initialScenario();
 let dirty = false;
@@ -96,17 +98,21 @@ const renderVariables = () => {
       const curve = currentCurve(key);
       const definition = variables[key];
       const factor = score.factors.find((item) => item.variable === key);
-      return `<article class="variable-card${curve.enabled ? "" : " is-disabled"}"><label class="variable-toggle"><input type="checkbox" data-enable="${key}" aria-label="Include ${escape(definition.label)}" ${curve.enabled ? "checked" : ""}/></label><button type="button" class="variable-open" data-open-curve="${key}"><span class="variable-copy"><strong>${escape(definition.label)}</strong><small>${curve.enabled ? `${number(factor?.points)} earned / ${number(curveMaximum(curve))} maximum pts` : "Disabled · click to explore"}</small></span>${curveSvg(curve, graphView(curve, true), { mini: true })}<span class="variable-chevron" aria-hidden="true">↗</span></button></article>`;
+      return `<article class="variable-card${curve.enabled ? "" : " is-disabled"}"><label class="variable-toggle"><input type="checkbox" data-enable="${key}" aria-label="Include ${escape(definition.label)}" ${curve.enabled ? "checked" : ""}/></label><button type="button" class="variable-open" data-open-curve="${key}"><span class="variable-copy"><strong>${escape(definition.label)}</strong><small>${curve.enabled ? `${number(factor?.points)} earned / ${number(curveMaximum(curve))} maximum pts` : "Disabled · click to explore"}</small></span>${curveSvg(curve, graphView(curve, true), { mini: true, offshore: spot().offshoreFromDegrees })}<span class="variable-chevron" aria-hidden="true">↗</span></button></article>`;
     })
     .join("");
 };
 
 const render = () => {
-  document
-    .querySelectorAll<HTMLButtonElement>("[data-spot]")
-    .forEach((button) =>
-      button.setAttribute("aria-pressed", String(button.dataset.spot === place)),
-    );
+  if (!drafts.some((item) => item.id === place)) place = drafts[0].id;
+  element("lab-places").innerHTML = drafts
+    .map(
+      (item) =>
+        `<button type="button" class="spot-button" data-spot="${escape(item.id)}" aria-pressed="${item.id === place}"><span class="spot-coast">${escape(item.coast)}</span><strong>${escape(item.name)}</strong></button>`,
+    )
+    .join("");
+  element("place-orientation").innerHTML =
+    `<div class="direction-guide">${directionGuide(spot().offshoreFromDegrees)}</div><p class="place-location">${escape(spot().name)} · ${spot().latitude.toFixed(4)}, ${spot().longitude.toFixed(4)}</p>`;
   document
     .querySelectorAll<HTMLButtonElement>("[data-activity]")
     .forEach((button) =>
@@ -124,6 +130,7 @@ const editCurve = (key: VariableId) => {
   openCurveEditor({
     curve: currentCurve(key),
     context: `${spot().name} / ${activityNames[activity]}`,
+    offshore: spot().offshoreFromDegrees,
     input: scenario[key],
     preview: (curve) =>
       evaluateProfile(
@@ -139,20 +146,7 @@ const editCurve = (key: VariableId) => {
   });
 };
 
-const documentValue = (): ConfigurationDocument => ({
-  schemaVersion: 2,
-  spots: Object.fromEntries(
-    drafts.map((item) => [
-      item.id,
-      {
-        surfHeightFactor: item.surfHeightFactor,
-        offshoreFromDegrees: item.offshoreFromDegrees,
-        calibrated: item.calibrated,
-        scoring: item.scoring,
-      },
-    ]),
-  ),
-});
+const documentValue = () => configurationDocument(drafts);
 
 const validateDrafts = () => {
   for (const item of drafts) for (const key of profileActivities) parseProfile(item.scoring[key]);
@@ -319,7 +313,7 @@ const chooseImport = async () => {
       throw new Error("Choose a JSON configuration object.");
     const document = imported as Record<string, unknown>;
     element("import-summary").textContent =
-      `${file.name} · ${number(file.size / 1024)} KB · ${document.schemaVersion === 2 ? "Version 2 points curves" : "Legacy configuration; it will be migrated to curves"}`;
+      `${file.name} · ${number(file.size / 1024)} KB · ${document.schemaVersion === 3 ? "Version 3 places & curves" : "Earlier configuration; it will be migrated"}`;
     element("import-error").textContent = "";
     element<HTMLDialogElement>("import-dialog").showModal();
   } catch (error) {
@@ -367,6 +361,7 @@ const changeCalibration = () => {
     );
     spot().calibrated = element<HTMLInputElement>("calibrated").checked;
     markDirty();
+    render();
   } catch (error) {
     showError(error);
   }
@@ -399,13 +394,57 @@ for (const id of ["sim-inputs", "sim-extra"])
     renderVariables();
     renderSimulation(profile(), scenario);
   });
-document.querySelectorAll<HTMLButtonElement>("[data-spot]").forEach((button) =>
-  button.addEventListener("click", () => {
-    place = button.dataset.spot ?? "piha";
-    history.replaceState(null, "", `/admin?spot=${place}`);
-    render();
-  }),
-);
+element("lab-places").addEventListener("click", (event) => {
+  const target =
+    event.target instanceof Element ? event.target.closest<HTMLElement>("[data-spot]") : null;
+  if (!target?.dataset.spot) return;
+  place = target.dataset.spot;
+  history.replaceState(null, "", `/admin?spot=${encodeURIComponent(place)}`);
+  render();
+});
+
+const editPlace = (fresh: boolean) => {
+  if (fresh && drafts.length >= 32) {
+    showError(new Error("You can save up to 32 places."));
+    return;
+  }
+  openPlaceEditor({
+    spot: fresh
+      ? newPlace(
+          "new-place",
+          "New place",
+          spot().latitude,
+          spot().longitude,
+          spot().offshoreFromDegrees,
+        )
+      : spot(),
+    fresh,
+    canRemove: drafts.length > 1,
+    apply: (updated) => {
+      if (fresh) {
+        updated.id = placeId(
+          updated.name,
+          drafts.map((item) => item.id),
+        );
+        drafts.push(updated);
+      } else drafts[drafts.findIndex((item) => item.id === place)] = updated;
+      place = updated.id;
+      history.replaceState(null, "", `/admin?spot=${encodeURIComponent(place)}`);
+      markDirty();
+      render();
+    },
+    remove: () => {
+      drafts = drafts.filter((item) => item.id !== place);
+      place = drafts[0].id;
+      history.replaceState(null, "", `/admin?spot=${encodeURIComponent(place)}`);
+      markDirty();
+      render();
+    },
+  });
+};
+
+element("add-place").addEventListener("click", () => editPlace(true));
+element("edit-place").addEventListener("click", () => editPlace(false));
 document.querySelectorAll<HTMLButtonElement>("[data-activity]").forEach((button) =>
   button.addEventListener("click", () => {
     activity = button.dataset.activity as ProfileActivity;
@@ -440,7 +479,14 @@ element("load-forecast").addEventListener("click", () => {
 });
 element("reset-profile").addEventListener("click", () => {
   spot().scoring[activity] = structuredClone(
-    settings.defaults.find((item) => item.id === place)!.scoring[activity],
+    (
+      settings.defaults.find((item) => item.id === place) ?? {
+        scoring: defaultScoring(
+          spot().offshoreFromDegrees,
+          (spot().offshoreFromDegrees + 180) % 360,
+        ),
+      }
+    ).scoring[activity],
   );
   markDirty();
   render();

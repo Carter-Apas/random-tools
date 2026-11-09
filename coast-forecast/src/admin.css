@@ -664,3 +664,350 @@
     animation: none;
   }
 }
+
+.place-navigation {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+.place-navigation .lab-places {
+  flex: 1;
+  min-width: 0;
+}
+.place-navigation > button {
+  flex-shrink: 0;
+  margin-bottom: 26px;
+}
+.place-reference {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  border-block: 1px solid var(--mono-border);
+  padding: 10px 0 14px;
+}
+.place-reference > div {
+  min-width: 0;
+}
+.place-reference > button {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.direction-guide {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.direction-guide[hidden] {
+  display: none;
+}
+.direction-compass {
+  flex: 0 0 88px;
+  width: 88px;
+  height: 88px;
+}
+.direction-compass text {
+  fill: var(--mono-text);
+  font-size: 11px;
+}
+.compass-ring {
+  fill: none;
+  stroke: var(--mono-border);
+}
+.compass-origin {
+  fill: var(--mono-text);
+}
+.direction-compass line,
+.direction-compass path {
+  fill: none;
+  stroke-width: 2;
+}
+.reference-land {
+  stroke: var(--mono-info);
+}
+.reference-sea {
+  stroke: var(--mono-accent-text);
+}
+.reference-shore {
+  stroke: var(--mono-muted);
+  stroke-dasharray: 4 4;
+}
+.direction-legend {
+  display: grid;
+  gap: 9px;
+}
+.direction-label {
+  font-size: 11px;
+  line-height: 1.5;
+}
+.direction-label i {
+  display: inline-block;
+  width: 13px;
+  border-top: 2px solid;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.direction-land {
+  color: var(--mono-info);
+}
+.direction-sea {
+  color: var(--mono-accent-text);
+}
+.direction-shore {
+  color: var(--mono-muted);
+}
+.direction-label strong {
+  white-space: nowrap;
+  font-weight: 500;
+}
+.place-location {
+  color: var(--mono-muted);
+  font-size: 11px;
+  margin: 0 0 0 106px;
+  line-height: 1.7;
+}
+.curve-reference {
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.curve-reference.reference-shore {
+  opacity: 0.45;
+  stroke-width: 1;
+}
+.curve-mini .curve-reference {
+  stroke-width: 1;
+  stroke-dasharray: 3 2;
+}
+#curve-direction-guide {
+  padding: 0 0 18px;
+}
+#curve-direction-guide .direction-compass {
+  width: 74px;
+  height: 74px;
+  flex-basis: 74px;
+}
+.mono-dialog.place-dialog {
+  width: min(960px, calc(100% - 32px));
+  max-width: 960px;
+  max-height: calc(100dvh - 32px);
+  padding: 26px;
+  overflow: auto;
+}
+.place-dialog[open] {
+  animation: curve-open 0.2s ease-out both;
+}
+.place-dialog.is-closing {
+  animation: curve-close 0.16s ease-in both;
+}
+.place-dialog::backdrop {
+  background: #0009;
+  backdrop-filter: blur(4px);
+}
+.place-eyebrow {
+  margin: 0 0 8px;
+  color: var(--mono-muted);
+  font-size: 11px;
+}
+.place-description,
+.map-note,
+.map-coordinates p {
+  color: var(--mono-muted);
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 80ch;
+}
+.place-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.place-fields label,
+.map-reference-controls label {
+  font-size: 11px;
+}
+.place-fields input,
+.map-reference-controls input {
+  display: block;
+  margin-top: 7px;
+  min-width: 0;
+  width: 100%;
+  font-size: 13px;
+}
+.map-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.map-tools [aria-pressed="true"] {
+  background: var(--mono-accent-soft);
+  border-color: var(--mono-accent-text);
+  color: var(--mono-accent-text);
+}
+.map-instruction {
+  color: var(--mono-text);
+  font-size: 12px;
+  min-height: 2.8em;
+  line-height: 1.7;
+  margin: 12px 0 8px;
+}
+.place-map {
+  height: 340px;
+  width: 100%;
+  border: 1px solid var(--mono-border);
+  border-radius: 7px;
+  background: #d6e5e8;
+  isolation: isolate;
+}
+.place-map:not([data-mode="pan"]) {
+  cursor: crosshair;
+}
+.place-map .leaflet-control-attribution {
+  font-size: 10px;
+  background: #fff;
+  color: #333;
+}
+.place-map .leaflet-control-attribution a {
+  color: #125776;
+}
+.place-map .leaflet-bar a {
+  background: #fff;
+  color: #243747;
+}
+.place-map .leaflet-bar a:hover {
+  background: #e7f2f5;
+}
+.coast-pin {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px #0009;
+  font: 600 12px/24px system-ui;
+  text-align: center;
+  color: #fff;
+}
+.coast-pin-place {
+  background: #1f3b4d;
+}
+.coast-pin-marine {
+  background: #006b80;
+}
+.coast-pin-sea {
+  background: #986000;
+}
+.map-status {
+  color: var(--mono-muted);
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 7px 0 0;
+}
+.map-reference-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px 0;
+}
+.map-reference-controls > div:last-child {
+  width: 165px;
+  flex-shrink: 0;
+}
+.map-reference-controls button {
+  margin-top: 9px;
+  width: 100%;
+}
+.map-coordinates {
+  border-top: 1px solid var(--mono-border);
+  padding-top: 16px;
+}
+.map-coordinates summary {
+  color: var(--mono-info);
+  font-size: 12px;
+}
+.place-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+}
+#remove-place {
+  color: var(--mono-danger);
+}
+#place-error {
+  color: var(--mono-danger);
+  font-size: 12px;
+  line-height: 1.7;
+}
+@media (max-width: 650px) {
+  .place-reference {
+    flex-wrap: wrap;
+  }
+  .place-reference > button {
+    margin-left: 106px;
+  }
+  .mono-dialog.place-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 16px;
+  }
+  .place-map {
+    height: 290px;
+  }
+  .map-reference-controls {
+    flex-wrap: wrap;
+  }
+  .map-reference-controls > div:last-child {
+    display: flex;
+    align-items: end;
+    gap: 12px;
+    width: 100%;
+  }
+  .map-reference-controls > div:last-child label {
+    flex: 1;
+  }
+  .map-reference-controls button {
+    width: auto;
+  }
+  .place-actions {
+    align-items: start;
+    flex-direction: column-reverse;
+  }
+  .place-actions > div {
+    width: 100%;
+  }
+  .direction-guide {
+    gap: 12px;
+  }
+  .place-navigation {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .place-navigation .lab-places {
+    flex-basis: 100%;
+  }
+  .place-navigation > button {
+    margin: -12px 0 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .place-dialog[open],
+  .place-dialog.is-closing {
+    animation: none;
+  }
+}
+
+.curve-reference-band {
+  opacity: 0.1;
+  pointer-events: none;
+}
+.band-land {
+  fill: var(--mono-info);
+}
+.band-sea {
+  fill: var(--mono-accent-text);
+}
+.band-shore {
+  fill: var(--mono-muted);
+  opacity: 0.04;
+}

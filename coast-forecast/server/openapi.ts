@@ -1,3 +1,4 @@
+import { outlookPaths, outlookSchema } from "./openapi-outlook.js";
 import { adminPaths, scoringSchema } from "./openapi-admin.js";
 
 const nullableNumber = { type: ["number", "null"] };
@@ -19,6 +20,11 @@ const score = {
         properties: {
           variable: { type: "string" },
           name: { type: "string" },
+          coast: { type: "string" },
+          latitude: { type: "number" },
+          longitude: { type: "number" },
+          marineLatitude: { type: "number" },
+          marineLongitude: { type: "number" },
           input: nullableNumber,
           points: nullableNumber,
           maxPoints: { type: "number" },
@@ -73,6 +79,11 @@ const forecast = {
       properties: {
         id: { type: "string" },
         name: { type: "string" },
+        coast: { type: "string" },
+        latitude: { type: "number" },
+        longitude: { type: "number" },
+        marineLatitude: { type: "number" },
+        marineLongitude: { type: "number" },
         surfHeightFactor: { type: "number" },
         offshoreFromDegrees: { type: "number" },
         scoring: scoringSchema,
@@ -195,13 +206,14 @@ export const openapi = {
   openapi: "3.1.0",
   info: {
     title: "Coast forecast API",
-    version: "2.0.0",
+    version: "3.1.0",
     description:
-      "Hourly marine and weather forecasts for Piha / Māori Bay and Te Ārai. Defaults to tomorrow in Pacific/Auckland. All missing measurements are null; zero means a measured/modelled zero. Forecast routes are public; admin configuration routes require a password session. Unversioned /api routes are aliases.",
+      "Hourly marine and weather forecasts for configured coastal places, initially Piha / Māori Bay and Te Ārai. Defaults to tomorrow in Pacific/Auckland. All missing measurements are null; zero means a measured/modelled zero. Forecast routes are public; admin configuration routes require a password session. Unversioned /api routes are aliases.",
   },
   servers: [{ url: "/" }],
   paths: {
     ...adminPaths,
+    ...outlookPaths,
     "/api/v1/spots": {
       get: {
         operationId: "listSpots",
@@ -220,14 +232,14 @@ export const openapi = {
     "/api/v1/forecast": {
       get: {
         operationId: "getForecast",
-        summary: "Get hourly forecasts for one or both coasts",
+        summary: "Get hourly forecasts for one or all configured places",
         parameters: [
           {
             name: "spot",
             in: "query",
-            schema: { type: "string", enum: ["piha", "te-arai"] },
+            schema: { type: "string", description: "Configured place ID; see /api/v1/spots." },
             description:
-              "Omit to return both forecasts in a forecasts array. Set to return a single forecast object.",
+              "Omit to return all configured places in a forecasts array. Set to return a single forecast object.",
           },
           {
             name: "date",
@@ -304,6 +316,7 @@ export const openapi = {
     securitySchemes: { adminSession: { type: "apiKey", in: "cookie", name: "coast_admin" } },
     schemas: {
       Forecast: forecast,
+      Outlook: outlookSchema,
       ConditionScore: score,
       Scores: scores,
       ScoringConfig: scoringSchema,

@@ -1,6 +1,6 @@
 # Coast forecast
 
-Hourly swell, waves, wind and weather for **Piha / Māori Bay** and **Te Ārai**,
+Hourly swell, waves, wind and weather for your coastal places, starting with **Piha / Māori Bay** and **Te Ārai**,
 with a TypeScript frontend/backend, Mono themes, JSON API, and a password-protected
 forecast lab at **`/admin`**.
 
@@ -25,6 +25,22 @@ npm start
 Production serves both pages and API on 5180, overridable with `PORT`. `HOST`
 defaults to `0.0.0.0`.
 
+## Seven-day outlook
+
+The forecast page shows **today and the next six days** for the selected place.
+Each day shows the calibrated surf-height range, wind at 6am/noon/6pm, a daylight
+average score, and three score bars for those same hours. Switch the scoring
+activity between surfing, rock fishing and inshore boat fishing. Select a day to
+open its hourly charts; the date picker and endpoint link stay in sync. The strip
+scrolls horizontally on small screens. Unavailable days remain visible with no
+invented wave height or score; cached fallback is explicitly labelled.
+
+`GET /api/v1/outlook?spot=piha` (alias `/api/outlook`) returns a compact seven-day
+JSON overview: place, date range, daily summaries, per-day errors/warnings/stale
+flags, and 6am/noon/6pm wind and scores. `spot` is required. All unavailable days
+produce HTTP 503 with the seven dated entries; partial results use HTTP 200.
+The existing `/api/v1/forecast` response remains the detailed single-day API.
+
 ## Forecast lab
 
 Visit `/admin` and choose a password on first use. Alternatively set
@@ -36,6 +52,31 @@ SameSite=Strict cookie; HTTPS requests receive a Secure cookie. Sessions clear o
 server restart. Sign out invalidates the current session. To reset a forgotten
 saved password, stop the app and remove `admin-password.json`, then run setup
 again; or set `ADMIN_PASSWORD` in the environment.
+
+Use **Add place** to select another beach or fishing spot on the map, then save
+configuration to add it to the public forecast page and JSON API. Places can be
+renamed, moved or removed from the draft; at least one place must remain. Up to
+32 places are supported. Each place gets independent activity curves.
+
+**Map & shoreline** opens a [Leaflet](https://leafletjs.com/) map using
+[OpenStreetMap](https://www.openstreetmap.org/copyright) tiles, without an API key.
+Click **Place point** to select the weather location and **Marine sample** to pick
+nearby open water. Both pins can be dragged. Pan/zoom works normally; coordinate
+fields also work when tiles are unavailable.
+
+Set the abstract coastal reference with **Point toward sea** (one click from the
+place) or **Draw along shore** (two clicks). **Flip sea side** swaps land/sea;
+the gold sea handle can also be dragged to rotate it. The saved offshore bearing
+represents the land side: wind FROM that direction is offshore. Swell FROM the
+opposite, sea side approaches the shore. The map, place summary, and all three
+direction curve editors show matching land/sea/shore-parallel guides. These are
+orientation references; existing scoring curves remain at absolute bearings.
+New places start with curves aligned to their chosen shore reference.
+
+Tiles load directly from OpenStreetMap in the browser only while the map is open,
+with attribution and an origin referrer. No tile prefetching, geocoder, account or
+paid map service is used. Standard tiles are subject to the
+[OpenStreetMap tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
 
 The lab follows **place → activity → variables**. Surfing, rock fishing and
 inshore boat fishing each have independent curves for each coast. Open a variable
@@ -53,7 +94,7 @@ to edit its graph in the animated dialog:
   are also available. A curve can contain 2–256 points.
 
 **Use this curve** applies it to your unsaved draft. **Save configuration** saves
-all places and activities together. Switching places/activities retains drafts;
+all places and activities together, including map references and sampling points. Switching places/activities retains drafts;
 leaving the page with unsaved changes prompts the browser. Reset affects only the
 selected activity and remains a draft until saved.
 
@@ -66,7 +107,7 @@ the forecast. The browser and backend use the same interpolation/scoring module.
 There are no upstream requests while drawing or simulating.
 
 Export JSON includes the current draft, including unsaved curves. Import previews
-the filename/version before applying and atomically replaces both places and all
+the filename/version before applying and atomically replaces all places and all
 activities after server validation. Invalid imports leave the saved configuration
 unchanged. Configuration contains data only; executable expressions are not used.
 
@@ -141,8 +182,9 @@ liveness without depending on upstream providers.
 
 ## JSON format and migration
 
-Exported and saved files have `schemaVersion: 2`, with `spots.piha` and
-`spots["te-arai"]`. Each place contains `surfHeightFactor`, `offshoreFromDegrees`,
+Exported and saved files have `schemaVersion: 3`, with `spots` keyed by stable
+place ID. Each place contains its `name`, `coast`, `note`, `latitude`, `longitude`,
+`marineLatitude`, `marineLongitude`, `surfHeightFactor`, `offshoreFromDegrees`,
 `calibrated`, and `scoring` with `surfing`, `rockFishing`, `inshoreFishing`. Every
 activity contains a `curves` array. Each curve has:
 
@@ -166,10 +208,12 @@ air/water temperature and WMO weather code. Curves must have increasing, unique
 input values within their variable’s domain. There can be one curve per variable.
 `GET /api/openapi.json` documents the complete schema.
 
-Old unversioned threshold settings are converted on startup. Their original file
-is kept as `settings.json.v1.bak` and the new file is written in version 2 format.
+Version 2 curve configurations and unversioned threshold settings are converted
+on startup. Their original file is kept as `settings.json.v2.bak` or
+`settings.json.v1.bak`, and the new file is written in version 3 format. Version 2
+curve values and both original locations are preserved exactly.
 Calibration and threshold intent are retained through curve control points; the
-old percentage formula is intentionally replaced. Import also accepts legacy
+old percentage formula is intentionally replaced. Import also accepts version 2 and legacy
 threshold files. Invalid versions or values are rejected.
 
 `SPOT_CONFIG_FILE` can still provide startup overrides for calibration, land/sea
@@ -185,11 +229,12 @@ curl 'http://localhost:5180/api/v1/forecast'
 curl 'http://localhost:5180/api/v1/forecast?spot=piha'
 curl 'http://localhost:5180/api/v1/forecast?spot=te-arai&date=tomorrow'
 curl 'http://localhost:5180/api/v1/spots'
+curl 'http://localhost:5180/api/v1/outlook?spot=piha'
 curl 'http://localhost:5180/api/openapi.json'
 ```
 
 Unversioned `/api/forecast` and `/api/spots` are aliases. Omit `spot` to return
-`{ date, timezone, forecasts, errors }`; one failed coast does not hide the other.
+`{ date, timezone, forecasts, errors }`; one failed location does not hide the others.
 Use `today`, `tomorrow` (default) or YYYY-MM-DD, today through six days ahead, in
 **Pacific/Auckland**. UTC instants are `time`; `localTime` is Auckland wall time.
 GET/HEAD are supported. Invalid/duplicate parameters return 400, total upstream
@@ -212,9 +257,9 @@ Authenticated admin endpoints:
 - `POST /api/admin/setup`, `POST /api/admin/login`: JSON `{ "password": "…" }`.
 - `POST /api/admin/logout`: invalidate this session.
 - `GET /api/admin/settings`: current configuration and reset defaults.
-- `GET /api/admin/config`: export versioned JSON without credentials.
+- `GET /api/admin/config`: export all configured places and curves as version 3 JSON without credentials.
 - `PUT /api/admin/config`: validate and atomically import the complete document.
-- `PUT /api/admin/spots/{spot}`: calibration or replacement activity curve arrays.
+- `PUT /api/admin/spots/{spot}`: name, sampling coordinates, orientation, calibration or activity curves. Add/remove places by replacing the complete configuration.
 - `DELETE /api/admin/spots/{spot}`: reset one place to startup defaults.
 
 All admin configuration reads/writes require the session cookie, including the
@@ -225,11 +270,25 @@ routes remain accessible without an admin session.
 
 [Open-Meteo weather](https://open-meteo.com/en/docs) and
 [marine](https://open-meteo.com/en/docs/marine-weather-api) data is cached in server
-memory for **one hour per spot, sampling coordinates and date**. First request
-after expiry refreshes it; concurrent requests share one fetch. Curve edits only
-recalculate scores and do not fetch again. A failed refresh can return data up
-to six hours old, explicitly marked `stale` with warnings. Cache clears on restart.
+memory for **one hour per pair of weather/marine sampling coordinates and NZ-local
+seven-day window**. The first request for any day fetches today through today + six
+days in **two upstream HTTP requests**: one weather, one marine. The overview and
+all detailed day forecasts share those responses. Concurrent requests coalesce;
+curve edits and switching dates only recalculate scores. Locations sharing the
+same coordinates reuse raw data while retaining their own calibration and scores.
+Moving a sampling point or crossing NZ midnight starts a new window.
+
+First request after expiry refreshes it. A failed refresh can return data up to
+six hours old, explicitly marked `stale` with warnings. Cache clears on restart.
 There is no background polling. Multiple containers have independent caches.
+
+With two places and continuous use, the usual budget is four upstream HTTP
+requests per hourly refresh (roughly 100 per day including a midnight rollover).
+Restarts, failed refreshes and new coordinates can add requests. Open-Meteo's
+[free limits](https://open-meteo.com/en/terms) are 10,000 calls/day, 5,000/hour and
+600/minute; its [call accounting](https://open-meteo.com/en/pricing) can count large
+variable/time requests as multiple calls. A seven-day strip does not make seven
+provider requests per place. Browser refresh and day selection reuse the cache.
 
 Personal non-commercial use needs no API key; `OPEN_METEO_API_KEY` selects the
 customer hosts for a subscription. Allow outbound HTTPS to weather/marine APIs.
@@ -249,7 +308,7 @@ npm test
 Tests cover curve maxima and no overshoot, negative cancellation, normalization,
 missing inputs, wrapping directions, forecast/simulator agreement, JSON round
 trips, atomic failures, legacy migration, password setup/login/logout/expiry,
-persistence, NZ dates/DST, caching and partial provider availability.
+persistence, custom locations/migration/shoreline geometry, NZ dates/DST, seven-day batching, shared cache/coalescing, per-date sun times, midnight rollover, and partial provider availability.
 
 Each app retains its own lockfile, Docker context, ESLint v4 preset, Prettier
 settings and versioned Mono snapshot. Forecast attribution: Open-Meteo, CC BY 4.0.

@@ -65,13 +65,14 @@
               ><input type="file" id="import-file" accept="application/json,.json" hidden />
             </div>
           </section>
-          <nav class="spot-switch lab-places" aria-label="Place">
-            <button type="button" class="spot-button" data-spot="piha" aria-pressed="true">
-              <span class="spot-coast">West coast</span><strong>Piha / Māori Bay</strong></button
-            ><button type="button" class="spot-button" data-spot="te-arai" aria-pressed="false">
-              <span class="spot-coast">East coast</span><strong>Te Ārai</strong>
-            </button>
-          </nav>
+          <div class="place-navigation">
+            <nav id="lab-places" class="spot-switch lab-places" aria-label="Place"></nav>
+            <button class="mono-button" id="add-place" type="button">＋ Add place</button>
+          </div>
+          <section class="place-reference" aria-label="Place orientation">
+            <div id="place-orientation"></div>
+            <button class="mono-button" id="edit-place" type="button">Map & shoreline</button>
+          </section>
           <nav class="lab-activities" aria-label="Activity">
             <button type="button" data-activity="surfing" aria-pressed="true">Surfing</button
             ><button type="button" data-activity="rockFishing" aria-pressed="false">
@@ -228,6 +229,7 @@
         ><button class="mono-button mono-button--sm" id="undo-curve" type="button">Undo</button
         ><button class="mono-button mono-button--sm" id="redo-curve" type="button">Redo</button>
       </div>
+      <div id="curve-direction-guide" class="direction-guide" hidden></div>
       <div id="curve-canvas" class="curve-canvas" data-mode="move"></div>
       <p class="curve-help">
         Drag points or double-click to add. Arrow keys move a focused point; Shift moves faster.
@@ -267,8 +269,8 @@
       <h2 id="import-title">Import configuration</h2>
       <p id="import-summary"></p>
       <p>
-        This replaces both places, every activity curve, and calibration. Unsaved edits will be
-        replaced. Your admin password is kept separately.
+        This replaces all places, their map references, every activity curve, and calibration.
+        Unsaved edits will be replaced. Your admin password is kept separately.
       </p>
       <p id="import-error" role="alert"></p>
       <div class="curve-dialog-actions">
@@ -276,6 +278,157 @@
         ><button class="mono-button mono-button--primary" id="apply-import" type="button">
           Import configuration
         </button>
+      </div>
+    </dialog>
+    <dialog id="place-editor" class="mono-dialog place-dialog" aria-labelledby="place-title">
+      <div class="curve-dialog-head">
+        <div>
+          <p class="place-eyebrow">Location & orientation</p>
+          <h2 id="place-title">Map your coast.</h2>
+        </div>
+        <button
+          class="mono-button mono-button--sm"
+          id="close-place"
+          type="button"
+          aria-label="Close place editor"
+        >
+          Close
+        </button>
+      </div>
+      <p class="place-description">
+        Choose the beach or fishing spot, then point the sea arrow out over the water. The shoreline
+        is an abstract reference through your place.
+      </p>
+      <div class="place-fields">
+        <label>Name<input id="place-name" class="mono-input" maxlength="100" required /></label>
+        <label
+          >Region / coast<input id="place-coast" class="mono-input" maxlength="80" required
+        /></label>
+      </div>
+      <div class="map-tools" role="group" aria-label="Map editing tools">
+        <button
+          type="button"
+          class="mono-button mono-button--sm"
+          data-map-mode="place"
+          aria-pressed="false"
+        >
+          Place point
+        </button>
+        <button
+          type="button"
+          class="mono-button mono-button--sm"
+          data-map-mode="marine"
+          aria-pressed="false"
+        >
+          Marine sample
+        </button>
+        <button
+          type="button"
+          class="mono-button mono-button--sm"
+          data-map-mode="sea"
+          aria-pressed="false"
+        >
+          Point toward sea
+        </button>
+        <button
+          type="button"
+          class="mono-button mono-button--sm"
+          data-map-mode="shore"
+          aria-pressed="false"
+        >
+          Draw along shore
+        </button>
+        <button type="button" class="mono-button mono-button--sm" id="map-center">
+          Centre on place
+        </button>
+      </div>
+      <p id="map-instruction" class="map-instruction" role="status"></p>
+      <div
+        id="place-map"
+        class="place-map"
+        role="region"
+        aria-label="Location map. Use the map tools or coordinate fields to set your place and shoreline."
+      ></div>
+      <p id="map-status" class="map-status" role="status"></p>
+      <div class="map-reference-controls">
+        <div id="map-orientation" class="direction-guide"></div>
+        <div>
+          <label
+            >Offshore wind from (°)<input
+              id="map-offshore"
+              class="mono-input"
+              type="number"
+              min="0"
+              max="359"
+              step="1" /></label
+          ><button type="button" class="mono-button mono-button--sm" id="flip-sea">
+            Flip sea side
+          </button>
+        </div>
+      </div>
+      <details class="map-coordinates">
+        <summary>Coordinates & marine sampling</summary>
+        <p>
+          The place point supplies weather. Put the marine sample in open water nearby for swell and
+          water temperature. You can drag either pin. Coordinates work even when map tiles cannot
+          load.
+        </p>
+        <div class="place-fields">
+          <label
+            >Place latitude<input
+              class="mono-input"
+              id="place-latitude"
+              type="number"
+              min="-85"
+              max="85"
+              step="any"
+          /></label>
+          <label
+            >Place longitude<input
+              class="mono-input"
+              id="place-longitude"
+              type="number"
+              min="-180"
+              max="180"
+              step="any"
+          /></label>
+          <label
+            >Marine latitude<input
+              class="mono-input"
+              id="marine-latitude"
+              type="number"
+              min="-90"
+              max="90"
+              step="any"
+          /></label>
+          <label
+            >Marine longitude<input
+              class="mono-input"
+              id="marine-longitude"
+              type="number"
+              min="-180"
+              max="180"
+              step="any"
+          /></label>
+        </div>
+        <button type="button" class="mono-button mono-button--sm" id="auto-marine">
+          Place marine sample 2 km toward sea
+        </button>
+      </details>
+      <p class="map-note">
+        Wind and swell bearings describe where they come from. Offshore wind comes from the land
+        side; incoming swell comes from the sea side. Reference edits do not move existing scoring
+        curves.
+      </p>
+      <p id="place-error" role="alert"></p>
+      <div class="place-actions">
+        <button type="button" class="mono-button" id="remove-place">Remove place</button>
+        <div class="curve-dialog-actions">
+          <button type="button" class="mono-button" id="cancel-place">Cancel</button
+          ><button type="button" class="mono-button mono-button--primary" id="apply-place">
+            Use this place
+          </button>
+        </div>
       </div>
     </dialog>
     <noscript><p class="noscript">Enable JavaScript to use the forecast lab.</p></noscript>

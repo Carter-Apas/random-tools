@@ -1,93 +1,24 @@
 import { normalizeHour, summarize } from "./conditions.js";
 import { localTimestamp, timezone } from "./dates.js";
 import { daylight } from "./daylight.js";
-import { fetchProvider, providerRows, providerUrl } from "./provider.js";
+import { createForecastCache, ForecastUnavailable } from "./forecast-cache.js";
 import type { ProviderData } from "./provider.js";
 
 import type { Forecast, Spot } from "../shared/types.js";
 
-interface CacheEntry {
-  weather: ProviderData | null;
-  marine: ProviderData | null;
-  fetchedAt: string;
-  warnings: string[];
-}
-
-export class ForecastUnavailable extends Error {}
+export { ForecastUnavailable } from "./forecast-cache.js";
 
 export const createForecastService = ({
   fetcher = fetch,
   now = () => new Date(),
   apiKey,
 }: { fetcher?: typeof fetch; now?: () => Date; apiKey?: string } = {}) => {
-  const cache = new Map<string, CacheEntry>();
-  const pending = new Map<string, Promise<CacheEntry>>();
-  const ttl = 60 * 60 * 1000;
-  const staleLimit = 6 * 60 * 60 * 1000;
-
-  const refresh = async (spot: Spot, date: string, key: string): Promise<CacheEntry> => {
-    const results = await Promise.allSettled(
-      ["weather", "marine"].map((kind) =>
-        fetchProvider(providerUrl(kind, spot, date, apiKey), fetcher),
-      ),
-    );
-    if (results.every((result) => result.status === "rejected"))
-      throw new ForecastUnavailable(
-        "Weather and marine forecasts are unavailable. Try again shortly.",
-      );
-    const [weather, marine] = results.map((result) =>
-      result.status === "fulfilled" ? result.value : null,
-    );
-    const entry: CacheEntry = {
-      weather: weather ?? null,
-      marine: marine ?? null,
-      fetchedAt: now().toISOString(),
-      warnings: results.flatMap((result, index) =>
-        result.status === "rejected"
-          ? [`${index ? "Marine" : "Weather"} forecast unavailable; missing values are null.`]
-          : [],
-      ),
-    };
-    const previous = cache.get(key);
-    if (previous && !previous.warnings.length && entry.warnings.length)
-      throw new ForecastUnavailable("A forecast source is temporarily unavailable.");
-    cache.set(key, entry);
-    return entry;
-  };
-
-  const getRaw = async (spot: Spot, date: string): Promise<CacheEntry & { stale: boolean }> => {
-    const key = `${spot.id}:${spot.latitude}:${spot.longitude}:${spot.marineLatitude}:${spot.marineLongitude}:${date}`;
-    for (const [cacheKey, entry] of cache) {
-      if (now().getTime() - Date.parse(entry.fetchedAt) > staleLimit) cache.delete(cacheKey);
-    }
-    const cached = cache.get(key);
-    const age = cached ? now().getTime() - Date.parse(cached.fetchedAt) : Infinity;
-    if (cached && age < ttl) return { ...cached, stale: false };
-    if (!pending.has(key)) {
-      pending.set(
-        key,
-        refresh(spot, date, key).finally(() => pending.delete(key)),
-      );
-    }
-    try {
-      return { ...(await pending.get(key)!), stale: false };
-    } catch (error) {
-      if (!cached || age > staleLimit) throw error;
-      return {
-        ...cached,
-        stale: true,
-        warnings: [
-          ...cached.warnings,
-          "Showing a cached forecast because the provider could not be refreshed.",
-        ],
-      };
-    }
-  };
+  const getRaw = createForecastCache({ fetcher, now, apiKey });
 
   return async (spot: Spot, date: string): Promise<Forecast> => {
-    const raw = await getRaw(spot, date);
-    const weather = providerRows(raw.weather);
-    const marine = providerRows(raw.marine);
+    const raw = await getRaw(spot);
+    const weather = raw.weatherRows;
+    const marine = raw.marineRows;
     const times = [...new Set([...weather.keys(), ...marine.keys()])]
       .filter((time) => (weather.get(time) ?? marine.get(time))?.localTime.startsWith(date))
       .sort();
@@ -140,8 +71,8 @@ export const createForecastService = ({
         scale: "0–100; earned points / sum of enabled curve maxima × 100, clamped to 0–100",
         note: "Personal conditions heuristic, not a catch prediction or safety rating. Fishing combines rock and inshore boat fishing using the lower score. Daily scores average available daylight hours. Tides, access, local hazards and species are not modelled.",
       },
-      sunrise: dailyTime(raw.weather, "sunrise"),
-      sunset: dailyTime(raw.weather, "sunset"),
+      sunrise: dailyTime(raw.weather, "sunrise", date),
+      sunset: dailyTime(raw.weather, "sunset", date),
       ...daylight(date, spot),
       summary: summarize(hours),
       hours,
@@ -152,7 +83,9 @@ export const createForecastService = ({
 const grid = (data: ProviderData | null) =>
   data ? { latitude: data.latitude, longitude: data.longitude } : null;
 
-const dailyTime = (data: ProviderData | null, key: "sunrise" | "sunset") => {
-  const value = data?.daily?.[key]?.[0];
+const dailyTime = (data: ProviderData | null, key: "sunrise" | "sunset", date: string) => {
+  const value = data?.daily?.[key]?.find(
+    (time) => typeof time === "number" && localTimestamp(time).startsWith(date),
+  );
   return typeof value === "number" ? localTimestamp(value) : null;
 };

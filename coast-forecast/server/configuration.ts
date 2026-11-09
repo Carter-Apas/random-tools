@@ -1,42 +1,44 @@
-import { mergeOverride } from "./spots.js";
+import { parsePlace, patchPlace } from "./place-validation.js";
 
+import { configurationDocument } from "../shared/places.js";
 import { directionCurve } from "../shared/scoring-config.js";
 import { asRecord, boundedNumber } from "../shared/config-validation.js";
-import type { ConfigurationDocument, Spot, SpotConfiguration } from "../shared/types.js";
+import type { Spot } from "../shared/types.js";
 
-const editable = ["surfHeightFactor", "offshoreFromDegrees", "calibrated", "scoring"];
+export const patchSpot = patchPlace;
+export const exportConfiguration = configurationDocument;
 
-export const patchSpot = (spot: Spot, input: unknown): Spot => {
-  const patch = asRecord(input, "Spot settings");
-  for (const field of Object.keys(patch))
-    if (!editable.includes(field)) throw new Error(`Unsupported setting: ${field}`);
-  return mergeOverride(spot, patch);
+const importPlaces = (input: unknown): Spot[] => {
+  const saved = asRecord(input, "Configuration spots");
+  const entries = Object.entries(saved);
+  if (entries.length < 1 || entries.length > 32)
+    throw new Error("Include between 1 and 32 places.");
+  return entries.map(([id, configuration]) => parsePlace(id, configuration));
 };
-
-export const exportConfiguration = (spots: Spot[]): ConfigurationDocument => ({
-  schemaVersion: 2,
-  spots: Object.fromEntries(
-    spots.map((spot) => [
-      spot.id,
-      Object.fromEntries(
-        editable.map((key) => [key, spot[key as keyof Spot]]),
-      ) as unknown as SpotConfiguration,
-    ]),
-  ),
-});
 
 export const importConfiguration = (input: unknown, defaults: Spot[]): Spot[] => {
   const document = asRecord(input, "Configuration");
+  if (document.schemaVersion === 3) {
+    if (Object.keys(document).some((key) => !["schemaVersion", "spots"].includes(key)))
+      throw new Error("Unknown configuration property.");
+    return importPlaces(document.spots);
+  }
+  return importLegacy(document, defaults);
+};
+
+const importLegacy = (document: Record<string, unknown>, defaults: Spot[]): Spot[] => {
   const legacy = !Object.hasOwn(document, "schemaVersion");
   if (!legacy && document.schemaVersion !== 2)
-    throw new Error("Unsupported configuration version. Expected schemaVersion 2.");
+    throw new Error(
+      "Unsupported configuration version. Expected schemaVersion 3 (version 2 is also supported).",
+    );
   if (!legacy && Object.keys(document).some((key) => !["schemaVersion", "spots"].includes(key)))
     throw new Error("Unknown configuration property.");
   const saved = asRecord(legacy ? document : document.spots, "Configuration spots");
   for (const id of Object.keys(saved))
     if (!defaults.some((spot) => spot.id === id)) throw new Error(`Unknown spot: ${id}`);
   if (!legacy && defaults.some((spot) => !Object.hasOwn(saved, spot.id)))
-    throw new Error("The configuration must include both coasts.");
+    throw new Error("Version 2 configuration must include the original places.");
   return defaults.map((spot) => {
     if (!Object.hasOwn(saved, spot.id)) return structuredClone(spot);
     const patch = asRecord(saved[spot.id], "Spot settings");

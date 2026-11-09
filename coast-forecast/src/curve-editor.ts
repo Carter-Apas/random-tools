@@ -1,4 +1,5 @@
 import { curveSvg, graphView } from "./curve-graph";
+import { directionGuide } from "./direction-guide";
 import { element, number } from "./format";
 
 import { drawCurveSection } from "../shared/curve-editing";
@@ -10,6 +11,7 @@ import type { ConditionScore, PointCurve, CurvePoint } from "../shared/types";
 interface EditorOptions {
   curve: PointCurve;
   context: string;
+  offshore?: number;
   input: number | null;
   preview: (curve: PointCurve) => ConditionScore;
   apply: (curve: PointCurve) => void;
@@ -48,7 +50,11 @@ export const openCurveEditor = (options: EditorOptions): void => {
     element<HTMLInputElement>("curve-enabled").checked = curve.enabled;
     element<HTMLInputElement>("point-x").disabled =
       !!variables[curve.variable].circular && [0, curve.points.length - 1].includes(selected);
-    canvas.innerHTML = curveSvg(curve, view, { selected, input: options.input });
+    canvas.innerHTML = curveSvg(curve, view, {
+      selected,
+      input: options.input,
+      offshore: options.offshore,
+    });
     const point = curve.points[selected];
     element<HTMLInputElement>("point-x").value = String(point.x);
     element<HTMLInputElement>("point-y").value = String(point.y);
@@ -158,6 +164,9 @@ export const openCurveEditor = (options: EditorOptions): void => {
     render();
   };
 
+  const guide = element("curve-direction-guide");
+  guide.hidden = !variables[curve.variable].circular || options.offshore === undefined;
+  guide.innerHTML = options.offshore === undefined ? "" : directionGuide(options.offshore);
   element("curve-title").textContent = variables[curve.variable].label;
   element("curve-context").textContent = options.context;
   element("curve-note").textContent = variables[curve.variable].note;

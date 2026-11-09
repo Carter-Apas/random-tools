@@ -19,7 +19,7 @@ export const adminResponse = async (
       };
     return { status: 200, body: store.read() };
   }
-  const match = /^\/api\/admin\/spots\/(piha|te-arai)$/.exec(path);
+  const match = /^\/api\/admin\/spots\/([a-z0-9-]+)$/.exec(path);
   if (!match)
     return {
       status: 404,

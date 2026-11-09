@@ -52,15 +52,10 @@ export type ScoringConfig = Record<ProfileActivity, PointProfile>;
 
 export type Scenario = Record<VariableId, number | null>;
 
-export interface SpotConfiguration {
-  surfHeightFactor: number;
-  offshoreFromDegrees: number;
-  calibrated: boolean;
-  scoring: ScoringConfig;
-}
+export type SpotConfiguration = Omit<Spot, "id">;
 
 export interface ConfigurationDocument {
-  schemaVersion: 2;
+  schemaVersion: 3;
   spots: Record<string, SpotConfiguration>;
 }
 
@@ -176,4 +171,29 @@ export interface ForecastCollection {
   timezone: string;
   forecasts: Forecast[];
   errors: { spot: string; message: string }[];
+}
+
+export interface OutlookPeriod {
+  hour: 6 | 12 | 18;
+  localTime: string | null;
+  wind: ForecastHour["wind"] | null;
+  scores: Record<ProfileActivity, number | null>;
+}
+
+export interface OutlookDay {
+  date: string;
+  fetchedAt: string | null;
+  stale: boolean;
+  warnings: string[];
+  summary: ForecastSummary | null;
+  periods: OutlookPeriod[];
+  error: string | null;
+}
+
+export interface Outlook {
+  spot: Pick<Spot, "id" | "name" | "coast">;
+  timezone: string;
+  startDate: string;
+  endDate: string;
+  days: OutlookDay[];
 }

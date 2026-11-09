@@ -45,7 +45,7 @@ test("curve configurations merge activities without overwriting another place; i
         },
       },
     },
-    { name: "anything" },
+    { name: "" },
   ]) {
     const previous = store.read();
     await assert.rejects(store.update("piha", patch), InvalidSettings);
@@ -113,7 +113,7 @@ test("legacy threshold files are backed up and migrated once, retaining local ca
     await writeFile(path, JSON.stringify(legacy));
     const store = await loadSettings([piha, teArai], path);
     assert.equal(store.read().spots[0].surfHeightFactor, 0.8);
-    assert.equal(store.export().schemaVersion, 2);
+    assert.equal(store.export().schemaVersion, 3);
     assert.ok(
       store
         .read()
@@ -183,7 +183,7 @@ test("authenticated curve changes update forecast scores without refetching hour
   assert.equal(second.hours[6].scores.fishing.value, 100);
   assert.equal(calls, 2);
   const exported = (await (await request("/api/admin/config")).json()) as ConfigurationDocument;
-  assert.equal(exported.schemaVersion, 2);
+  assert.equal(exported.schemaVersion, 3);
   assert.equal(
     (await request("/api/admin/config", { method: "PUT", body: JSON.stringify(exported) })).status,
     200,

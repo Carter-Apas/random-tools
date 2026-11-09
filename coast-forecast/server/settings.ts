@@ -5,6 +5,7 @@ import { dirname } from "node:path";
 import { exportConfiguration, importConfiguration, patchSpot } from "./configuration.js";
 import { asRecord } from "./validation.js";
 
+import { defaultPlace } from "../shared/places.js";
 import type { AdminSettings, ConfigurationDocument, Spot } from "../shared/types.js";
 
 export interface SettingsStore {
@@ -27,7 +28,9 @@ export const memorySettings = (
 
   const read = (): AdminSettings => ({
     spots: structuredClone(spots),
-    defaults: structuredClone(defaults),
+    defaults: spots.map((spot) =>
+      structuredClone(defaults.find((item) => item.id === spot.id) ?? defaultPlace(spot)),
+    ),
     persistence: path ? "file" : "memory",
   });
 
@@ -61,8 +64,10 @@ export const memorySettings = (
   const save = async (id: string, patch: unknown, reset = false): Promise<Spot> => {
     const next = await commit((current) => {
       const index = current.findIndex((spot) => spot.id === id);
-      if (index < 0) throw new Error("Unknown spot. Use piha or te-arai.");
-      current[index] = reset ? structuredClone(defaults[index]) : patchSpot(current[index], patch);
+      if (index < 0) throw new Error("Unknown place ID. See /api/spots.");
+      current[index] = reset
+        ? structuredClone(defaults.find((spot) => spot.id === id) ?? defaultPlace(current[index]))
+        : patchSpot(current[index], patch);
       return current;
     });
     return next.find((spot) => spot.id === id)!;
@@ -91,9 +96,10 @@ export const loadSettings = async (defaults: Spot[], path: string): Promise<Sett
   }
   const spots = importConfiguration(saved, defaults);
   const store = memorySettings(defaults, spots, path);
-  if (!Object.hasOwn(saved, "schemaVersion")) {
+  if (saved.schemaVersion !== 3) {
+    const version = saved.schemaVersion === 2 ? 2 : 1;
     try {
-      await copyFile(path, `${path}.v1.bak`, constants.COPYFILE_EXCL);
+      await copyFile(path, `${path}.v${version}.bak`, constants.COPYFILE_EXCL);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
     }

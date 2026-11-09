@@ -45,6 +45,13 @@ const patchSchema = {
   type: "object",
   additionalProperties: false,
   properties: {
+    name: { type: "string", minLength: 1, maxLength: 100 },
+    coast: { type: "string", minLength: 1, maxLength: 80 },
+    note: { type: "string", minLength: 1, maxLength: 600 },
+    latitude: { type: "number", minimum: -90, maximum: 90 },
+    longitude: { type: "number", minimum: -180, maximum: 180 },
+    marineLatitude: { type: "number", minimum: -90, maximum: 90 },
+    marineLongitude: { type: "number", minimum: -180, maximum: 180 },
     surfHeightFactor: { type: "number", minimum: 0.1, maximum: 3 },
     offshoreFromDegrees: { type: "number", minimum: 0, maximum: 359 },
     calibrated: { type: "boolean" },
@@ -53,13 +60,16 @@ const patchSchema = {
 };
 export const configurationSchema = {
   type: "object",
+  additionalProperties: false,
   required: ["schemaVersion", "spots"],
   properties: {
-    schemaVersion: { const: 2 },
+    schemaVersion: { const: 3 },
     spots: {
       type: "object",
-      required: ["piha", "te-arai"],
-      properties: { piha: patchSchema, "te-arai": patchSchema },
+      minProperties: 1,
+      maxProperties: 32,
+      propertyNames: { pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$", maxLength: 64 },
+      additionalProperties: { ...patchSchema, required: Object.keys(patchSchema.properties) },
     },
   },
 };
@@ -146,16 +156,19 @@ export const adminPaths = {
       security,
       summary: "Export configuration JSON; excludes credentials",
       responses: {
-        200: response("Versioned curves and place calibration", configurationSchema),
+        200: response(
+          "Version 3 places, sampling coordinates, orientation and curves",
+          configurationSchema,
+        ),
         401: errorResponses[401],
       },
     },
     put: {
       operationId: "importConfiguration",
       security,
-      summary: "Atomically import configuration for both places",
+      summary: "Atomically replace places, sampling coordinates, orientation and curves",
       description:
-        "Maximum 2 MB. Every activity must have a positive sum of enabled maxima. Legacy threshold documents can be imported and are converted to curves. No executable expressions are accepted.",
+        "Maximum 2 MB. Every activity must have a positive sum of enabled maxima. Version 2 configurations and legacy threshold documents can be imported and are converted to curves. No executable expressions are accepted.",
       requestBody: {
         required: true,
         content: { "application/json": { schema: configurationSchema } },
@@ -168,7 +181,12 @@ export const adminPaths = {
   },
   "/api/admin/spots/{spot}": {
     parameters: [
-      { name: "spot", in: "path", required: true, schema: { enum: ["piha", "te-arai"] } },
+      {
+        name: "spot",
+        in: "path",
+        required: true,
+        schema: { type: "string", description: "A configured place ID from /api/spots." },
+      },
     ],
     put: {
       operationId: "updateSpotSettings",

@@ -8,7 +8,7 @@ export interface ProviderData {
   utc_offset_seconds: number;
   error?: boolean;
   hourly: { time: number[]; [key: string]: (number | null)[] };
-  daily?: { sunrise?: number[]; sunset?: number[] };
+  daily?: { time?: number[]; sunrise?: number[]; sunset?: number[] };
 }
 
 export type ProviderRow = Record<string, number | string | null> & {
@@ -39,7 +39,13 @@ const marineFields = [
   "sea_surface_temperature",
 ];
 
-export const providerUrl = (kind: string, spot: Spot, date: string, apiKey?: string) => {
+export const providerUrl = (
+  kind: string,
+  spot: Spot,
+  date: string,
+  apiKey?: string,
+  endDate = date,
+) => {
   const marine = kind === "marine";
   const prefix = apiKey ? "customer-" : "";
   const host = marine ? `${prefix}marine-api` : `${prefix}api`;
@@ -51,7 +57,7 @@ export const providerUrl = (kind: string, spot: Spot, date: string, apiKey?: str
     timezone,
     timeformat: "unixtime",
     start_date: date,
-    end_date: date,
+    end_date: endDate,
     ...(marine
       ? { cell_selection: "sea" }
       : { daily: "sunrise,sunset", wind_speed_unit: "kmh", precipitation_unit: "mm" }),

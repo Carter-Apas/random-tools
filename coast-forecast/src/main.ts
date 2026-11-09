@@ -3,6 +3,7 @@ import { initMono } from "@random-tools/mono/browser";
 import { scoreCards, coastScores } from "./scores-view";
 import "@random-tools/mono/styles.css";
 import "./styles.css";
+import { OutlookStrip } from "./outlook";
 import { chartHour, renderCharts } from "./charts";
 import {
   directionArrow,
@@ -17,7 +18,7 @@ import {
 import type { Forecast, ForecastHour, Spot } from "../shared/types";
 
 const query = new URLSearchParams(location.search);
-let selected = query.get("spot") === "te-arai" ? "te-arai" : "piha";
+let selected = query.get("spot") ?? "piha";
 let requestedDate = query.get("date") ?? "tomorrow";
 let selectedHour = 6;
 let spots: Spot[] = [];
@@ -55,6 +56,16 @@ const requestJson = async <T>(url: string, signal?: AbortSignal): Promise<T> => 
   return data;
 };
 
+const renderPlaces = () => {
+  if (!spots.some((spot) => spot.id === selected)) selected = spots[0].id;
+  element("forecast-places").innerHTML = spots
+    .map(
+      (spot) =>
+        `<button type="button" class="spot-button" data-spot="${escape(spot.id)}" aria-pressed="${spot.id === selected}"><span class="spot-coast">${escape(spot.coast)}</span><strong>${escape(spot.name)}</strong><span class="spot-preview">Loading forecast…</span></button>`,
+    )
+    .join("");
+};
+
 const load = async (): Promise<void> => {
   const current = ++generation;
   controller?.abort();
@@ -65,10 +76,15 @@ const load = async (): Promise<void> => {
   element("error").hidden = true;
   element<HTMLButtonElement>("refresh").disabled = true;
   try {
-    if (!spots.length) {
-      const metadata = await requestJson<{ spots: Spot[] }>("/api/v1/spots", signal);
-      spots = metadata.spots;
-    }
+    const metadata = await requestJson<{ spots: Spot[] }>("/api/v1/spots", signal);
+    if (current !== generation) return;
+    spots = metadata.spots;
+    renderPlaces();
+    week.show(
+      spots.find((spot) => spot.id === selected)!,
+      activeDate(),
+      dateOffset(0),
+    );
     const results = await Promise.allSettled(
       spots.map((spot) => requestJson<Forecast>(endpoint(spot.id), signal)),
     );
@@ -109,6 +125,7 @@ const showError = (message: string): void => {
 };
 
 const render = (): void => {
+  week.setDate(activeDate());
   document.querySelectorAll<HTMLButtonElement>("[data-spot]").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.spot === selected));
     const data = forecasts.get(button.dataset.spot ?? "");
@@ -252,15 +269,29 @@ const updateLocation = (): void => {
   history.replaceState(null, "", `?${params}`);
 };
 
+const week = new OutlookStrip((date) => {
+  requestedDate = date === dateOffset(1) ? "tomorrow" : date;
+  element<HTMLInputElement>("date").value = date;
+  element("forecast").hidden = true;
+  updateLocation();
+  void load();
+});
+
 currentTomorrow = dateOffset(1);
 
-document.querySelectorAll<HTMLButtonElement>("[data-spot]").forEach((button) =>
-  button.addEventListener("click", () => {
-    selected = button.dataset.spot ?? "piha";
-    updateLocation();
-    render();
-  }),
-);
+element("forecast-places").addEventListener("click", (event) => {
+  const target =
+    event.target instanceof Element ? event.target.closest<HTMLElement>("[data-spot]") : null;
+  if (!target?.dataset.spot) return;
+  selected = target.dataset.spot;
+  week.show(
+    spots.find((spot) => spot.id === selected)!,
+    activeDate(),
+    dateOffset(0),
+  );
+  updateLocation();
+  render();
+});
 element<HTMLInputElement>("hour").addEventListener("input", (event) => {
   selectedHour = Number((event.target as HTMLInputElement).value);
   renderHour();
@@ -286,6 +317,7 @@ element("retry").addEventListener("click", () => {
   void load();
 });
 element("refresh").addEventListener("click", () => {
+  week.clear();
   void load();
 });
 element("copy-api").addEventListener("click", () => {
