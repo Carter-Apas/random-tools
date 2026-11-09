@@ -21,11 +21,11 @@ body {
 .mono *::after {
   box-sizing: border-box;
 }
-.mono :where(button, input, select, textarea) {
+:where(.mono) :where(button, input, select, textarea) {
   font: inherit;
 }
 .mono :where(button, a, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--mono-accent);
+  outline: 2px solid var(--mono-focus);
   outline-offset: 4px;
 }
 .mono :where(button, a, input, select, textarea) {
@@ -41,8 +41,8 @@ body {
   color: inherit;
 }
 .mono ::selection {
-  background: var(--mono-accent);
-  color: var(--mono-accent-ink);
+  background: var(--mono-selection);
+  color: var(--mono-selection-text);
 }
 .mono-code {
   font-family: var(--mono-font-code);

@@ -6,7 +6,7 @@ package. Existing applications have not been migrated.
 
 ## Preview
 
-Use Node 22.12 or newer.
+Use Node 22.13+ (22.x) or Node 24+.
 
 ```sh
 cd design-system
@@ -28,11 +28,22 @@ bookmarked or shared.
 
 ## Design language
 
-Surfaces take their cues from [Ayu's palette](https://github.com/ayu-theme/ayu-colors).
-Geist handles interface text; Geist Mono handles numbers, units, and code. Amber
-is reserved for the primary action, focus, and selected states. Small status
-accents are paired with explicit text and icons. Text and interactive borders
-are adjusted from the editor palette for interface contrast.
+Mirage and Light follow the user's dotfiles: `desktop-theme/palettes/dark.sh`
+and `light.sh`, `.wezterm.lua`, and Rofi's `config.rasi`. Their foundation is
+[Ayu's palette](https://github.com/ayu-theme/ayu-colors).
+
+Highlighted actions use a blue selection background, neutral text, and a fine
+amber frame. Mirage uses `#274364` with amber `#ffcc66`; Light uses `#d3e1f5`
+with a deeper amber `#a66d16` and dark `#28323d` text for stronger contrast.
+Dark extends that treatment to a deeper surface. Hover
+reinforces the frame without changing control dimensions.
+
+The desktop's sans-serif typography carries through controls and prose: SF Pro
+Text or Inter when installed, with bundled Geist as the fallback. Geist Mono is
+reserved for numbers, units, and code. Secondary text, control borders, and
+focus colours are adjusted for interface contrast. Status accents are paired
+with explicit text and icons. These palettes are copied into the package;
+there is no runtime dependency on the dotfiles.
 
 Spacing follows a four-pixel unit. Controls use 6px corners; larger surfaces use
 10px corners. Layouts collapse to a single column on small screens. The system
@@ -69,7 +80,7 @@ alongside each other. Fonts are bundled, without external font service requests.
 ## Validation
 
 ```sh
-npm run lint          # @cartercree/eslint-config from Carter-Apas/eslint-config
+npm run lint          # @cartercree/eslint-config v3 with ESLint 10
 npm run format:check  # Prettier
 npm run typecheck
 npm run build         # Static Storybook in storybook-static/

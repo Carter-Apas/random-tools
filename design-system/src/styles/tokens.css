@@ -1,21 +1,27 @@
-/* Ayu-derived surfaces. Interface text and borders are adjusted for UI contrast.
-   Source: https://github.com/ayu-theme/ayu-colors/tree/master/themes */
+/* Mirage and Light follow ~/.dotfiles/.config/desktop-theme/palettes and
+   the WezTerm/Rofi selection treatment. Dark extends the same roles.
+   Secondary text and control boundaries are adjusted for interface contrast. */
 :root,
 [data-mono-theme="mirage"] {
   color-scheme: dark;
   --mono-bg: #1f2430;
-  --mono-surface: #242936;
-  --mono-raised: #282e3b;
+  --mono-surface: #1f2430;
+  --mono-raised: #232a34;
   --mono-inset: #1b202b;
-  --mono-text: #e6e4dc;
-  --mono-muted: #a4adbd;
+  --mono-text: #cccac2;
+  --mono-muted: #9da6b5;
   --mono-subtle: #8d98ab;
-  --mono-border: #3b4455;
+  --mono-border: #323843;
   --mono-control-border: #647086;
   --mono-accent: #ffcc66;
   --mono-accent-ink: #302510;
   --mono-accent-text: #ffcc66;
   --mono-accent-soft: #ffcc6612;
+  --mono-selection: #274364;
+  --mono-selection-text: #cccac2;
+  --mono-selection-border: #ffcc66;
+  --mono-hover: #232a34;
+  --mono-focus: #ffcc66;
   --mono-success: #b8d788;
   --mono-danger: #f29a91;
   --mono-info: #9acbe0;
@@ -36,6 +42,11 @@
   --mono-accent-ink: #241c0d;
   --mono-accent-text: #e6b450;
   --mono-accent-soft: #e6b45012;
+  --mono-selection: #1c3550;
+  --mono-selection-text: #dcdad2;
+  --mono-selection-border: #e6b450;
+  --mono-hover: #171d27;
+  --mono-focus: #e6b450;
   --mono-success: #a9ca7a;
   --mono-danger: #ed9393;
   --mono-info: #8dc2dd;
@@ -47,22 +58,29 @@
   --mono-surface: #fcfcfc;
   --mono-raised: #ffffff;
   --mono-inset: #ebeef0;
-  --mono-text: #303944;
-  --mono-muted: #596576;
-  --mono-subtle: #647080;
-  --mono-border: #d5dae0;
+  --mono-text: #28323d;
+  --mono-muted: #495463;
+  --mono-subtle: #536070;
+  --mono-border: #e7eaed;
   --mono-control-border: #8994a1;
-  --mono-accent: #f29718;
+  --mono-accent: #f2ae49;
   --mono-accent-ink: #30200a;
   --mono-accent-text: #895000;
   --mono-accent-soft: #f2971810;
+  --mono-selection: #d3e1f5;
+  --mono-selection-text: #28323d;
+  --mono-selection-border: #a66d16;
+  --mono-hover: #e7eaed;
+  --mono-focus: #a66d16;
   --mono-success: #4b6b1a;
   --mono-danger: #b52d37;
   --mono-info: #276480;
   --mono-shadow: 0 16px 48px #26324214;
 }
 :root {
-  --mono-font: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono-font:
+    "SF Pro Text", "Inter", "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   --mono-font-code: "Geist Mono Variable", ui-monospace, monospace;
   --mono-space-1: 4px;
   --mono-space-2: 8px;

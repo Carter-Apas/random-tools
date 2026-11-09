@@ -195,7 +195,7 @@ export const Overview = () => (
             </div>
             <div>
               <dt>Foundation</dt>
-              <dd>Ayu-inspired, purpose-built</dd>
+              <dd>Your desktop / Ayu</dd>
             </div>
             <div>
               <dt>Made for</dt>
@@ -279,7 +279,7 @@ export const Overview = () => (
         <div>
           <SlidersHorizontal size={18} />
           <h3>Quiet by default</h3>
-          <p>Neutral surfaces do the work. Amber points to the next action.</p>
+          <p>Neutral surfaces, blue selection, and fine accent borders.</p>
         </div>
         <div>
           <Terminal size={18} />

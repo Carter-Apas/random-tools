@@ -38,8 +38,8 @@ export const Playground: Story = {};
 export const AllStates: Story = {
   render: () => (
     <Page
-      title="Actions, with hierarchy."
-      description="One primary action per task. Secondary actions stay quiet; destructive actions are explicit."
+      title="The familiar highlight."
+      description="Blue selection, neutral text, and a fine accent frame. Drawn from your WezTerm tabs and Rofi launcher, with the softer corners used across your desktop."
     >
       <Section title="Variants">
         <Example title="Priority">
@@ -78,9 +78,9 @@ export const AllStates: Story = {
         </Example>
       </Section>
       <p className="catalog-note">
-        Use a verb that describes the result: Save comparison, Export, Reset checklist. Icon-only
-        actions need an accessible label. Loading buttons keep their text and prevent repeat
-        activation.
+        Mirage uses your desktop's #274364 selection with an amber frame. Light uses the launcher's
+        #d3e1f5 selection with darker text and an amber frame. Hover reinforces the frame without
+        changing the button's size. Icon-only actions need an accessible label.
       </p>
     </Page>
   ),

@@ -60,9 +60,12 @@
   cursor: pointer;
 }
 .theme-picker button[aria-pressed="true"] {
-  border-color: var(--mono-border);
-  background: var(--mono-raised);
-  color: var(--mono-text);
+  border-color: var(--mono-selection-border);
+  background: var(--mono-selection);
+  color: var(--mono-selection-text);
+}
+.theme-picker button:hover:not([aria-pressed="true"]) {
+  background: var(--mono-hover);
 }
 .catalog-overview,
 .catalog-page {
@@ -472,7 +475,7 @@
   overflow: hidden;
 }
 .theme-card.is-selected {
-  outline: 1px solid var(--mono-accent);
+  outline: 1px solid var(--mono-selection-border);
   outline-offset: 3px;
 }
 .theme-card-preview {
@@ -524,7 +527,8 @@
 .theme-mini-content > div:first-child > i {
   width: 20px;
   height: 9px;
-  background: var(--mono-accent);
+  background: var(--mono-selection);
+  border: 1px solid var(--mono-selection-border);
   border-radius: 2px;
 }
 .theme-mini-content > strong {
@@ -837,8 +841,9 @@
   margin-left: auto;
 }
 .quiz-options > button.selected {
-  border-color: var(--mono-accent);
-  background: var(--mono-accent-soft);
+  border-color: var(--mono-selection-border);
+  background: var(--mono-selection);
+  color: var(--mono-selection-text);
 }
 .quiz-options > button:disabled {
   cursor: default;
@@ -890,7 +895,7 @@
   cursor: pointer;
 }
 .directory-list > button:hover {
-  background: var(--mono-inset);
+  background: var(--mono-hover);
 }
 .directory-list > button:last-child {
   border-bottom: 0;

@@ -18,6 +18,8 @@ const colours = [
   ["Control border", "--mono-control-border"],
   ["Accent", "--mono-accent"],
   ["Accent text", "--mono-accent-text"],
+  ["Selection", "--mono-selection"],
+  ["Selection frame", "--mono-selection-border"],
   ["Success", "--mono-success"],
   ["Danger", "--mono-danger"],
 ];
@@ -25,7 +27,7 @@ export const Palette: Story = {
   render: () => (
     <Page
       title="Colour, with restraint."
-      description="Ayu-inspired surfaces, a single amber accent, and readable neutral text. Switch appearance to inspect the same semantic tokens across every theme."
+      description="The surfaces and selection colours from your desktop themes, with fine amber frames in every appearance. Light pairs the launcher's pale blue selection with darker, higher-contrast text."
     >
       <Section title="Semantic palette" description="Use roles, rather than raw hex values.">
         <div className="catalog-swatch-grid">
@@ -43,13 +45,13 @@ export const Palette: Story = {
       <Section title="Appearance">
         <ThemeCards />
         <p className="catalog-note">
-          Surfaces and amber hues are derived from{" "}
+          Mirage and Light follow your desktop-theme palettes, WezTerm tabs, and Rofi launcher. They
+          share their foundations with{" "}
           <a href="https://github.com/ayu-theme/ayu-colors" target="_blank" rel="noreferrer">
             Ayu's colour palette
           </a>
-          . Text, control borders, and status colours are adjusted for interface contrast. Use icons
-          and explicit text alongside status colours. Decorative dividers are intentionally quieter
-          than interactive control boundaries.
+          . Secondary text, control borders, and focus colours are adjusted for interface contrast.
+          Dark extends the same selection language onto a deeper surface.
         </p>
       </Section>
     </Page>
@@ -60,7 +62,7 @@ export const Typography: Story = {
   render: () => (
     <Page
       title="Type that gets out of the way."
-      description="Geist for language. Geist Mono for values, identifiers, and code. Both are bundled locally, with no runtime font requests to a third-party service."
+      description="The sans-serif interface of your desktop, with monospace reserved for numbers and code. SF Pro Text or Inter is used when installed; bundled Geist provides the fallback."
     >
       <Section title="The two voices">
         <div className="catalog-grid-two">
@@ -70,7 +72,7 @@ export const Typography: Story = {
               <br />
               Clear interfaces.
             </p>
-            <span>Geist / Interface, headings, and prose</span>
+            <span>Desktop sans / Interface, headings, and prose</span>
           </Panel>
           <Panel className="catalog-type-specimen">
             <p className="mono-code">
@@ -130,7 +132,8 @@ export const SpaceAndShape: Story = {
             <Panel key={title} style={{ padding: 32, borderRadius: radius }}>
               <Badge>{title}</Badge>
               <p className="catalog-note">
-                Rounded just enough to feel approachable, without softening the technical character.
+                The same 6px controls and 10px surfaces used in your Rofi launcher and desktop
+                panels.
               </p>
             </Panel>
           ))}

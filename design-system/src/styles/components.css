@@ -9,6 +9,7 @@
   border-radius: var(--mono-radius-md);
   background: var(--mono-raised);
   color: var(--mono-text);
+  font-family: var(--mono-font);
   font-weight: 500;
   font-size: 13px;
   line-height: 20px;
@@ -18,26 +19,26 @@
     background var(--mono-duration),
     border-color var(--mono-duration);
 }
-.mono-button:hover:enabled {
-  background: var(--mono-inset);
+.mono-button:hover:not(:disabled) {
+  background: var(--mono-hover);
   border-color: var(--mono-control-border);
 }
 .mono-button:active:enabled {
-  transform: translateY(1px);
+  box-shadow: inset 0 0 0 1px var(--mono-control-border);
 }
 .mono-button:disabled {
   opacity: 0.42;
   cursor: not-allowed;
 }
 .mono-button--primary {
-  background: var(--mono-accent);
-  border-color: var(--mono-accent);
-  color: var(--mono-accent-ink);
+  background: var(--mono-selection);
+  border-color: var(--mono-selection-border);
+  color: var(--mono-selection-text);
 }
-.mono-button--primary:hover:enabled {
-  background: var(--mono-accent);
-  border-color: var(--mono-accent-ink);
-  filter: brightness(1.06);
+.mono-button--primary:hover:not(:disabled) {
+  background: var(--mono-selection);
+  border-color: var(--mono-selection-border);
+  box-shadow: inset 0 0 0 1px var(--mono-selection-border);
 }
 .mono-button--ghost {
   background: transparent;
@@ -78,6 +79,7 @@
   align-items: center;
 }
 .mono-input {
+  font-family: var(--mono-font);
   width: 100%;
   min-height: 39px;
   padding: 8px 11px;
@@ -241,7 +243,7 @@
   opacity: 1;
 }
 .mono-checkbox input:focus-visible + .mono-checkbox-box {
-  outline: 2px solid var(--mono-accent);
+  outline: 2px solid var(--mono-focus);
   outline-offset: 4px;
 }
 .mono-checkbox:has(input:disabled),
@@ -303,7 +305,7 @@
   background: var(--mono-accent-ink);
 }
 .mono-switch input:focus-visible + .mono-switch-track {
-  outline: 2px solid var(--mono-accent);
+  outline: 2px solid var(--mono-focus);
   outline-offset: 4px;
 }
 .mono-badge {
@@ -383,7 +385,8 @@
 }
 .mono-tabs {
   display: flex;
-  gap: 24px;
+  gap: 6px;
+  padding: 6px 0;
   border-bottom: 1px solid var(--mono-border);
   overflow-x: auto;
 }
@@ -392,8 +395,9 @@
   align-items: center;
   gap: 8px;
   position: relative;
-  padding: 12px 0;
+  padding: 8px 12px;
   border: 0;
+  border-radius: var(--mono-radius-md);
   background: transparent;
   color: var(--mono-muted);
   cursor: pointer;
@@ -401,8 +405,12 @@
   white-space: nowrap;
 }
 .mono-tabs button[aria-selected="true"] {
-  color: var(--mono-text);
-  box-shadow: inset 0 -2px var(--mono-accent);
+  background: var(--mono-selection);
+  color: var(--mono-selection-text);
+  box-shadow: inset 0 0 0 1px var(--mono-selection-border);
+}
+.mono-tabs button:hover:not([aria-selected="true"]) {
+  background: var(--mono-hover);
 }
 .mono-tab-count {
   font-family: var(--mono-font-code);
