@@ -25,6 +25,23 @@ npm run dev
 
 See each app's README for its configuration and scripts.
 
+## Shared design system
+
+[`design-system/`](design-system/README.md) contains **Mono**, a standalone
+Storybook for the shared interface language. It includes Ayu-inspired Dark,
+Mirage, and Light appearances, reusable React components, framework-independent
+CSS tokens, and interactive examples from these tools. Existing apps have not
+been migrated yet.
+
+```sh
+cd design-system
+npm ci
+npm run dev
+```
+
+Open [Storybook](http://localhost:6006/?path=/story/start-here-overview--design-language)
+to review the design.
+
 ## Containers
 
 Build from the repository root using the app folder as the context:

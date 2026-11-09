@@ -1,0 +1,65 @@
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+@import "./tokens.css";
+@import "./components.css";
+
+body {
+  margin: 0;
+}
+.mono {
+  background: var(--mono-bg);
+  color: var(--mono-text);
+  font-family: var(--mono-font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+}
+.mono,
+.mono *,
+.mono *::before,
+.mono *::after {
+  box-sizing: border-box;
+}
+.mono :where(button, input, select, textarea) {
+  font: inherit;
+}
+.mono :where(button, a, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--mono-accent);
+  outline-offset: 4px;
+}
+.mono :where(button, a, input, select, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+.mono :where(h1, h2, h3, p) {
+  margin-top: 0;
+}
+.mono :where(svg) {
+  flex-shrink: 0;
+}
+.mono :where(a:not(.mono-button)) {
+  color: inherit;
+}
+.mono ::selection {
+  background: var(--mono-accent);
+  color: var(--mono-accent-ink);
+}
+.mono-code {
+  font-family: var(--mono-font-code);
+  font-variant-numeric: tabular-nums;
+}
+.mono-muted {
+  color: var(--mono-muted);
+}
+.mono-root {
+  min-height: 100vh;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mono *,
+  .mono *::before,
+  .mono *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

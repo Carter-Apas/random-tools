@@ -1,0 +1,78 @@
+/* Ayu-derived surfaces. Interface text and borders are adjusted for UI contrast.
+   Source: https://github.com/ayu-theme/ayu-colors/tree/master/themes */
+:root,
+[data-mono-theme="mirage"] {
+  color-scheme: dark;
+  --mono-bg: #1f2430;
+  --mono-surface: #242936;
+  --mono-raised: #282e3b;
+  --mono-inset: #1b202b;
+  --mono-text: #e6e4dc;
+  --mono-muted: #a4adbd;
+  --mono-subtle: #8d98ab;
+  --mono-border: #3b4455;
+  --mono-control-border: #647086;
+  --mono-accent: #ffcc66;
+  --mono-accent-ink: #302510;
+  --mono-accent-text: #ffcc66;
+  --mono-accent-soft: #ffcc6612;
+  --mono-success: #b8d788;
+  --mono-danger: #f29a91;
+  --mono-info: #9acbe0;
+  --mono-shadow: 0 16px 48px #00000030;
+}
+[data-mono-theme="dark"] {
+  color-scheme: dark;
+  --mono-bg: #0d1017;
+  --mono-surface: #10141c;
+  --mono-raised: #171d27;
+  --mono-inset: #090c12;
+  --mono-text: #dcdad2;
+  --mono-muted: #9aa4b5;
+  --mono-subtle: #8793a7;
+  --mono-border: #2b3545;
+  --mono-control-border: #58667d;
+  --mono-accent: #e6b450;
+  --mono-accent-ink: #241c0d;
+  --mono-accent-text: #e6b450;
+  --mono-accent-soft: #e6b45012;
+  --mono-success: #a9ca7a;
+  --mono-danger: #ed9393;
+  --mono-info: #8dc2dd;
+  --mono-shadow: 0 16px 48px #00000050;
+}
+[data-mono-theme="light"] {
+  color-scheme: light;
+  --mono-bg: #f8f9fa;
+  --mono-surface: #fcfcfc;
+  --mono-raised: #ffffff;
+  --mono-inset: #ebeef0;
+  --mono-text: #303944;
+  --mono-muted: #596576;
+  --mono-subtle: #647080;
+  --mono-border: #d5dae0;
+  --mono-control-border: #8994a1;
+  --mono-accent: #f29718;
+  --mono-accent-ink: #30200a;
+  --mono-accent-text: #895000;
+  --mono-accent-soft: #f2971810;
+  --mono-success: #4b6b1a;
+  --mono-danger: #b52d37;
+  --mono-info: #276480;
+  --mono-shadow: 0 16px 48px #26324214;
+}
+:root {
+  --mono-font: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono-font-code: "Geist Mono Variable", ui-monospace, monospace;
+  --mono-space-1: 4px;
+  --mono-space-2: 8px;
+  --mono-space-3: 12px;
+  --mono-space-4: 16px;
+  --mono-space-6: 24px;
+  --mono-space-8: 32px;
+  --mono-space-12: 48px;
+  --mono-radius-sm: 4px;
+  --mono-radius-md: 6px;
+  --mono-radius-lg: 10px;
+  --mono-duration: 120ms;
+}
