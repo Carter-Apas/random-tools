@@ -4,16 +4,17 @@ Independent tools for self-hosting on an internal Kubernetes cluster. Each app h
 its own dependencies, lockfile, Dockerfile, and Docker build context. There is no
 shared npm workspace or root install step.
 
-| Folder                | Image                                            | Container port |
-| --------------------- | ------------------------------------------------ | -------------- |
-| `car-cost-comparison` | `ghcr.io/carter-apas/car-cost-comparison:latest` | 80             |
-| `fishing-checklist`   | `ghcr.io/carter-apas/fishing-checklist:latest`   | 80             |
-| `reel-capacity`       | `ghcr.io/carter-apas/reel-capacity:latest`       | 80             |
-| `kiwi-fire-planner`   | `ghcr.io/carter-apas/kiwi-fire-planner:latest`   | 80             |
-| `mermaid`             | `ghcr.io/carter-apas/mermaid:latest`             | 80             |
-| `quiz-gen`            | `ghcr.io/carter-apas/quiz-gen:latest`            | 3001           |
-| `coast-forecast`      | `ghcr.io/carter-apas/coast-forecast:latest`      | 80             |
-| `hot-potato`          | `ghcr.io/carter-apas/hot-potato:latest`          | 3000           |
+| Folder                  | Image                                              | Container port |
+| ----------------------- | -------------------------------------------------- | -------------- |
+| `car-cost-comparison`   | `ghcr.io/carter-apas/car-cost-comparison:latest`   | 80             |
+| `fishing-checklist`     | `ghcr.io/carter-apas/fishing-checklist:latest`     | 80             |
+| `reel-capacity`         | `ghcr.io/carter-apas/reel-capacity:latest`         | 80             |
+| `kiwi-fire-planner`     | `ghcr.io/carter-apas/kiwi-fire-planner:latest`     | 80             |
+| `mermaid`               | `ghcr.io/carter-apas/mermaid:latest`               | 80             |
+| `quiz-gen`              | `ghcr.io/carter-apas/quiz-gen:latest`              | 3001           |
+| `coast-forecast`        | `ghcr.io/carter-apas/coast-forecast:latest`        | 80             |
+| `yaml-schema-validator` | `ghcr.io/carter-apas/yaml-schema-validator:latest` | 80             |
+| `hot-potato`            | `ghcr.io/carter-apas/hot-potato:latest`            | 3000           |
 
 ## Development
 
@@ -35,7 +36,7 @@ fonts. See [`hot-potato/`](hot-potato/README.md) for multiplayer development and
 [`design-system/`](design-system/README.md) contains **Mono**, a standalone
 Storybook for the shared interface language. It includes Ayu-inspired Dark,
 Mirage, and Light appearances, reusable React components, framework-independent
-CSS tokens, and interactive examples from these tools. All seven apps consume
+CSS tokens, and interactive examples from these tools. Eight apps consume
 versioned local snapshots of this library.
 
 ```sh
@@ -133,6 +134,9 @@ docker run --rm -p 3001:3001 --env-file quiz-gen/.env quiz-gen:latest
 
 docker build -t coast-forecast:latest coast-forecast
 docker run --rm -p 8086:80 coast-forecast:latest
+
+docker build -t yaml-schema-validator:latest yaml-schema-validator
+docker run --rm -p 8087:80 yaml-schema-validator:latest
 ```
 
 For Hot Potato:
@@ -199,6 +203,9 @@ kubectl -n <namespace> rollout restart deployment/<tool-name>
   inshore fishing. Use the app’s `compose.yaml` for a host bind mount, or mount
   `/app/.data` to retain JSON configuration and the password hash across container replacement. Optional startup defaults use
   `SPOT_CONFIG_FILE`. `/healthz` is available for probes.
+- **yaml-schema-validator:** static frontend on port 80 at `yaml.coder.kiwi`; documents
+  and schemas stay in the browser. No volumes, API credentials, or outbound runtime
+  requests are required. `/healthz` is available for probes.
 
 ## Imported sources
 

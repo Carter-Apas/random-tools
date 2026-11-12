@@ -84,3 +84,9 @@ jobs:
         run: |
           node test/browser.mjs
           node test/viewport.mjs
+      - name: Install validator test browser
+        if: matrix.project == 'yaml-schema-validator'
+        run: npx playwright install --with-deps chromium
+      - name: Check YAML validator interactions
+        if: matrix.project == 'yaml-schema-validator'
+        run: npm run test:browser

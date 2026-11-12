@@ -22,6 +22,7 @@ const apps = [
   "mermaid",
   "quiz-gen",
   "coast-forecast",
+  "yaml-schema-validator",
 ];
 const targets = process.argv.slice(2);
 if (!targets.length) throw new Error("Name the apps to update, or pass --all.");

@@ -1,0 +1,46 @@
+{
+  "name": "yaml-schema-validator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@random-tools/mono": "file:vendor/random-tools-mono-0.2.3.tgz",
+    "@rjsf/core": "6.11.1",
+    "@rjsf/utils": "6.11.1",
+    "@rjsf/validator-ajv8": "6.11.1",
+    "ajv": "^8.20.0",
+    "lucide-react": "^1.14.0",
+    "prismjs": "^1.30.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@cartercree/eslint-config": "^4.1.0",
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^24.12.2",
+    "@types/prismjs": "^1.26.6",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.10"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=24.0.0"
+  }
+}
