@@ -5,6 +5,11 @@ import { position, vegetablePoint } from "./motion";
 
 import type { Player, RoomView } from "../shared/types";
 
+const bubbleSide = (x: number, compact: boolean) => (x >= (compact ? 50 : 65) ? "left" : "right");
+
+const arenaClass = (preview: boolean, compact: boolean) =>
+  `arena ${preview ? "arena-preview" : ""} ${compact ? "arena-compact" : ""}`;
+
 export const Hearts = ({ count }: { count: number }) => (
   <span className="hearts" role="img" aria-label={`${count} of 3 hearts`}>
     {[0, 1, 2].map((i) => (
@@ -22,6 +27,7 @@ const Gardener = ({
   winner,
   room,
   now,
+  compact,
 }: {
   player: Player;
   index: number;
@@ -31,11 +37,13 @@ const Gardener = ({
   winner: boolean;
   room: RoomView;
   now: number;
+  compact: boolean;
 }) => {
-  const point = position(index, total);
+  const point = position(index, total, compact);
   return (
     <div
       className={`gardener ${active ? "is-active" : ""} ${player.hearts === 0 ? "is-out" : ""}`}
+      data-speaking={active && room.phase === "answering"}
       style={{ left: `${point.x}%`, top: `${point.y}%` }}
     >
       {winner && <img className="crown" src="/assets/crown.png" alt="Winner" />}
@@ -50,7 +58,7 @@ const Gardener = ({
         {you && <span className="you-tag">you</span>}
         {player.bot && <span className="you-tag">bot</span>}
       </span>
-      <SpeechBubble room={room} playerId={player.id} side={point.x > 65 ? "left" : "right"} />
+      <SpeechBubble room={room} playerId={player.id} side={bubbleSide(point.x, compact)} />
       <Hearts count={player.hearts} />
       {!player.connected && <span className="player-status">Reconnecting…</span>}
       {player.hearts === 0 && <span className="player-status">Spectating</span>}
@@ -63,16 +71,19 @@ export const Arena = ({
   you,
   now,
   preview = false,
+  compact = false,
 }: {
   room: RoomView;
   you: string;
   now: number;
   preview?: boolean;
+  compact?: boolean;
 }) => {
   const visible = room.status === "playing";
   return (
     <div
-      className={preview ? "arena arena-preview" : "arena"}
+      className={arenaClass(preview, compact)}
+      style={{ "--player-count": room.players.length } as CSSProperties}
       data-player-count={room.players.length}
       aria-label="Garden game board. Play moves clockwise."
     >
@@ -86,6 +97,7 @@ export const Arena = ({
         <Gardener
           room={room}
           now={now}
+          compact={compact}
           key={player.id}
           player={player}
           index={index}
@@ -95,7 +107,7 @@ export const Arena = ({
           winner={room.winnerId === player.id}
         />
       ))}
-      {visible && room.phase === "passing" && <Vegetable room={room} now={now} />}
+      {visible && room.phase === "passing" && <Vegetable room={room} now={now} compact={compact} />}
       {preview && (
         <div className="preview-potato">
           <img src="/assets/potato.png" alt="" />
@@ -109,8 +121,8 @@ export const Arena = ({
   );
 };
 
-const Vegetable = ({ room, now }: { room: RoomView; now: number }) => {
-  const point = vegetablePoint(room, now);
+const Vegetable = ({ room, now, compact }: { room: RoomView; now: number; compact: boolean }) => {
+  const point = vegetablePoint(room, now, compact);
   const vegetable = room.category?.vegetable ?? "potato";
   return (
     <img

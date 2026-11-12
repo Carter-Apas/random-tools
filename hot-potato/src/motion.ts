@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 
 import type { RoomView } from "../shared/types";
 
-export const position = (index: number, total: number) => {
+export const position = (index: number, total: number, compact = false) => {
+  if (compact) return { x: ((index + 0.5) / total) * 100, y: 60 };
   const angle = ((-90 + (360 * index) / total) * Math.PI) / 180;
   const radius = total >= 7 ? 28 : 26;
   return { x: 50 + Math.cos(angle) * 33, y: 51 + Math.sin(angle) * radius };
 };
 
-export const vegetablePoint = (room: RoomView, now: number) => {
+export const vegetablePoint = (room: RoomView, now: number, compact = false) => {
   const toIndex = room.players.findIndex((player) => player.id === room.activeId);
-  const to = position(Math.max(0, toIndex), room.players.length);
+  const to = position(Math.max(0, toIndex), room.players.length, compact);
   if (
     !room.move ||
     room.phase !== "passing" ||
@@ -19,8 +20,8 @@ export const vegetablePoint = (room: RoomView, now: number) => {
     return { ...to, scale: 1, rotation: -12 };
   const progress = Math.max(0, Math.min(1, (now - room.move.at) / room.move.duration));
   const fromIndex = room.players.findIndex((player) => player.id === room.move?.from);
-  const from = fromIndex < 0 ? { x: 50, y: 51 } : position(fromIndex, room.players.length);
-  const centre = { x: 50, y: 51 };
+  const centre = { x: 50, y: compact ? 82 : 51 };
+  const from = fromIndex < 0 ? centre : position(fromIndex, room.players.length, compact);
   const first = progress < 0.45;
   const t = first ? progress / 0.45 : (progress - 0.45) / 0.55;
   const start = first ? from : centre;

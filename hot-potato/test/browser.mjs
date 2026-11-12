@@ -95,6 +95,7 @@ const figuresFitArena = async (page) => {
     const bounds = arena.getBoundingClientRect();
     return [...arena.querySelectorAll(".character-figure, .gardener-name, .hearts")].every(
       (element) => {
+        if (!element.checkVisibility()) return true;
         const box = element.getBoundingClientRect();
         return (
           box.left >= bounds.left + 2 &&
@@ -149,7 +150,7 @@ try {
   assert.equal(await guest.locator("#answer").inputValue(), "private future answer");
   const answer = room.category.answers[0].label;
   await answerOn(host, "definitely not an answer");
-  await host.getByText("Wrong answer. 2 seconds lost — try again!").waitFor();
+  await host.getByText("Wrong answer. Try again!").waitFor();
   assert.equal(
     await host.locator("#answer").evaluate((input) => document.activeElement === input),
     true,
@@ -163,7 +164,7 @@ try {
     .filter({ hasText: "private future answer" })
     .waitFor();
   await answerOn(guest, answer);
-  await guest.getByText("Already picked! 2 seconds lost — try another.").waitFor();
+  await guest.getByText("Already picked! Try another answer.").waitFor();
   assert.equal(
     await guest.locator("#answer").evaluate((input) => document.activeElement === input),
     true,

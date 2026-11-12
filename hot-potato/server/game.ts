@@ -3,7 +3,7 @@ import { randomInt, randomUUID } from "node:crypto";
 import { categories, findAnswer } from "./categories.js";
 import type { Category } from "./categories.js";
 
-import { paces, wrongAnswerPenaltyMs } from "../shared/types.js";
+import { paces } from "../shared/types.js";
 import type { Pace, Player, Profile, RoomView } from "../shared/types.js";
 export const travelMs = 1200;
 export const recoveryMs = 2000;
@@ -119,7 +119,7 @@ export const changeCategory = (room: Room): void => {
   if (!room.deck.length) room.deck = shuffledCategories();
   let index = room.category
     ? room.deck.findIndex((item) => item.vegetable !== room.category?.vegetable)
-    : room.deck.findIndex((item) => item.vegetable === "potato");
+    : 0;
   if (index < 0) {
     room.deck = [...categories].filter((item) => item.vegetable !== room.category?.vegetable);
     index = randomInt(room.deck.length);
@@ -204,13 +204,6 @@ const charPlayer = (room: Room, now: number): void => {
   );
 };
 
-const rejectAnswer: (room: Room, now: number, message: string) => never = (room, now, message) => {
-  room.penaltyMs += wrongAnswerPenaltyMs;
-  room.deadline -= wrongAnswerPenaltyMs;
-  if (room.deadline <= now) charPlayer(room, now);
-  return gameError(message);
-};
-
 const validateTurn = (room: Room, id: string, turn: number, now: number): Category => {
   if (room.status !== "playing" || room.phase !== "answering")
     gameError("Wait for the vegetable to reach you.");
@@ -232,10 +225,10 @@ export const submitAnswer = (
   const category = validateTurn(room, id, turn, now);
   room.draft = raw.slice(0, 100);
   const answer = findAnswer(category, raw);
-  if (!answer) rejectAnswer(room, now, "Wrong answer. 2 seconds lost — try again!");
+  if (!answer) gameError("Wrong answer. Try again!");
   const consumed = answer.consumes ?? [answer.id ?? answer.label];
   if (consumed.some((id) => room.usedIds.includes(id)))
-    rejectAnswer(room, now, "Already picked! 2 seconds lost — try another.");
+    gameError("Already picked! Try another answer.");
   room.used.push(answer.label);
   room.usedIds.push(...consumed);
   addEvent(

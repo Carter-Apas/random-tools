@@ -12,10 +12,11 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:browser": "npm run build && node test/browser.mjs",
+    "test:browser": "npm run build && node test/browser.mjs && node test/viewport.mjs",
     "answers:build": "tsx scripts/build-category-packs.ts",
     "answers:check": "tsx scripts/build-category-packs.ts --check",
     "answers:fetch": "tsx scripts/fetch-category-sources.ts",
+    "answers:fetch:spelling": "node scripts/fetch-spelling-words.mjs",
     "answers:fetch:units": "node scripts/build-unit-pack.mjs",
     "answers:propose": "tsx scripts/propose-answer.ts"
   },

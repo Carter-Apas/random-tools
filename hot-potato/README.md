@@ -21,12 +21,19 @@ You may prepare an answer between turns: it stays private until your turn starts
 A speech bubble beside the active character shows their live typing. The answer
 bar stays clear for private preparation.
 Answer banks are intentionally finite; the hint explains boundaries where needed.
+During play, the question and answer dock fit the visual viewport, including keyboard
+resize and panning. Short screens use a compact row of players and hearts; category
+hints and picked answers stay available through the info button. The editable input
+stays focused after submission and permits private preparation during a delayed reply.
+Mobile browsers may require an initial tap to open the software keyboard.
+
 There is no rarity system, external AI service, account, or paid dependency.
 
 Every recipient gets a fresh, independently randomised timer. It starts only when
 that player receives the vegetable, after the travel animation. Waiting until the
-last moment cannot reduce the next player's time. Wrong and repeated answers remove two seconds and advance the heat stages;
-a penalty can immediately cost a heart if less than two seconds remain.
+last moment cannot reduce the next player's time. Wrong and repeated answers show an error
+and keep the input focused, with no time penalty. Every category is eligible to open
+a round; the initial deck uses a cryptographic Fisher–Yates shuffle.
 
 | Pace    | Random duration per turn |
 | ------- | ------------------------ |
@@ -47,6 +54,16 @@ entries, regional spellings, plurals and case-sensitive symbols. Shared valid
 names consume every matching identity to prevent reuse. See
 [the category pipeline](content/README.md) for commands, membership rules,
 coverage checks and remaining limits. Other categories retain curated banks.
+
+Spelling tolerance runs entirely on the server after exact names, aliases and symbols.
+It accepts only a unique nearest identity: one insertion, omission, substitution or
+adjacent transposition (two edits for names of ten or more letters). Four-letter
+names accept swaps or an extra repeated letter; shorter names stay exact. Real
+English words and known answers from other categories are protected from guessing.
+Scientific notation remains exact; elements correct canonical names only. Accepted
+typos consume the same answer identity, without revealing alternatives. The pinned
+MIT word-list lexicon protects words; it does not generate or define category answers.
+Regenerate it with `npm run answers:fetch:spelling`; its checksum is verified.
 
 There are 25 rotating categories including moons, rivers, music genres, pasta,
 cheese, European capitals and mountain ranges. Short calendar and basic list

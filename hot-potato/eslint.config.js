@@ -1,7 +1,7 @@
 import preset from "@cartercree/eslint-config/configs/tsx.js";
 
 export default [
-  { ignores: ["node_modules/**", "dist/**", "art/**", "scripts/**", "test/browser.mjs"] },
+  { ignores: ["node_modules/**", "dist/**", "art/**", "scripts/**", "test/*.mjs"] },
   ...preset,
   { files: ["**/*.config.*", "eslint.config.js"], rules: { "import/no-default-export": "off" } },
   {

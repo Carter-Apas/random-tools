@@ -95,5 +95,3 @@ export const heatStage = (room: RoomView, now: number): HeatStage => {
   if (elapsed >= 0.3) return "warm";
   return "cool";
 };
-
-export const wrongAnswerPenaltyMs = 2000;

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "version": "8e4ee13250dc96dad642ac76857d69abf21a6e9b725ab5984713b2d54fb564c2",
+  "version": "b8249285ce0c4378d1dea57a23d9bc0bad6360e8fe4ef80a5977696dd43008dd",
   "sources": [
     {
       "id": "nasa-constellations",
@@ -103,7 +103,7 @@
     {
       "id": "category-units",
       "categoryId": "units",
-      "version": "599b20104eb1ca0ef74b76565ee390af17f01949e7a2fd337a5b3a2858a9c290",
+      "version": "34136ca8bc66ef89a9ad34e4bfde20c6fd8528a1e38d3720163f4286dac40a65",
       "definition": {
         "id": "units",
         "name": "Measure for measure",
@@ -115,7 +115,8 @@
         },
         "normalization": {
           "plurals": true,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 3000,
         "maximumAnswers": 20000
@@ -58202,7 +58203,7 @@
     {
       "id": "category-elements",
       "categoryId": "elements",
-      "version": "266eb99c8c6e76bed7ca0af4761726deb6f5f3b110eccf327b2fd784fac7acd8",
+      "version": "63df615ac11868ecf597372419322c8bcd5e3a6ea2d1be807a0484604098c261",
       "definition": {
         "id": "elements",
         "name": "Elementary",
@@ -58214,7 +58215,8 @@
         },
         "normalization": {
           "plurals": false,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "canonical"
         },
         "minimumAnswers": 118,
         "maximumAnswers": 118
@@ -60705,7 +60707,7 @@
     {
       "id": "category-moons",
       "categoryId": "moons",
-      "version": "1aded480aacfee40b3a48724d86465f25626c3d58da57a485123b4859a4dc816",
+      "version": "9ad76bb50e705ec39eee58a8782ad718ef32d5689b34582266bfb235f119beae",
       "definition": {
         "id": "moons",
         "name": "Moonlighting",
@@ -60717,7 +60719,8 @@
         },
         "normalization": {
           "plurals": false,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 150,
         "maximumAnswers": 1000
@@ -63561,7 +63564,7 @@
     {
       "id": "category-pasta",
       "categoryId": "pasta",
-      "version": "5ca63ee1219662d0e601627e13cd6526a8d2a8bacce2bd4af4ab9154abe6e49f",
+      "version": "4b2dfe5a2e746db6a48897151998aaa10dc4eaec76f2f76cdf08f8de467a60cd",
       "definition": {
         "id": "pasta",
         "name": "Pasta la vista",
@@ -63573,7 +63576,8 @@
         },
         "normalization": {
           "plurals": true,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 100,
         "maximumAnswers": 2000
@@ -68111,7 +68115,7 @@
     {
       "id": "category-cheeses",
       "categoryId": "cheeses",
-      "version": "d938cd7a5196e6922edb5ee97d831fbc8ad6e33e4c22788a3199a169b447ec2e",
+      "version": "9161033a1141bc381c98a38e26aa7ca13cb9f8ad54ccb4deda2a08dab0a50ee5",
       "definition": {
         "id": "cheeses",
         "name": "Say cheese",
@@ -68126,7 +68130,8 @@
           "suffixes": [
             "cheese"
           ],
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 400,
         "maximumAnswers": 10000
@@ -87032,7 +87037,7 @@
     {
       "id": "category-genres",
       "categoryId": "genres",
-      "version": "b8c9e9f0d4f3ca44b00f72fef7a9f755762a3dad1f53e2584acc9fa657b1b400",
+      "version": "658b07b6222a5c63813b6eedd8895bcbb4f088d73053b8207d50b04bca00443e",
       "definition": {
         "id": "genres",
         "name": "Turn it up",
@@ -87044,7 +87049,8 @@
         },
         "normalization": {
           "plurals": false,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 500,
         "maximumAnswers": 20000
@@ -195953,7 +195959,7 @@
     {
       "id": "category-instruments",
       "categoryId": "instruments",
-      "version": "547738f34d99c9543c79fbdc1ec1249f130d19cea940e18b0077b729ad361e29",
+      "version": "c58850e86b4db52bee14b49bc38b34381de3f24530b3b8c88d72bb3ca2d3fcfe",
       "definition": {
         "id": "instruments",
         "name": "Garden band",
@@ -195965,7 +195971,8 @@
         },
         "normalization": {
           "plurals": true,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 500,
         "maximumAnswers": 20000
@@ -281186,7 +281193,7 @@
     {
       "id": "category-seas",
       "categoryId": "seas",
-      "version": "b6148794361c6714dba644433edded836baa8c27fdcff3ada7a71f04d5b70543",
+      "version": "69f83a530a5c850e53ea14fd8ee333e5d2b7b9de2a6e894efa87d37140445d0d",
       "definition": {
         "id": "seas",
         "name": "Seven seas and then some",
@@ -281201,7 +281208,8 @@
           "suffixes": [
             "sea"
           ],
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 80,
         "maximumAnswers": 1000
@@ -284565,7 +284573,7 @@
     {
       "id": "category-africa",
       "categoryId": "africa",
-      "version": "5bc6197868335ad316b580e90976da22e12d8fe5892eeb986637624681601eea",
+      "version": "17d87ec0dcd8b3a22b9044732c95e1eca02dbbf4820602b8230ffcea5dbed1e8",
       "definition": {
         "id": "africa",
         "name": "African adventure",
@@ -284582,7 +284590,8 @@
         },
         "normalization": {
           "plurals": false,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 54,
         "maximumAnswers": 54
@@ -285759,7 +285768,7 @@
     {
       "id": "category-constellations",
       "categoryId": "constellations",
-      "version": "863b7b2330ab7a6adeea8d89b7ad5d631c501a5321a968368f78f59552f9b784",
+      "version": "884760c3104db313c60b5407a30964b587ce745809e9fd6b4f7057ccdd8b18ff",
       "definition": {
         "id": "constellations",
         "name": "Written in the stars",
@@ -285771,7 +285780,8 @@
         },
         "normalization": {
           "plurals": false,
-          "ambiguousNames": "consume-all"
+          "ambiguousNames": "consume-all",
+          "typos": "aliases"
         },
         "minimumAnswers": 88,
         "maximumAnswers": 88

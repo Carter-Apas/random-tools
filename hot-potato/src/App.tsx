@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { socket, request } from "./connection";
 import { Home } from "./Home";
 import { Game } from "./Game";
+import { usePlayViewport } from "./usePlayViewport";
 
 import type { Pace, Profile, RoomView, TypingUpdate } from "../shared/types";
 
@@ -33,8 +34,8 @@ const Rules = ({ close }: { close: () => void }) => {
       <ol>
         <li>
           <strong>Pick a fresh answer.</strong> When the hot vegetable reaches you, name something
-          that fits the category. No repeats in the current patch. Wrong or repeated answers cost
-          two seconds.
+          that fits the category. No repeats in the current patch. If an answer is wrong, keep
+          trying before your turn timer runs out.
         </li>
         <li>
           <strong>Pass it clockwise.</strong> Correct answers fly through the campfire to the next
@@ -98,6 +99,8 @@ const RoomTools = ({ code, leave }: { code: string; leave: () => void }) => {
   );
 };
 
+const isPlaying = (room: RoomView | null) => room?.status === "playing";
+
 export const App = () => {
   const [room, setRoom] = useState<RoomView | null>(null);
   const [you, setYou] = useState("");
@@ -105,6 +108,8 @@ export const App = () => {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [rules, setRules] = useState(false);
+  const playing = isPlaying(room);
+  const shell = usePlayViewport(playing);
   useEffect(() => {
     const connect = () => {
       setConnected(true);
@@ -203,7 +208,7 @@ export const App = () => {
   };
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${playing ? "playing-screen" : ""}`} ref={shell}>
       <header className={`site-header ${room ? "in-room" : ""}`}>
         <div className="brand">
           <img src="/assets/potato.png" alt="" />

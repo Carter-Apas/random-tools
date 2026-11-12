@@ -1,123 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import type { FormEvent } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 import { Arena } from "./Arena";
+import { AnswerBox } from "./AnswerBox";
+import { TurnTimer } from "./TurnTimer";
 import { useClock } from "./motion";
-import { request, socket } from "./connection";
 
-import type { RoomView } from "../shared/types";
-import { heatStage, paces } from "../shared/types";
-
-const Timer = ({ room, now }: { room: RoomView; now: number }) => {
-  const remaining = Math.min(room.turnDurationMs, Math.max(0, room.deadline - now));
-  const seconds = Math.ceil(remaining / 1000);
-  const ratio = Math.min(100, (remaining / room.turnDurationMs) * 100);
-  return (
-    <div className={`turn-timer ${seconds <= 5 ? "turn-timer-danger" : ""}`}>
-      <div className="turn-timer-label">
-        <span>{room.phase === "charred" ? "Roasted!" : "Turn time"}</span>
-        <strong>{room.phase === "charred" ? "Ouch!" : `${seconds}s`}</strong>
-      </div>
-      <p className="heat-caption">{heatLabels[heatStage(room, now)]}</p>
-      <div
-        className="turn-timer-track"
-        role="progressbar"
-        aria-label="Your turn time remaining"
-        aria-valuemin={0}
-        aria-valuemax={Math.ceil(room.turnDurationMs / 1000)}
-        aria-valuenow={Math.min(Math.ceil(room.turnDurationMs / 1000), seconds)}
-      >
-        <span style={{ width: `${ratio}%` }} />
-      </div>
-    </div>
-  );
-};
-
-const AnswerBox = ({
-  room,
-  you,
-  connected,
-}: {
-  room: RoomView;
-  you: string;
-  connected: boolean;
-}) => {
-  const [answer, setAnswer] = useState("");
-  const [failure, setFailure] = useState({ turn: 0, message: "" });
-  const [sending, setSending] = useState(false);
-  const input = useRef<HTMLInputElement>(null);
-  const active = room.activeId === you;
-  const alive = hasHearts(room, you);
-  const ready = canAnswer(room, you, connected);
-  const error = failure.turn === room.turn ? failure.message : "";
-  useEffect(() => {
-    if (ready && window.matchMedia("(pointer: fine)").matches) input.current?.focus();
-  }, [ready]);
-  useEffect(() => {
-    if (!ready) return;
-    const timer = window.setTimeout(() => {
-      socket.emit("typing", { draft: answer, turn: room.turn });
-    }, 70);
-    return () => window.clearTimeout(timer);
-  }, [answer, ready, room.turn]);
-
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!ready || !answer.trim() || sending) return;
-    setSending(true);
-    const result = await request("answer", { answer: answer.trim(), turn: room.turn });
-    setSending(false);
-    if (result.ok) setAnswer("");
-    else {
-      setFailure({ turn: room.turn, message: result.error ?? "Wrong answer. Try again!" });
-      input.current?.focus();
-      input.current?.select();
-    }
-  };
-
-  return (
-    <div className={`answer-box ${active ? "your-turn" : ""} ${error ? "answer-wrong" : ""}`}>
-      <label htmlFor="answer" className="turn-label">
-        {turnMessage(room, alive, active)}
-      </label>
-      <form
-        onSubmit={(e) => {
-          void submit(e);
-        }}
-        className="answer-form"
-      >
-        <input
-          id="answer"
-          ref={input}
-          value={answer}
-          onChange={(e) => {
-            setAnswer(e.target.value);
-            setFailure({ turn: room.turn, message: "" });
-          }}
-          disabled={!alive || !connected}
-          readOnly={sending}
-          aria-invalid={Boolean(error)}
-          aria-describedby="answer-feedback"
-          autoComplete="off"
-          autoCorrect="off"
-          spellCheck={false}
-          maxLength={100}
-          placeholder={ready ? "Type your answer…" : "Prepare an answer privately…"}
-          enterKeyHint="send"
-        />
-        <button className="pixel-button primary" disabled={!ready || !answer.trim() || sending}>
-          Pass it! <span aria-hidden="true">↻</span>
-        </button>
-      </form>
-      <p id="answer-feedback" className="answer-feedback" role="status">
-        {error || answerHint(ready)}
-      </p>
-    </div>
-  );
-};
-
-const hasHearts = (room: RoomView, you: string) =>
-  (room.players.find((player) => player.id === you)?.hearts ?? 0) > 0;
+import type { CategoryView, RoomView } from "../shared/types";
+import { paces } from "../shared/types";
 
 const Lobby = ({
   room,
@@ -199,11 +88,12 @@ export const Game = ({
 }) => {
   const now = useClock(room.serverTime);
   const playing = room.status === "playing";
+  if (playing && room.category)
+    return <Play room={room} category={room.category} you={you} now={now} connected={connected} />;
   return (
     <main className="game-layout">
       <div className="game-main">
         <Arena room={room} you={you} now={now} />
-        {playing && <AnswerBox key={room.round} room={room} you={you} connected={connected} />}
         <div className="garden-log" aria-live="polite" aria-atomic="true">
           <span className="log-flower" aria-hidden="true">
             ✿
@@ -212,36 +102,7 @@ export const Game = ({
         </div>
       </div>
       <aside className="game-sidebar">
-        {playing && room.category ? (
-          <section className="panel category-panel">
-            <div className="category-top">
-              <img src={`/assets/${room.category.vegetable}.png`} alt="" />
-              <span>{room.category.name}</span>
-            </div>
-            <h2 key={room.category.id}>{room.category.prompt}</h2>
-            <p className="category-hint">{room.category.hint}</p>
-            <Timer room={room} now={now} />
-            <div className="picked-heading">
-              <strong>Already picked</strong>
-              <span>
-                {room.used.length} / {room.categoryGoal}
-              </span>
-            </div>
-            <div className="picked-answers">
-              {room.used.length ? (
-                room.used.map((answer) => <span key={answer}>{answer}</span>)
-              ) : (
-                <p>A fresh patch. Any answer is yours!</p>
-              )}
-            </div>
-            <p className="small-note">
-              New category after {room.categoryGoal} fresh answers or a roast. Each player gets a
-              fresh timer.
-            </p>
-          </section>
-        ) : (
-          <Lobby room={room} host={room.hostId === you} onAction={onAction} />
-        )}
+        <Lobby room={room} host={room.hostId === you} onAction={onAction} />
         <div className="table-rules">
           <span>
             <img src="/assets/heart.png" alt="" />
@@ -261,28 +122,127 @@ export const Game = ({
   );
 };
 
-const canAnswer = (room: RoomView, you: string, connected: boolean) =>
-  room.activeId === you && room.phase === "answering" && connected;
+const Play = ({
+  room,
+  category,
+  you,
+  now,
+  connected,
+}: {
+  room: RoomView;
+  category: CategoryView;
+  you: string;
+  now: number;
+  connected: boolean;
+}) => {
+  const field = useRef<HTMLDivElement>(null);
+  const [compact, setCompact] = useState(false);
+  useLayoutEffect(() => {
+    const element = field.current;
+    if (!element) return;
 
-const answerHint = (ready: boolean) =>
-  ready
-    ? "Enter to pass. Wrong or repeated answers cost 2 seconds."
-    : "Your prepared answer stays private until your turn starts.";
+    const update = () => setCompact(element.clientHeight < 240);
 
-const turnMessage = (room: RoomView, alive: boolean, active: boolean) => {
-  if (!alive) return "You're spectating. Cheer on the survivors!";
-  if (room.phase === "charred") return "Ouch! A fresh vegetable is on its way.";
-  const name =
-    room.players.find((player) => player.id === room.activeId)?.name ?? "the next gardener";
-  if (room.phase === "passing")
-    return active ? "Incoming! Get your answer ready…" : `Warming it up for ${name}…`;
-  return active ? "Your turn! Pick a fresh answer." : `${name} is thinking…`;
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    update();
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <main className="play-layout">
+      <section className="panel play-question" aria-labelledby="current-question">
+        <div className="play-category">
+          <img src={`/assets/${category.vegetable}.png`} alt="" />
+          <span>{category.name}</span>
+        </div>
+        <h2 id="current-question" key={category.id}>
+          {category.prompt}
+        </h2>
+        <QuestionDetails room={room} />
+        <TurnTimer room={room} now={now} />
+      </section>
+      <div className="play-field" ref={field}>
+        <Arena room={room} you={you} now={now} compact={compact} />
+      </div>
+      <section className="play-picks" aria-label="Already picked">
+        <div className="picked-heading">
+          <strong>Already picked</strong>
+          <span>
+            {room.used.length} / {room.categoryGoal}
+          </span>
+        </div>
+        <div className="picked-answers">
+          {room.used.length ? (
+            room.used.map((answer) => <span key={answer}>{answer}</span>)
+          ) : (
+            <p>A fresh patch. Any answer is yours!</p>
+          )}
+        </div>
+        <p className="play-last-pick">{room.events.at(-1)?.text}</p>
+      </section>
+      <AnswerBox key={room.round} room={room} you={you} connected={connected} />
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {room.events.at(-1)?.text}
+      </div>
+    </main>
+  );
 };
 
-const heatLabels = {
-  cool: "Hands are cool",
-  warm: "Hands are heating up",
-  hands: "Hands on fire!",
-  body: "On fire — pass it!",
-  charred: "Charred! One heart lost.",
+const QuestionDetails = ({ room }: { room: RoomView }) => {
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  const close = () => {
+    dialog.current?.close();
+    document.querySelector<HTMLInputElement>("#answer")?.focus({ preventScroll: true });
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        className="question-info"
+        onClick={() => dialog.current?.showModal()}
+        aria-label="Category hint and picked answers"
+      >
+        <span aria-hidden="true">ⓘ</span>
+        <span>
+          {room.used.length}/{room.categoryGoal} picked
+        </span>
+      </button>
+      <dialog
+        className="panel play-details"
+        ref={dialog}
+        aria-labelledby="category-details-title"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) close();
+        }}
+      >
+        <button
+          type="button"
+          className="dialog-close"
+          onClick={close}
+          aria-label="Close category details"
+        >
+          ×
+        </button>
+        <h2 id="category-details-title">{room.category?.prompt}</h2>
+        <p>{room.category?.hint}</p>
+        <h3>Already picked</h3>
+        <div className="picked-answers">
+          {room.used.length ? (
+            room.used.map((answer) => <span key={answer}>{answer}</span>)
+          ) : (
+            <p>No answers picked yet.</p>
+          )}
+        </div>
+        <p>
+          New category after {room.categoryGoal} fresh answers or a roast. Each player gets a fresh
+          timer.
+        </p>
+        <button type="button" className="pixel-button primary" onClick={close}>
+          Back to the garden
+        </button>
+      </dialog>
+    </>
+  );
 };

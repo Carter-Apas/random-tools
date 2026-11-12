@@ -118,6 +118,15 @@ real-world coverage. Sources can omit or misclassify facts; legacy-only entries
 and quarantined identities are explicit remaining content work. Broader sources
 and further independent test cases improve coverage without popularity filters.
 
-Runtime misses still follow the existing wrong-answer rule. A bounded live
+Runtime lookup first resolves exact labels, aliases and symbols. A separate spelling
+index accepts only an unambiguous nearest identity, with one edit (two for long
+names), stricter four-letter names and no correction of shorter names or scientific
+notation. A pinned server-only MIT English lexicon and names from other categories
+protect meaningful wrong words. Category definitions select `typos: "aliases"`,
+`"canonical"` (chemical elements), or `"off"`; the setting participates in pack
+versions. Typos consume the same IDs as exact names and expose no suggestions.
+The invalid benchmark also runs through tolerant gameplay lookup.
+
+Unresolved runtime misses show an error without a time penalty. A bounded live
 verifier and its timing policy remain separate future work; the content pipeline
 does not turn an unverified miss into an externally disproven fact.

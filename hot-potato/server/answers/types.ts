@@ -12,6 +12,7 @@ export interface NormalizationRules {
   plurals?: boolean;
   suffixes?: string[];
   ambiguousNames?: "reject" | "consume-all";
+  typos?: "canonical" | "aliases" | "off";
 }
 
 export interface AnswerPack {

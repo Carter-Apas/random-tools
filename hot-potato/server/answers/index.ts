@@ -1,10 +1,14 @@
-import { answerKeys, nameForms, symbolKey } from "./normalize.js";
+import { answerKeys, nameForms, normalize, symbolKey } from "./normalize.js";
 import type { Answer, AnswerProvider } from "./types.js";
+import { SpellingIndex, isDictionaryPhrase } from "./spelling.js";
 
 interface AnswerIndex {
   names: Map<string, Answer[]>;
   symbols: Map<string, Answer[]>;
 }
+
+const mayCorrect = (raw: string, recognized: Set<string>): boolean =>
+  /^[\p{L}\p{M}\s'’-]+$/u.test(raw) && !recognized.has(normalize(raw)) && !isDictionaryPhrase(raw);
 
 const addKey = (index: Map<string, Answer[]>, key: string, answer: Answer): void => {
   if (!key) return;
@@ -46,7 +50,10 @@ const compile = (provider: AnswerProvider): AnswerIndex => {
 };
 
 export class AnswerRegistry {
-  readonly providers = new Map<string, { provider: AnswerProvider; index: AnswerIndex }>();
+  readonly providers = new Map<
+    string,
+    { provider: AnswerProvider; index: AnswerIndex; spelling?: SpellingIndex }
+  >();
   register(provider: AnswerProvider): void {
     this.providers.set(provider.categoryId, { provider, index: compile(provider) });
   }
@@ -60,5 +67,30 @@ export class AnswerRegistry {
       if (answer) return resolveNames(answer, raw, entry.provider);
     }
     return undefined;
+  }
+
+  correct(categoryId: string, raw: string, recognized: Set<string>): Answer | undefined {
+    const exact = this.find(categoryId, raw);
+    if (exact) return exact;
+    const entry = this.providers.get(categoryId);
+    if (!entry || entry.provider.normalization?.typos === "off") return undefined;
+    if (entry.index.symbols.has(symbolKey(raw))) return undefined;
+    if (!mayCorrect(raw, recognized)) return undefined;
+    const key = normalize(raw);
+    if (!entry.spelling) {
+      const names =
+        entry.provider.normalization?.typos === "canonical"
+          ? compile({
+              ...entry.provider,
+              answers: entry.provider.answers.map((answer) => ({
+                ...answer,
+                aliases: [],
+                symbols: [],
+              })),
+            }).names
+          : entry.index.names;
+      entry.spelling = new SpellingIndex(names);
+    }
+    return entry.spelling.find(key);
   }
 }

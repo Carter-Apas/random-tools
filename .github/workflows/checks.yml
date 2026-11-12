@@ -76,9 +76,11 @@ jobs:
         if: matrix.project == 'design-system'
         run: npx playwright install --with-deps chromium
       - run: npm run test --if-present
-      - name: Install game test browser
+      - name: Install game test browsers
         if: matrix.project == 'hot-potato'
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium webkit
       - name: Check multiplayer garden game
         if: matrix.project == 'hot-potato'
-        run: node test/browser.mjs
+        run: |
+          node test/browser.mjs
+          node test/viewport.mjs

@@ -1,5 +1,5 @@
 {
-  "version": "8e4ee13250dc96dad642ac76857d69abf21a6e9b725ab5984713b2d54fb564c2",
+  "version": "b8249285ce0c4378d1dea57a23d9bc0bad6360e8fe4ef80a5977696dd43008dd",
   "reviews": [
     {
       "categoryId": "units",
@@ -935,72 +935,72 @@
   "changes": [
     {
       "categoryId": "units",
-      "previous": 0,
+      "previous": 3243,
       "current": 3243,
-      "added": 3243,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "elements",
-      "previous": 0,
+      "previous": 118,
       "current": 118,
-      "added": 118,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "moons",
-      "previous": 0,
+      "previous": 185,
       "current": 185,
-      "added": 185,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "pasta",
-      "previous": 0,
+      "previous": 286,
       "current": 286,
-      "added": 286,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "cheeses",
-      "previous": 0,
+      "previous": 1229,
       "current": 1229,
-      "added": 1229,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "genres",
-      "previous": 0,
+      "previous": 6679,
       "current": 6679,
-      "added": 6679,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "instruments",
-      "previous": 0,
+      "previous": 5360,
       "current": 5360,
-      "added": 5360,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "seas",
-      "previous": 0,
+      "previous": 206,
       "current": 206,
-      "added": 206,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "africa",
-      "previous": 0,
+      "previous": 54,
       "current": 54,
-      "added": 54,
+      "added": 0,
       "removed": 0
     },
     {
       "categoryId": "constellations",
-      "previous": 0,
+      "previous": 88,
       "current": 88,
-      "added": 88,
+      "added": 0,
       "removed": 0
     }
   ],

@@ -3,7 +3,14 @@ import { randomUUID } from "node:crypto";
 import { test } from "node:test";
 
 import { categories, findAnswer, normalize } from "../server/categories.js";
-import { publicRoom, startGame, submitAnswer, tickGame, updateDraft } from "../server/game.js";
+import {
+  changeCategory,
+  publicRoom,
+  startGame,
+  submitAnswer,
+  tickGame,
+  updateDraft,
+} from "../server/game.js";
 import { heatStage, paces } from "../shared/types.js";
 import { parsePace, parseProfile, Rooms } from "../server/rooms.js";
 
@@ -39,7 +46,6 @@ test("category aliases resolve to their identity or an explicit group of valid i
 
 test("valid answers pass clockwise and every recipient receives an independent turn timer", () => {
   const { room } = setup();
-  assert.equal(room.category!.vegetable, "potato");
   const deadline = room.deadline;
   const first = room.players[0];
   const answer = room.category!.answers[0].label;
@@ -140,15 +146,19 @@ test("passing at the last millisecond cannot shorten the next player's timer", (
   assert.equal(room.players[1].hearts, 3);
 });
 
-test("a wrong answer costs two seconds and increases heat without resetting the turn", () => {
+test("a wrong answer leaves the deadline, heat and turn unchanged", () => {
   const { room } = setup();
   const deadline = room.deadline;
   assert.throws(
     () => submitAnswer(room, room.activeId!, "wrong", room.turn, room.turnStartedAt + 1000),
     /Wrong answer/,
   );
-  assert.equal(room.deadline, deadline - 2000);
-  assert.equal(room.penaltyMs, 2000);
+  assert.equal(room.deadline, deadline);
+  assert.equal(room.penaltyMs, 0);
+  assert.equal(
+    heatStage(publicRoom(room, room.turnStartedAt + 1000), room.turnStartedAt + 1000),
+    "cool",
+  );
   assert.equal(room.draft, "wrong");
 });
 
@@ -277,16 +287,19 @@ test("join bounds, duplicate names, input validation and room expiry", () => {
   assert.equal(store.membership.size, 0);
 });
 
-test("wrong-answer penalties can immediately char a holder but never take two hearts", () => {
+test("a wrong answer near expiry costs no heart until the natural deadline", () => {
   const { room } = setup();
   const now = room.deadline - 1000;
   assert.throws(
     () => submitAnswer(room, room.activeId!, "nonsense", room.turn, now),
-    /2 seconds lost/,
+    /Wrong answer/,
   );
+  assert.equal(room.phase, "answering");
+  assert.equal(room.players[0].hearts, 3);
+  tickGame(room, room.deadline);
   assert.equal(room.phase, "charred");
   assert.equal(room.players[0].hearts, 2);
-  tickGame(room, now + 100);
+  tickGame(room, room.deadline + 100);
   assert.equal(room.players[0].hearts, 2);
 });
 
@@ -301,7 +314,17 @@ test("regional plurals cannot be used as separate answers", () => {
     /Already picked/,
   );
   assert.equal(room.used.length, 1);
-  assert.equal(room.deadline, deadline - 2000);
+  assert.equal(room.deadline, deadline);
+});
+
+test("every category can open a round regardless of its vegetable", () => {
+  const { room } = setup();
+  for (const category of categories) {
+    room.category = null;
+    room.deck = [category, ...categories.filter((other) => other.id !== category.id)];
+    changeCategory(room);
+    assert.equal(room.category, category);
+  }
 });
 
 test("a shared valid name passes once and consumes every matching identity without revealing candidates", () => {

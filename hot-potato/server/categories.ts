@@ -3,6 +3,7 @@ import { publishedPacks } from "./answers/catalogue.js";
 import { seedCategories } from "./answers/seeds.js";
 import type { Category } from "./answers/category-types.js";
 import type { Answer } from "./answers/types.js";
+import { answerKeys, nameForms } from "./answers/normalize.js";
 
 export { normalize } from "./answers/normalize.js";
 export { seedCategories } from "./answers/seeds.js";
@@ -39,6 +40,22 @@ for (const pack of publishedPacks.values()) {
 }
 
 const indexes = new WeakMap<Category, AnswerRegistry>();
+let recognized: Set<string> | undefined;
+
+const knownNames = (): Set<string> => {
+  recognized ??= new Set(
+    categories.flatMap((category) =>
+      category.answers.flatMap((answer) =>
+        [answer.label, ...answer.aliases].flatMap((alias) =>
+          nameForms(category.id, alias, category.normalization).flatMap((name) =>
+            answerKeys(category.id, name, category.normalization),
+          ),
+        ),
+      ),
+    ),
+  );
+  return recognized;
+};
 
 export const findAnswer = (category: Category, raw: string): Answer | undefined => {
   let registry = indexes.get(category);
@@ -52,5 +69,5 @@ export const findAnswer = (category: Category, raw: string): Answer | undefined 
     });
     indexes.set(category, registry);
   }
-  return registry.find(category.id, raw);
+  return registry.correct(category.id, raw, knownNames());
 };

@@ -10,7 +10,8 @@
     },
     "normalization": {
       "plurals": true,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 3000,
     "maximumAnswers": 20000
@@ -26,7 +27,8 @@
     },
     "normalization": {
       "plurals": false,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
     },
     "minimumAnswers": 118,
     "maximumAnswers": 118
@@ -36,13 +38,14 @@
     "name": "Moonlighting",
     "prompt": "Name a moon in our solar system",
     "vegetable": "potato",
-    "hint": "Named moons of planets and dwarf planets, including Earth\u2019s Moon. Provisional numbered designations do not count.",
+    "hint": "Named moons of planets and dwarf planets, including Earth’s Moon. Provisional numbered designations do not count.",
     "select": {
       "source": "wikidata-moons"
     },
     "normalization": {
       "plurals": false,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 150,
     "maximumAnswers": 1000
@@ -58,7 +61,8 @@
     },
     "normalization": {
       "plurals": true,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 100,
     "maximumAnswers": 2000
@@ -75,7 +79,8 @@
     "normalization": {
       "plurals": true,
       "suffixes": ["cheese"],
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 400,
     "maximumAnswers": 10000
@@ -91,7 +96,8 @@
     },
     "normalization": {
       "plurals": false,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 500,
     "maximumAnswers": 20000
@@ -107,7 +113,8 @@
     },
     "normalization": {
       "plurals": true,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 500,
     "maximumAnswers": 20000
@@ -124,7 +131,8 @@
     "normalization": {
       "plurals": false,
       "suffixes": ["sea"],
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 80,
     "maximumAnswers": 1000
@@ -143,7 +151,8 @@
     },
     "normalization": {
       "plurals": false,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 54,
     "maximumAnswers": 54
@@ -159,7 +168,8 @@
     },
     "normalization": {
       "plurals": false,
-      "ambiguousNames": "consume-all"
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     },
     "minimumAnswers": 88,
     "maximumAnswers": 88
