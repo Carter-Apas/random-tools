@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "nasa-constellations",
+      "file": "sources/nasa-constellations.json.gz",
+      "sha256": "83cda87db22c8250341ac72210e3541e99c05d8b9c37924bf4ec0168a98d627a"
+    },
+    {
+      "id": "wikidata-cheeses",
+      "file": "sources/wikidata-cheeses.json.gz",
+      "sha256": "fd8fcaa1b8aeb0c14215610b1fab3a383a93d1b222e5125f0b661e73019300ef"
+    },
+    {
+      "id": "wikidata-countries",
+      "file": "sources/wikidata-countries.json.gz",
+      "sha256": "85c8e375306319042ca65e2ff3c6f65dd170f2f08c743af28192eb6cce92c682"
+    },
+    {
+      "id": "wikidata-elements",
+      "file": "sources/wikidata-elements.json.gz",
+      "sha256": "ece72b078735b55980331c68decf3c5d7faa267e53206da98c7ad44e6651bd67"
+    },
+    {
+      "id": "wikidata-genres",
+      "file": "sources/wikidata-genres.json.gz",
+      "sha256": "61b513459328f19d0dfff76cbc16125b88b951dbd85cc287d5168aeefacb5956"
+    },
+    {
+      "id": "wikidata-instruments",
+      "file": "sources/wikidata-instruments.json.gz",
+      "sha256": "6b06820b50d172803f73f47da89676de55a38c27cf56c612046fd965b56a1006"
+    },
+    {
+      "id": "wikidata-moons",
+      "file": "sources/wikidata-moons.json.gz",
+      "sha256": "8bcdde455c365d705be9dd4b6a71a5015c386a99c7d9a3fcda8099089c696dfc"
+    },
+    {
+      "id": "wikidata-pasta",
+      "file": "sources/wikidata-pasta.json.gz",
+      "sha256": "95268de233d14d1e76807f19341538288b721a4b57ce6a3782a764ff318e9c02"
+    },
+    {
+      "id": "wikidata-seas",
+      "file": "sources/wikidata-seas.json.gz",
+      "sha256": "7f91f886b1862caf537f0189956d7532029699bcf09454743947f3c2c31c8de3"
+    }
+  ]
+}

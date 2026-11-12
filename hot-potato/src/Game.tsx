@@ -249,7 +249,7 @@ export const Game = ({
           </span>
           <span>
             <img src="/assets/carrot.png" alt="" />
-            24 rotating categories
+            Rotating categories
           </span>
           <span>
             <img src="/assets/fire-still.png" alt="" />

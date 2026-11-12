@@ -1,0 +1,167 @@
+[
+  {
+    "id": "units",
+    "name": "Measure for measure",
+    "prompt": "Name a unit of measurement",
+    "vegetable": "potato",
+    "hint": "Metric, imperial, historical and specialist units. Singulars, plurals and regional spellings accepted.",
+    "select": {
+      "source": "qudt-units"
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 3000,
+    "maximumAnswers": 20000
+  },
+  {
+    "id": "elements",
+    "name": "Elementary",
+    "prompt": "Name a chemical element",
+    "vegetable": "potato",
+    "hint": "All 118 recognised chemical elements. Current names and correctly capitalised symbols count; hypothetical elements do not.",
+    "select": {
+      "source": "wikidata-elements"
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 118,
+    "maximumAnswers": 118
+  },
+  {
+    "id": "moons",
+    "name": "Moonlighting",
+    "prompt": "Name a moon in our solar system",
+    "vegetable": "potato",
+    "hint": "Named moons of planets and dwarf planets, including Earth\u2019s Moon. Provisional numbered designations do not count.",
+    "select": {
+      "source": "wikidata-moons"
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 150,
+    "maximumAnswers": 1000
+  },
+  {
+    "id": "pasta",
+    "name": "Pasta la vista",
+    "prompt": "Name a type of pasta",
+    "vegetable": "carrot",
+    "hint": "Pasta shapes and filled pasta, including regional varieties. Prepared dishes and sauces do not count.",
+    "select": {
+      "source": "wikidata-pasta"
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 100,
+    "maximumAnswers": 2000
+  },
+  {
+    "id": "cheeses",
+    "name": "Say cheese",
+    "prompt": "Name a type of cheese",
+    "vegetable": "turnip",
+    "hint": "Cheese varieties from around the world. Producers do not count. The Cheese suffix is optional.",
+    "select": {
+      "source": "wikidata-cheeses"
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 400,
+    "maximumAnswers": 10000
+  },
+  {
+    "id": "genres",
+    "name": "Turn it up",
+    "prompt": "Name a music genre",
+    "vegetable": "aubergine",
+    "hint": "Music genres, regional styles and subgenres count. Artists, albums and songs do not.",
+    "select": {
+      "source": "wikidata-genres"
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 500,
+    "maximumAnswers": 20000
+  },
+  {
+    "id": "instruments",
+    "name": "Garden band",
+    "prompt": "Name a musical instrument",
+    "vegetable": "corn",
+    "hint": "Instrument types, models and regional instruments count. Individual named instruments and manufacturers do not.",
+    "select": {
+      "source": "wikidata-instruments"
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 500,
+    "maximumAnswers": 20000
+  },
+  {
+    "id": "seas",
+    "name": "Seven seas and then some",
+    "prompt": "Name a sea",
+    "vegetable": "tomato",
+    "hint": "Named seas, including historical seas. Oceans and inland lakes do not count. The Sea suffix is optional.",
+    "select": {
+      "source": "wikidata-seas"
+    },
+    "normalization": {
+      "plurals": false,
+      "suffixes": ["sea"],
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 80,
+    "maximumAnswers": 1000
+  },
+  {
+    "id": "africa",
+    "name": "African adventure",
+    "prompt": "Name a country in Africa",
+    "vegetable": "corn",
+    "hint": "The 54 current UN member countries in Africa. Territories and former countries do not count.",
+    "select": {
+      "source": "wikidata-countries",
+      "where": {
+        "continents": ["Q15"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 54,
+    "maximumAnswers": 54
+  },
+  {
+    "id": "constellations",
+    "name": "Written in the stars",
+    "prompt": "Name a constellation",
+    "vegetable": "beetroot",
+    "hint": "The 88 modern IAU constellations. Latin names and unambiguous English names count; asterisms such as the Big Dipper do not.",
+    "select": {
+      "source": "nasa-constellations"
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all"
+    },
+    "minimumAnswers": 88,
+    "maximumAnswers": 88
+  }
+]

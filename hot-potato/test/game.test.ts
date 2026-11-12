@@ -18,16 +18,19 @@ const setup = (count = 3) => {
   return { store, tokens, room };
 };
 
-test("all category answers and aliases resolve to one canonical answer", () => {
+test("category aliases resolve to their identity or an explicit group of valid identities", () => {
   for (const category of categories) {
     if (category.id === "units") continue;
     const aliases = new Set<string>();
     for (const answer of category.answers) {
       assert.ok(answer.label.length);
       for (const alias of answer.aliases) {
-        assert.equal(aliases.has(alias), false, `${category.id}: duplicate alias ${alias}`);
+        if (category.normalization?.ambiguousNames !== "consume-all")
+          assert.equal(aliases.has(alias), false, `${category.id}: duplicate alias ${alias}`);
         aliases.add(alias);
-        assert.equal(findAnswer(category, alias)?.label, answer.label);
+        const resolved = findAnswer(category, alias);
+        assert.ok(resolved, `${category.id}: ${alias}`);
+        assert.ok(resolved.id === answer.id || resolved.consumes?.includes(answer.id!));
       }
     }
   }
@@ -299,4 +302,29 @@ test("regional plurals cannot be used as separate answers", () => {
   );
   assert.equal(room.used.length, 1);
   assert.equal(room.deadline, deadline - 2000);
+});
+
+test("a shared valid name passes once and consumes every matching identity without revealing candidates", () => {
+  const { room } = setup();
+  room.category = {
+    id: "ambiguous-fixture",
+    name: "Fixture",
+    prompt: "Name a sea",
+    hint: "Fixture",
+    vegetable: "carrot",
+    normalization: { ambiguousNames: "consume-all" },
+    answers: [
+      { id: "one", label: "First sea", aliases: ["shared sea"] },
+      { id: "two", label: "Second sea", aliases: ["shared sea"] },
+    ],
+  };
+  room.categoryGoal = 6;
+  assert.equal(submitAnswer(room, room.activeId!, "shared sea", room.turn, 2500), "shared sea");
+  assert.deepEqual(room.usedIds, ["one", "two"]);
+  assert.deepEqual(publicRoom(room, 2500).used, ["shared sea"]);
+  tickGame(room, room.readyAt);
+  assert.throws(
+    () => submitAnswer(room, room.activeId!, "Second sea", room.turn, room.readyAt + 20),
+    /Already picked/,
+  );
 });

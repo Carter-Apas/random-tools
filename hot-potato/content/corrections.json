@@ -1,0 +1,157 @@
+[
+  {
+    "categoryId": "pasta",
+    "status": "approved",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q5448449",
+      "label": "Filindeu",
+      "aliases": ["Su filindeu"]
+    },
+    "evidence": "https://sardegnaturismo.it/sites/default/files/locandine/autunno_in_barbagia_2023_-_nuoro.pdf",
+    "reason": "The regional tourism programme uses the Sardinian name su filindeu; preserve this alias alongside Filindeu."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q108136656",
+      "label": "Northern Indian Ocean",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q108136656",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q108136663",
+      "label": "Southern Indian Ocean",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q108136663",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q141708429",
+      "label": "Central Arctic Ocean",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q141708429",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q1482804",
+      "label": "South Atlantic Ocean",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q1482804",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q2001466",
+      "label": "Norwegian continental shelf",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q2001466",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q20820157",
+      "label": "high seas",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q20820157",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q34765248",
+      "label": "North West Pacific Ocean - E to S of Palau Islands",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q34765248",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q350134",
+      "label": "North Atlantic Ocean",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q350134",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "seas",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q43182728",
+      "label": "Northeast Atlantic",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q43182728",
+    "reason": "An ocean, ocean subdivision, legal zone or seabed, rather than a named sea under this category boundary."
+  },
+  {
+    "categoryId": "pasta",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q10344103",
+      "label": "Piracicaba pamonha",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q10344103",
+    "reason": "A prepared dish or pudding, rather than a pasta shape or filled pasta variety."
+  },
+  {
+    "categoryId": "pasta",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q104252380",
+      "label": "Huo guo dun fen",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q104252380",
+    "reason": "A prepared dish or pudding, rather than a pasta shape or filled pasta variety."
+  },
+  {
+    "categoryId": "pasta",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q2461918",
+      "label": "Pamonha",
+      "aliases": []
+    },
+    "evidence": "https://www.wikidata.org/entity/Q2461918",
+    "reason": "A prepared dish or pudding, rather than a pasta shape or filled pasta variety."
+  }
+]

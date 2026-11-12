@@ -5,3 +5,5 @@ public/assets
 art
 
 server/answers/data/*.json
+content/sources
+content/review.json

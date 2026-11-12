@@ -12,8 +12,9 @@ For solo play, choose **Practise with bots**, or add practice gardeners to a lob
 Bots are labelled in the garden. Rooms are private by code, with no public listing.
 
 When the vegetable reaches you, type an unused answer to the category prompt and
-press **Pass it!** or Enter. Answers are checked on the server against a curated
-bank; capitalisation, accents, punctuation, and listed regional aliases are accepted.
+press **Pass it!** or Enter. Answers are checked on the server against versioned
+packs and curated banks; capitalisation, accents, punctuation, and regional
+aliases are accepted according to each category's rules.
 Wrong or repeated answers keep the vegetable in your hands while your timer ticks.
 The input refocuses and selects the rejected answer, with a clear error message.
 You may prepare an answer between turns: it stays private until your turn starts.
@@ -39,13 +40,15 @@ and loses one of three hearts. After a two-second recovery they return to normal
 at zero hearts they remain charred on the ground and spectate. The last gardener
 with hearts wins; the host can start a rematch with fresh hearts.
 
-Unit answers use a server-only QUDT data pack plus valid SI prefix combinations,
-including 3,243 canonical entries, plural forms, British/American spellings, and
-case-sensitive scientific symbols. See [the modular answer pipeline](server/answers/README.md)
-for provenance, import steps, current coverage and the proposed verifier for misses.
-Other categories still use their curated banks.
+Ten categories now use an offline pipeline with QUDT, Wikidata and NASA adapters,
+checked snapshots, reviewed corrections and reproducible answer packs. It includes
+all 118 chemical elements and all 88 modern constellations; units retain 3,243
+entries, regional spellings, plurals and case-sensitive symbols. Shared valid
+names consume every matching identity to prevent reuse. See
+[the category pipeline](content/README.md) for commands, membership rules,
+coverage checks and remaining limits. Other categories retain curated banks.
 
-There are 24 rotating categories including moons, rivers, music genres, pasta,
+There are 25 rotating categories including moons, rivers, music genres, pasta,
 cheese, European capitals and mountain ranges. Short calendar and basic list
 categories have been removed. Categories change after six fresh answers, exhaustion
 of a smaller set, or a roast. The vegetable always changes with the category:
@@ -120,7 +123,8 @@ does not participate in Mono's vendored snapshot rollout.
 
 ## Code map
 
-- `server/categories.ts`: curated questions, answers and aliases. Add categories here.
+- `content/`: adapters, category definitions, fixtures, review report and corrections.
+- `server/categories.ts`: combine published packs with remaining curated categories.
 - `server/game.ts`: authoritative game transitions and public snapshots.
 - `server/rooms.ts`: membership, reconnects, host migration, and cleanup.
 - `server/app.ts`: HTTP and Socket.IO transport, validation and rate limiting.

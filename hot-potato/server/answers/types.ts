@@ -4,6 +4,14 @@ export interface Answer {
   aliases: string[];
   symbols?: string[];
   source?: string;
+  evidence?: { sourceId: string; url: string }[];
+  consumes?: string[];
+}
+
+export interface NormalizationRules {
+  plurals?: boolean;
+  suffixes?: string[];
+  ambiguousNames?: "reject" | "consume-all";
 }
 
 export interface AnswerPack {
@@ -18,4 +26,5 @@ export interface AnswerProvider {
   id: string;
   categoryId: string;
   answers: readonly Answer[];
+  normalization?: NormalizationRules;
 }

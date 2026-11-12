@@ -1,0 +1,702 @@
+[
+  {
+    "categoryId": "units",
+    "answer": "quectometres",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.bipm.org/en/measurement-units/si-prefixes"
+  },
+  {
+    "categoryId": "units",
+    "answer": "liters",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://qudt.org/vocab/unit/L"
+  },
+  {
+    "categoryId": "units",
+    "answer": "velocity",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://qudt.org/schema/qudt/QuantityKind"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Oganesson",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Aluminum",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Ununennium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Herse",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://planetarynames.wr.usgs.gov/Page/Planets"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Titan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://science.nasa.gov/saturn/moons/titan/"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Titanic",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://planetarynames.wr.usgs.gov/Page/Planets"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Su filindeu",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://sardegnaturismo.it/sites/default/files/locandine/autunno_in_barbagia_2023_-_nuoro.pdf"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Spaghetti",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q20020"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Carbonara",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Q876624"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Pule",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.serbia.travel/en/stories-items/delicacy-per-gram/"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Cheddar",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q217525"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Cheesecake",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Q215348"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Zeuhl",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Q196999"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Hip hop",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q11401"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Metallica",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Q15920"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Nyckelharpa",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Q182718"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Violin",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q8355"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Yamaha Corporation",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.yamaha.com/en/about/profile/"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Lazarev Sea",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Q1576063"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Tasman Sea",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q132452"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Caspian Sea",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Q5484"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.un.org/en/about-us/member-states"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Eswatini",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.un.org/en/about-us/member-states"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "R\u00e9union",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.un.org/en/about-us/member-states"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Camelopardalis",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Orion",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Big Dipper",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx"
+  },
+  {
+    "categoryId": "units",
+    "answer": "meters",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "http://qudt.org/vocab/unit/M"
+  },
+  {
+    "categoryId": "units",
+    "answer": "litres",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "http://qudt.org/vocab/unit/L"
+  },
+  {
+    "categoryId": "units",
+    "answer": "fathoms",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "http://qudt.org/vocab/unit/FATH"
+  },
+  {
+    "categoryId": "units",
+    "answer": "curies",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "http://qudt.org/vocab/unit/CI"
+  },
+  {
+    "categoryId": "units",
+    "answer": "length",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#units"
+  },
+  {
+    "categoryId": "units",
+    "answer": "speed",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#units"
+  },
+  {
+    "categoryId": "units",
+    "answer": "hot potato",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#units"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Gold",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q897"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Oxygen",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q629"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Livermorium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q1304"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Tennessine",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q1306"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Water",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#elements"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Iron-56",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#elements"
+  },
+  {
+    "categoryId": "elements",
+    "answer": "Unbinilium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#elements"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Europa",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q3143"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Phobos",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q7547"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Psamathe",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q19535"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Siarnaq",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q18024"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Mars",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#moons"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "S/2003 J 17",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#moons"
+  },
+  {
+    "categoryId": "moons",
+    "answer": "Death Star",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#moons"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Penne",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q1063736"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Ravioli",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q20053"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Lorighittas",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q3837149"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Malloreddus",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q3282218"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Alfredo sauce",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#pasta"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Bolognese",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#pasta"
+  },
+  {
+    "categoryId": "pasta",
+    "answer": "Risotto",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#pasta"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Mozzarella",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q14088"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Feta",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q182760"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Milbenk\u00e4se",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q567516"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Casu marzu",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q140655193"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Milk",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#cheeses"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Yogurt",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#cheeses"
+  },
+  {
+    "categoryId": "cheeses",
+    "answer": "Cheeseburger",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#cheeses"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Jazz",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q8341"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Drum and bass",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q188994"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Skweee",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q888137"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Djent",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q2532560"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Spotify",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#genres"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Abbey Road",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#genres"
+  },
+  {
+    "categoryId": "genres",
+    "answer": "Beethoven",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#genres"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Guitar",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q6607"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Piano",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q5994"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Ondes Martenot",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q862501"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Hydraulophone",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q3143699"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Beethoven",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#instruments"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Sheet music",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#instruments"
+  },
+  {
+    "categoryId": "instruments",
+    "answer": "Music stand",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#instruments"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Baltic Sea",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q545"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Caribbean",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q1247"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Riiser-Larsen Sea",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q1576011"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Cosmonauts Sea",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q1509546"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Pacific Ocean",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#seas"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "Norwegian continental shelf",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#seas"
+  },
+  {
+    "categoryId": "seas",
+    "answer": "high seas",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#seas"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Kenya",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q114"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Egypt",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q79"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Djibouti",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q977"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Comoros",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q970"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Greenland",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#africa"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Western Sahara",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#africa"
+  },
+  {
+    "categoryId": "africa",
+    "answer": "Zanzibar",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#africa"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Ursa Major",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://starchild.gsfc.nasa.gov/docs/StarChild/questions/88constellations.html"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Cassiopeia",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://starchild.gsfc.nasa.gov/docs/StarChild/questions/88constellations.html"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Reticulum",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://starchild.gsfc.nasa.gov/docs/StarChild/questions/88constellations.html"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Telescopium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://starchild.gsfc.nasa.gov/docs/StarChild/questions/88constellations.html"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Polaris",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#constellations"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Orion's Belt",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#constellations"
+  },
+  {
+    "categoryId": "constellations",
+    "answer": "Argo Navis",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#constellations"
+  }
+]

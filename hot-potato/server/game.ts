@@ -233,10 +233,11 @@ export const submitAnswer = (
   room.draft = raw.slice(0, 100);
   const answer = findAnswer(category, raw);
   if (!answer) rejectAnswer(room, now, "Wrong answer. 2 seconds lost — try again!");
-  if (room.usedIds.includes(answer.id ?? answer.label))
+  const consumed = answer.consumes ?? [answer.id ?? answer.label];
+  if (consumed.some((id) => room.usedIds.includes(id)))
     rejectAnswer(room, now, "Already picked! 2 seconds lost — try another.");
   room.used.push(answer.label);
-  room.usedIds.push(answer.id ?? answer.label);
+  room.usedIds.push(...consumed);
   addEvent(
     room,
     "answer",
@@ -263,7 +264,15 @@ const playBot = (room: Room, now: number): boolean => {
   if (!player?.bot || !room.category || now < room.botAt) return false;
   room.botAt = Number.POSITIVE_INFINITY;
   if (Math.random() < 0.3) return false;
-  const answers = room.category.answers.filter((answer) => !room.used.includes(answer.label));
+  const category = room.category;
+  const answers = category.answers.filter((candidate) => {
+    const answer = findAnswer(category, candidate.label);
+    if (!answer) return false;
+    return !(answer.consumes ?? [answer.id ?? answer.label]).some((id) =>
+      room.usedIds.includes(id),
+    );
+  });
+  if (!answers.length) return false;
   const answer = answers[randomInt(answers.length)];
   submitAnswer(room, player.id, answer.label, room.turn, now);
   return true;

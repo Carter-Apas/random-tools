@@ -1,5 +1,7 @@
 import pluralize from "pluralize";
 
+import type { NormalizationRules } from "./types.js";
+
 export const normalize = (value: string): string =>
   value
     .normalize("NFKD")
@@ -27,9 +29,13 @@ const pluralCategories = new Set([
   "pulses",
 ]);
 
-export const nameForms = (categoryId: string, value: string): string[] => {
+export const nameForms = (
+  categoryId: string,
+  value: string,
+  rules?: NormalizationRules,
+): string[] => {
   const forms = [value];
-  if (!pluralCategories.has(categoryId) || value.length < 3) return forms;
+  if (!(rules?.plurals ?? pluralCategories.has(categoryId)) || value.length < 3) return forms;
   forms.push(pluralize.plural(value));
   if (categoryId === "units") {
     const words = value.split(" ");
@@ -39,8 +45,21 @@ export const nameForms = (categoryId: string, value: string): string[] => {
   return forms;
 };
 
-export const answerKeys = (categoryId: string, value: string): string[] => {
+export const answerKeys = (
+  categoryId: string,
+  value: string,
+  rules?: NormalizationRules,
+): string[] => {
   const key = normalize(value);
+  if (rules?.suffixes) {
+    return [
+      key,
+      ...rules.suffixes
+        .map(normalize)
+        .filter(Boolean)
+        .map((suffix) => (key.endsWith(suffix) ? key.slice(0, -suffix.length) : key)),
+    ];
+  }
   if (categoryId === "rivers") return [key, key.replace(/river$/, "")];
   if (categoryId === "seas") return [key, key.replace(/sea$/, "")];
   if (categoryId === "ranges") return [key, key.replace(/(mountains|range)$/, "")];

@@ -1,0 +1,16 @@
+Hot Potato answer catalogue sources
+
+Wikidata: typed entities, English and language-neutral labels/aliases.
+Data license: CC0 1.0 Universal.
+https://www.wikidata.org/wiki/Wikidata:Data_access
+https://creativecommons.org/publicdomain/zero/1.0/
+
+NASA Goddard Space Flight Center, StarChild: 88 Officially Recognized Constellations.
+US government factual data; names and descriptions only. No images or logos used.
+https://starchild.gsfc.nasa.gov/docs/StarChild/questions/88constellations.html
+
+QUDT units: CC BY 4.0. Full attribution and license are in qudt.txt beside this file.
+https://github.com/qudt/qudt-public-repo
+
+Query URLs, captured revisions and SHA-256 checksums are recorded in the server
+catalogue. Inclusion does not imply endorsement by any source organisation.

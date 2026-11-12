@@ -13,7 +13,11 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test:browser": "npm run build && node test/browser.mjs",
-    "answers:build": "node scripts/build-unit-pack.mjs"
+    "answers:build": "tsx scripts/build-category-packs.ts",
+    "answers:check": "tsx scripts/build-category-packs.ts --check",
+    "answers:fetch": "tsx scripts/fetch-category-sources.ts",
+    "answers:fetch:units": "node scripts/build-unit-pack.mjs",
+    "answers:propose": "tsx scripts/propose-answer.ts"
   },
   "engines": {
     "node": "^22.13.0 || >=24.0.0"
@@ -38,6 +42,7 @@
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react": "^5.0.0",
+    "cheerio": "^1.2.0",
     "concurrently": "^9.2.1",
     "eslint": "^10.14.0",
     "n3": "^2.13.12",
