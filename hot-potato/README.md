@@ -28,6 +28,11 @@ hints and picked answers stay available through the info button. The editable in
 stays focused after submission and permits private preparation during a delayed reply.
 Mobile browsers may require an initial tap to open the software keyboard.
 
+Phone-width boards (up to 600px) and compact rows use direct vegetable hand-offs,
+with no campfire. The flying vegetable scales to the available board height,
+including when a keyboard opens. Larger boards keep the campfire route. Both
+animations share the same server-controlled travel duration and turn timing.
+
 There is no rarity system, external AI service, account, or paid dependency.
 
 Every recipient gets a fresh, independently randomised timer. It starts only when

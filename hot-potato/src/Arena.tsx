@@ -72,12 +72,14 @@ export const Arena = ({
   now,
   preview = false,
   compact = false,
+  directPass,
 }: {
   room: RoomView;
   you: string;
   now: number;
   preview?: boolean;
   compact?: boolean;
+  directPass?: boolean;
 }) => {
   const visible = room.status === "playing";
   return (
@@ -90,9 +92,7 @@ export const Arena = ({
       <div className="garden-sign">
         {preview ? "A little garden. A lot of chaos." : `Round ${room.round || 1} · clockwise ↻`}
       </div>
-      <div className="firepit">
-        <span className="fire-sprite" role="img" aria-label="Campfire" />
-      </div>
+      <Campfire show={!directPass} />
       {room.players.map((player, index) => (
         <Gardener
           room={room}
@@ -107,7 +107,9 @@ export const Arena = ({
           winner={room.winnerId === player.id}
         />
       ))}
-      {visible && room.phase === "passing" && <Vegetable room={room} now={now} compact={compact} />}
+      {visible && room.phase === "passing" && (
+        <Vegetable room={room} now={now} compact={compact} directPass={Boolean(directPass)} />
+      )}
       {preview && (
         <div className="preview-potato">
           <img src="/assets/potato.png" alt="" />
@@ -121,12 +123,29 @@ export const Arena = ({
   );
 };
 
-const Vegetable = ({ room, now, compact }: { room: RoomView; now: number; compact: boolean }) => {
-  const point = vegetablePoint(room, now, compact);
+const Campfire = ({ show }: { show: boolean }) =>
+  show ? (
+    <div className="firepit">
+      <span className="fire-sprite" role="img" aria-label="Campfire" />
+    </div>
+  ) : null;
+
+const Vegetable = ({
+  room,
+  now,
+  compact,
+  directPass,
+}: {
+  room: RoomView;
+  now: number;
+  compact: boolean;
+  directPass: boolean;
+}) => {
+  const point = vegetablePoint(room, now, compact, directPass);
   const vegetable = room.category?.vegetable ?? "potato";
   return (
     <img
-      className="hot-vegetable"
+      className={`hot-vegetable ${directPass ? "direct-pass" : ""}`}
       src={`/assets/${vegetable}.png`}
       alt={`Hot ${vegetable}`}
       style={

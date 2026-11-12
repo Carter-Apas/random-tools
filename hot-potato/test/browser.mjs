@@ -280,6 +280,9 @@ try {
     );
   }
   await screenshot(practice, "mobile-speech-bubble");
+  assert.equal(await practice.locator(".firepit").count(), 0);
+  await practice.setViewportSize({ width: 1440, height: 1000 });
+  await practice.locator(".fire-sprite").waitFor();
   await practice.emulateMedia({ reducedMotion: "reduce" });
   assert.equal(
     await practice

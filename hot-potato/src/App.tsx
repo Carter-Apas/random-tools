@@ -38,7 +38,7 @@ const Rules = ({ close }: { close: () => void }) => {
           trying before your turn timer runs out.
         </li>
         <li>
-          <strong>Pass it clockwise.</strong> Correct answers fly through the campfire to the next
+          <strong>Pass it clockwise.</strong> Correct answers send the vegetable to the next
           gardener. Their own random turn timer starts when they receive it.
         </li>
         <li>

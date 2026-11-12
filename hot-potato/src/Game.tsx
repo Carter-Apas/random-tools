@@ -136,12 +136,20 @@ const Play = ({
   connected: boolean;
 }) => {
   const field = useRef<HTMLDivElement>(null);
-  const [compact, setCompact] = useState(false);
+  const [layout, setLayout] = useState({ compact: false, directPass: false });
   useLayoutEffect(() => {
     const element = field.current;
     if (!element) return;
 
-    const update = () => setCompact(element.clientHeight < 240);
+    const update = () => {
+      const compact = element.clientHeight < 240;
+      const directPass = compact || element.clientWidth <= 600;
+      setLayout((current) =>
+        current.compact === compact && current.directPass === directPass
+          ? current
+          : { compact, directPass },
+      );
+    };
 
     const observer = new ResizeObserver(update);
     observer.observe(element);
@@ -162,7 +170,13 @@ const Play = ({
         <TurnTimer room={room} now={now} />
       </section>
       <div className="play-field" ref={field}>
-        <Arena room={room} you={you} now={now} compact={compact} />
+        <Arena
+          room={room}
+          you={you}
+          now={now}
+          compact={layout.compact}
+          directPass={layout.directPass}
+        />
       </div>
       <section className="play-picks" aria-label="Already picked">
         <div className="picked-heading">

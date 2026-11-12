@@ -205,6 +205,10 @@
   width: clamp(20px, 7cqh, 42px);
   height: auto;
 }
+.play-field .direct-pass {
+  width: min(28px, 40cqh);
+  z-index: 9;
+}
 .play-picks {
   grid-area: picks;
   overflow: auto;
@@ -290,10 +294,6 @@
 .play-field .arena-compact .hearts {
   height: 9px;
   margin-top: 2px;
-}
-.play-field .arena-compact .firepit {
-  top: 82%;
-  --fire-size: 28px;
 }
 .play-field .arena-compact .speech-bubble {
   top: -26px;
@@ -536,11 +536,6 @@
   .play-layout .answer-feedback {
     font-size: 10px;
     min-height: 16px;
-  }
-}
-@container playfield (max-height: 160px) {
-  .arena-compact .firepit {
-    display: none;
   }
 }
 @container playfield (max-height: 120px) {
