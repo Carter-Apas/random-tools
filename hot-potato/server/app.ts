@@ -113,7 +113,7 @@ export const createApp = (staticDirectory = resolve("dist/client")) => {
       const data = record(raw);
       if (!member || typeof data.draft !== "string") return;
       if (updateDraft(member.room, member.player.id, data.draft, Number(data.turn), now)) {
-        socket.to(member.room.code).emit("typing", {
+        io.to(member.room.code).emit("typing", {
           playerId: member.player.id,
           turn: member.room.turn,
           draft: member.room.draft,

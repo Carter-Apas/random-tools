@@ -1,0 +1,22 @@
+{
+  "backgroundReference": [190, 193, 146],
+  "commonScale": "Each canvas uses min(canvas width / largest padded source width, canvas height / 455). Both figures retain the shared source y=140 origin and source baseline. No independent height normalization.",
+  "figures": [
+    {
+      "cropBounds": { "height": 455, "width": 282, "x": 30, "y": 140 },
+      "name": "male",
+      "pixels": 74953,
+      "sourceBounds": { "height": 423, "width": 274, "x": 34, "y": 162 }
+    },
+    {
+      "cropBounds": { "height": 455, "width": 291, "x": 303, "y": 140 },
+      "name": "female",
+      "pixels": 78186,
+      "sourceBounds": { "height": 433, "width": 283, "x": 307, "y": 154 }
+    }
+  ],
+  "method": "Boundary-seeded four-connected olive background flood mask followed by two largest four-connected foreground components; all retained source RGBA values copied exactly.",
+  "otherComponentsDiscarded": 1,
+  "source": "art/concepts/character-options.png",
+  "sourceArea": { "height": 455, "width": 580, "x": 20, "y": 140 }
+}

@@ -120,8 +120,24 @@ local function heatBody(frame)
  rect(im,7+sway,sparkY,1,2,"orange");px(im,25-sway,sparkY+4,"gold")
  return im
 end
+local function heatAtApprovedResolution(original)
+ local result=image(64,96)
+ local function sourceX(x)
+  if x<22 then return x*10/22 end
+  if x<32 then return 10+(x-22)*6/10 end
+  if x<42 then return 16+(x-32)*6/10 end
+  return 22+(x-42)*10/22
+ end
+ for y=0,95 do
+  local sourceY=y<62 and y*25/62 or 25+(y-62)*15/34
+  for x=0,63 do
+   result:drawPixel(x,y,original:getPixel(math.floor(sourceX(x)),math.floor(sourceY)))
+  end
+ end
+ return result
+end
 for _,effect in ipairs({{"heat-warm",heatWarm},{"heat-hands",heatHands},{"heat-body",heatBody}}) do
- local frames={};for i=0,3 do frames[i+1]=effect[2](i) end;saveAnimation(effect[1],frames,100)
+ local frames={};for i=0,3 do frames[i+1]=heatAtApprovedResolution(effect[2](i)) end;saveAnimation(effect[1],frames,100)
 end
 for _,empty in ipairs({false,true}) do local im=image(12,12);poly(im,{{0,3},{1,1},{4,1},{6,3},{8,1},{11,1},{12,3},{12,6},{6,12},{0,6}},"ink");poly(im,{{1,3},{2,2},{4,2},{6,4},{8,2},{10,2},{11,3},{11,6},{6,10},{1,6}},empty and "b99a6a" or "red");if not empty then poly(im,{{1,3},{2,2},{4,2},{6,4},{8,2},{10,2},{10,5},{5,9},{1,5}},"coral");rect(im,2,3,2,1,"cream") end;save(im,empty and "heart-empty" or "heart") end
 local crown=image(24,24)

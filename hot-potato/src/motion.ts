@@ -4,7 +4,8 @@ import type { RoomView } from "../shared/types";
 
 export const position = (index: number, total: number) => {
   const angle = ((-90 + (360 * index) / total) * Math.PI) / 180;
-  return { x: 50 + Math.cos(angle) * 33, y: 51 + Math.sin(angle) * 26 };
+  const radius = total >= 7 ? 28 : 26;
+  return { x: 50 + Math.cos(angle) * 33, y: 51 + Math.sin(angle) * radius };
 };
 
 export const vegetablePoint = (room: RoomView, now: number) => {

@@ -1,40 +1,69 @@
-{ "frames": {
-   "characters-male #Idle 0.aseprite": {
-    "frame": { "x": 0, "y": 0, "w": 32, "h": 40 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 40 },
-    "sourceSize": { "w": 32, "h": 40 },
-    "duration": 450
-   },
-   "characters-male #Idle 1.aseprite": {
-    "frame": { "x": 32, "y": 0, "w": 32, "h": 40 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 40 },
-    "sourceSize": { "w": 32, "h": 40 },
-    "duration": 450
-   }
- },
- "meta": {
-  "app": "http://www.aseprite.org/",
-  "version": "1.3.18.1-dev",
-  "image": "male-idle.png",
-  "format": "RGBA8888",
-  "size": { "w": 64, "h": 40 },
-  "scale": "1",
-  "frameTags": [
-   { "name": "Idle", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
-   { "name": "Hold", "from": 2, "to": 3, "direction": "forward", "color": "#000000ff" },
-   { "name": "Charred", "from": 4, "to": 4, "direction": "forward", "color": "#000000ff" },
-   { "name": "Down", "from": 5, "to": 5, "direction": "forward", "color": "#000000ff" }
-  ],
-  "layers": [
-   { "name": "Ground shadow", "opacity": 255, "blendMode": "normal" },
-   { "name": "Backpack and rear hair", "opacity": 255, "blendMode": "normal" },
-   { "name": "Shorts legs and boots", "opacity": 255, "blendMode": "normal" },
-   { "name": "Jacket top and hands", "opacity": 255, "blendMode": "normal" },
-   { "name": "Face hair and headwear", "opacity": 255, "blendMode": "normal" }
-  ]
- }
+{
+  "frames": {
+    "characters-male #Idle 0.aseprite": {
+      "duration": 450,
+      "frame": { "h": 96, "w": 64, "x": 0, "y": 0 },
+      "rotated": false,
+      "sourceSize": { "h": 96, "w": 64 },
+      "spriteSourceSize": { "h": 96, "w": 64, "x": 0, "y": 0 },
+      "trimmed": false
+    },
+    "characters-male #Idle 1.aseprite": {
+      "duration": 450,
+      "frame": { "h": 96, "w": 64, "x": 64, "y": 0 },
+      "rotated": false,
+      "sourceSize": { "h": 96, "w": 64 },
+      "spriteSourceSize": { "h": 96, "w": 64, "x": 0, "y": 0 },
+      "trimmed": false
+    }
+  },
+  "meta": {
+    "anchors": {
+      "baseline": 94,
+      "leftHand": { "x": 22, "y": 62 },
+      "rightHand": { "x": 42, "y": 62 },
+      "vegetable": { "x": 32, "y": 62 }
+    },
+    "app": "http://www.aseprite.org/",
+    "approvedSource": "art/concepts/fidelity-study/male-64x96.png",
+    "format": "RGBA8888",
+    "frameSize": { "height": 96, "width": 64 },
+    "frameTags": [
+      { "color": "#000000ff", "direction": "forward", "from": 0, "name": "Idle", "to": 1 },
+      { "color": "#000000ff", "direction": "forward", "from": 2, "name": "Hold", "to": 3 },
+      { "color": "#000000ff", "direction": "forward", "from": 4, "name": "Charred", "to": 4 },
+      { "color": "#000000ff", "direction": "forward", "from": 5, "name": "Down", "to": 5 }
+    ],
+    "image": "male-idle.png",
+    "layers": [
+      { "blendMode": "normal", "name": "Approved exact artwork and derived body", "opacity": 255 },
+      {
+        "blendMode": "normal",
+        "name": "Local rearranged source cuffs and cupped hands",
+        "opacity": 255
+      },
+      { "blendMode": "normal", "name": "Soot eyes and ash accents", "opacity": 255 }
+    ],
+    "scale": "1",
+    "sheets": {
+      "Charred": { "frames": 1, "height": 96, "image": "male-charred.png", "width": 64 },
+      "Down": { "frames": 1, "height": 96, "image": "male-down.png", "width": 64 },
+      "Hold": {
+        "durationMs": 450,
+        "frames": 2,
+        "height": 96,
+        "image": "male-hold.png",
+        "width": 128
+      },
+      "Idle": {
+        "durationMs": 450,
+        "frames": 2,
+        "height": 96,
+        "image": "male-idle.png",
+        "width": 128
+      }
+    },
+    "size": { "h": 96, "w": 128 },
+    "version": "1.3.18.1-dev"
+  }
 }

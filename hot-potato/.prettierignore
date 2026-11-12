@@ -3,3 +3,5 @@ dist
 package-lock.json
 public/assets
 art
+
+server/answers/data/*.json

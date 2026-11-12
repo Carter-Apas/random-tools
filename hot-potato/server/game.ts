@@ -3,7 +3,7 @@ import { randomInt, randomUUID } from "node:crypto";
 import { categories, findAnswer } from "./categories.js";
 import type { Category } from "./categories.js";
 
-import { paces } from "../shared/types.js";
+import { paces, wrongAnswerPenaltyMs } from "../shared/types.js";
 import type { Pace, Player, Profile, RoomView } from "../shared/types.js";
 export const travelMs = 1200;
 export const recoveryMs = 2000;
@@ -15,6 +15,7 @@ export interface Member extends Player {
 
 export interface Room extends Omit<RoomView, "players" | "serverTime" | "category"> {
   players: Member[];
+  usedIds: string[];
   category: Category | null;
   deck: Category[];
   readyAt: number;
@@ -60,11 +61,13 @@ export const makeRoom = (code: string, host: Member, pace: Pace, now: number): R
   category: null,
   deck: [],
   used: [],
+  usedIds: [],
   categoryGoal: 0,
   deadline: 0,
   turnDurationMs: 0,
   turnStartedAt: 0,
   draft: "",
+  penaltyMs: 0,
   move: null,
   events: [],
   readyAt: 0,
@@ -87,6 +90,7 @@ export const publicRoom = (room: Room, now: number): RoomView => ({
   deadline: room.deadline,
   turnDurationMs: room.turnDurationMs,
   turnStartedAt: room.turnStartedAt,
+  penaltyMs: room.penaltyMs,
   draft: room.status === "playing" && room.phase === "answering" ? room.draft : "",
   move: room.move,
   events: [...room.events],
@@ -122,6 +126,7 @@ export const changeCategory = (room: Room): void => {
   }
   room.category = room.deck.splice(index, 1)[0];
   room.used = [];
+  room.usedIds = [];
   room.categoryGoal = Math.min(6, room.category.answers.length);
 };
 
@@ -136,6 +141,7 @@ export const passTo = (room: Room, player: Member, now: number, from: string | n
   room.turnStartedAt = room.readyAt;
   room.deadline = room.turnStartedAt + room.turnDurationMs;
   room.draft = "";
+  room.penaltyMs = 0;
   room.botAt = room.readyAt + 2200 + randomInt(1800);
   room.updatedAt = now;
 };
@@ -198,6 +204,13 @@ const charPlayer = (room: Room, now: number): void => {
   );
 };
 
+const rejectAnswer: (room: Room, now: number, message: string) => never = (room, now, message) => {
+  room.penaltyMs += wrongAnswerPenaltyMs;
+  room.deadline -= wrongAnswerPenaltyMs;
+  if (room.deadline <= now) charPlayer(room, now);
+  return gameError(message);
+};
+
 const validateTurn = (room: Room, id: string, turn: number, now: number): Category => {
   if (room.status !== "playing" || room.phase !== "answering")
     gameError("Wait for the vegetable to reach you.");
@@ -219,9 +232,11 @@ export const submitAnswer = (
   const category = validateTurn(room, id, turn, now);
   room.draft = raw.slice(0, 100);
   const answer = findAnswer(category, raw);
-  if (!answer) gameError("Wrong answer. That isn't in this category — try again!");
-  if (room.used.includes(answer.label)) gameError("Already picked! Try a different answer.");
+  if (!answer) rejectAnswer(room, now, "Wrong answer. 2 seconds lost — try again!");
+  if (room.usedIds.includes(answer.id ?? answer.label))
+    rejectAnswer(room, now, "Already picked! 2 seconds lost — try another.");
   room.used.push(answer.label);
+  room.usedIds.push(answer.id ?? answer.label);
   addEvent(
     room,
     "answer",

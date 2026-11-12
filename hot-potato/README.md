@@ -17,25 +17,33 @@ bank; capitalisation, accents, punctuation, and listed regional aliases are acce
 Wrong or repeated answers keep the vegetable in your hands while your timer ticks.
 The input refocuses and selects the rejected answer, with a clear error message.
 You may prepare an answer between turns: it stays private until your turn starts.
-Other players can see your live answer while you hold the vegetable.
+A speech bubble beside the active character shows their live typing. The answer
+bar stays clear for private preparation.
 Answer banks are intentionally finite; the hint explains boundaries where needed.
 There is no rarity system, external AI service, account, or paid dependency.
 
 Every recipient gets a fresh, independently randomised timer. It starts only when
 that player receives the vegetable, after the travel animation. Waiting until the
-last moment cannot reduce the next player's time. Invalid answers do not reset it.
+last moment cannot reduce the next player's time. Wrong and repeated answers remove two seconds and advance the heat stages;
+a penalty can immediately cost a heart if less than two seconds remain.
 
 | Pace    | Random duration per turn |
 | ------- | ------------------------ |
-| Gentle  | 20–30 seconds            |
-| Classic | 12–20 seconds            |
-| Spicy   | 8–14 seconds             |
+| Gentle  | 8–12 seconds             |
+| Classic | 5–8 seconds              |
+| Spicy   | 3–5 seconds              |
 
 Heat progresses relative to the current turn duration: warm red hands at 30%,
 burning hands at 60%, and full-body flames at 82%. At zero, the player is charred
 and loses one of three hearts. After a two-second recovery they return to normal;
 at zero hearts they remain charred on the ground and spectate. The last gardener
 with hearts wins; the host can start a rematch with fresh hearts.
+
+Unit answers use a server-only QUDT data pack plus valid SI prefix combinations,
+including 3,243 canonical entries, plural forms, British/American spellings, and
+case-sensitive scientific symbols. See [the modular answer pipeline](server/answers/README.md)
+for provenance, import steps, current coverage and the proposed verifier for misses.
+Other categories still use their curated banks.
 
 There are 24 rotating categories including moons, rivers, music genres, pasta,
 cheese, European capitals and mountain ranges. Short calendar and basic list
@@ -128,3 +136,10 @@ Native tests exercise validation, category rotation/exhaustion, independent turn
 timers, late passing, percentage heat stages, charring/recovery, elimination,
 winners, rematches, live typing visibility, reconnection, host migration, room
 bounds, cleanup, and private snapshot contents.
+
+Character redesign concepts are in `art/concepts/character-options.png`, generated
+with the built-in image-generation tool using the supplied style reference. The
+exact prompt is saved alongside it. The approved A characters are extracted directly into 64×96 native sprites.
+Production idle frame one preserves the exact approved pixels; receiving poses
+use local arm edits, followed by upright charred and prone eliminated states.
+Editable animation sources and reproduction notes are in `art/characters.md`.

@@ -1,20 +1,15 @@
-import type { CategoryView, Vegetable } from "../shared/types.js";
+import { AnswerRegistry } from "./answers/index.js";
+import { normalize } from "./answers/normalize.js";
+import { withUnitPack } from "./answers/units.js";
+import type { Answer } from "./answers/types.js";
 
-export interface Answer {
-  label: string;
-  aliases: string[];
-}
+import type { CategoryView, Vegetable } from "../shared/types.js";
 
 export interface Category extends Omit<CategoryView, "total"> {
   answers: Answer[];
 }
 
-export const normalize = (value: string): string =>
-  value
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]/g, "");
+export { normalize } from "./answers/normalize.js";
 
 const category = (
   id: string,
@@ -31,7 +26,7 @@ const category = (
   vegetable,
   answers: words.split(";").map((word) => {
     const [label, ...aliases] = word.split("|");
-    return { label, aliases: [...new Set([label, ...aliases].map(normalize))] };
+    return { id: `${id}:${normalize(label)}`, label, aliases: [...new Set([label, ...aliases])] };
   }),
 });
 
@@ -226,16 +221,21 @@ export const categories: Category[] = [
   ),
 ];
 
+const units = categories.find((item) => item.id === "units");
+if (units) {
+  units.answers = withUnitPack(units.answers);
+  units.hint =
+    "Metric, imperial, historical and specialist units. Singulars, plurals and regional spellings accepted.";
+}
+
+const indexes = new WeakMap<Category, AnswerRegistry>();
+
 export const findAnswer = (category: Category, raw: string): Answer | undefined => {
-  const value = normalize(raw);
-  const withoutSuffix = value.replace(/(river|sea|mountains|range)$/, "");
-  return category.answers.find(
-    (answer) =>
-      answer.aliases.includes(value) ||
-      (category.id === "rivers" && answer.aliases.includes(withoutSuffix)) ||
-      (category.id === "seas" &&
-        answer.aliases.some((alias) => alias.replace(/sea$/, "") === withoutSuffix)) ||
-      (category.id === "ranges" &&
-        answer.aliases.some((alias) => alias.replace(/(mountains|range)$/, "") === withoutSuffix)),
-  );
+  let registry = indexes.get(category);
+  if (!registry) {
+    registry = new AnswerRegistry();
+    registry.register({ id: category.id, categoryId: category.id, answers: category.answers });
+    indexes.set(category, registry);
+  }
+  return registry.find(category.id, raw);
 };

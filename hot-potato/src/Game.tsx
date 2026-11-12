@@ -112,24 +112,12 @@ const AnswerBox = ({
       <p id="answer-feedback" className="answer-feedback" role="status">
         {error || answerHint(ready)}
       </p>
-      {!active && <LiveAnswer room={room} />}
     </div>
   );
 };
 
 const hasHearts = (room: RoomView, you: string) =>
   (room.players.find((player) => player.id === you)?.hearts ?? 0) > 0;
-
-const LiveAnswer = ({ room }: { room: RoomView }) => {
-  if (room.phase !== "answering") return null;
-  const name = room.players.find((player) => player.id === room.activeId)?.name ?? "The gardener";
-  return (
-    <div className="live-answer">
-      <span>{name}'s live answer</span>
-      <output aria-label={`${name}'s live answer`}>{room.draft || "Thinking…"}</output>
-    </div>
-  );
-};
 
 const Lobby = ({
   room,
@@ -278,7 +266,7 @@ const canAnswer = (room: RoomView, you: string, connected: boolean) =>
 
 const answerHint = (ready: boolean) =>
   ready
-    ? "Enter to pass. A repeat or wrong answer keeps the heat on you."
+    ? "Enter to pass. Wrong or repeated answers cost 2 seconds."
     : "Your prepared answer stays private until your turn starts.";
 
 const turnMessage = (room: RoomView, alive: boolean, active: boolean) => {

@@ -54,6 +54,7 @@ export interface RoomView {
   turnDurationMs: number;
   turnStartedAt: number;
   draft: string;
+  penaltyMs: number;
   move: Move | null;
   events: GameEvent[];
   serverTime: number;
@@ -72,9 +73,9 @@ export interface Reply {
 }
 
 export const paces: Record<Pace, { label: string; min: number; max: number }> = {
-  gentle: { label: "Gentle", min: 20000, max: 30000 },
-  classic: { label: "Classic", min: 12000, max: 20000 },
-  spicy: { label: "Spicy", min: 8000, max: 14000 },
+  gentle: { label: "Gentle", min: 8000, max: 12000 },
+  classic: { label: "Classic", min: 5000, max: 8000 },
+  spicy: { label: "Spicy", min: 3000, max: 5000 },
 };
 
 export interface TypingUpdate {
@@ -88,9 +89,11 @@ export type HeatStage = "cool" | "warm" | "hands" | "body" | "charred";
 export const heatStage = (room: RoomView, now: number): HeatStage => {
   if (room.phase === "charred") return "charred";
   if (room.status !== "playing" || room.phase !== "answering") return "cool";
-  const elapsed = (now - room.turnStartedAt) / room.turnDurationMs;
+  const elapsed = (now - room.turnStartedAt + room.penaltyMs) / room.turnDurationMs;
   if (elapsed >= 0.82) return "body";
   if (elapsed >= 0.6) return "hands";
   if (elapsed >= 0.3) return "warm";
   return "cool";
 };
+
+export const wrongAnswerPenaltyMs = 2000;

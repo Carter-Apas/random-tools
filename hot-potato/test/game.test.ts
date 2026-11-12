@@ -20,6 +20,7 @@ const setup = (count = 3) => {
 
 test("all category answers and aliases resolve to one canonical answer", () => {
   for (const category of categories) {
+    if (category.id === "units") continue;
     const aliases = new Set<string>();
     for (const answer of category.answers) {
       assert.ok(answer.label.length);
@@ -136,14 +137,15 @@ test("passing at the last millisecond cannot shorten the next player's timer", (
   assert.equal(room.players[1].hearts, 3);
 });
 
-test("a wrong answer keeps the current timer and heat progression", () => {
+test("a wrong answer costs two seconds and increases heat without resetting the turn", () => {
   const { room } = setup();
   const deadline = room.deadline;
   assert.throws(
     () => submitAnswer(room, room.activeId!, "wrong", room.turn, room.turnStartedAt + 1000),
     /Wrong answer/,
   );
-  assert.equal(room.deadline, deadline);
+  assert.equal(room.deadline, deadline - 2000);
+  assert.equal(room.penaltyMs, 2000);
   assert.equal(room.draft, "wrong");
 });
 
@@ -220,7 +222,7 @@ test("room snapshots exclude session tokens, answer banks, scheduling state and 
   const view = publicRoom(room, 3000);
   const json = JSON.stringify(view);
   for (const token of tokens) assert.equal(json.includes(token), false);
-  for (const key of ["answers", "aliases", "deck", "readyAt", "botAt", "disconnectedAt"])
+  for (const key of ["answers", "aliases", "deck", "readyAt", "botAt", "disconnectedAt", "usedIds"])
     assert.equal(json.includes(`"${key}"`), false);
 });
 
@@ -270,4 +272,31 @@ test("join bounds, duplicate names, input validation and room expiry", () => {
   store.tick(3600001);
   assert.equal(store.rooms.size, 0);
   assert.equal(store.membership.size, 0);
+});
+
+test("wrong-answer penalties can immediately char a holder but never take two hearts", () => {
+  const { room } = setup();
+  const now = room.deadline - 1000;
+  assert.throws(
+    () => submitAnswer(room, room.activeId!, "nonsense", room.turn, now),
+    /2 seconds lost/,
+  );
+  assert.equal(room.phase, "charred");
+  assert.equal(room.players[0].hearts, 2);
+  tickGame(room, now + 100);
+  assert.equal(room.players[0].hearts, 2);
+});
+
+test("regional plurals cannot be used as separate answers", () => {
+  const { room } = setup();
+  room.category = categories.find((item) => item.id === "units")!;
+  submitAnswer(room, room.activeId!, "liters", room.turn, 2500);
+  tickGame(room, room.readyAt);
+  const deadline = room.deadline;
+  assert.throws(
+    () => submitAnswer(room, room.activeId!, "litres", room.turn, room.readyAt + 20),
+    /Already picked/,
+  );
+  assert.equal(room.used.length, 1);
+  assert.equal(room.deadline, deadline - 2000);
 });

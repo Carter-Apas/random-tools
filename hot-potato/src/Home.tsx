@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Arena } from "./Arena";
+import { CharacterSprite } from "./CharacterSprite";
 
 import type { Avatar, Pace, Profile, RoomView } from "../shared/types";
 import { paces } from "../shared/types";
@@ -27,6 +28,7 @@ const previewRoom: RoomView = {
   turnDurationMs: 0,
   turnStartedAt: 0,
   draft: "",
+  penaltyMs: 0,
   move: null,
   events: [],
   serverTime: 0,
@@ -106,7 +108,7 @@ export const Home = ({
               onClick={() => choose(avatar)}
               aria-pressed={profile.avatar === avatar}
             >
-              <span className={`character character-${avatar}`} />
+              <CharacterSprite avatar={avatar} />
               <span>{avatar === "male" ? "Boy" : "Girl"}</span>
               {profile.avatar === avatar && (
                 <span className="selected-tick" aria-hidden="true">

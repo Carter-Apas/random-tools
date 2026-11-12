@@ -33,7 +33,8 @@ const Rules = ({ close }: { close: () => void }) => {
       <ol>
         <li>
           <strong>Pick a fresh answer.</strong> When the hot vegetable reaches you, name something
-          that fits the category. No repeats in the current patch.
+          that fits the category. No repeats in the current patch. Wrong or repeated answers cost
+          two seconds.
         </li>
         <li>
           <strong>Pass it clockwise.</strong> Correct answers fly through the campfire to the next
@@ -222,8 +223,23 @@ export const App = () => {
               }}
             />
           )}
-          <button className="how-button" onClick={() => setRules(true)}>
-            <span aria-hidden="true">?</span> How to play
+          <button className="how-button" aria-label="How to play" onClick={() => setRules(true)}>
+            <svg
+              className="help-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-2.9 2-2.9 4" />
+              <path d="M12 17h.01" />
+            </svg>
+            <span>How to play</span>
           </button>
         </nav>
       </header>

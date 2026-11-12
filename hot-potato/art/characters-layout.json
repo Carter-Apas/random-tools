@@ -1,0 +1,21 @@
+{
+  "anchors": {
+    "baseline": 94,
+    "leftHand": { "x": 22, "y": 62 },
+    "rightHand": { "x": 42, "y": 62 },
+    "vegetable": { "x": 32, "y": 62 }
+  },
+  "animations": {
+    "Charred": { "durationMs": 900, "from": 4, "sheetWidth": 64, "to": 4 },
+    "Down": { "durationMs": 900, "from": 5, "sheetWidth": 64, "to": 5 },
+    "Hold": { "durationMs": 450, "from": 2, "sheetWidth": 128, "to": 3 },
+    "Idle": { "durationMs": 450, "from": 0, "sheetWidth": 128, "to": 1 }
+  },
+  "approvedSource": "art/concepts/fidelity-study/{male,female}-64x96.png",
+  "frame": { "height": 96, "width": 64 },
+  "holdingWindows": [
+    { "height": 28, "width": 18, "x": 8, "y": 50 },
+    { "height": 28, "width": 18, "x": 39, "y": 50 }
+  ],
+  "idleFrameOne": "Pixel-identical to approved source."
+}

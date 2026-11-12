@@ -50,6 +50,7 @@ const Gardener = ({
         {you && <span className="you-tag">you</span>}
         {player.bot && <span className="you-tag">bot</span>}
       </span>
+      <SpeechBubble room={room} playerId={player.id} side={point.x > 65 ? "left" : "right"} />
       <Hearts count={player.hearts} />
       {!player.connected && <span className="player-status">Reconnecting…</span>}
       {player.hearts === 0 && <span className="player-status">Spectating</span>}
@@ -72,6 +73,7 @@ export const Arena = ({
   return (
     <div
       className={preview ? "arena arena-preview" : "arena"}
+      data-player-count={room.players.length}
       aria-label="Garden game board. Play moves clockwise."
     >
       <div className="garden-sign">
@@ -118,7 +120,7 @@ const Vegetable = ({ room, now }: { room: RoomView; now: number }) => {
       style={
         {
           left: `${point.x}%`,
-          top: `calc(${point.y}% - 8px)`,
+          top: `calc(${point.y}% - 3px)`,
           "--spin": `${point.rotation}deg`,
           "--scale": point.scale,
         } as CSSProperties
@@ -136,3 +138,23 @@ const Winner = ({ room }: { room: RoomView }) => (
     <span>Last gardener standing.</span>
   </div>
 );
+
+const SpeechBubble = ({
+  room,
+  playerId,
+  side,
+}: {
+  room: RoomView;
+  playerId: string;
+  side: string;
+}) => {
+  if (room.status !== "playing" || room.phase !== "answering" || room.activeId !== playerId)
+    return null;
+  return (
+    <div className={`speech-bubble bubble-${side}`}>
+      <output aria-label="Live answer" aria-live="off">
+        {room.draft || "…"}
+      </output>
+    </div>
+  );
+};

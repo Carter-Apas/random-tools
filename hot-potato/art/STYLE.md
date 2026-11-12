@@ -8,12 +8,24 @@ Outline #343b32, deep foliage #365e38, grass shadow #68934b, grass #8db65d, gras
 
 ## Characters
 
-32x40 pixel original compact overworld characters, with large readable heads,
-short legs, and clear handheld-RPG silhouettes. Boy: rust-red cap, navy jacket,
-cream shirt and dark shorts. Girl: cream headband, auburn hair, green top and
-coral shorts. Idle and holding poses have two-frame 64x40 sheets. Upright
-charred recovery and prone charred elimination poses use single 32x40 PNGs.
-Editable Aseprite sources are required. Detailed anchors are below.
+The user-approved A (Garden trainers) source is preserved in
+`art/concepts/character-options.png`. The approved native masters are
+`art/concepts/fidelity-study/male-64x96.png` and `female-64x96.png`.
+Production idle frame one must match these exact 64x96 RGBA pixels. Do not redraw,
+reshape, recolor or compress their proportions. Pose edits are local to the arms.
+
+Frames use 64x96 transparent canvases. Idle and Hold have two frames in 128x96
+horizontal sheets; Charred and Down use single 64x96 frames. Both avatars keep
+the same source scale/baseline. Holding palms are at (22,62) and (42,62), with the
+vegetable centred at (32,62). The head, face, hair, clothing and legs retain the
+approved pixels outside the local arm windows. Keep movement subtle, around one
+native pixel, with 450 ms idle/hold frames. Upright soot and prone soot states
+remain recognisable derivatives of the same artwork.
+
+Native resolution stays 64x96. The browser displays 64x96 on desktop and 48x72 on
+small screens; crowded mobile rooms can display 40x60 with extra arena height.
+Always preserve the 2:3 ratio with nearest-neighbour scaling. Editable Aseprite
+sources, source extraction and reproducible animation scripts stay in `art/`.
 
 ## Garden
 
@@ -21,18 +33,22 @@ Editable Aseprite sources are required. Detailed anchors are below.
 
 ## Props and controls
 
-Vegetables are 24x24 single PNGs with transparent background: potato, carrot, beetroot, turnip, pumpkin, corn, aubergine, tomato. Give each a charming small face and distinct silhouette. Campfire 48x48, eight frames in a horizontal 384x48 sheet fire.png; single preview fire-still.png. Warm-hands, burning-hands and full-body heat overlays each use four 32x40 frames in a 128x40 sheet. heart.png and heart-empty.png 12x12; crown.png 24x24. Wood button nine-slice-ready texture button-wood.png 48x24 and green button-green.png same dimensions, clean flat centres without text. All original and editable .aseprite sources. Group props into source sheets where useful, document layout.
+Vegetables are 24x24 single PNGs with transparent background: potato, carrot, beetroot, turnip, pumpkin, corn, aubergine, tomato. Give each a charming small face and distinct silhouette. Campfire 48x48, eight frames in a horizontal 384x48 sheet fire.png; single preview fire-still.png. Warm-hands, burning-hands and full-body heat overlays each use four 64x96 frames in a 256x96 sheet. heart.png and heart-empty.png 12x12; crown.png 24x24. Wood button nine-slice-ready texture button-wood.png 48x24 and green button-green.png same dimensions, clean flat centres without text. All original and editable .aseprite sources. Group props into source sheets where useful, document layout.
 
 ## UI
 
 Garden is the memorable visual. Sky-blue page background, parchment panels with chunky earthy borders and offset shadows, compact soft pixel typography with a readable sans serif for instructions and form inputs. Centre-aligned game title; game board plus a focused prompt below. Mobile stacks naturally with 44px minimum controls, no hover-only action. Motion answers gameplay: vegetable travels from player to fire to next player, flames flicker, percentage heat stages build to charring and heart loss. Reduced motion supported.
 
-## Revision: readable handheld RPG characters and heat
+## Heat and scenery contract
 
-Use more compact original Gen III-era overworld human proportions: 32x40 transparent canvas, head around x8–24/y5–20, compact torso y20–30, short legs y30–37, baseline y38. A deliberate overhead/front view with simple shaded face, small dark eyes, coherent rounded head silhouette, clear cap/bandana and backpack details. Avoid the long narrow bodies and wide awkward elbows of the first draft. Boy: rust-red cap, navy jacket/cream shirt, dark shorts/trousers, small backpack. Girl: cream headband, auburn hair, forest-green top, warm coral shorts, small backpack. Original designs, no ripped or traced Pokémon sprites.
+Heat overlays share the character's 64x96 grid. Warm hand centres and flame bases
+align with (22,62) and (42,62). Preserve the existing warm wisps, flame shapes,
+colours and central face gap while mapping onto this grid. Each effect uses four
+frames at 100 ms per frame. The campfire keeps eight 48x48 frames in a 384x48
+sheet, with bending tongues, sparks and embers; `fire-still.png` is its first frame.
 
-For each avatar, export name.png (32x40), name-idle.png (64x40 two frames), name-hold.png (64x40 two frames), name-charred.png (32x40 upright comic soot silhouette), name-down.png (32x40 prone charred figure on ground). Holding pose has both clearly visible hands at (10,25) and (22,25), cupped around centre (16,24); this is also the vegetable anchor. Character source files retain editable layers and frames.
-
-Heat overlays align to the same 32x40 character canvas and are exported as 4-frame horizontal 128x40 sheets: heat-warm.png (red glowing/hot hands and tiny heat wisps), heat-hands.png (small flames on hands), heat-body.png (flames enveloping body with face still readable). Effects must align hands around x10/22,y25. Full-body flame can rise towards y3. Hard pixel art and transparent background. Timing: 100ms/frame. Campfire gets 8 distinct 48x48 frames (384x48) at 100ms/frame with lively bending tongues, sparks and embers; fire-still.png stays 48x48. Potato is a recognisably elongated, asymmetric, knobbly potato with skin eyes, around 20x12 pixels on the 24x24 canvas, no circular ball silhouette.
-
-Garden fence must have a clearly readable silhouette without trees covering its rails or posts. Keep tree canopies behind/above fence line and end hedge trees away from posts. Keep the gathering clearing unchanged. No dotted page background. Use a legible retro typeface for headings and controls; reserve the existing pixel font for the short logo only if needed. Gameplay heat replaces exploding-vegetable artwork.
+The potato is an elongated asymmetric shape around 20x12 on a 24x24 canvas.
+The garden fence keeps a clear silhouette, with canopies above the posts and
+side trees away from rails. The page background is flat sky blue. Chakra Petch
+is the readable retro interface font, with Pixelify Sans reserved for the logo.
+Gameplay heat builds through the hands and body into charring and heart loss.

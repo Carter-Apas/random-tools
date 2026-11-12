@@ -1,9 +1,12 @@
 import type { CSSProperties } from "react";
 
+import { CharacterSprite } from "./CharacterSprite";
+import type { CharacterPose } from "./CharacterSprite";
+
 import { heatStage } from "../shared/types";
 import type { Player, RoomView } from "../shared/types";
 
-const poseFor = (player: Player, room: RoomView): string => {
+const poseFor = (player: Player, room: RoomView): CharacterPose => {
   if (player.hearts === 0) return "down";
   if (room.status !== "playing" || room.activeId !== player.id) return "idle";
   return room.phase === "charred" ? "charred" : "hold";
@@ -25,11 +28,10 @@ export const PlayerFigure = ({
   const holding = pose === "hold" && room.phase === "answering";
   return (
     <span className={`character-figure heat-${stage}`}>
-      <span
-        className={`character character-${player.avatar} figure-${pose}`}
-        style={{ backgroundImage: `url(/assets/${player.avatar}-${pose}.png)` }}
-        role="img"
-        aria-label={`${player.avatar} gardener, ${pose === "down" ? "charred and eliminated" : stage}`}
+      <CharacterSprite
+        avatar={player.avatar}
+        pose={pose}
+        label={`${player.avatar} gardener, ${pose === "down" ? "charred and eliminated" : stage}`}
       />
       {holding && (
         <img

@@ -9,6 +9,10 @@
   --green: #45663d;
   --pixel: "Chakra Petch", sans-serif;
   --logo: "Pixelify Sans", sans-serif;
+  --character-width: 64px;
+  --character-height: 96px;
+  --character-sheet-width: 128px;
+  --heat-sheet-width: 256px;
 }
 * {
   box-sizing: border-box;
@@ -138,15 +142,12 @@ legend {
   padding: 0;
   font-size: 14px;
 }
-.how-button > span {
-  display: inline-grid;
-  place-items: center;
+.help-icon {
+  display: block;
+  flex-shrink: 0;
   height: 24px;
   width: 24px;
-  border: 2px solid #69846a;
-  border-radius: 50%;
-  font-family: var(--pixel);
-  font-size: 20px;
+  color: #69846a;
 }
 .home-layout {
   display: grid;
@@ -190,7 +191,7 @@ legend {
   border: 2px solid #c4b58d;
   border-radius: 4px;
   position: relative;
-  height: 120px;
+  height: 148px;
   font-family: var(--pixel);
   font-size: 20px;
   padding: 9px;
@@ -211,18 +212,18 @@ legend {
 }
 .character {
   display: block;
-  height: 80px;
-  width: 64px;
+  height: var(--character-height);
+  width: var(--character-width);
   flex-shrink: 0;
-  background-size: 128px 80px;
+  overflow: hidden;
+}
+.character-sheet {
+  display: block;
+  height: var(--character-height);
+  width: var(--character-sheet-width);
+  max-width: none;
   image-rendering: pixelated;
   animation: idle 900ms steps(2) infinite;
-}
-.character-male {
-  background-image: url("/assets/male-idle.png");
-}
-.character-female {
-  background-image: url("/assets/female-idle.png");
 }
 .avatar-option .character {
   margin-bottom: 0;
@@ -939,7 +940,7 @@ legend {
 }
 @keyframes idle {
   to {
-    background-position-x: -128px;
+    transform: translateX(-100%);
   }
 }
 @keyframes flames {
@@ -1034,13 +1035,13 @@ legend {
     margin-top: 6px;
   }
   .how-button {
-    font-size: 0;
-    min-width: 35px;
     justify-content: center;
-    padding-top: 2px;
+    gap: 0;
   }
   .how-button > span {
-    font-size: 22px;
+    display: none;
+  }
+  .help-icon {
     width: 29px;
     height: 29px;
   }
@@ -1089,7 +1090,7 @@ legend {
     padding-bottom: 10px;
   }
   .avatar-option {
-    height: 124px;
+    height: 140px;
     min-width: 0;
     padding: 5px 2px;
   }
@@ -1288,11 +1289,11 @@ legend {
   .gardener {
     width: 86px;
   }
-  .gardener .character {
-    width: 48px;
-    height: 60px;
-    background-size: 96px 60px;
-    animation-name: idle-small;
+  .gardener {
+    --character-width: 48px;
+    --character-height: 72px;
+    --character-sheet-width: 96px;
+    --heat-sheet-width: 192px;
   }
   .gardener-name {
     font-size: 14px;
@@ -1384,11 +1385,6 @@ legend {
     min-width: 92px;
   }
 }
-@keyframes idle-small {
-  to {
-    background-position-x: -96px;
-  }
-}
 @keyframes flames-small {
   to {
     background-position-x: -576px;
@@ -1406,7 +1402,7 @@ legend {
     margin: 16px 0;
   }
   .avatar-option {
-    height: 112px;
+    height: 140px;
   }
   .brand h1 {
     font-size: 37px;
@@ -1493,26 +1489,25 @@ legend {
 .character-figure {
   position: relative;
   display: block;
-  width: 64px;
-  height: 80px;
+  width: var(--character-width);
+  height: var(--character-height);
   flex-shrink: 0;
 }
 .character-figure > .character {
   position: absolute;
   inset: 0;
 }
-.character.figure-charred,
-.character.figure-down {
+.character.figure-charred .character-sheet,
+.character.figure-down .character-sheet {
   animation: none;
-  background-size: 100% 100%;
-  background-position: 0 0;
+  width: var(--character-width);
 }
 .held-vegetable {
   position: absolute;
   width: 44%;
   height: auto;
   left: 50%;
-  top: 60%;
+  top: 64.583333%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -1520,7 +1515,7 @@ legend {
   position: absolute;
   inset: 0;
   z-index: 3;
-  background-size: 256px 80px;
+  background-size: var(--heat-sheet-width) var(--character-height);
   image-rendering: pixelated;
   animation: heat-dance 400ms steps(4) infinite;
   pointer-events: none;
@@ -1541,29 +1536,9 @@ input[aria-invalid="true"] {
   border-color: #b34732;
   background: #fff2e2;
 }
-.live-answer {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 10px 12px;
-  margin: 0 0 8px;
-  border-left: 3px solid #b8bb88;
-  background: #eeedcf;
-}
-.live-answer > span {
-  font-size: 11px;
-  font-weight: 800;
-  color: #5c6648;
-}
-.live-answer > output {
-  font-size: 17px;
-  font-weight: 700;
-  overflow-wrap: anywhere;
-  min-height: 24px;
-}
 @keyframes heat-dance {
   to {
-    background-position-x: -256px;
+    background-position-x: calc(-1 * var(--heat-sheet-width));
   }
 }
 @media (max-width: 760px) {
@@ -1580,23 +1555,99 @@ input[aria-invalid="true"] {
     font-size: 22px;
   }
 }
-@media (max-width: 520px) {
-  .character-figure {
-    width: 48px;
-    height: 60px;
-  }
-  .heat-overlay {
-    background-size: 192px 60px;
-    animation-name: heat-dance-small;
-  }
-}
-@keyframes heat-dance-small {
-  to {
-    background-position-x: -192px;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .heat-overlay {
     animation: none;
+  }
+}
+
+.speech-bubble {
+  position: absolute;
+  z-index: 20;
+  top: -12px;
+  min-width: 58px;
+  max-width: 160px;
+  width: max-content;
+  background: #fffdf0;
+  color: #343b32;
+  border: 2px solid #78654b;
+  border-radius: 7px;
+  padding: 7px 10px;
+  box-shadow: 0 3px #b49d74;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+.bubble-right {
+  left: calc(50% + 27px);
+}
+.bubble-left {
+  right: calc(50% + 27px);
+}
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  width: 10px;
+  height: 10px;
+  background: #fffdf0;
+  border-right: 2px solid #78654b;
+  border-bottom: 2px solid #78654b;
+  transform: skewY(-25deg);
+}
+.bubble-right::after {
+  left: 10px;
+}
+.bubble-left::after {
+  right: 10px;
+}
+.is-active {
+  z-index: 8;
+}
+@media (max-width: 520px) {
+  .speech-bubble {
+    max-width: 100px;
+    font-size: 12px;
+    padding: 5px 7px;
+    top: 8px;
+  }
+  .bubble-right {
+    left: calc(50% + 17px);
+  }
+  .bubble-left {
+    right: calc(50% + 17px);
+  }
+}
+
+.character-figure::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 5%;
+  bottom: 0;
+  left: 20%;
+  border-radius: 50%;
+  background: #365e3838;
+}
+@media (max-width: 760px) {
+  .arena[data-player-count="7"],
+  .arena[data-player-count="8"] {
+    min-height: 360px;
+  }
+}
+@media (max-width: 520px) {
+  .arena[data-player-count="7"] .gardener,
+  .arena[data-player-count="8"] .gardener {
+    --character-width: 40px;
+    --character-height: 60px;
+    --character-sheet-width: 80px;
+    --heat-sheet-width: 160px;
+  }
+  .arena[data-player-count="7"] .gardener-name,
+  .arena[data-player-count="8"] .gardener-name {
+    max-width: 72px;
+    font-size: 12px;
   }
 }

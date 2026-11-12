@@ -1,33 +1,43 @@
-# Overworld characters
+# Approved Garden trainers: production animations
 
-Original front-facing pixel characters made in Aseprite using `characters.lua`.
-The boy wears a rust-red cap, navy jacket, cream shirt, dark shorts and a tan
-backpack. The girl wears a cream headband, auburn hair, forest-green top, coral
-shorts and a tan backpack. The artwork follows the revised handheld RPG direction
-in STYLE.md without downloaded, traced or copied game sprites.
+Production frames derive directly from the approved exact 64 × 96 cutouts in
+`concepts/fidelity-study/`. The first idle frame and standalone `male.png` /
+`female.png` are pixel-identical to those approved PNGs. The face, fringe,
+headwear, clothing and proportions are preserved from the artwork itself.
 
-Each character uses a 32 × 40 transparent canvas, with boots on the y = 38
-baseline. Headwear and hair create a rounded silhouette above a compact torso.
-Holding frames cup both hands around the vegetable anchor at (16, 24), with
-palms at approximately (10, 25) and (22, 25). Hand positions remain fixed between
-holding frames so the vegetable and heat overlays align during the idle motion.
+Each editable `characters-*.aseprite` has six frames and three layers: approved
+artwork/derived body, locally rearranged cuffs and cupped hands, and soot eyes/ash.
 
-Each `characters-*.aseprite` source has five editable layers and six tagged
-frames:
+| Tag     | Native frames | Export                                   | Dimensions | Frame duration |
+| ------- | ------------- | ---------------------------------------- | ---------- | -------------- |
+| Idle    | 1–2           | `male-idle.png`, `female-idle.png`       | 128 × 96   | 450 ms         |
+| Hold    | 3–4           | `male-hold.png`, `female-hold.png`       | 128 × 96   | 450 ms         |
+| Charred | 5             | `male-charred.png`, `female-charred.png` | 64 × 96    | 900 ms         |
+| Down    | 6             | `male-down.png`, `female-down.png`       | 64 × 96    | 900 ms         |
 
-| Tag | Frames | Export | Dimensions | Frame duration |
-| --- | --- | --- | --- | --- |
-| Idle | 1–2 | `male-idle.png`, `female-idle.png` | 64 × 40 | 450 ms |
-| Hold | 3–4 | `male-hold.png`, `female-hold.png` | 64 × 40 | 450 ms |
-| Charred | 5 | `male-charred.png`, `female-charred.png` | 32 × 40 | 900 ms |
-| Down | 6 | `male-down.png`, `female-down.png` | 32 × 40 | 900 ms |
+Idle frame two moves the approved artwork upward by one pixel. Holding changes
+only the local arm windows x = 8–25 / 39–56, y = 50–77. Source cuff pixels are
+rearranged and small cupped palms use colors sampled from the original arm. The
+windows extend through y = 77 to remove the original hanging hands' outlines.
+The rest of holding frame one is identical to the approved source. Holding frame
+two bobs the body one pixel while the hands remain fixed.
 
-`male.png` and `female.png` are the first idle frame. Upright charred characters
-use soot, ash flecks and tiny visible eyes. Down characters lie prone near the
-baseline, with a horizontal soot silhouette and comic crossed eyes. Render all
-art with nearest-neighbour scaling; keep holding frame one for reduced motion.
+Anchors on the 64 × 96 canvas are left palm **(22, 62)**, right palm **(42, 62)**,
+vegetable **(32, 62)** and ground baseline **94**. These are recorded in
+`characters-layout.json` and both exported Aseprite JSON metadata files.
 
-From the repository root, regenerate editable sources and exported assets:
+The upright charred state maps the approved source colors to soot tones without
+changing its alpha silhouette, then adds visible comic eyes and small ash marks.
+The down state rotates and uniformly shrinks that same soot figure onto its side,
+retaining its cap/ponytail silhouette, with crossed eyes and its bottom at y = 94.
+Render all exports with nearest-neighbour scaling. Reduced motion uses frame one.
+
+`characters-animation-preview-1x.png` and `-3x.png` show the six states from left
+to right, with the boy above the girl.
+
+## Rebuild and verify
+
+From the repository root:
 
 ```sh
 aseprite -b --script-param root="$PWD" --script hot-potato/art/characters.lua
@@ -38,4 +48,11 @@ for avatar in male female; do
   aseprite -b --tag Down "hot-potato/art/characters-$avatar.aseprite" --save-as "hot-potato/public/assets/$avatar-down.png"
   aseprite -b --frame-range 0,0 "hot-potato/art/characters-$avatar.aseprite" --save-as "hot-potato/public/assets/$avatar.png"
 done
+aseprite -b --script-param root="$PWD" --script hot-potato/art/characters-metadata.lua
+aseprite -b --script-param root="$PWD" --script hot-potato/art/characters-preview.lua
+aseprite -b --script-param root="$PWD" --script hot-potato/art/characters-verify.lua
 ```
+
+Verification checks every approved still/idle pixel, the one-pixel bob, local arm
+edit bounds, fixed visible hand pixels, anchor opacity, charred alpha identity,
+prone baseline, native frame/tag counts, timing and anchor metadata. All pass.
