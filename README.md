@@ -13,6 +13,7 @@ shared npm workspace or root install step.
 | `mermaid`             | `ghcr.io/carter-apas/mermaid:latest`             | 80             |
 | `quiz-gen`            | `ghcr.io/carter-apas/quiz-gen:latest`            | 3001           |
 | `coast-forecast`      | `ghcr.io/carter-apas/coast-forecast:latest`      | 80             |
+| `hot-potato`          | `ghcr.io/carter-apas/hot-potato:latest`          | 3000           |
 
 ## Development
 
@@ -25,6 +26,9 @@ npm run dev
 ```
 
 See each app's README for its configuration and scripts.
+
+Hot Potato uses a custom pixel-art game interface, with its own bundled assets and
+fonts. See [`hot-potato/`](hot-potato/README.md) for multiplayer development and Docker usage.
 
 ## Shared design system
 
@@ -129,6 +133,13 @@ docker run --rm -p 3001:3001 --env-file quiz-gen/.env quiz-gen:latest
 
 docker build -t coast-forecast:latest coast-forecast
 docker run --rm -p 8086:80 coast-forecast:latest
+```
+
+For Hot Potato:
+
+```sh
+docker build -t hot-potato:latest hot-potato
+docker run --rm -p 3000:3000 hot-potato:latest
 ```
 
 For quiz-gen, copy `quiz-gen/.env.example` to `quiz-gen/.env` and set
