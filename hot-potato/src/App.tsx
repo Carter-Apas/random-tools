@@ -276,7 +276,12 @@ export const App = () => {
         <span>
           <img src="/assets/turnip.png" alt="" />A party game, freshly picked.
         </span>
-        <span>{room ? `Garden ${room.code}` : "Made for friends, near and far."}</span>
+        <span className="footer-note">
+          {room ? `Garden ${room.code}` : "Made for friends, near and far."}
+        </span>
+        <a href="/licenses/data.html" target="_blank" rel="noreferrer">
+          Data credits
+        </a>
       </footer>
       {rules && <Rules close={() => setRules(false)} />}
     </div>

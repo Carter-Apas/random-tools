@@ -57,6 +57,43 @@ facts you need. Add independent common, obscure and invalid boundary cases to
 `fixtures.json`, then build and inspect `review.json`. The elements and modern
 constellations definitions require exactly 118 and 88 records respectively.
 
+## Question families and facts
+
+A definition can set `family` to a shared topic ID. The room shuffles questions,
+prefers another family on a change, and keeps its unused deck between rematches.
+It never discards remaining questions merely because their default vegetables
+match: the vegetable marker changes in that case. Exact questions do not repeat
+until the full pool has been visited.
+
+Refresh classification snapshots explicitly, then rebuild offline:
+
+```sh
+npm run questions:fetch
+npm run questions:fetch -- instrument-families genre-families
+npm run answers:build
+npm run answers:check
+```
+
+Refresh the original answer sources and build their base packs before refreshing
+question facts when both names and memberships need an update. Classification
+queries are in `question-facts.json`; there is no popularity cutoff. QUDT quantity
+kinds come from the same pinned vocabulary as the unit names; SI-prefix units
+inherit their base quantity. PubChem supplies element groups, standard states
+and atomic numbers. Periods derive from atomic numbers. Discovery-era questions
+are omitted because source discovery/isolation dates are inconsistent.
+The country snapshot pins the mledoze/countries dataset and its ODbL attribution;
+UN-member questions exclude the Vatican observer even though that dataset marks
+it as a member. National capitals inherit their country facts. These are pinned
+content snapshots, not live claims that classifications never change.
+
+`fact-corrections.json` supplies reviewed, evidenced memberships where a subclass
+chain is missing or misleading. Each entry replaces the named fact fields while
+leaving other fields intact. The compiler applies these to copies of snapshots,
+retains the review evidence, and versions the corrections with the published packs.
+`corrections.json` still handles names, omissions and answer exclusions. Every new
+question requires its own common, obscure and rejected-answer cases; narrowing a
+question does not inherit all answers from its broader family.
+
 ## Correct an omission
 
 ```sh
@@ -104,15 +141,17 @@ Failures leave the previous published file intact; successful writes use an
 atomic rename. `review.json` lists versions, additions/removals, legacy-only
 answers, ambiguous names, quarantined records and individual check results.
 
-The ten packs cover units, chemical elements, planetary moons, pasta, cheeses,
-music genres, musical instruments, seas, African countries and constellations.
+The 104 packs cover the original ten sourced categories and 94 constrained
+questions, including quantities measured by units, element groups and periods,
+moons by parent, instrument and genre families, regional cheese origins, and
+country/capital geography, language and currency constraints.
 Membership boundaries matter: seas include historical seas but exclude lakes
 and oceans; moons exclude provisional numbered designations; African countries
 are current UN members; pasta excludes prepared dishes. Remaining game
 categories retain their legacy banks.
 
-The benchmark contains 100 independently chosen expectations: 30 common and 30
-obscure positives, and 40 invalid boundaries. A separate baseline protects
+The benchmark contains 382 independently chosen expectations, with common and
+obscure positives and invalid boundaries for every pack. A separate baseline protects
 previously accepted answers. Passing these cases does not establish 99%
 real-world coverage. Sources can omit or misclassify facts; legacy-only entries
 and quarantined identities are explicit remaining content work. Broader sources

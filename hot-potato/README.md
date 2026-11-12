@@ -22,7 +22,8 @@ A speech bubble beside the active character shows their live typing. The answer
 bar stays clear for private preparation.
 Answer banks are intentionally finite; the hint explains boundaries where needed.
 During play, the question and answer dock fit the visual viewport, including keyboard
-resize and panning. Short screens use a compact row of players and hearts; category
+resize and panning. Tall screens center a bounded play area so the question, garden
+and answer dock remain aligned. The sage-green page background stays consistent. Short screens use a compact row of players and hearts; category
 hints and picked answers stay available through the info button. The editable input
 stays focused after submission and permits private preparation during a delayed reply.
 Mobile browsers may require an initial tap to open the software keyboard.
@@ -47,9 +48,10 @@ and loses one of three hearts. After a two-second recovery they return to normal
 at zero hearts they remain charred on the ground and spectate. The last gardener
 with hearts wins; the host can start a rematch with fresh hearts.
 
-Ten categories now use an offline pipeline with QUDT, Wikidata and NASA adapters,
+104 question packs now use an offline pipeline with QUDT, Wikidata, NASA, PubChem
+and country-data adapters,
 checked snapshots, reviewed corrections and reproducible answer packs. It includes
-all 118 chemical elements and all 88 modern constellations; units retain 3,243
+all 118 chemical elements and all 88 modern constellations; units include more than 3,240
 entries, regional spellings, plurals and case-sensitive symbols. Shared valid
 names consume every matching identity to prevent reuse. See
 [the category pipeline](content/README.md) for commands, membership rules,
@@ -65,8 +67,11 @@ typos consume the same answer identity, without revealing alternatives. The pinn
 MIT word-list lexicon protects words; it does not generate or define category answers.
 Regenerate it with `npm run answers:fetch:spelling`; its checksum is verified.
 
-There are 25 rotating categories including moons, rivers, music genres, pasta,
-cheese, European capitals and mountain ranges. Short calendar and basic list
+There are 119 distinct questions: the original 25 categories plus 94 narrower
+challenges, including moons by planet, element groups and periods, units by quantity,
+instrument families, genre families, regional cheeses, and geography constraints.
+Unused questions carry across rematches; the room visits its full question pool
+before repeating. When possible, neighbouring questions use different topic families. Short calendar and basic list
 categories have been removed. Categories change after six fresh answers, exhaustion
 of a smaller set, or a roast. The vegetable always changes with the category:
 potato, carrot, beetroot, turnip, pumpkin, corn, aubergine, or tomato.

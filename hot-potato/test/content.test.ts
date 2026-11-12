@@ -270,7 +270,7 @@ test("malformed responses, incomplete imports and changed NASA tables fail close
   assert.throws(() => parseConstellations("<table><tr><td>Orion</td></tr></table>"), /expected 88/);
 });
 
-test("published packs pass independent common, obscure and boundary cases for all ten categories", async () => {
+test("every published question pack has independent common, obscure and boundary checks", async () => {
   const root = new URL("../", import.meta.url);
   const catalogue = JSON.parse(
     await readFile(new URL("server/answers/data/catalogue.json", root), "utf8"),
@@ -278,7 +278,14 @@ test("published packs pass independent common, obscure and boundary cases for al
   const fixtures = JSON.parse(
     await readFile(new URL("content/fixtures.json", root), "utf8"),
   ) as CoverageCase[];
-  assert.equal(catalogue.packs.length, 10);
+  assert.ok(catalogue.packs.length >= 100);
+  const definitions = JSON.parse(
+    await readFile(new URL("content/definitions.json", root), "utf8"),
+  ) as CategoryDefinition[];
+  assert.deepEqual(
+    new Set(catalogue.packs.map((pack) => pack.categoryId)),
+    new Set(definitions.map((item) => item.id)),
+  );
   for (const pack of catalogue.packs) {
     const cases = fixtures.filter((fixture) => fixture.categoryId === pack.categoryId);
     assert.deepEqual(
@@ -291,5 +298,50 @@ test("published packs pass independent common, obscure and boundary cases for al
   assert.deepEqual(
     checkCoverage(catalogue.packs, fixtures).filter((fixture) => !fixture.passed),
     [],
+  );
+});
+
+test("reviewed classification facts change membership without mutating their source", () => {
+  const { catalogue } = compileCatalogue(
+    [definition],
+    [snapshot],
+    new Map(),
+    [],
+    [
+      {
+        sourceId: "fixture-source",
+        answerId: "country:japan",
+        facts: { continents: ["Africa"] },
+        evidence: "https://example.org/review",
+        reason: "Fixture classification correction",
+      },
+    ],
+  );
+  assert.equal(catalogue.packs[0].answers.length, 2);
+  assert.deepEqual(snapshot.records[1].facts.continents, ["Asia"]);
+  assert.ok(catalogue.sources.some((source) => source.id === "reviewed-facts"));
+  assert.ok(
+    catalogue.packs[0].answers[1].evidence?.some(
+      (item) => item.url === "https://example.org/review",
+    ),
+  );
+  assert.throws(
+    () =>
+      compileCatalogue(
+        [definition],
+        [snapshot],
+        new Map(),
+        [],
+        [
+          {
+            sourceId: "fixture-source",
+            answerId: "missing",
+            facts: {},
+            evidence: "https://example.org",
+            reason: "Missing identity",
+          },
+        ],
+      ),
+    /Missing fact-correction/,
   );
 });

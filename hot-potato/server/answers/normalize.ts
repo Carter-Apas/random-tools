@@ -37,7 +37,7 @@ export const nameForms = (
   const forms = [value];
   if (!(rules?.plurals ?? pluralCategories.has(categoryId)) || value.length < 3) return forms;
   forms.push(pluralize.plural(value));
-  if (categoryId === "units") {
+  if (categoryId === "units" || rules?.pluralFirstWord) {
     const words = value.split(" ");
     words[0] = pluralize.plural(words[0]);
     forms.push(words.join(" "));

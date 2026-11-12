@@ -84,6 +84,40 @@ const focusState = (page) =>
     editable: !input.disabled && !input.readOnly,
   }));
 
+const assertGrouped = async (page, label) => {
+  const bounds = await page.evaluate(() => {
+    const box = (selector) => {
+      const { top, bottom, height } = document.querySelector(selector).getBoundingClientRect();
+      return { top, bottom, height };
+    };
+    return {
+      width: innerWidth,
+      garden: box(".arena"),
+      question: box(".play-question"),
+      answer: box(".answer-box"),
+    };
+  });
+  if (bounds.width > 1100) {
+    assert.ok(
+      Math.abs(bounds.garden.top - bounds.question.top) < 3,
+      `${label}: question aligns with garden top`,
+    );
+    assert.ok(
+      Math.abs(bounds.garden.bottom - bounds.answer.bottom) < 3,
+      `${label}: answer aligns with garden bottom`,
+    );
+  } else {
+    assert.ok(
+      bounds.garden.top - bounds.question.bottom <= 12,
+      `${label}: question stays beside garden`,
+    );
+    assert.ok(
+      bounds.answer.top - bounds.garden.bottom <= 12,
+      `${label}: answer stays beside garden`,
+    );
+  }
+};
+
 try {
   for (const engine of [chromium, webkit]) {
     const browser = await engine.launch();
@@ -149,6 +183,8 @@ try {
 
         const sizes = mobile
           ? [
+              [390, 1200],
+              [768, 1400],
               [320, 667],
               [390, 400],
               [320, 320],
@@ -156,6 +192,10 @@ try {
               [844, 280],
             ]
           : [
+              [1440, 1400],
+              [1920, 1440],
+              [1024, 1400],
+              [1101, 900],
               [1440, 400],
               [1024, 360],
               [900, 320],
@@ -164,7 +204,21 @@ try {
           await page.setViewportSize({ width, height });
           freeze(room);
           await assertVisible(page, `${engine.name()} resized ${width}x${height}`);
+          await assertGrouped(page, `${engine.name()} resized ${width}x${height}`);
           await page.screenshot({ path: `${output}/${engine.name()}-${width}x${height}.png` });
+        }
+        if (mobile) {
+          await page.setViewportSize({ width: 320, height: 320 });
+          const longest = [...categories]
+            .sort((left, right) => right.prompt.length - left.prompt.length)
+            .slice(0, 8);
+          for (const category of longest) {
+            room.category = category;
+            freeze(room);
+            await assertVisible(page, `${engine.name()} long prompt: ${category.id}`);
+          }
+          room.category = categories.find((item) => item.id === "cheeses");
+          publish(room);
         }
         await page.setViewportSize({ width: 390, height: 844 });
         await page.addInitScript(() => {

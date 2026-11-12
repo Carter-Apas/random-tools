@@ -24,6 +24,7 @@ export interface SourceSnapshot {
 
 export interface CategoryDefinition {
   id: string;
+  family?: string;
   name: string;
   prompt: string;
   hint: string;
@@ -39,6 +40,14 @@ export interface Correction {
   status: "pending" | "approved";
   action?: "upsert" | "exclude" | "remove-aliases";
   answer: Answer & { id: string };
+  evidence: string;
+  reason: string;
+}
+
+export interface FactCorrection {
+  sourceId: string;
+  answerId: string;
+  facts: Record<string, string[]>;
   evidence: string;
   reason: string;
 }

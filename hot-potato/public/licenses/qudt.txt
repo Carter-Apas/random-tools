@@ -1,7 +1,7 @@
 Unit answer data derived from the QUDT Units Vocabulary by QUDT.org, CC BY 4.0.
 Source: https://github.com/qudt/qudt-public-repo
 Revision: 39bd2d3f5050d8b24e083b48a3af31f3fe1badc8
-Changes: English labels and symbols extracted, deprecated units excluded, exact matches merged.
+Changes: English labels and symbols extracted, deprecated units excluded, exact matches merged; quantity kinds extracted for constrained questions.
 Additional SI prefix combinations use https://www.bipm.org/en/measurement-units/si-prefixes
 
 Attribution 4.0 International

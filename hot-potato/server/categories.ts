@@ -15,6 +15,7 @@ export const categories: Category[] = seedCategories.map((seed) => {
   const { name, prompt, hint, vegetable, normalization } = pack.definition;
   return {
     id: seed.id,
+    family: pack.definition.family,
     name,
     prompt,
     hint,
@@ -29,6 +30,7 @@ for (const pack of publishedPacks.values()) {
   const { id, name, prompt, hint, vegetable, normalization } = pack.definition;
   categories.push({
     id,
+    family: pack.definition.family,
     name,
     prompt,
     hint,

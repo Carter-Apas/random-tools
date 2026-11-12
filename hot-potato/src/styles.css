@@ -1,9 +1,10 @@
 :root {
   font-family: "Nunito", sans-serif;
   color: #343b32;
-  background: #d8eced;
+  background: #dce7c9;
   font-synthesis: none;
   --ink: #343b32;
+  --page: #dce7c9;
   --paper: #fff7dc;
   --border: #78654b;
   --green: #45663d;
@@ -20,7 +21,7 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: #d8eced;
+  background: var(--page);
 }
 button,
 input,
@@ -564,6 +565,13 @@ legend {
 .site-footer img {
   width: 24px;
   height: 24px;
+}
+.site-footer > a {
+  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  text-underline-offset: 3px;
 }
 .game-layout {
   display: grid;
@@ -1278,7 +1286,7 @@ legend {
     font-size: 10px;
     margin-top: 0;
   }
-  .site-footer > span:last-child {
+  .site-footer .footer-note {
     display: none;
   }
   .rules-dialog {

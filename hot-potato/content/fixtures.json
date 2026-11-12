@@ -169,7 +169,7 @@
   },
   {
     "categoryId": "africa",
-    "answer": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+    "answer": "São Tomé and Príncipe",
     "expected": "accepted",
     "difficulty": "obscure",
     "evidence": "https://www.un.org/en/about-us/member-states"
@@ -183,7 +183,7 @@
   },
   {
     "categoryId": "africa",
-    "answer": "R\u00e9union",
+    "answer": "Réunion",
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://www.un.org/en/about-us/member-states"
@@ -421,7 +421,7 @@
   },
   {
     "categoryId": "cheeses",
-    "answer": "Milbenk\u00e4se",
+    "answer": "Milbenkäse",
     "expected": "accepted",
     "difficulty": "obscure",
     "evidence": "https://www.wikidata.org/entity/Q567516"
@@ -698,5 +698,1979 @@
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "repo:content/definitions.json#constellations"
+  },
+  {
+    "categoryId": "units-length",
+    "answer": "metres",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-length",
+    "answer": "furlongs",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-length",
+    "answer": "litres",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-mass",
+    "answer": "kilograms",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-mass",
+    "answer": "grains",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-mass",
+    "answer": "newtons",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-area",
+    "answer": "hectares",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-area",
+    "answer": "barns",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-area",
+    "answer": "metres",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-volume",
+    "answer": "liters",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-volume",
+    "answer": "bushels",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-volume",
+    "answer": "grams",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-time",
+    "answer": "seconds",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-time",
+    "answer": "fortnights",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-time",
+    "answer": "hertz",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-speed",
+    "answer": "knots",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-speed",
+    "answer": "furlongs per fortnight",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-speed",
+    "answer": "metres",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-pressure",
+    "answer": "pascals",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-pressure",
+    "answer": "torr",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-pressure",
+    "answer": "newtons",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-energy",
+    "answer": "joules",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-energy",
+    "answer": "ergs",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-energy",
+    "answer": "watts",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-power",
+    "answer": "watts",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-power",
+    "answer": "horsepower",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-power",
+    "answer": "joules",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-temperature",
+    "answer": "Celsius",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-temperature",
+    "answer": "Rankine",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-temperature",
+    "answer": "joules",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-frequency",
+    "answer": "hertz",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-frequency",
+    "answer": "terahertz",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-frequency",
+    "answer": "seconds",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-current",
+    "answer": "amperes",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-current",
+    "answer": "statamperes",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-current",
+    "answer": "volts",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-resistance",
+    "answer": "ohms",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-resistance",
+    "answer": "abohms",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-resistance",
+    "answer": "amperes",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-data",
+    "answer": "bytes",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-data",
+    "answer": "kibibytes",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-data",
+    "answer": "hertz",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-force",
+    "answer": "newtons",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-force",
+    "answer": "dynes",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-force",
+    "answer": "kilograms",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-angle",
+    "answer": "radians",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-angle",
+    "answer": "steradians",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "units-angle",
+    "answer": "metres",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
+  },
+  {
+    "categoryId": "elements-noble",
+    "answer": "Helium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-noble",
+    "answer": "Radon",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-noble",
+    "answer": "Chlorine",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-halogen",
+    "answer": "Chlorine",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-halogen",
+    "answer": "Astatine",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-halogen",
+    "answer": "Argon",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-alkali",
+    "answer": "Sodium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-alkali",
+    "answer": "Caesium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-alkali",
+    "answer": "Calcium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-alkaline",
+    "answer": "Calcium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-alkaline",
+    "answer": "Barium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-alkaline",
+    "answer": "Sodium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-transition",
+    "answer": "Iron",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-transition",
+    "answer": "Ruthenium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-transition",
+    "answer": "Aluminium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-lanthanides",
+    "answer": "Cerium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-lanthanides",
+    "answer": "Dysprosium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-lanthanides",
+    "answer": "Uranium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-actinides",
+    "answer": "Uranium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-actinides",
+    "answer": "Berkelium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-actinides",
+    "answer": "Cerium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-metalloids",
+    "answer": "Silicon",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-metalloids",
+    "answer": "Tellurium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-metalloids",
+    "answer": "Iron",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-nonmetals",
+    "answer": "Oxygen",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-nonmetals",
+    "answer": "Selenium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-nonmetals",
+    "answer": "Copper",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-gas",
+    "answer": "Oxygen",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-gas",
+    "answer": "Radon",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-gas",
+    "answer": "Mercury",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-liquid",
+    "answer": "Mercury",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-liquid",
+    "answer": "Bromine",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-liquid",
+    "answer": "Oxygen",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-one-symbol",
+    "answer": "Carbon",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-one-symbol",
+    "answer": "Tungsten",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-one-symbol",
+    "answer": "Iron",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-first20",
+    "answer": "Carbon",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-first20",
+    "answer": "Beryllium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-first20",
+    "answer": "Iron",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-transuranium",
+    "answer": "Plutonium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-transuranium",
+    "answer": "Lawrencium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-transuranium",
+    "answer": "Uranium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-3",
+    "answer": "Sodium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-3",
+    "answer": "Argon",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-3",
+    "answer": "Lithium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-4",
+    "answer": "Iron",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-4",
+    "answer": "Krypton",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-4",
+    "answer": "Silver",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-5",
+    "answer": "Silver",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-5",
+    "answer": "Xenon",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-5",
+    "answer": "Gold",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-6",
+    "answer": "Gold",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-6",
+    "answer": "Dysprosium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-6",
+    "answer": "Uranium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-7",
+    "answer": "Uranium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-7",
+    "answer": "Oganesson",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "elements-period-7",
+    "answer": "Gold",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "categoryId": "moons-jupiter",
+    "answer": "Europa",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-jupiter",
+    "answer": "Herse",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-jupiter",
+    "answer": "Titan",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-saturn",
+    "answer": "Titan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-saturn",
+    "answer": "Phoebe",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-saturn",
+    "answer": "Europa",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-uranus",
+    "answer": "Titania",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-uranus",
+    "answer": "Sycorax",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-uranus",
+    "answer": "Triton",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-neptune",
+    "answer": "Triton",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-neptune",
+    "answer": "Halimede",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-neptune",
+    "answer": "Titania",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-pluto",
+    "answer": "Charon",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-pluto",
+    "answer": "Kerberos",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "moons-pluto",
+    "answer": "Triton",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-strings",
+    "answer": "Guitar",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-strings",
+    "answer": "Koto",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-strings",
+    "answer": "Clarinet",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-wind",
+    "answer": "Flute",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-wind",
+    "answer": "Sheng",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-wind",
+    "answer": "Violin",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-woodwind",
+    "answer": "Clarinet",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-woodwind",
+    "answer": "Duduk",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-woodwind",
+    "answer": "Trumpet",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-brass",
+    "answer": "Trumpet",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-brass",
+    "answer": "Ophicleide",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-brass",
+    "answer": "Clarinet",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-percussion",
+    "answer": "Xylophone",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-percussion",
+    "answer": "Udu",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-percussion",
+    "answer": "Flute",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-keyboard",
+    "answer": "Piano",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-keyboard",
+    "answer": "Clavichord",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-keyboard",
+    "answer": "Trumpet",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-bowed",
+    "answer": "Viola",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-bowed",
+    "answer": "Nyckelharpa",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-bowed",
+    "answer": "Guitar",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-plucked",
+    "answer": "Harp",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-plucked",
+    "answer": "Kora",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-plucked",
+    "answer": "Clarinet",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-electronic",
+    "answer": "Synthesizer",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-electronic",
+    "answer": "Ondes Martenot",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "instruments-electronic",
+    "answer": "Oboe",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-rock",
+    "answer": "Grunge",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-rock",
+    "answer": "Post rock",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-rock",
+    "answer": "Baroque",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-metal",
+    "answer": "Death metal",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-metal",
+    "answer": "Funeral doom",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-metal",
+    "answer": "Bebop",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-punk",
+    "answer": "Hardcore punk",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-punk",
+    "answer": "D-beat",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-punk",
+    "answer": "Bossa nova",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-jazz",
+    "answer": "Bebop",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-jazz",
+    "answer": "Dixieland",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-jazz",
+    "answer": "Death metal",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-electronic",
+    "answer": "Techno",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-electronic",
+    "answer": "Chiptune",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-electronic",
+    "answer": "Bluegrass",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-blues",
+    "answer": "Delta blues",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-blues",
+    "answer": "Piedmont blues",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-blues",
+    "answer": "Death metal",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-hiphop",
+    "answer": "Gangsta rap",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-hiphop",
+    "answer": "G-funk",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "genres-hiphop",
+    "answer": "Bluegrass",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-france",
+    "answer": "Brie",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-france",
+    "answer": "Reblochon",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-france",
+    "answer": "Gouda",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-italy",
+    "answer": "Parmesan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-italy",
+    "answer": "Taleggio",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-italy",
+    "answer": "Gouda",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-switzerland",
+    "answer": "Emmental",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-switzerland",
+    "answer": "Gruyere",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-switzerland",
+    "answer": "Feta",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-britain",
+    "answer": "Cheddar",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-britain",
+    "answer": "Wensleydale",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-britain",
+    "answer": "Brie",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-spain",
+    "answer": "Manchego",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-spain",
+    "answer": "Cabrales",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-spain",
+    "answer": "Parmesan",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-netherlands",
+    "answer": "Gouda",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-netherlands",
+    "answer": "Kanterkaas",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-netherlands",
+    "answer": "Brie",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-greece",
+    "answer": "Feta",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-greece",
+    "answer": "Graviera",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-greece",
+    "answer": "Halloumi",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-germany",
+    "answer": "Butterkase",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-germany",
+    "answer": "Handkase",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-germany",
+    "answer": "Feta",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-portugal",
+    "answer": "Serra da Estrela",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-portugal",
+    "answer": "Sao Jorge",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-portugal",
+    "answer": "Cheddar",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-usa",
+    "answer": "Monterey Jack",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-usa",
+    "answer": "Colby",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "cheeses-usa",
+    "answer": "Manchego",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
+  },
+  {
+    "categoryId": "countries-world",
+    "answer": "Japan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-world",
+    "answer": "Kiribati",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-world",
+    "answer": "Greenland",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-asia",
+    "answer": "Japan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-asia",
+    "answer": "Bhutan",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-asia",
+    "answer": "Canada",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-americas",
+    "answer": "Brazil",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-americas",
+    "answer": "Suriname",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-americas",
+    "answer": "Spain",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-oceania",
+    "answer": "New Zealand",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-oceania",
+    "answer": "Nauru",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-oceania",
+    "answer": "Japan",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-south-america",
+    "answer": "Brazil",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-south-america",
+    "answer": "Suriname",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-south-america",
+    "answer": "Mexico",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-central-america",
+    "answer": "Panama",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-central-america",
+    "answer": "Belize",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-central-america",
+    "answer": "Mexico",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-caribbean",
+    "answer": "Jamaica",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-caribbean",
+    "answer": "Dominica",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-caribbean",
+    "answer": "Belize",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-southeast-asia",
+    "answer": "Thailand",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-southeast-asia",
+    "answer": "Timor-Leste",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-southeast-asia",
+    "answer": "India",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-central-asia",
+    "answer": "Kazakhstan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-central-asia",
+    "answer": "Turkmenistan",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-central-asia",
+    "answer": "Afghanistan",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-south-asia",
+    "answer": "India",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-south-asia",
+    "answer": "Bhutan",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-south-asia",
+    "answer": "Thailand",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked",
+    "answer": "Switzerland",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked",
+    "answer": "Lesotho",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked",
+    "answer": "Portugal",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked-africa",
+    "answer": "Zambia",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked-africa",
+    "answer": "Lesotho",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked-africa",
+    "answer": "Kenya",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked-asia",
+    "answer": "Nepal",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked-asia",
+    "answer": "Turkmenistan",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-landlocked-asia",
+    "answer": "Thailand",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-french",
+    "answer": "France",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-french",
+    "answer": "Djibouti",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-french",
+    "answer": "Brazil",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-spanish",
+    "answer": "Spain",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-spanish",
+    "answer": "Equatorial Guinea",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-spanish",
+    "answer": "Brazil",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-english",
+    "answer": "New Zealand",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-english",
+    "answer": "Belize",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-english",
+    "answer": "France",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-arabic",
+    "answer": "Egypt",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-arabic",
+    "answer": "Comoros",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-arabic",
+    "answer": "Turkey",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-portuguese",
+    "answer": "Portugal",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-portuguese",
+    "answer": "Timor-Leste",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-portuguese",
+    "answer": "Spain",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-euro",
+    "answer": "France",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-euro",
+    "answer": "Montenegro",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-euro",
+    "answer": "Sweden",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-dollar",
+    "answer": "United States",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-dollar",
+    "answer": "Timor-Leste",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "countries-dollar",
+    "answer": "Canada",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-world",
+    "answer": "Tokyo",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-world",
+    "answer": "Ngerulmud",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-world",
+    "answer": "New York",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-africa",
+    "answer": "Cairo",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-africa",
+    "answer": "Gitega",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-africa",
+    "answer": "Paris",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-asia",
+    "answer": "Tokyo",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-asia",
+    "answer": "Thimphu",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-asia",
+    "answer": "Canberra",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-americas",
+    "answer": "Ottawa",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-americas",
+    "answer": "Paramaribo",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-americas",
+    "answer": "Madrid",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-oceania",
+    "answer": "Wellington",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-oceania",
+    "answer": "Ngerulmud",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-oceania",
+    "answer": "Tokyo",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-landlocked",
+    "answer": "Bern",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-landlocked",
+    "answer": "Maseru",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-landlocked",
+    "answer": "Wellington",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-south-america",
+    "answer": "Brasilia",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-south-america",
+    "answer": "Paramaribo",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-south-america",
+    "answer": "Panama City",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-caribbean",
+    "answer": "Kingston",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-caribbean",
+    "answer": "Roseau",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "categoryId": "capitals-caribbean",
+    "answer": "Belmopan",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
   }
 ]

@@ -18,7 +18,8 @@
     "answers:fetch": "tsx scripts/fetch-category-sources.ts",
     "answers:fetch:spelling": "node scripts/fetch-spelling-words.mjs",
     "answers:fetch:units": "node scripts/build-unit-pack.mjs",
-    "answers:propose": "tsx scripts/propose-answer.ts"
+    "answers:propose": "tsx scripts/propose-answer.ts",
+    "questions:fetch": "tsx scripts/fetch-question-facts.ts"
   },
   "engines": {
     "node": "^22.13.0 || >=24.0.0"

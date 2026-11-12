@@ -11,11 +11,15 @@ import type {
   CompiledCatalogue,
   Correction,
   CoverageCase,
+  FactCorrection,
 } from "../server/answers/catalogue-types.js";
 
 const definitions = await readJson<CategoryDefinition[]>(new URL("definitions.json", contentRoot));
 const corrections = await readJson<Correction[]>(new URL("corrections.json", contentRoot));
 const fixtures = await readJson<CoverageCase[]>(new URL("fixtures.json", contentRoot));
+const factCorrections = await readJson<FactCorrection[]>(
+  new URL("fact-corrections.json", contentRoot),
+);
 requireBenchmark(definitions, fixtures);
 const sources = await loadSnapshots();
 sources.push(qudtSnapshot(seedCategories.find((category) => category.id === "units")!.answers));
@@ -24,7 +28,13 @@ const seeds = new Map(
     .filter((category) => category.id !== "units")
     .map((category) => [category.id, category.answers] as const),
 );
-const { catalogue, reviews } = compileCatalogue(definitions, sources, seeds, corrections);
+const { catalogue, reviews } = compileCatalogue(
+  definitions,
+  sources,
+  seeds,
+  corrections,
+  factCorrections,
+);
 const baseline = baselineCases(definitions, seeds);
 const checks = checkCoverage(catalogue.packs, fixtures);
 const baselineChecks = checkCoverage(catalogue.packs, baseline);

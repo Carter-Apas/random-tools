@@ -10,6 +10,7 @@ export interface Answer {
 
 export interface NormalizationRules {
   plurals?: boolean;
+  pluralFirstWord?: boolean;
   suffixes?: string[];
   ambiguousNames?: "reject" | "consume-all";
   typos?: "canonical" | "aliases" | "off";

@@ -153,5 +153,233 @@
     },
     "evidence": "https://www.wikidata.org/entity/Q2461918",
     "reason": "A prepared dish or pudding, rather than a pasta shape or filled pasta variety."
+  },
+  {
+    "categoryId": "units",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/BU_UK",
+      "label": "Bushel",
+      "aliases": ["bushel"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/BU_UK",
+    "reason": "The unqualified common name is valid for these bushel variants; consume all matching identities."
+  },
+  {
+    "categoryId": "units",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/BU_US",
+      "label": "Bushel",
+      "aliases": ["bushel"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/BU_US",
+    "reason": "The unqualified common name is valid for these bushel variants; consume all matching identities."
+  },
+  {
+    "categoryId": "units",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/BU_US_DRY",
+      "label": "Bushel",
+      "aliases": ["bushel"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/BU_US_DRY",
+    "reason": "The unqualified common name is valid for these bushel variants; consume all matching identities."
+  },
+  {
+    "categoryId": "units-volume",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/BU_UK",
+      "label": "Bushel",
+      "aliases": ["bushel"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/BU_UK",
+    "reason": "The unqualified common name is valid for these bushel variants; consume all matching identities."
+  },
+  {
+    "categoryId": "units-volume",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/BU_US",
+      "label": "Bushel",
+      "aliases": ["bushel"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/BU_US",
+    "reason": "The unqualified common name is valid for these bushel variants; consume all matching identities."
+  },
+  {
+    "categoryId": "units-volume",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/BU_US_DRY",
+      "label": "Bushel",
+      "aliases": ["bushel"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/BU_US_DRY",
+    "reason": "The unqualified common name is valid for these bushel variants; consume all matching identities."
+  },
+  {
+    "categoryId": "units",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/DEG_R",
+      "label": "Degree Rankine",
+      "aliases": ["Rankine"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/DEG_R",
+    "reason": "Accept the conventional shortened unit name as well as Degree Rankine."
+  },
+  {
+    "categoryId": "units-temperature",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://qudt.org/vocab/unit/DEG_R",
+      "label": "Degree Rankine",
+      "aliases": ["Rankine"]
+    },
+    "evidence": "https://qudt.org/vocab/unit/DEG_R",
+    "reason": "Accept the conventional shortened unit name as well as Degree Rankine."
+  },
+  {
+    "categoryId": "units",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "reviewed:fortnight",
+      "label": "Fortnight",
+      "aliases": ["fortnight"]
+    },
+    "evidence": "https://dictionary.cambridge.org/dictionary/english/fortnight",
+    "reason": "A fortnight is a recognised period of fourteen days."
+  },
+  {
+    "categoryId": "units-time",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "reviewed:fortnight",
+      "label": "Fortnight",
+      "aliases": ["fortnight"]
+    },
+    "evidence": "https://dictionary.cambridge.org/dictionary/english/fortnight",
+    "reason": "A fortnight is a recognised period of fourteen days."
+  },
+  {
+    "categoryId": "units",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "reviewed:furlong-per-fortnight",
+      "label": "Furlong per fortnight",
+      "aliases": ["furlong per fortnight", "furlongs per fortnight"]
+    },
+    "evidence": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
+    "reason": "A length per time is a speed unit; this combines the recognised furlong and fortnight units."
+  },
+  {
+    "categoryId": "units-speed",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "reviewed:furlong-per-fortnight",
+      "label": "Furlong per fortnight",
+      "aliases": ["furlong per fortnight", "furlongs per fortnight"]
+    },
+    "evidence": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
+    "reason": "A length per time is a speed unit; this combines the recognised furlong and fortnight units."
+  },
+  {
+    "categoryId": "genres",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q906647",
+      "label": "Dixieland jazz",
+      "aliases": ["Dixieland"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q906647",
+    "reason": "Accept the familiar shortened name of Dixieland jazz."
+  },
+  {
+    "categoryId": "genres-jazz",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q906647",
+      "label": "Dixieland jazz",
+      "aliases": ["Dixieland"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q906647",
+    "reason": "Accept the familiar shortened name of Dixieland jazz."
+  },
+  {
+    "categoryId": "instruments",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q47369",
+      "label": "Harp",
+      "aliases": ["Harp", "harps", "pillar harp"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q47369",
+    "reason": "Restore the generic plucked harp name reserved by the harmonica alias in the older catalogue."
+  },
+  {
+    "categoryId": "instruments-plucked",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q47369",
+      "label": "Harp",
+      "aliases": ["Harp", "harps", "pillar harp"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q47369",
+    "reason": "Restore the generic plucked harp name reserved by the harmonica alias in the older catalogue."
+  },
+  {
+    "categoryId": "instruments-strings",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q47369",
+      "label": "Harp",
+      "aliases": ["Harp", "harps", "pillar harp"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q47369",
+    "reason": "Restore the generic plucked harp name reserved by the harmonica alias in the older catalogue."
+  },
+  {
+    "categoryId": "cheeses",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "reviewed:handkase",
+      "label": "Handkäse",
+      "aliases": ["Handkase", "Hessischer Handkase", "Hessischer Handkas"]
+    },
+    "evidence": "https://www.gov.uk/protected-food-drink-names/hessischer-handkase-slash-hessischer-handkas",
+    "reason": "The registered cheese is a German variety; generic and protected regional names count."
+  },
+  {
+    "categoryId": "cheeses-germany",
+    "status": "approved",
+    "action": "upsert",
+    "answer": {
+      "id": "reviewed:handkase",
+      "label": "Handkäse",
+      "aliases": ["Handkase", "Hessischer Handkase", "Hessischer Handkas"]
+    },
+    "evidence": "https://www.gov.uk/protected-food-drink-names/hessischer-handkase-slash-hessischer-handkas",
+    "reason": "The registered cheese is a German variety; generic and protected regional names count."
   }
 ]

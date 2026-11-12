@@ -1,0 +1,128 @@
+[
+  {
+    "sourceId": "instrument-families",
+    "answerId": "instruments:viola",
+    "facts": {
+      "family": ["strings", "bowed"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q12817873",
+    "reason": "The curated Viola identity predates the source instrument's label split; retain its bowed-string membership."
+  },
+  {
+    "sourceId": "genre-families",
+    "answerId": "genres:metal",
+    "facts": {
+      "family": ["metal", "rock"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q12326776",
+    "reason": "The curated Metal identity represents the broad metal-music family."
+  },
+  {
+    "sourceId": "cheese-origins",
+    "answerId": "cheeses:manchego",
+    "facts": {
+      "origin": ["Q29"]
+    },
+    "evidence": "https://www.quesomanchego.es/en/",
+    "reason": "The curated Manchego identity is the Spanish cheese, whose source PDO identity is separate."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "instruments:flute",
+    "facts": {
+      "family": ["wind", "woodwind"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q11405",
+    "reason": "Preserve the curated general flute identity across source label splits."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "instruments:drums",
+    "facts": {
+      "family": ["percussion"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q128309",
+    "reason": "The curated Drums answer includes drum kits and belongs to percussion."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "instruments:xylophone",
+    "facts": {
+      "family": ["percussion"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q165666",
+    "reason": "A xylophone produces sound from struck bars and belongs to percussion."
+  },
+  {
+    "sourceId": "cheese-origins",
+    "answerId": "cheeses:colby",
+    "facts": {
+      "origin": ["Q30"]
+    },
+    "evidence": "https://adpi.org/wp-content/uploads/2024/11/Cheese-Descriptions-and-Composition_compressed.pdf",
+    "reason": "The American Dairy Products Institute records Colby as originating in Wisconsin."
+  },
+  {
+    "sourceId": "cheese-origins",
+    "answerId": "http://www.wikidata.org/entity/Q1056415",
+    "facts": {
+      "origin": ["Q30"]
+    },
+    "evidence": "https://adpi.org/wp-content/uploads/2024/11/Cheese-Descriptions-and-Composition_compressed.pdf",
+    "reason": "The American Dairy Products Institute records Monterey Jack as a Californian original."
+  },
+  {
+    "sourceId": "cheese-origins",
+    "answerId": "cheeses:wensleydale",
+    "facts": {
+      "origin": ["Q145"]
+    },
+    "evidence": "https://www.gov.uk/protected-food-drink-names/yorkshire-wensleydale",
+    "reason": "The protected Yorkshire Wensleydale cheese originates in Britain."
+  },
+  {
+    "sourceId": "cheese-origins",
+    "answerId": "cheeses:taleggio",
+    "facts": {
+      "origin": ["Q38"]
+    },
+    "evidence": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52022XC0214%2802%29",
+    "reason": "The protected Taleggio variety is Italian; preserve its curated identity."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "http://www.wikidata.org/entity/Q849052",
+    "facts": {
+      "family": ["wind", "woodwind"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q849052",
+    "reason": "The primary instrument description and playing method resolve a missing or misleading subclass chain."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "http://www.wikidata.org/entity/Q585969",
+    "facts": {
+      "family": ["strings", "plucked"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q585969",
+    "reason": "The primary instrument description and playing method resolve a missing or misleading subclass chain."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "http://www.wikidata.org/entity/Q5376376",
+    "facts": {
+      "family": ["strings", "plucked"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q5376376",
+    "reason": "The primary instrument description and playing method resolve a missing or misleading subclass chain."
+  },
+  {
+    "sourceId": "instrument-families",
+    "answerId": "http://www.wikidata.org/entity/Q51290",
+    "facts": {
+      "family": ["wind", "woodwind"]
+    },
+    "evidence": "https://www.wikidata.org/wiki/Q51290",
+    "reason": "The primary instrument description and playing method resolve a missing or misleading subclass chain."
+  }
+]

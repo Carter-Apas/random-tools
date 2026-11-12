@@ -27,7 +27,7 @@ const setup = (count = 3) => {
 
 test("category aliases resolve to their identity or an explicit group of valid identities", () => {
   for (const category of categories) {
-    if (category.id === "units") continue;
+    if (category.id === "units" || category.family === "units") continue;
     const aliases = new Set<string>();
     for (const answer of category.answers) {
       assert.ok(answer.label.length);
@@ -325,6 +325,38 @@ test("every category can open a round regardless of its vegetable", () => {
     changeCategory(room);
     assert.equal(room.category, category);
   }
+});
+
+test("the question deck visits the whole pool without repeats and changes vegetable every time", () => {
+  const { room } = setup();
+  const seen = new Set([room.category!.id]);
+  for (let i = 1; i < categories.length; i += 1) {
+    const previous = room.category!;
+    changeCategory(room);
+    assert.equal(seen.has(room.category!.id), false);
+    assert.notEqual(room.category!.vegetable, previous.vegetable);
+    seen.add(room.category!.id);
+  }
+  assert.equal(seen.size, categories.length);
+  assert.equal(room.deck.length, 0);
+  const previous = room.category!;
+  changeCategory(room);
+  assert.notEqual(room.category!.vegetable, previous.vegetable);
+});
+
+test("rematches preserve unused questions and prefer a different topic when available", () => {
+  const { room } = setup();
+  const units = categories.find((item) => item.id === "units")!;
+  const length = categories.find((item) => item.id === "units-length")!;
+  const fruit = categories.find((item) => item.id === "fruit")!;
+  room.category = units;
+  room.deck = [{ ...length, vegetable: "carrot" }, fruit];
+  changeCategory(room);
+  assert.equal(room.category.id, "fruit");
+  room.status = "finished";
+  startGame(room, 200000);
+  assert.equal(room.category!.id, "units-length");
+  assert.equal(room.deck.length, 0);
 });
 
 test("a shared valid name passes once and consumes every matching identity without revealing candidates", () => {

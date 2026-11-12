@@ -4,7 +4,7 @@ import { categories, findAnswer } from "./categories.js";
 import type { Category } from "./categories.js";
 
 import { paces } from "../shared/types.js";
-import type { Pace, Player, Profile, RoomView } from "../shared/types.js";
+import type { Pace, Player, Profile, RoomView, Vegetable } from "../shared/types.js";
 export const travelMs = 1200;
 export const recoveryMs = 2000;
 
@@ -115,16 +115,40 @@ const shuffledCategories = (): Category[] => {
   return deck;
 };
 
+const nextQuestionIndex = (room: Room): number => {
+  const previous = room.category;
+  if (!previous) return 0;
+
+  const differentVegetable = (item: Category) => item.vegetable !== previous.vegetable;
+
+  const family = previous.family ?? previous.id;
+  const freshTopic = room.deck.findIndex(
+    (item) => differentVegetable(item) && (item.family ?? item.id) !== family,
+  );
+  if (freshTopic >= 0) return freshTopic;
+  return Math.max(0, room.deck.findIndex(differentVegetable));
+};
+
+const questionVegetable = (question: Category, previous: Category | null): Category => {
+  if (question.vegetable !== previous?.vegetable) return question;
+  const vegetables: Vegetable[] = [
+    "potato",
+    "carrot",
+    "beetroot",
+    "turnip",
+    "pumpkin",
+    "corn",
+    "aubergine",
+    "tomato",
+  ];
+  const index = vegetables.indexOf(question.vegetable);
+  return { ...question, vegetable: vegetables[(index + 1) % vegetables.length] };
+};
+
 export const changeCategory = (room: Room): void => {
   if (!room.deck.length) room.deck = shuffledCategories();
-  let index = room.category
-    ? room.deck.findIndex((item) => item.vegetable !== room.category?.vegetable)
-    : 0;
-  if (index < 0) {
-    room.deck = [...categories].filter((item) => item.vegetable !== room.category?.vegetable);
-    index = randomInt(room.deck.length);
-  }
-  room.category = room.deck.splice(index, 1)[0];
+  const next = room.deck.splice(nextQuestionIndex(room), 1)[0];
+  room.category = questionVegetable(next, room.category);
   room.used = [];
   room.usedIds = [];
   room.categoryGoal = Math.min(6, room.category.answers.length);
@@ -180,7 +204,6 @@ export const startGame = (room: Room, now: number): void => {
   room.status = "playing";
   room.round += 1;
   room.winnerId = null;
-  room.deck = [];
   room.category = null;
   room.events = [];
   changeCategory(room);

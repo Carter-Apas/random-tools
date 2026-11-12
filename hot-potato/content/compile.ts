@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
 
+import { correctFacts } from "./facts.js";
+
 import { AnswerRegistry } from "../server/answers/index.js";
 import { normalize } from "../server/answers/normalize.js";
 import type { Answer } from "../server/answers/types.js";
@@ -9,6 +11,7 @@ import type {
   CompiledPack,
   Correction,
   CoverageCase,
+  FactCorrection,
   SourceSnapshot,
 } from "../server/answers/catalogue-types.js";
 
@@ -41,7 +44,10 @@ const selectRecords = (definition: CategoryDefinition, snapshot: SourceSnapshot)
     .map(({ facts: _facts, ...answer }) => ({
       ...answer,
       aliases: unique([answer.label, ...answer.aliases].filter(validName)),
-      evidence: [{ sourceId: snapshot.source.id, url: answer.source ?? snapshot.source.url }],
+      evidence: [
+        ...(answer.evidence ?? []),
+        { sourceId: snapshot.source.id, url: answer.source ?? snapshot.source.url },
+      ],
     }));
 
 const matchSeed = (answers: Answer[], seed: Answer, selected: Set<string>): Answer | undefined => {
@@ -253,19 +259,32 @@ export const compileCatalogue = (
   snapshots: SourceSnapshot[],
   seeds: Map<string, readonly Answer[]>,
   corrections: Correction[],
+  factCorrections: FactCorrection[] = [],
 ) => {
   if (new Set(definitions.map((definition) => definition.id)).size !== definitions.length)
     throw new Error("Duplicate category definition");
   const compiled = definitions.map((definition) => {
     const snapshot = snapshots.find((item) => item.source.id === definition.select.source);
     if (!snapshot) throw new Error(`Missing source ${definition.select.source}`);
-    return compilePack(definition, snapshot, seeds.get(definition.id) ?? [], corrections);
+    return compilePack(
+      definition,
+      correctFacts(snapshot, factCorrections),
+      seeds.get(definition.id) ?? [],
+      corrections,
+    );
   });
   const packs = compiled.map((item) => item.pack);
   const sources = snapshots
     .map((snapshot) => snapshot.source)
     .sort((a, b) => a.id.localeCompare(b.id));
   const internalSources = [
+    {
+      id: "reviewed-facts",
+      name: "Reviewed classification facts",
+      url: "repo:content/fact-corrections.json",
+      content: factCorrections,
+      license: "LicenseRef-ReviewedFacts",
+    },
     {
       id: "legacy-curation",
       name: "Previously curated answers",
