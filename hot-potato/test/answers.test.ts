@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import { AnswerRegistry } from "../server/answers/index.js";
-import { categories, findAnswer } from "../server/categories.js";
+import { questions, findAnswer } from "../server/questions.js";
 
-const units = categories.find((category) => category.id === "units")!;
+const units = questions.find((question) => question.id === "units")!;
 
 test("British and American singulars and plurals map to identical entities", () => {
   for (const words of [
@@ -54,7 +54,7 @@ test("the registry refuses ambiguous aliases and arbitrary fuzzy guesses", () =>
   const registry = new AnswerRegistry();
   registry.register({
     id: "fixture",
-    categoryId: "fixture",
+    questionId: "fixture",
     answers: [
       { id: "one", label: "First", aliases: ["shared"] },
       { id: "two", label: "Second", aliases: ["shared"] },
@@ -65,9 +65,9 @@ test("the registry refuses ambiguous aliases and arbitrary fuzzy guesses", () =>
   assert.equal(registry.find("fixture", "First")?.id, "one");
 });
 
-test("plural handling is category-aware and never changes proper names", () => {
-  const herbs = categories.find((category) => category.id === "herbs")!;
-  const rivers = categories.find((category) => category.id === "rivers")!;
+test("plural handling is question-aware and never changes proper names", () => {
+  const herbs = questions.find((question) => question.id === "herbs")!;
+  const rivers = questions.find((question) => question.id === "rivers")!;
   assert.equal(findAnswer(herbs, "bay leaves")?.id, findAnswer(herbs, "bay leaf")?.id);
   assert.equal(findAnswer(rivers, "Niles"), undefined);
   assert.equal(findAnswer(rivers, "Nile River")?.id, findAnswer(rivers, "Nile")?.id);

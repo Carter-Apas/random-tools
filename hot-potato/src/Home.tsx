@@ -21,9 +21,9 @@ const previewRoom: RoomView = {
   turn: 0,
   activeId: null,
   winnerId: null,
-  category: null,
+  question: null,
   used: [],
-  categoryGoal: 0,
+  questionGoal: 0,
   deadline: 0,
   turnDurationMs: 0,
   turnStartedAt: 0,
@@ -192,7 +192,7 @@ export const Home = ({
             <img src="/assets/carrot.png" alt="" />
             <p>
               <strong>Think fresh.</strong>
-              <span>Name something in the category.</span>
+              <span>Name something in the question.</span>
             </p>
           </div>
           <div>

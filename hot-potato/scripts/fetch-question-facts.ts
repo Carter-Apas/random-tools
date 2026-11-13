@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { Parser, Store, DataFactory } from "n3";
 
 import { publishedPacks } from "../server/answers/catalogue.js";
-import { seedCategories } from "../server/answers/seeds.js";
+import type { Answer } from "../server/answers/types.js";
 import { normalize } from "../server/answers/normalize.js";
 import { fetchSourceText } from "../content/http.js";
 import { readJson, saveSnapshot } from "../content/io.js";
@@ -16,7 +16,7 @@ import {
 import type { CatalogueRecord } from "../server/answers/catalogue-types.js";
 
 const collections = await readJson<
-  { id: string; categoryId: string; minimum: number; where: string }[]
+  { id: string; questionId: string; minimum: number; where: string }[]
 >(new URL("../content/question-facts.json", import.meta.url));
 const requested = new Set(process.argv.slice(2));
 const validIds = new Set([
@@ -29,8 +29,10 @@ for (const id of requested)
   if (!validIds.has(id)) throw new Error(`Unknown question-fact source: ${id}`);
 
 const selected = (id: string) => requested.size === 0 || requested.has(id);
-const answers = (id: string) =>
-  publishedPacks.get(id)?.answers ?? seedCategories.find((category) => category.id === id)!.answers;
+const legacy = await readJson<Record<string, Answer[]>>(
+  new URL("../content/legacy-answers.json", import.meta.url),
+);
+const answers = (id: string) => publishedPacks.get(id)?.answers ?? legacy[id];
 const revision = "fa4f62182d19ff4f8b325cde6387c9cd9d80955a";
 const countryUrl = `https://raw.githubusercontent.com/mledoze/countries/${revision}/countries.json`;
 const get = async (id: string, url: string): Promise<string> => {
@@ -139,7 +141,7 @@ for (const collection of collections.filter((item) => selected(item.id))) {
   url.searchParams.set("query", query);
   url.searchParams.set("format", "json");
   const body = await get(collection.id, url.href);
-  const base = answers(collection.categoryId);
+  const base = answers(collection.questionId);
   const records = parseClassificationFacts(body, base);
   const source = factSource(
     collection.id,

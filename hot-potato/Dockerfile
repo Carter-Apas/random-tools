@@ -7,6 +7,7 @@ COPY src ./src
 COPY shared ./shared
 COPY server ./server
 COPY public ./public
+COPY scripts/copy-catalogue.mjs ./scripts/copy-catalogue.mjs
 RUN npm run build
 
 FROM node:24-alpine AS dependencies

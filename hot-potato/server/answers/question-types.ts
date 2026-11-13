@@ -1,9 +1,8 @@
 import type { Answer, NormalizationRules } from "./types.js";
 
-import type { CategoryView } from "../../shared/types.js";
+import type { QuestionView } from "../../shared/types.js";
 
-export interface Category extends Omit<CategoryView, "total"> {
-  family?: string;
+export interface Question extends Omit<QuestionView, "total"> {
   answers: Answer[];
   normalization?: NormalizationRules;
   answerPackVersion?: string;

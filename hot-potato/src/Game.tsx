@@ -3,9 +3,10 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { Arena } from "./Arena";
 import { AnswerBox } from "./AnswerBox";
 import { TurnTimer } from "./TurnTimer";
+import { TurnHeat } from "./TurnHeat";
 import { useClock } from "./motion";
 
-import type { CategoryView, RoomView } from "../shared/types";
+import type { QuestionView, RoomView } from "../shared/types";
 import { paces } from "../shared/types";
 
 const Lobby = ({
@@ -88,8 +89,8 @@ export const Game = ({
 }) => {
   const now = useClock(room.serverTime);
   const playing = room.status === "playing";
-  if (playing && room.category)
-    return <Play room={room} category={room.category} you={you} now={now} connected={connected} />;
+  if (playing && room.question)
+    return <Play room={room} question={room.question} you={you} now={now} connected={connected} />;
   return (
     <main className="game-layout">
       <div className="game-main">
@@ -110,7 +111,7 @@ export const Game = ({
           </span>
           <span>
             <img src="/assets/carrot.png" alt="" />
-            Rotating categories
+            Rotating questions
           </span>
           <span>
             <img src="/assets/fire-still.png" alt="" />
@@ -124,13 +125,13 @@ export const Game = ({
 
 const Play = ({
   room,
-  category,
+  question,
   you,
   now,
   connected,
 }: {
   room: RoomView;
-  category: CategoryView;
+  question: QuestionView;
   you: string;
   now: number;
   connected: boolean;
@@ -158,13 +159,14 @@ const Play = ({
   }, []);
   return (
     <main className="play-layout">
+      <TurnHeat room={room} you={you} now={now} connected={connected} />
       <section className="panel play-question" aria-labelledby="current-question">
-        <div className="play-category">
-          <img src={`/assets/${category.vegetable}.png`} alt="" />
-          <span>{category.name}</span>
+        <div className="play-topic">
+          <img src={`/assets/${question.vegetable}.png`} alt="" />
+          <span>{question.name}</span>
         </div>
-        <h2 id="current-question" key={category.id}>
-          {category.prompt}
+        <h2 id="current-question" key={question.id}>
+          {question.prompt}
         </h2>
         <QuestionDetails room={room} />
         <TurnTimer room={room} now={now} />
@@ -182,7 +184,7 @@ const Play = ({
         <div className="picked-heading">
           <strong>Already picked</strong>
           <span>
-            {room.used.length} / {room.categoryGoal}
+            {room.used.length} / {room.questionGoal}
           </span>
         </div>
         <div className="picked-answers">
@@ -216,17 +218,17 @@ const QuestionDetails = ({ room }: { room: RoomView }) => {
         type="button"
         className="question-info"
         onClick={() => dialog.current?.showModal()}
-        aria-label="Category hint and picked answers"
+        aria-label="Question hint and picked answers"
       >
         <span aria-hidden="true">ⓘ</span>
         <span>
-          {room.used.length}/{room.categoryGoal} picked
+          {room.used.length}/{room.questionGoal} picked
         </span>
       </button>
       <dialog
         className="panel play-details"
         ref={dialog}
-        aria-labelledby="category-details-title"
+        aria-labelledby="question-details-title"
         onClick={(event) => {
           if (event.target === event.currentTarget) close();
         }}
@@ -235,12 +237,12 @@ const QuestionDetails = ({ room }: { room: RoomView }) => {
           type="button"
           className="dialog-close"
           onClick={close}
-          aria-label="Close category details"
+          aria-label="Close question details"
         >
           ×
         </button>
-        <h2 id="category-details-title">{room.category?.prompt}</h2>
-        <p>{room.category?.hint}</p>
+        <h2 id="question-details-title">{room.question?.prompt}</h2>
+        <p>{room.question?.hint}</p>
         <h3>Already picked</h3>
         <div className="picked-answers">
           {room.used.length ? (
@@ -250,7 +252,7 @@ const QuestionDetails = ({ room }: { room: RoomView }) => {
           )}
         </div>
         <p>
-          New category after {room.categoryGoal} fresh answers or a roast. Each player gets a fresh
+          New question after {room.questionGoal} fresh answers or a roast. Each player gets a fresh
           timer.
         </p>
         <button type="button" className="pixel-button primary" onClick={close}>

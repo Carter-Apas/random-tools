@@ -6,20 +6,21 @@
   "scripts": {
     "dev": "concurrently -k 'PORT=5188 tsx watch server/index.ts' 'vite --host 0.0.0.0'",
     "start": "node dist/server/server/index.js",
-    "build": "tsc --noEmit && vite build && tsc -p tsconfig.server.json",
+    "build": "tsc --noEmit && vite build && tsc -p tsconfig.server.json && node scripts/copy-catalogue.mjs",
     "test": "tsx --test test/*.test.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test:browser": "npm run build && node test/browser.mjs && node test/viewport.mjs",
-    "answers:build": "tsx scripts/build-category-packs.ts",
-    "answers:check": "tsx scripts/build-category-packs.ts --check",
+    "answers:build": "tsx scripts/build-question-packs.ts",
+    "answers:check": "tsx scripts/build-question-packs.ts --check",
     "answers:fetch": "tsx scripts/fetch-category-sources.ts",
     "answers:fetch:spelling": "node scripts/fetch-spelling-words.mjs",
     "answers:fetch:units": "node scripts/build-unit-pack.mjs",
     "answers:propose": "tsx scripts/propose-answer.ts",
-    "questions:fetch": "tsx scripts/fetch-question-facts.ts"
+    "questions:fetch": "tsx scripts/fetch-question-facts.ts",
+    "datasets:fetch": "python3 scripts/fetch-datasets.py"
   },
   "engines": {
     "node": "^22.13.0 || >=24.0.0"

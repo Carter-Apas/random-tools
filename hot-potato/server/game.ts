@@ -1,7 +1,7 @@
 import { randomInt, randomUUID } from "node:crypto";
 
-import { categories, findAnswer } from "./categories.js";
-import type { Category } from "./categories.js";
+import { questions, findAnswer } from "./questions.js";
+import type { Question } from "./questions.js";
 
 import { paces } from "../shared/types.js";
 import type { Pace, Player, Profile, RoomView, Vegetable } from "../shared/types.js";
@@ -13,11 +13,11 @@ export interface Member extends Player {
   disconnectedAt: number | null;
 }
 
-export interface Room extends Omit<RoomView, "players" | "serverTime" | "category"> {
+export interface Room extends Omit<RoomView, "players" | "serverTime" | "question"> {
   players: Member[];
   usedIds: string[];
-  category: Category | null;
-  deck: Category[];
+  question: Question | null;
+  deck: Question[];
   readyAt: number;
   botAt: number;
   updatedAt: number;
@@ -31,8 +31,9 @@ export const addEvent = (
   room: Room,
   kind: RoomView["events"][number]["kind"],
   text: string,
+  acceptedAnswer?: RoomView["events"][number]["acceptedAnswer"],
 ): void => {
-  room.events.push({ id: (room.events.at(-1)?.id ?? 0) + 1, kind, text });
+  room.events.push({ id: (room.events.at(-1)?.id ?? 0) + 1, kind, text, acceptedAnswer });
   room.events = room.events.slice(-8);
 };
 
@@ -58,11 +59,11 @@ export const makeRoom = (code: string, host: Member, pace: Pace, now: number): R
   turn: 0,
   activeId: null,
   winnerId: null,
-  category: null,
+  question: null,
   deck: [],
   used: [],
   usedIds: [],
-  categoryGoal: 0,
+  questionGoal: 0,
   deadline: 0,
   turnDurationMs: 0,
   turnStartedAt: 0,
@@ -86,7 +87,7 @@ export const publicRoom = (room: Room, now: number): RoomView => ({
   activeId: room.activeId,
   winnerId: room.winnerId,
   used: [...room.used],
-  categoryGoal: room.categoryGoal,
+  questionGoal: room.questionGoal,
   deadline: room.deadline,
   turnDurationMs: room.turnDurationMs,
   turnStartedAt: room.turnStartedAt,
@@ -95,41 +96,51 @@ export const publicRoom = (room: Room, now: number): RoomView => ({
   move: room.move,
   events: [...room.events],
   players: room.players.map(({ token: _token, disconnectedAt: _at, ...player }) => player),
-  category: room.category && {
-    id: room.category.id,
-    name: room.category.name,
-    prompt: room.category.prompt,
-    hint: room.category.hint,
-    vegetable: room.category.vegetable,
-    total: room.category.answers.length,
+  question: room.question && {
+    id: room.question.id,
+    datasetId: room.question.datasetId,
+    name: room.question.name,
+    prompt: room.question.prompt,
+    hint: room.question.hint,
+    vegetable: room.question.vegetable,
+    total: room.question.answers.length,
   },
   serverTime: now,
 });
 
-const shuffledCategories = (): Category[] => {
-  const deck = [...categories];
-  for (let i = deck.length - 1; i > 0; i -= 1) {
-    const j = randomInt(i + 1);
-    [deck[i], deck[j]] = [deck[j], deck[i]];
+const shuffledQuestions = (): Question[] => {
+  const shuffle = <T>(deck: T[]): T[] => {
+    for (let i = deck.length - 1; i > 0; i -= 1) {
+      const j = randomInt(i + 1);
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    return deck;
+  };
+
+  const groups = new Map<string, Question[]>();
+  for (const question of questions) {
+    const group = groups.get(question.datasetId) ?? [];
+    group.push(question);
+    groups.set(question.datasetId, group);
   }
+  const pools = [...groups.values()].map((pool) => shuffle(pool));
+  const deck: Question[] = [];
+  while (pools.some((pool) => pool.length))
+    for (const pool of shuffle(pools.filter((pool) => pool.length))) deck.push(pool.pop()!);
   return deck;
 };
 
 const nextQuestionIndex = (room: Room): number => {
-  const previous = room.category;
+  const previous = room.question;
   if (!previous) return 0;
 
-  const differentVegetable = (item: Category) => item.vegetable !== previous.vegetable;
-
-  const family = previous.family ?? previous.id;
-  const freshTopic = room.deck.findIndex(
-    (item) => differentVegetable(item) && (item.family ?? item.id) !== family,
+  return Math.max(
+    0,
+    room.deck.findIndex((item) => item.datasetId !== previous.datasetId),
   );
-  if (freshTopic >= 0) return freshTopic;
-  return Math.max(0, room.deck.findIndex(differentVegetable));
 };
 
-const questionVegetable = (question: Category, previous: Category | null): Category => {
+const questionVegetable = (question: Question, previous: Question | null): Question => {
   if (question.vegetable !== previous?.vegetable) return question;
   const vegetables: Vegetable[] = [
     "potato",
@@ -145,13 +156,13 @@ const questionVegetable = (question: Category, previous: Category | null): Categ
   return { ...question, vegetable: vegetables[(index + 1) % vegetables.length] };
 };
 
-export const changeCategory = (room: Room): void => {
-  if (!room.deck.length) room.deck = shuffledCategories();
+export const changeQuestion = (room: Room): void => {
+  if (!room.deck.length) room.deck = shuffledQuestions();
   const next = room.deck.splice(nextQuestionIndex(room), 1)[0];
-  room.category = questionVegetable(next, room.category);
+  room.question = questionVegetable(next, room.question);
   room.used = [];
   room.usedIds = [];
-  room.categoryGoal = Math.min(6, room.category.answers.length);
+  room.questionGoal = Math.min(6, room.question.answers.length);
 };
 
 export const passTo = (room: Room, player: Member, now: number, from: string | null): void => {
@@ -204,9 +215,8 @@ export const startGame = (room: Room, now: number): void => {
   room.status = "playing";
   room.round += 1;
   room.winnerId = null;
-  room.category = null;
   room.events = [];
-  changeCategory(room);
+  changeQuestion(room);
   addEvent(room, "start", `Round ${room.round} is growing. Pass it clockwise!`);
   passTo(room, connected[0], now, null);
 };
@@ -227,7 +237,7 @@ const charPlayer = (room: Room, now: number): void => {
   );
 };
 
-const validateTurn = (room: Room, id: string, turn: number, now: number): Category => {
+const validateTurn = (room: Room, id: string, turn: number, now: number): Question => {
   if (room.status !== "playing" || room.phase !== "answering")
     gameError("Wait for the vegetable to reach you.");
   if (room.deadline <= now) {
@@ -235,7 +245,7 @@ const validateTurn = (room: Room, id: string, turn: number, now: number): Catego
     gameError("Too hot! Your turn timer ran out.");
   }
   if (id !== room.activeId || turn !== room.turn) gameError("It's another gardener's turn.");
-  return room.category ?? gameError("The next category is on its way.");
+  return room.question ?? gameError("The next question is on its way.");
 };
 
 export const submitAnswer = (
@@ -245,9 +255,9 @@ export const submitAnswer = (
   turn: number,
   now: number,
 ): string => {
-  const category = validateTurn(room, id, turn, now);
+  const question = validateTurn(room, id, turn, now);
   room.draft = raw.slice(0, 100);
-  const answer = findAnswer(category, raw);
+  const answer = findAnswer(question, raw);
   if (!answer) gameError("Wrong answer. Try again!");
   const consumed = answer.consumes ?? [answer.id ?? answer.label];
   if (consumed.some((id) => room.usedIds.includes(id)))
@@ -258,9 +268,10 @@ export const submitAnswer = (
     room,
     "answer",
     `${room.players.find((player) => player.id === id)?.name}: ${answer.label}`,
+    { playerId: id, label: answer.label, questionId: question.id, at: now },
   );
-  if (room.used.length >= room.categoryGoal) {
-    changeCategory(room);
+  if (room.used.length >= room.questionGoal) {
+    changeQuestion(room);
   }
   const next = nextPlayer(room, id);
   if (next) passTo(room, next, now, id);
@@ -271,18 +282,18 @@ const afterBurn = (room: Room, now: number): void => {
   const previous = room.activeId;
   const next = nextPlayer(room, previous);
   if (!next) return;
-  changeCategory(room);
+  changeQuestion(room);
   passTo(room, next, now, previous);
 };
 
 const playBot = (room: Room, now: number): boolean => {
   const player = room.players.find((item) => item.id === room.activeId);
-  if (!player?.bot || !room.category || now < room.botAt) return false;
+  if (!player?.bot || !room.question || now < room.botAt) return false;
   room.botAt = Number.POSITIVE_INFINITY;
   if (Math.random() < 0.3) return false;
-  const category = room.category;
-  const answers = category.answers.filter((candidate) => {
-    const answer = findAnswer(category, candidate.label);
+  const question = room.question;
+  const answers = question.answers.filter((candidate) => {
+    const answer = findAnswer(question, candidate.label);
     if (!answer) return false;
     return !(answer.consumes ?? [answer.id ?? answer.label]).some((id) =>
       room.usedIds.includes(id),

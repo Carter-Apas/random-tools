@@ -1,61 +1,46 @@
 # Answer validation
 
-Answer catalogues, aliases, provenance, source versions and identity groups stay
-on the server. Clients receive the prompt, verdict and accepted display labels.
-Popularity is not an admission criterion.
-
-See [the content pipeline](../../content/README.md) for adapters, snapshot updates,
-category definitions, coverage checks and reviewed corrections.
+Datasets own entities, aliases, properties and source evidence. Question packs
+select subsets of those datasets. The runtime loads only the published packs;
+there is no separate seed-category fallback, network verifier or LLM judge.
+See [datasets and questions](../../content/README.md) for the content model,
+refresh commands, property filters and correction workflow.
 
 ```sh
 npm run answers:build
 npm run answers:check
 ```
 
-Both commands are offline. They compile ten category packs from checked-in
-sources and publish `data/catalogue.json` only after validation. Refresh data
-separately with `npm run answers:fetch`; refresh the pinned QUDT import with
-`npm run answers:fetch:units`.
+Both commands compile checked-in snapshots offline. The schema-3 catalogue
+stores each dataset's used entities once, with question packs referencing stable
+IDs. `catalogue-format.ts` validates and materializes those references on the
+server. The browser receives the current question, boundary hint and accepted
+labels, while answer banks, evidence and identities stay private.
 
-## Runtime modules
+| Module                                | Responsibility                                                                 |
+| ------------------------------------- | ------------------------------------------------------------------------------ |
+| `catalogue-types.ts`                  | Dataset, question, snapshot, correction and compiled-pack contracts            |
+| `catalogue-format.ts`, `catalogue.ts` | Deduplicated storage, reference validation and catalogue loading               |
+| `question-types.ts`                   | Runtime question with its dataset identity and selected answers                |
+| `normalize.ts`                        | Category-aware inflections, accents, punctuation, suffixes and exact symbols   |
+| `index.ts`, `spelling.ts`             | Exact lookup, shared names and constrained typo tolerance                      |
+| `../questions.ts`                     | Materialize published questions and protect meaningful words across questions  |
+| `../game.ts`                          | Dataset-aware question rotation, identity consumption and authoritative timing |
 
-| Module                           | Responsibility                                                                           |
-| -------------------------------- | ---------------------------------------------------------------------------------------- |
-| `types.ts`, `catalogue-types.ts` | Entity, provider, source, definition and catalogue contracts                             |
-| `catalogue.ts`                   | Validate and load the published catalogue without network access                         |
-| `normalize.ts`                   | Category-specific plurals/suffixes, accents and punctuation; separate scientific symbols |
-| `index.ts`                       | Indexed lookup and explicit handling for names shared by admitted entities               |
-| `units.ts`, `prefixes.ts`        | Preserve familiar unit names and constrain SI-prefix combinations during content builds  |
-| `server/categories.ts`           | Combine packs with remaining curated categories                                          |
-| `server/game.ts`                 | Consume identities, prevent repeated aliases and own timing                              |
+Providers with `ambiguousNames: "consume-all"` accept names shared by admitted
+entities and consume all matching IDs together. Scientific symbol collisions
+reject; symbol capitalization remains meaningful. Exact names, aliases and
+symbols precede spelling tolerance. A typo must have a unique nearest identity;
+meaningful dictionary words and known answers from other questions stay protected.
+Four-letter names have stricter rules and shorter names remain exact. Job datasets
+can explicitly enable singular forms of plural occupation names.
 
-Shared names are accepted only when a provider explicitly enables
-`ambiguousNames: "consume-all"`. The result contains all matching IDs and the
-game consumes them together. Reusing one through a specific alias is rejected.
-Candidates and identity lists are not returned to the browser. Symbol collisions
-still fail closed and symbol case remains meaningful. Other providers default
-to ambiguous-name rejection. Fuzzy guesses and autocomplete are not enabled.
+The QUDT import and constrained SI-prefix grammar retain regional spellings,
+plurals and exact scientific symbols. Source provenance and licenses accompany
+the catalogue; public attribution is available in `/licenses/data.html`.
 
-QUDT contains 2,733 non-deprecated source entities, extended by valid SI prefixes
-to 3,243 units. Litres/liters, metres/meters and their plurals share identities.
-The original pinned revision and response hash remain in `data/units.json`;
-attribution and license ship in `public/licenses/qudt.txt`.
-
-Other imports use Wikidata typed entities/names (CC0) and NASA StarChild's
-constellation table (US government facts). Source URLs, hashes and captured
-revisions accompany the server catalogue. Additional source notes ship in
-`public/licenses/answer-sources.txt`.
-
-## Misses and future verification
-
-The pipeline provides a maintainer suggestion queue and reviewed corrections.
-There is no live verifier, in-game reporting UI or LLM judge. An unmatched
-submission still follows the two-second penalty rule. A source miss does not
-prove real-world invalidity; open-ended categories have no exhaustive guarantee.
-
-A future `AnswerVerifier` should return `accepted(entity, evidence)`,
-`invalid(evidence)` or `unverified(reason)` for the submitted answer alone.
-It must not return related answers or suggestions. Requests need a bounded
-per-turn allowance, server receipt timestamps, caching and stale-turn rejection.
-Network failure or ambiguity must not trigger an extra wrong-answer penalty.
-That timing policy remains separate from content imports.
+Open-ended question banks remain finite. A missing answer can be plausible in
+real life. Maintainers can propose an evidenced dataset correction; approved
+properties enter the dataset before question filters run. Pending suggestions
+have no gameplay effect. Incorrect or repeated answers keep the vegetable with
+the same player and leave the deadline unchanged.

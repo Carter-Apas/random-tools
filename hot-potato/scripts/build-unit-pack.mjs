@@ -67,7 +67,7 @@ if (answers.length < 1000) throw new Error("QUDT pack unexpectedly small; refusi
 const pack = {
   schemaVersion: 1,
   id: "qudt-units",
-  categoryId: "units",
+  questionId: "units",
   source: {
     name: "QUDT units vocabulary",
     url,

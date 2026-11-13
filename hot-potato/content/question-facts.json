@@ -1,25 +1,25 @@
 [
   {
     "id": "instrument-families",
-    "categoryId": "instruments",
+    "questionId": "instruments",
     "minimum": 1000,
     "where": "VALUES (?root ?value) { (wd:Q1798603 \"strings\") (wd:Q173453 \"wind\") (wd:Q133163 \"percussion\") (wd:Q181247 \"woodwind\") (wd:Q180744 \"brass\") (wd:Q52954 \"keyboard\") (wd:Q192096 \"bowed\") (wd:Q230262 \"plucked\") (wd:Q1327500 \"electronic\") } ?item wdt:P279* ?root. BIND(\"family\" AS ?property)"
   },
   {
     "id": "genre-families",
-    "categoryId": "genres",
+    "questionId": "genres",
     "minimum": 1000,
     "where": "VALUES (?root ?value) { (wd:Q11399 \"rock\") (wd:Q12326776 \"metal\") (wd:Q3071 \"punk\") (wd:Q8341 \"jazz\") (wd:Q9778 \"electronic\") (wd:Q9759 \"blues\") (wd:Q11401 \"hiphop\") } ?item wdt:P279* ?root. BIND(\"family\" AS ?property)"
   },
   {
     "id": "cheese-origins",
-    "categoryId": "cheeses",
+    "questionId": "cheeses",
     "minimum": 300,
     "where": "?item wdt:P279* wd:Q10943; wdt:P495/wdt:P17? ?value. VALUES ?value { wd:Q142 wd:Q38 wd:Q39 wd:Q145 wd:Q29 wd:Q55 wd:Q183 wd:Q30 wd:Q41 wd:Q45 } BIND(\"origin\" AS ?property)"
   },
   {
     "id": "moon-parents",
-    "categoryId": "moons",
+    "questionId": "moons",
     "minimum": 150,
     "where": "VALUES ?value { wd:Q2 wd:Q111 wd:Q319 wd:Q193 wd:Q324 wd:Q332 wd:Q339 wd:Q558 wd:Q422 wd:Q407 } ?item wdt:P397 ?value; wdt:P31/wdt:P279* wd:Q2537. BIND(\"parent\" AS ?property)"
   }

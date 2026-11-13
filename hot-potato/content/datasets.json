@@ -1,0 +1,332 @@
+[
+  {
+    "id": "food",
+    "name": "Food",
+    "description": "Ingredients and foods with culinary uses and provenance. Fruit and vegetable are culinary classifications.",
+    "imports": [
+      {
+        "source": "wikidata-pasta",
+        "facts": {
+          "kind": ["pasta"]
+        },
+        "legacyKey": "pasta"
+      },
+      {
+        "source": "wikidata-cheeses",
+        "legacyKey": "cheeses",
+        "facts": {
+          "kind": ["cheese"]
+        }
+      },
+      {
+        "source": "cheese-origins",
+        "facts": {
+          "kind": ["cheese"]
+        },
+        "mode": "enrich"
+      }
+    ],
+    "minimumRecords": 1500,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "animals",
+    "name": "Animals",
+    "description": "Animals with pet/farm roles, animal groups, native regions and extinction status.",
+    "imports": [],
+    "minimumRecords": 60,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "plants",
+    "name": "Plants",
+    "description": "Trees and garden flowers with plant types.",
+    "imports": [],
+    "minimumRecords": 60,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "geography",
+    "name": "Geography",
+    "description": "Countries, capitals, rivers, seas and mountain ranges with location and membership facts.",
+    "imports": [
+      {
+        "source": "country-properties",
+        "facts": {
+          "kind": ["country"],
+          "unMember": ["true"]
+        }
+      },
+      {
+        "source": "capital-properties",
+        "facts": {
+          "kind": ["capital"],
+          "unMember": ["true"]
+        }
+      },
+      {
+        "source": "wikidata-seas",
+        "facts": {
+          "kind": ["sea"]
+        },
+        "legacyKey": "seas"
+      }
+    ],
+    "minimumRecords": 500,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "units",
+    "name": "Measurements",
+    "description": "Measurement units with their physical quantities and exact symbols.",
+    "imports": [
+      {
+        "source": "qudt-units"
+      },
+      {
+        "source": "unit-quantities",
+        "mode": "enrich"
+      }
+    ],
+    "minimumRecords": 3000,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "elements",
+    "name": "Elements",
+    "description": "All chemical elements with group, period and state properties.",
+    "imports": [
+      {
+        "source": "wikidata-elements",
+        "legacyKey": "elements"
+      },
+      {
+        "source": "element-properties",
+        "mode": "enrich"
+      }
+    ],
+    "minimumRecords": 118,
+    "maximumRecords": 118,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    }
+  },
+  {
+    "id": "moons",
+    "name": "Moons",
+    "description": "Named moons with their parent bodies.",
+    "imports": [
+      {
+        "source": "wikidata-moons",
+        "legacyKey": "moons"
+      },
+      {
+        "source": "moon-parents",
+        "mode": "enrich"
+      }
+    ],
+    "minimumRecords": 150,
+    "maximumRecords": 2000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "music",
+    "name": "Music",
+    "description": "Music genres and their overlapping genre families.",
+    "imports": [
+      {
+        "source": "wikidata-genres",
+        "legacyKey": "genres"
+      },
+      {
+        "source": "genre-families",
+        "mode": "enrich"
+      }
+    ],
+    "minimumRecords": 5000,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "instruments",
+    "name": "Instruments",
+    "description": "Musical instruments with instrument-family properties.",
+    "imports": [
+      {
+        "source": "wikidata-instruments",
+        "legacyKey": "instruments"
+      },
+      {
+        "source": "instrument-families",
+        "mode": "enrich"
+      }
+    ],
+    "minimumRecords": 5000,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "constellations",
+    "name": "Constellations",
+    "description": "The 88 modern constellations.",
+    "imports": [
+      {
+        "source": "nasa-constellations"
+      }
+    ],
+    "minimumRecords": 88,
+    "maximumRecords": 88,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "sports",
+    "name": "Sports",
+    "description": "Sports and activities with equipment and playing-place properties.",
+    "imports": [],
+    "minimumRecords": 40,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "objects",
+    "name": "Everyday things",
+    "description": "Everyday object names and synonyms, enriched with reviewed scene and use tags.",
+    "imports": [
+      {
+        "source": "lvis-objects"
+      }
+    ],
+    "minimumRecords": 1200,
+    "maximumRecords": 5000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "vehicles",
+    "name": "Cars",
+    "description": "Global car makes and model classes from Wikidata, with US EPA drivetrain, fuel and body-class records and reviewed model properties.",
+    "imports": [
+      {
+        "source": "epa-vehicles"
+      },
+      {
+        "source": "wikidata-sports-cars"
+      },
+      {
+        "source": "wikidata-car-companies"
+      },
+      {
+        "source": "wikidata-car-models"
+      }
+    ],
+    "minimumRecords": 15000,
+    "maximumRecords": 50000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "video-games",
+    "name": "Video games",
+    "description": "Video game titles with genre, platform and release-decade properties.",
+    "imports": [
+      {
+        "source": "wikidata-video-games"
+      }
+    ],
+    "minimumRecords": 50000,
+    "maximumRecords": 250000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "pokemon",
+    "name": "Pok\u00e9mon",
+    "description": "Pok\u00e9mon species with default-form types, generations and legendary/mythical status.",
+    "imports": [
+      {
+        "source": "pokeapi-pokemon"
+      }
+    ],
+    "minimumRecords": 1025,
+    "maximumRecords": 5000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "occupations",
+    "name": "Jobs",
+    "description": "O*NET occupations and alternate job titles grouped by their SOC occupation families.",
+    "imports": [
+      {
+        "source": "onet-occupations"
+      }
+    ],
+    "minimumRecords": 1000,
+    "maximumRecords": 2000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases",
+      "singulars": true
+    }
+  }
+]

@@ -14,8 +14,9 @@ export interface Player {
   bot: boolean;
 }
 
-export interface CategoryView {
+export interface QuestionView {
   id: string;
+  datasetId: string;
   name: string;
   prompt: string;
   hint: string;
@@ -27,6 +28,12 @@ export interface GameEvent {
   id: number;
   kind: "start" | "answer" | "burn" | "leave" | "win";
   text: string;
+  acceptedAnswer?: {
+    playerId: string;
+    label: string;
+    questionId: string;
+    at: number;
+  };
 }
 
 export interface Move {
@@ -47,9 +54,9 @@ export interface RoomView {
   turn: number;
   activeId: string | null;
   winnerId: string | null;
-  category: CategoryView | null;
+  question: QuestionView | null;
   used: string[];
-  categoryGoal: number;
+  questionGoal: number;
   deadline: number;
   turnDurationMs: number;
   turnStartedAt: number;

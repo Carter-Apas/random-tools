@@ -24,7 +24,7 @@ export const PlayerFigure = ({
   const pose = poseFor(player, room);
   const stage = room.activeId === player.id ? heatStage(room, now) : "cool";
   const overlay = stage === "cool" || stage === "charred" ? null : stage;
-  const vegetable = room.category?.vegetable ?? "potato";
+  const vegetable = room.question?.vegetable ?? "potato";
   const holding = pose === "hold" && room.phase === "answering";
   return (
     <span className={`character-figure heat-${stage}`}>

@@ -1,0 +1,1307 @@
+[
+  {
+    "id": "units-area",
+    "name": "Room to grow",
+    "prompt": "Name a unit of area",
+    "vegetable": "beetroot",
+    "hint": "A unit of area. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Area"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-pressure",
+    "name": "Under pressure",
+    "prompt": "Name a unit of pressure",
+    "vegetable": "aubergine",
+    "hint": "A unit of pressure. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["ForcePerArea", "VapourPressure"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-energy",
+    "name": "A burst of energy",
+    "prompt": "Name a unit of energy",
+    "vegetable": "tomato",
+    "hint": "A unit of energy. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Energy", "ThermalEnergy", "ElectricEnergy"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-power",
+    "name": "Power plant",
+    "prompt": "Name a unit of power",
+    "vegetable": "potato",
+    "hint": "A unit of power. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Power", "ElectricPower"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-frequency",
+    "name": "On your wavelength",
+    "prompt": "Name a unit of frequency",
+    "vegetable": "beetroot",
+    "hint": "A unit of frequency. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Frequency"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-current",
+    "name": "Current affairs",
+    "prompt": "Name a unit of electric current",
+    "vegetable": "turnip",
+    "hint": "A unit of electric current. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["ElectricCurrent"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-resistance",
+    "name": "Resistance is futile",
+    "prompt": "Name a unit of electrical resistance",
+    "vegetable": "pumpkin",
+    "hint": "A unit of electrical resistance. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Resistance"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-force",
+    "name": "A force of nature",
+    "prompt": "Name a unit of force",
+    "vegetable": "aubergine",
+    "hint": "A unit of force. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Force"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-angle",
+    "name": "A different angle",
+    "prompt": "Name a unit of angle",
+    "vegetable": "tomato",
+    "hint": "A unit of angle. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Angle", "PlaneAngle", "SolidAngle"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "elements-halogen",
+    "name": "Salt of the earth",
+    "prompt": "Name a halogen element",
+    "vegetable": "carrot",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Halogen"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-alkali",
+    "name": "Reactive company",
+    "prompt": "Name an alkali metal",
+    "vegetable": "beetroot",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Alkali metal"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-alkaline",
+    "name": "Earthly delights",
+    "prompt": "Name an alkaline earth metal",
+    "vegetable": "turnip",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Alkaline earth metal"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-transition",
+    "name": "Making the transition",
+    "prompt": "Name a transition metal",
+    "vegetable": "pumpkin",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Transition metal"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-lanthanides",
+    "name": "Rare earth, warm hands",
+    "prompt": "Name a lanthanide element",
+    "vegetable": "corn",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Lanthanide"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-actinides",
+    "name": "Nuclear family",
+    "prompt": "Name an actinide element",
+    "vegetable": "aubergine",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Actinide"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-metalloids",
+    "name": "On the fence",
+    "prompt": "Name a metalloid element",
+    "vegetable": "tomato",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Metalloid"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-nonmetals",
+    "name": "Beyond metal",
+    "prompt": "Name a non-metal element",
+    "vegetable": "potato",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Nonmetal", "Noble gas", "Halogen"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-gas",
+    "name": "Up in the air",
+    "prompt": "Name an element that is a gas at room temperature",
+    "vegetable": "carrot",
+    "hint": "Element names or correctly capitalised symbols count. Use observed standard states; predicted states are excluded.",
+    "select": {
+      "where": {
+        "state": ["Gas"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-liquid",
+    "name": "Liquid assets",
+    "prompt": "Name an element liquid at room temperature",
+    "vegetable": "beetroot",
+    "hint": "Element names or correctly capitalised symbols count. Use observed standard states; predicted states are excluded.",
+    "select": {
+      "where": {
+        "state": ["Liquid"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-one-symbol",
+    "name": "Single-letter chemistry",
+    "prompt": "Name an element with a one-letter symbol",
+    "vegetable": "turnip",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "symbolLength": ["1"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-transuranium",
+    "name": "Beyond uranium",
+    "prompt": "Name an element with atomic number above 92",
+    "vegetable": "corn",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "numberBand": ["transuranium"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-period-3",
+    "name": "Periodic thinking 3",
+    "prompt": "Name an element in period 3",
+    "vegetable": "carrot",
+    "hint": "Period 3 is the horizontal row of the periodic table. Element names and correctly capitalised symbols count.",
+    "select": {
+      "where": {
+        "period": ["3"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-period-4",
+    "name": "Periodic thinking 4",
+    "prompt": "Name an element in period 4",
+    "vegetable": "beetroot",
+    "hint": "Period 4 is the horizontal row of the periodic table. Element names and correctly capitalised symbols count.",
+    "select": {
+      "where": {
+        "period": ["4"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-period-5",
+    "name": "Periodic thinking 5",
+    "prompt": "Name an element in period 5",
+    "vegetable": "turnip",
+    "hint": "Period 5 is the horizontal row of the periodic table. Element names and correctly capitalised symbols count.",
+    "select": {
+      "where": {
+        "period": ["5"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-period-6",
+    "name": "Periodic thinking 6",
+    "prompt": "Name an element in period 6",
+    "vegetable": "pumpkin",
+    "hint": "Period 6 is the horizontal row of the periodic table. Element names and correctly capitalised symbols count.",
+    "select": {
+      "where": {
+        "period": ["6"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-period-7",
+    "name": "Periodic thinking 7",
+    "prompt": "Name an element in period 7",
+    "vegetable": "corn",
+    "hint": "Period 7 is the horizontal row of the periodic table. Element names and correctly capitalised symbols count.",
+    "select": {
+      "where": {
+        "period": ["7"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "moons-uranus",
+    "name": "Orbiting Uranus",
+    "prompt": "Name a moon of Uranus",
+    "vegetable": "potato",
+    "hint": "Named natural satellites of Uranus. Provisional numbered designations do not count.",
+    "select": {
+      "where": {
+        "parent": ["Q324"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "moons"
+  },
+  {
+    "id": "moons-neptune",
+    "name": "Orbiting Neptune",
+    "prompt": "Name a moon of Neptune",
+    "vegetable": "carrot",
+    "hint": "Named natural satellites of Neptune. Provisional numbered designations do not count.",
+    "select": {
+      "where": {
+        "parent": ["Q332"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "moons"
+  },
+  {
+    "id": "moons-pluto",
+    "name": "Orbiting Pluto",
+    "prompt": "Name a moon of Pluto",
+    "vegetable": "beetroot",
+    "hint": "Named natural satellites of Pluto. Provisional numbered designations do not count.",
+    "select": {
+      "where": {
+        "parent": ["Q339"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "moons"
+  },
+  {
+    "id": "instruments-bowed",
+    "name": "Take a bow",
+    "prompt": "Name a bowed string instrument",
+    "vegetable": "carrot",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["bowed"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-plucked",
+    "name": "Plucky little garden",
+    "prompt": "Name a plucked string instrument",
+    "vegetable": "beetroot",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["plucked"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-electronic",
+    "name": "Electric garden",
+    "prompt": "Name an electronic musical instrument",
+    "vegetable": "turnip",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["electronic"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "genres-punk",
+    "name": "Punk in the patch",
+    "prompt": "Name a style of punk music",
+    "vegetable": "aubergine",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["punk"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "genres-blues",
+    "name": "Garden blues",
+    "prompt": "Name a style of blues music",
+    "vegetable": "carrot",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["blues"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "genres-hiphop",
+    "name": "Rhyme and thyme",
+    "prompt": "Name a hip-hop or rap genre",
+    "vegetable": "beetroot",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["hiphop"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "cheeses-france",
+    "name": "Cheese trail: France",
+    "prompt": "Name a cheese originally from France",
+    "vegetable": "turnip",
+    "hint": "Cheese varieties originating in France. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q142"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-italy",
+    "name": "Cheese trail: Italy",
+    "prompt": "Name a cheese originally from Italy",
+    "vegetable": "pumpkin",
+    "hint": "Cheese varieties originating in Italy. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q38"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-switzerland",
+    "name": "Cheese trail: Switzerland",
+    "prompt": "Name a cheese originally from Switzerland",
+    "vegetable": "corn",
+    "hint": "Cheese varieties originating in Switzerland. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q39"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-britain",
+    "name": "Cheese trail: Britain",
+    "prompt": "Name a cheese originally from Britain",
+    "vegetable": "aubergine",
+    "hint": "Cheese varieties originating in Britain. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q145"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-spain",
+    "name": "Cheese trail: Spain",
+    "prompt": "Name a cheese originally from Spain",
+    "vegetable": "tomato",
+    "hint": "Cheese varieties originating in Spain. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q29"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-netherlands",
+    "name": "Cheese trail: the Netherlands",
+    "prompt": "Name a cheese originally from the Netherlands",
+    "vegetable": "potato",
+    "hint": "Cheese varieties originating in the Netherlands. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q55"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-greece",
+    "name": "Cheese trail: Greece",
+    "prompt": "Name a cheese originally from Greece",
+    "vegetable": "carrot",
+    "hint": "Cheese varieties originating in Greece. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q41"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-germany",
+    "name": "Cheese trail: Germany",
+    "prompt": "Name a cheese originally from Germany",
+    "vegetable": "beetroot",
+    "hint": "Cheese varieties originating in Germany. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q183"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-portugal",
+    "name": "Cheese trail: Portugal",
+    "prompt": "Name a cheese originally from Portugal",
+    "vegetable": "turnip",
+    "hint": "Cheese varieties originating in Portugal. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q45"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses-usa",
+    "name": "Cheese trail: the United States",
+    "prompt": "Name a cheese originally from the United States",
+    "vegetable": "pumpkin",
+    "hint": "Cheese varieties originating in the United States. Producing an overseas style locally does not change its origin. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "origin": ["Q30"],
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "countries-central-america",
+    "name": "Between two continents",
+    "prompt": "Name a UN member in Central America",
+    "vegetable": "beetroot",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "subregion": ["Central America"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-caribbean",
+    "name": "Island time",
+    "prompt": "Name a Caribbean UN member country",
+    "vegetable": "turnip",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "subregion": ["Caribbean"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-southeast-asia",
+    "name": "Southeast passage",
+    "prompt": "Name a UN member in Southeast Asia",
+    "vegetable": "pumpkin",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "subregion": ["South-Eastern Asia"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-central-asia",
+    "name": "Silk Road stop",
+    "prompt": "Name a UN member in Central Asia",
+    "vegetable": "corn",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "subregion": ["Central Asia"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-south-asia",
+    "name": "Southern passage",
+    "prompt": "Name a UN member in South Asia",
+    "vegetable": "aubergine",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "subregion": ["Southern Asia"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-landlocked-africa",
+    "name": "Inland Africa",
+    "prompt": "Name a landlocked UN member in Africa",
+    "vegetable": "potato",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "landlocked": ["true"],
+        "region": ["Africa"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-landlocked-asia",
+    "name": "Inland Asia",
+    "prompt": "Name a landlocked UN member in Asia",
+    "vegetable": "carrot",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "landlocked": ["true"],
+        "region": ["Asia"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-french",
+    "name": "Bonjour, garden",
+    "prompt": "Name a UN member with official French",
+    "vegetable": "beetroot",
+    "hint": "Current UN member countries only; territories and observer states are excluded. National official or de facto languages count.",
+    "select": {
+      "where": {
+        "languages": ["fra"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-spanish",
+    "name": "Hola, garden",
+    "prompt": "Name a UN member with official Spanish",
+    "vegetable": "turnip",
+    "hint": "Current UN member countries only; territories and observer states are excluded. National official or de facto languages count.",
+    "select": {
+      "where": {
+        "languages": ["spa"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-english",
+    "name": "English abroad",
+    "prompt": "Name a UN member with official English",
+    "vegetable": "pumpkin",
+    "hint": "Current UN member countries only; territories and observer states are excluded. National official or de facto languages count.",
+    "select": {
+      "where": {
+        "languages": ["eng"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-arabic",
+    "name": "Arabic abroad",
+    "prompt": "Name a UN member with official Arabic",
+    "vegetable": "corn",
+    "hint": "Current UN member countries only; territories and observer states are excluded. National official or de facto languages count.",
+    "select": {
+      "where": {
+        "languages": ["ara"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-portuguese",
+    "name": "Portuguese abroad",
+    "prompt": "Name a UN member with official Portuguese",
+    "vegetable": "aubergine",
+    "hint": "Current UN member countries only; territories and observer states are excluded. National official or de facto languages count.",
+    "select": {
+      "where": {
+        "languages": ["por"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-euro",
+    "name": "A pocket of euros",
+    "prompt": "Name a UN member that uses the euro",
+    "vegetable": "tomato",
+    "hint": "Current UN member countries only; territories and observer states are excluded. At least one official currency must match.",
+    "select": {
+      "where": {
+        "currencies": ["EUR"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-dollar",
+    "name": "Dollars abroad",
+    "prompt": "Name a UN member using the US dollar",
+    "vegetable": "potato",
+    "hint": "Current UN member countries only; territories and observer states are excluded. At least one official currency must match.",
+    "select": {
+      "where": {
+        "currencies": ["USD"],
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-landlocked",
+    "name": "Capitals without coasts",
+    "prompt": "Name a capital of a landlocked UN member",
+    "vegetable": "aubergine",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "landlocked": ["true"],
+        "kind": ["capital"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-south-america",
+    "name": "South American capitals",
+    "prompt": "Name a UN member’s capital in South America",
+    "vegetable": "tomato",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "subregion": ["South America"],
+        "kind": ["capital"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-caribbean",
+    "name": "Caribbean capitals",
+    "prompt": "Name a Caribbean UN member’s capital",
+    "vegetable": "potato",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "subregion": ["Caribbean"],
+        "kind": ["capital"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  }
+]

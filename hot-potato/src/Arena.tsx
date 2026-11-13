@@ -59,6 +59,7 @@ const Gardener = ({
         {player.bot && <span className="you-tag">bot</span>}
       </span>
       <SpeechBubble room={room} playerId={player.id} side={bubbleSide(point.x, compact)} />
+      <AcceptedAnswer room={room} playerId={player.id} now={now} />
       <Hearts count={player.hearts} />
       {!player.connected && <span className="player-status">Reconnecting…</span>}
       {player.hearts === 0 && <span className="player-status">Spectating</span>}
@@ -142,7 +143,7 @@ const Vegetable = ({
   directPass: boolean;
 }) => {
   const point = vegetablePoint(room, now, compact, directPass);
-  const vegetable = room.category?.vegetable ?? "potato";
+  const vegetable = room.question?.vegetable ?? "potato";
   return (
     <img
       className={`hot-vegetable ${directPass ? "direct-pass" : ""}`}
@@ -185,6 +186,32 @@ const SpeechBubble = ({
     <div className={`speech-bubble bubble-${side}`}>
       <output aria-label="Live answer" aria-live="off">
         {room.draft || "…"}
+      </output>
+    </div>
+  );
+};
+
+const AcceptedAnswer = ({
+  room,
+  playerId,
+  now,
+}: {
+  room: RoomView;
+  playerId: string;
+  now: number;
+}) => {
+  if (room.status !== "playing" || (room.activeId === playerId && room.phase === "answering"))
+    return null;
+  const answer = room.events
+    .filter((event) => event.acceptedAnswer?.playerId === playerId)
+    .at(-1)?.acceptedAnswer;
+  if (!answer || answer.questionId !== room.question?.id || now - answer.at >= 12000) return null;
+
+  return (
+    <div className="accepted-answer" title={answer.label}>
+      <span aria-hidden="true">✓</span>
+      <output aria-label="Accepted answer" aria-live="off">
+        {answer.label}
       </output>
     </div>
   );

@@ -9,9 +9,9 @@ export const contentRoot = new URL("./", import.meta.url);
 export const readJson = async <T>(url: URL): Promise<T> =>
   JSON.parse(await readFile(url, "utf8")) as T;
 
-export const atomicJson = async (url: URL, value: unknown): Promise<void> => {
+export const atomicJson = async (url: URL, value: unknown, pretty = true): Promise<void> => {
   const temporary = new URL(url.href + ".tmp");
-  await writeFile(temporary, JSON.stringify(value, null, 2) + "\n");
+  await writeFile(temporary, JSON.stringify(value, null, pretty ? 2 : undefined) + "\n");
   await rename(temporary, url);
 };
 

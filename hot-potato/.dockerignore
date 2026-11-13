@@ -2,7 +2,8 @@ node_modules
 dist
 art
 test
-scripts
+scripts/*
+!scripts/copy-catalogue.mjs
 content
 *.log
 .env

@@ -34,7 +34,7 @@ const Rules = ({ close }: { close: () => void }) => {
       <ol>
         <li>
           <strong>Pick a fresh answer.</strong> When the hot vegetable reaches you, name something
-          that fits the category. No repeats in the current patch. If an answer is wrong, keep
+          that fits the question. No repeats in the current patch. If an answer is wrong, keep
           trying before your turn timer runs out.
         </li>
         <li>
@@ -42,7 +42,7 @@ const Rules = ({ close }: { close: () => void }) => {
           gardener. Their own random turn timer starts when they receive it.
         </li>
         <li>
-          <strong>Watch the vegetable.</strong> A new vegetable means a new category. The patch
+          <strong>Watch the vegetable.</strong> A new vegetable means a new question. The patch
           changes after up to six answers, when it runs out, or after someone gets roasted.
         </li>
         <li>

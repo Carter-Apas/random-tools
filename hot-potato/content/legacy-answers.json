@@ -1,0 +1,4795 @@
+{
+  "moons": [
+    {
+      "id": "moons:moon",
+      "label": "Moon",
+      "aliases": ["Moon", "the moon", "luna"]
+    },
+    {
+      "id": "moons:phobos",
+      "label": "Phobos",
+      "aliases": ["Phobos"]
+    },
+    {
+      "id": "moons:deimos",
+      "label": "Deimos",
+      "aliases": ["Deimos"]
+    },
+    {
+      "id": "moons:io",
+      "label": "Io",
+      "aliases": ["Io"]
+    },
+    {
+      "id": "moons:europa",
+      "label": "Europa",
+      "aliases": ["Europa"]
+    },
+    {
+      "id": "moons:ganymede",
+      "label": "Ganymede",
+      "aliases": ["Ganymede"]
+    },
+    {
+      "id": "moons:callisto",
+      "label": "Callisto",
+      "aliases": ["Callisto"]
+    },
+    {
+      "id": "moons:titan",
+      "label": "Titan",
+      "aliases": ["Titan"]
+    },
+    {
+      "id": "moons:enceladus",
+      "label": "Enceladus",
+      "aliases": ["Enceladus"]
+    },
+    {
+      "id": "moons:mimas",
+      "label": "Mimas",
+      "aliases": ["Mimas"]
+    },
+    {
+      "id": "moons:tethys",
+      "label": "Tethys",
+      "aliases": ["Tethys"]
+    },
+    {
+      "id": "moons:dione",
+      "label": "Dione",
+      "aliases": ["Dione"]
+    },
+    {
+      "id": "moons:rhea",
+      "label": "Rhea",
+      "aliases": ["Rhea"]
+    },
+    {
+      "id": "moons:iapetus",
+      "label": "Iapetus",
+      "aliases": ["Iapetus"]
+    },
+    {
+      "id": "moons:hyperion",
+      "label": "Hyperion",
+      "aliases": ["Hyperion"]
+    },
+    {
+      "id": "moons:phoebe",
+      "label": "Phoebe",
+      "aliases": ["Phoebe"]
+    },
+    {
+      "id": "moons:titania",
+      "label": "Titania",
+      "aliases": ["Titania"]
+    },
+    {
+      "id": "moons:oberon",
+      "label": "Oberon",
+      "aliases": ["Oberon"]
+    },
+    {
+      "id": "moons:umbriel",
+      "label": "Umbriel",
+      "aliases": ["Umbriel"]
+    },
+    {
+      "id": "moons:ariel",
+      "label": "Ariel",
+      "aliases": ["Ariel"]
+    },
+    {
+      "id": "moons:miranda",
+      "label": "Miranda",
+      "aliases": ["Miranda"]
+    },
+    {
+      "id": "moons:triton",
+      "label": "Triton",
+      "aliases": ["Triton"]
+    },
+    {
+      "id": "moons:nereid",
+      "label": "Nereid",
+      "aliases": ["Nereid"]
+    },
+    {
+      "id": "moons:charon",
+      "label": "Charon",
+      "aliases": ["Charon"]
+    },
+    {
+      "id": "moons:nix",
+      "label": "Nix",
+      "aliases": ["Nix"]
+    },
+    {
+      "id": "moons:hydra",
+      "label": "Hydra",
+      "aliases": ["Hydra"]
+    },
+    {
+      "id": "moons:styx",
+      "label": "Styx",
+      "aliases": ["Styx"]
+    },
+    {
+      "id": "moons:kerberos",
+      "label": "Kerberos",
+      "aliases": ["Kerberos"]
+    }
+  ],
+  "pasta": [
+    {
+      "id": "pasta:spaghetti",
+      "label": "Spaghetti",
+      "aliases": ["Spaghetti"]
+    },
+    {
+      "id": "pasta:penne",
+      "label": "Penne",
+      "aliases": ["Penne"]
+    },
+    {
+      "id": "pasta:fusilli",
+      "label": "Fusilli",
+      "aliases": ["Fusilli"]
+    },
+    {
+      "id": "pasta:rigatoni",
+      "label": "Rigatoni",
+      "aliases": ["Rigatoni"]
+    },
+    {
+      "id": "pasta:farfalle",
+      "label": "Farfalle",
+      "aliases": ["Farfalle"]
+    },
+    {
+      "id": "pasta:linguine",
+      "label": "Linguine",
+      "aliases": ["Linguine"]
+    },
+    {
+      "id": "pasta:fettuccine",
+      "label": "Fettuccine",
+      "aliases": ["Fettuccine", "fettucine"]
+    },
+    {
+      "id": "pasta:tagliatelle",
+      "label": "Tagliatelle",
+      "aliases": ["Tagliatelle"]
+    },
+    {
+      "id": "pasta:pappardelle",
+      "label": "Pappardelle",
+      "aliases": ["Pappardelle"]
+    },
+    {
+      "id": "pasta:ravioli",
+      "label": "Ravioli",
+      "aliases": ["Ravioli"]
+    },
+    {
+      "id": "pasta:tortellini",
+      "label": "Tortellini",
+      "aliases": ["Tortellini"]
+    },
+    {
+      "id": "pasta:lasagne",
+      "label": "Lasagne",
+      "aliases": ["Lasagne", "lasagna"]
+    },
+    {
+      "id": "pasta:macaroni",
+      "label": "Macaroni",
+      "aliases": ["Macaroni", "maccheroni"]
+    },
+    {
+      "id": "pasta:cannelloni",
+      "label": "Cannelloni",
+      "aliases": ["Cannelloni"]
+    },
+    {
+      "id": "pasta:conchiglie",
+      "label": "Conchiglie",
+      "aliases": ["Conchiglie", "pasta shells"]
+    },
+    {
+      "id": "pasta:orecchiette",
+      "label": "Orecchiette",
+      "aliases": ["Orecchiette"]
+    },
+    {
+      "id": "pasta:orzo",
+      "label": "Orzo",
+      "aliases": ["Orzo", "risoni"]
+    },
+    {
+      "id": "pasta:bucatini",
+      "label": "Bucatini",
+      "aliases": ["Bucatini"]
+    },
+    {
+      "id": "pasta:vermicelli",
+      "label": "Vermicelli",
+      "aliases": ["Vermicelli"]
+    },
+    {
+      "id": "pasta:capellini",
+      "label": "Capellini",
+      "aliases": ["Capellini", "angel hair"]
+    },
+    {
+      "id": "pasta:rotini",
+      "label": "Rotini",
+      "aliases": ["Rotini"]
+    },
+    {
+      "id": "pasta:cavatappi",
+      "label": "Cavatappi",
+      "aliases": ["Cavatappi"]
+    },
+    {
+      "id": "pasta:cavatelli",
+      "label": "Cavatelli",
+      "aliases": ["Cavatelli"]
+    },
+    {
+      "id": "pasta:ditalini",
+      "label": "Ditalini",
+      "aliases": ["Ditalini"]
+    },
+    {
+      "id": "pasta:fregola",
+      "label": "Fregola",
+      "aliases": ["Fregola"]
+    },
+    {
+      "id": "pasta:gemelli",
+      "label": "Gemelli",
+      "aliases": ["Gemelli"]
+    },
+    {
+      "id": "pasta:manicotti",
+      "label": "Manicotti",
+      "aliases": ["Manicotti"]
+    },
+    {
+      "id": "pasta:paccheri",
+      "label": "Paccheri",
+      "aliases": ["Paccheri"]
+    },
+    {
+      "id": "pasta:strozzapreti",
+      "label": "Strozzapreti",
+      "aliases": ["Strozzapreti"]
+    },
+    {
+      "id": "pasta:trenette",
+      "label": "Trenette",
+      "aliases": ["Trenette"]
+    },
+    {
+      "id": "pasta:trofie",
+      "label": "Trofie",
+      "aliases": ["Trofie"]
+    },
+    {
+      "id": "pasta:ziti",
+      "label": "Ziti",
+      "aliases": ["Ziti"]
+    }
+  ],
+  "rivers": [
+    {
+      "id": "rivers:nile",
+      "label": "Nile",
+      "aliases": ["Nile"]
+    },
+    {
+      "id": "rivers:amazon",
+      "label": "Amazon",
+      "aliases": ["Amazon"]
+    },
+    {
+      "id": "rivers:yangtze",
+      "label": "Yangtze",
+      "aliases": ["Yangtze", "chang jiang"]
+    },
+    {
+      "id": "rivers:yellowriver",
+      "label": "Yellow River",
+      "aliases": ["Yellow River", "huang he"]
+    },
+    {
+      "id": "rivers:mississippi",
+      "label": "Mississippi",
+      "aliases": ["Mississippi"]
+    },
+    {
+      "id": "rivers:missouri",
+      "label": "Missouri",
+      "aliases": ["Missouri"]
+    },
+    {
+      "id": "rivers:colorado",
+      "label": "Colorado",
+      "aliases": ["Colorado"]
+    },
+    {
+      "id": "rivers:columbia",
+      "label": "Columbia",
+      "aliases": ["Columbia"]
+    },
+    {
+      "id": "rivers:riogrande",
+      "label": "Rio Grande",
+      "aliases": ["Rio Grande"]
+    },
+    {
+      "id": "rivers:yukon",
+      "label": "Yukon",
+      "aliases": ["Yukon"]
+    },
+    {
+      "id": "rivers:mackenzie",
+      "label": "Mackenzie",
+      "aliases": ["Mackenzie"]
+    },
+    {
+      "id": "rivers:saintlawrence",
+      "label": "Saint Lawrence",
+      "aliases": ["Saint Lawrence", "st lawrence"]
+    },
+    {
+      "id": "rivers:danube",
+      "label": "Danube",
+      "aliases": ["Danube"]
+    },
+    {
+      "id": "rivers:rhine",
+      "label": "Rhine",
+      "aliases": ["Rhine"]
+    },
+    {
+      "id": "rivers:rhone",
+      "label": "Rhone",
+      "aliases": ["Rhone"]
+    },
+    {
+      "id": "rivers:seine",
+      "label": "Seine",
+      "aliases": ["Seine"]
+    },
+    {
+      "id": "rivers:thames",
+      "label": "Thames",
+      "aliases": ["Thames"]
+    },
+    {
+      "id": "rivers:volga",
+      "label": "Volga",
+      "aliases": ["Volga"]
+    },
+    {
+      "id": "rivers:don",
+      "label": "Don",
+      "aliases": ["Don"]
+    },
+    {
+      "id": "rivers:dnieper",
+      "label": "Dnieper",
+      "aliases": ["Dnieper", "dnipro"]
+    },
+    {
+      "id": "rivers:tigris",
+      "label": "Tigris",
+      "aliases": ["Tigris"]
+    },
+    {
+      "id": "rivers:euphrates",
+      "label": "Euphrates",
+      "aliases": ["Euphrates"]
+    },
+    {
+      "id": "rivers:ganges",
+      "label": "Ganges",
+      "aliases": ["Ganges", "ganga"]
+    },
+    {
+      "id": "rivers:brahmaputra",
+      "label": "Brahmaputra",
+      "aliases": ["Brahmaputra"]
+    },
+    {
+      "id": "rivers:indus",
+      "label": "Indus",
+      "aliases": ["Indus"]
+    },
+    {
+      "id": "rivers:mekong",
+      "label": "Mekong",
+      "aliases": ["Mekong"]
+    },
+    {
+      "id": "rivers:irrawaddy",
+      "label": "Irrawaddy",
+      "aliases": ["Irrawaddy", "ayeyarwady"]
+    },
+    {
+      "id": "rivers:salween",
+      "label": "Salween",
+      "aliases": ["Salween"]
+    },
+    {
+      "id": "rivers:amur",
+      "label": "Amur",
+      "aliases": ["Amur"]
+    },
+    {
+      "id": "rivers:lena",
+      "label": "Lena",
+      "aliases": ["Lena"]
+    },
+    {
+      "id": "rivers:ob",
+      "label": "Ob",
+      "aliases": ["Ob"]
+    },
+    {
+      "id": "rivers:yenisei",
+      "label": "Yenisei",
+      "aliases": ["Yenisei"]
+    },
+    {
+      "id": "rivers:congo",
+      "label": "Congo",
+      "aliases": ["Congo"]
+    },
+    {
+      "id": "rivers:niger",
+      "label": "Niger",
+      "aliases": ["Niger"]
+    },
+    {
+      "id": "rivers:zambezi",
+      "label": "Zambezi",
+      "aliases": ["Zambezi"]
+    },
+    {
+      "id": "rivers:limpopo",
+      "label": "Limpopo",
+      "aliases": ["Limpopo"]
+    },
+    {
+      "id": "rivers:orange",
+      "label": "Orange",
+      "aliases": ["Orange"]
+    },
+    {
+      "id": "rivers:murray",
+      "label": "Murray",
+      "aliases": ["Murray"]
+    },
+    {
+      "id": "rivers:darling",
+      "label": "Darling",
+      "aliases": ["Darling"]
+    },
+    {
+      "id": "rivers:parana",
+      "label": "Parana",
+      "aliases": ["Parana"]
+    },
+    {
+      "id": "rivers:orinoco",
+      "label": "Orinoco",
+      "aliases": ["Orinoco"]
+    },
+    {
+      "id": "rivers:saofrancisco",
+      "label": "Sao Francisco",
+      "aliases": ["Sao Francisco"]
+    },
+    {
+      "id": "rivers:waikato",
+      "label": "Waikato",
+      "aliases": ["Waikato"]
+    },
+    {
+      "id": "rivers:clutha",
+      "label": "Clutha",
+      "aliases": ["Clutha", "mata au"]
+    },
+    {
+      "id": "rivers:whanganui",
+      "label": "Whanganui",
+      "aliases": ["Whanganui"]
+    },
+    {
+      "id": "rivers:waimakariri",
+      "label": "Waimakariri",
+      "aliases": ["Waimakariri"]
+    },
+    {
+      "id": "rivers:rakaia",
+      "label": "Rakaia",
+      "aliases": ["Rakaia"]
+    },
+    {
+      "id": "rivers:waitaki",
+      "label": "Waitaki",
+      "aliases": ["Waitaki"]
+    },
+    {
+      "id": "rivers:buller",
+      "label": "Buller",
+      "aliases": ["Buller", "kawatiri"]
+    },
+    {
+      "id": "rivers:rangitata",
+      "label": "Rangitata",
+      "aliases": ["Rangitata"]
+    }
+  ],
+  "cheeses": [
+    {
+      "id": "cheeses:cheddar",
+      "label": "Cheddar",
+      "aliases": ["Cheddar"]
+    },
+    {
+      "id": "cheeses:brie",
+      "label": "Brie",
+      "aliases": ["Brie"]
+    },
+    {
+      "id": "cheeses:camembert",
+      "label": "Camembert",
+      "aliases": ["Camembert"]
+    },
+    {
+      "id": "cheeses:gouda",
+      "label": "Gouda",
+      "aliases": ["Gouda"]
+    },
+    {
+      "id": "cheeses:edam",
+      "label": "Edam",
+      "aliases": ["Edam"]
+    },
+    {
+      "id": "cheeses:emmental",
+      "label": "Emmental",
+      "aliases": ["Emmental", "emmentaler"]
+    },
+    {
+      "id": "cheeses:gruyere",
+      "label": "Gruyere",
+      "aliases": ["Gruyere"]
+    },
+    {
+      "id": "cheeses:mozzarella",
+      "label": "Mozzarella",
+      "aliases": ["Mozzarella"]
+    },
+    {
+      "id": "cheeses:parmesan",
+      "label": "Parmesan",
+      "aliases": ["Parmesan", "parmigiano reggiano"]
+    },
+    {
+      "id": "cheeses:pecorino",
+      "label": "Pecorino",
+      "aliases": ["Pecorino"]
+    },
+    {
+      "id": "cheeses:ricotta",
+      "label": "Ricotta",
+      "aliases": ["Ricotta"]
+    },
+    {
+      "id": "cheeses:mascarpone",
+      "label": "Mascarpone",
+      "aliases": ["Mascarpone"]
+    },
+    {
+      "id": "cheeses:feta",
+      "label": "Feta",
+      "aliases": ["Feta"]
+    },
+    {
+      "id": "cheeses:halloumi",
+      "label": "Halloumi",
+      "aliases": ["Halloumi"]
+    },
+    {
+      "id": "cheeses:manchego",
+      "label": "Manchego",
+      "aliases": ["Manchego"]
+    },
+    {
+      "id": "cheeses:roquefort",
+      "label": "Roquefort",
+      "aliases": ["Roquefort"]
+    },
+    {
+      "id": "cheeses:gorgonzola",
+      "label": "Gorgonzola",
+      "aliases": ["Gorgonzola"]
+    },
+    {
+      "id": "cheeses:stilton",
+      "label": "Stilton",
+      "aliases": ["Stilton"]
+    },
+    {
+      "id": "cheeses:wensleydale",
+      "label": "Wensleydale",
+      "aliases": ["Wensleydale"]
+    },
+    {
+      "id": "cheeses:redleicester",
+      "label": "Red Leicester",
+      "aliases": ["Red Leicester"]
+    },
+    {
+      "id": "cheeses:doublegloucester",
+      "label": "Double Gloucester",
+      "aliases": ["Double Gloucester"]
+    },
+    {
+      "id": "cheeses:cheshire",
+      "label": "Cheshire",
+      "aliases": ["Cheshire"]
+    },
+    {
+      "id": "cheeses:lancashire",
+      "label": "Lancashire",
+      "aliases": ["Lancashire"]
+    },
+    {
+      "id": "cheeses:caerphilly",
+      "label": "Caerphilly",
+      "aliases": ["Caerphilly"]
+    },
+    {
+      "id": "cheeses:havarti",
+      "label": "Havarti",
+      "aliases": ["Havarti"]
+    },
+    {
+      "id": "cheeses:jarlsberg",
+      "label": "Jarlsberg",
+      "aliases": ["Jarlsberg"]
+    },
+    {
+      "id": "cheeses:montereyjack",
+      "label": "Monterey Jack",
+      "aliases": ["Monterey Jack"]
+    },
+    {
+      "id": "cheeses:colby",
+      "label": "Colby",
+      "aliases": ["Colby"]
+    },
+    {
+      "id": "cheeses:provolone",
+      "label": "Provolone",
+      "aliases": ["Provolone"]
+    },
+    {
+      "id": "cheeses:burrata",
+      "label": "Burrata",
+      "aliases": ["Burrata"]
+    },
+    {
+      "id": "cheeses:taleggio",
+      "label": "Taleggio",
+      "aliases": ["Taleggio"]
+    },
+    {
+      "id": "cheeses:fontina",
+      "label": "Fontina",
+      "aliases": ["Fontina"]
+    },
+    {
+      "id": "cheeses:asiago",
+      "label": "Asiago",
+      "aliases": ["Asiago"]
+    },
+    {
+      "id": "cheeses:cotija",
+      "label": "Cotija",
+      "aliases": ["Cotija"]
+    },
+    {
+      "id": "cheeses:paneer",
+      "label": "Paneer",
+      "aliases": ["Paneer"]
+    },
+    {
+      "id": "cheeses:quark",
+      "label": "Quark",
+      "aliases": ["Quark"]
+    },
+    {
+      "id": "cheeses:cottagecheese",
+      "label": "Cottage cheese",
+      "aliases": ["Cottage cheese"]
+    },
+    {
+      "id": "cheeses:creamcheese",
+      "label": "Cream cheese",
+      "aliases": ["Cream cheese"]
+    },
+    {
+      "id": "cheeses:goatcheese",
+      "label": "Goat cheese",
+      "aliases": ["Goat cheese", "goats cheese", "chevre"]
+    },
+    {
+      "id": "cheeses:bluecheese",
+      "label": "Blue cheese",
+      "aliases": ["Blue cheese"]
+    },
+    {
+      "id": "cheeses:limburger",
+      "label": "Limburger",
+      "aliases": ["Limburger"]
+    },
+    {
+      "id": "cheeses:munster",
+      "label": "Munster",
+      "aliases": ["Munster", "muenster"]
+    },
+    {
+      "id": "cheeses:raclette",
+      "label": "Raclette",
+      "aliases": ["Raclette"]
+    },
+    {
+      "id": "cheeses:reblochon",
+      "label": "Reblochon",
+      "aliases": ["Reblochon"]
+    },
+    {
+      "id": "cheeses:comte",
+      "label": "Comte",
+      "aliases": ["Comte"]
+    },
+    {
+      "id": "cheeses:gjetost",
+      "label": "Gjetost",
+      "aliases": ["Gjetost", "brunost"]
+    }
+  ],
+  "spices": [
+    {
+      "id": "spices:cinnamon",
+      "label": "Cinnamon",
+      "aliases": ["Cinnamon"]
+    },
+    {
+      "id": "spices:clove",
+      "label": "Clove",
+      "aliases": ["Clove", "cloves"]
+    },
+    {
+      "id": "spices:nutmeg",
+      "label": "Nutmeg",
+      "aliases": ["Nutmeg"]
+    },
+    {
+      "id": "spices:mace",
+      "label": "Mace",
+      "aliases": ["Mace"]
+    },
+    {
+      "id": "spices:allspice",
+      "label": "Allspice",
+      "aliases": ["Allspice"]
+    },
+    {
+      "id": "spices:ginger",
+      "label": "Ginger",
+      "aliases": ["Ginger"]
+    },
+    {
+      "id": "spices:turmeric",
+      "label": "Turmeric",
+      "aliases": ["Turmeric"]
+    },
+    {
+      "id": "spices:cumin",
+      "label": "Cumin",
+      "aliases": ["Cumin"]
+    },
+    {
+      "id": "spices:coriander",
+      "label": "Coriander",
+      "aliases": ["Coriander", "coriander seed"]
+    },
+    {
+      "id": "spices:cardamom",
+      "label": "Cardamom",
+      "aliases": ["Cardamom"]
+    },
+    {
+      "id": "spices:pepper",
+      "label": "Pepper",
+      "aliases": ["Pepper", "black pepper"]
+    },
+    {
+      "id": "spices:whitepepper",
+      "label": "White pepper",
+      "aliases": ["White pepper"]
+    },
+    {
+      "id": "spices:pinkpepper",
+      "label": "Pink pepper",
+      "aliases": ["Pink pepper"]
+    },
+    {
+      "id": "spices:sichuanpepper",
+      "label": "Sichuan pepper",
+      "aliases": ["Sichuan pepper", "szechuan pepper"]
+    },
+    {
+      "id": "spices:chilli",
+      "label": "Chilli",
+      "aliases": ["Chilli", "chili", "cayenne"]
+    },
+    {
+      "id": "spices:paprika",
+      "label": "Paprika",
+      "aliases": ["Paprika"]
+    },
+    {
+      "id": "spices:saffron",
+      "label": "Saffron",
+      "aliases": ["Saffron"]
+    },
+    {
+      "id": "spices:staranise",
+      "label": "Star anise",
+      "aliases": ["Star anise"]
+    },
+    {
+      "id": "spices:anise",
+      "label": "Anise",
+      "aliases": ["Anise", "aniseed"]
+    },
+    {
+      "id": "spices:fennel",
+      "label": "Fennel",
+      "aliases": ["Fennel", "fennel seed"]
+    },
+    {
+      "id": "spices:fenugreek",
+      "label": "Fenugreek",
+      "aliases": ["Fenugreek"]
+    },
+    {
+      "id": "spices:mustard",
+      "label": "Mustard",
+      "aliases": ["Mustard", "mustard seed"]
+    },
+    {
+      "id": "spices:caraway",
+      "label": "Caraway",
+      "aliases": ["Caraway"]
+    },
+    {
+      "id": "spices:nigella",
+      "label": "Nigella",
+      "aliases": ["Nigella", "black cumin"]
+    },
+    {
+      "id": "spices:sumac",
+      "label": "Sumac",
+      "aliases": ["Sumac"]
+    },
+    {
+      "id": "spices:vanilla",
+      "label": "Vanilla",
+      "aliases": ["Vanilla"]
+    },
+    {
+      "id": "spices:juniper",
+      "label": "Juniper",
+      "aliases": ["Juniper", "juniper berry"]
+    },
+    {
+      "id": "spices:ajwain",
+      "label": "Ajwain",
+      "aliases": ["Ajwain"]
+    },
+    {
+      "id": "spices:asafoetida",
+      "label": "Asafoetida",
+      "aliases": ["Asafoetida", "hing"]
+    },
+    {
+      "id": "spices:galangal",
+      "label": "Galangal",
+      "aliases": ["Galangal"]
+    },
+    {
+      "id": "spices:tamarind",
+      "label": "Tamarind",
+      "aliases": ["Tamarind"]
+    },
+    {
+      "id": "spices:amchur",
+      "label": "Amchur",
+      "aliases": ["Amchur", "amchoor"]
+    }
+  ],
+  "africa": [
+    {
+      "id": "africa:algeria",
+      "label": "Algeria",
+      "aliases": ["Algeria"]
+    },
+    {
+      "id": "africa:angola",
+      "label": "Angola",
+      "aliases": ["Angola"]
+    },
+    {
+      "id": "africa:benin",
+      "label": "Benin",
+      "aliases": ["Benin"]
+    },
+    {
+      "id": "africa:botswana",
+      "label": "Botswana",
+      "aliases": ["Botswana"]
+    },
+    {
+      "id": "africa:burkinafaso",
+      "label": "Burkina Faso",
+      "aliases": ["Burkina Faso"]
+    },
+    {
+      "id": "africa:burundi",
+      "label": "Burundi",
+      "aliases": ["Burundi"]
+    },
+    {
+      "id": "africa:caboverde",
+      "label": "Cabo Verde",
+      "aliases": ["Cabo Verde", "cape verde"]
+    },
+    {
+      "id": "africa:cameroon",
+      "label": "Cameroon",
+      "aliases": ["Cameroon"]
+    },
+    {
+      "id": "africa:centralafricanrepublic",
+      "label": "Central African Republic",
+      "aliases": ["Central African Republic", "car"]
+    },
+    {
+      "id": "africa:chad",
+      "label": "Chad",
+      "aliases": ["Chad"]
+    },
+    {
+      "id": "africa:comoros",
+      "label": "Comoros",
+      "aliases": ["Comoros"]
+    },
+    {
+      "id": "africa:republicofthecongo",
+      "label": "Republic of the Congo",
+      "aliases": ["Republic of the Congo", "congo republic", "congo brazzaville"]
+    },
+    {
+      "id": "africa:democraticrepublicofthecongo",
+      "label": "Democratic Republic of the Congo",
+      "aliases": ["Democratic Republic of the Congo", "dr congo", "drc", "congo kinshasa"]
+    },
+    {
+      "id": "africa:djibouti",
+      "label": "Djibouti",
+      "aliases": ["Djibouti"]
+    },
+    {
+      "id": "africa:egypt",
+      "label": "Egypt",
+      "aliases": ["Egypt"]
+    },
+    {
+      "id": "africa:equatorialguinea",
+      "label": "Equatorial Guinea",
+      "aliases": ["Equatorial Guinea"]
+    },
+    {
+      "id": "africa:eritrea",
+      "label": "Eritrea",
+      "aliases": ["Eritrea"]
+    },
+    {
+      "id": "africa:eswatini",
+      "label": "Eswatini",
+      "aliases": ["Eswatini", "swaziland"]
+    },
+    {
+      "id": "africa:ethiopia",
+      "label": "Ethiopia",
+      "aliases": ["Ethiopia"]
+    },
+    {
+      "id": "africa:gabon",
+      "label": "Gabon",
+      "aliases": ["Gabon"]
+    },
+    {
+      "id": "africa:gambia",
+      "label": "Gambia",
+      "aliases": ["Gambia", "the gambia"]
+    },
+    {
+      "id": "africa:ghana",
+      "label": "Ghana",
+      "aliases": ["Ghana"]
+    },
+    {
+      "id": "africa:guinea",
+      "label": "Guinea",
+      "aliases": ["Guinea"]
+    },
+    {
+      "id": "africa:guineabissau",
+      "label": "Guinea Bissau",
+      "aliases": ["Guinea Bissau"]
+    },
+    {
+      "id": "africa:ivorycoast",
+      "label": "Ivory Coast",
+      "aliases": ["Ivory Coast", "cote d ivoire"]
+    },
+    {
+      "id": "africa:kenya",
+      "label": "Kenya",
+      "aliases": ["Kenya"]
+    },
+    {
+      "id": "africa:lesotho",
+      "label": "Lesotho",
+      "aliases": ["Lesotho"]
+    },
+    {
+      "id": "africa:liberia",
+      "label": "Liberia",
+      "aliases": ["Liberia"]
+    },
+    {
+      "id": "africa:libya",
+      "label": "Libya",
+      "aliases": ["Libya"]
+    },
+    {
+      "id": "africa:madagascar",
+      "label": "Madagascar",
+      "aliases": ["Madagascar"]
+    },
+    {
+      "id": "africa:malawi",
+      "label": "Malawi",
+      "aliases": ["Malawi"]
+    },
+    {
+      "id": "africa:mali",
+      "label": "Mali",
+      "aliases": ["Mali"]
+    },
+    {
+      "id": "africa:mauritania",
+      "label": "Mauritania",
+      "aliases": ["Mauritania"]
+    },
+    {
+      "id": "africa:mauritius",
+      "label": "Mauritius",
+      "aliases": ["Mauritius"]
+    },
+    {
+      "id": "africa:morocco",
+      "label": "Morocco",
+      "aliases": ["Morocco"]
+    },
+    {
+      "id": "africa:mozambique",
+      "label": "Mozambique",
+      "aliases": ["Mozambique"]
+    },
+    {
+      "id": "africa:namibia",
+      "label": "Namibia",
+      "aliases": ["Namibia"]
+    },
+    {
+      "id": "africa:niger",
+      "label": "Niger",
+      "aliases": ["Niger"]
+    },
+    {
+      "id": "africa:nigeria",
+      "label": "Nigeria",
+      "aliases": ["Nigeria"]
+    },
+    {
+      "id": "africa:rwanda",
+      "label": "Rwanda",
+      "aliases": ["Rwanda"]
+    },
+    {
+      "id": "africa:saotomeandprincipe",
+      "label": "Sao Tome and Principe",
+      "aliases": ["Sao Tome and Principe"]
+    },
+    {
+      "id": "africa:senegal",
+      "label": "Senegal",
+      "aliases": ["Senegal"]
+    },
+    {
+      "id": "africa:seychelles",
+      "label": "Seychelles",
+      "aliases": ["Seychelles"]
+    },
+    {
+      "id": "africa:sierraleone",
+      "label": "Sierra Leone",
+      "aliases": ["Sierra Leone"]
+    },
+    {
+      "id": "africa:somalia",
+      "label": "Somalia",
+      "aliases": ["Somalia"]
+    },
+    {
+      "id": "africa:southafrica",
+      "label": "South Africa",
+      "aliases": ["South Africa"]
+    },
+    {
+      "id": "africa:southsudan",
+      "label": "South Sudan",
+      "aliases": ["South Sudan"]
+    },
+    {
+      "id": "africa:sudan",
+      "label": "Sudan",
+      "aliases": ["Sudan"]
+    },
+    {
+      "id": "africa:tanzania",
+      "label": "Tanzania",
+      "aliases": ["Tanzania"]
+    },
+    {
+      "id": "africa:togo",
+      "label": "Togo",
+      "aliases": ["Togo"]
+    },
+    {
+      "id": "africa:tunisia",
+      "label": "Tunisia",
+      "aliases": ["Tunisia"]
+    },
+    {
+      "id": "africa:uganda",
+      "label": "Uganda",
+      "aliases": ["Uganda"]
+    },
+    {
+      "id": "africa:zambia",
+      "label": "Zambia",
+      "aliases": ["Zambia"]
+    },
+    {
+      "id": "africa:zimbabwe",
+      "label": "Zimbabwe",
+      "aliases": ["Zimbabwe"]
+    }
+  ],
+  "genres": [
+    {
+      "id": "genres:rock",
+      "label": "Rock",
+      "aliases": ["Rock"]
+    },
+    {
+      "id": "genres:pop",
+      "label": "Pop",
+      "aliases": ["Pop"]
+    },
+    {
+      "id": "genres:jazz",
+      "label": "Jazz",
+      "aliases": ["Jazz"]
+    },
+    {
+      "id": "genres:blues",
+      "label": "Blues",
+      "aliases": ["Blues"]
+    },
+    {
+      "id": "genres:country",
+      "label": "Country",
+      "aliases": ["Country"]
+    },
+    {
+      "id": "genres:classical",
+      "label": "Classical",
+      "aliases": ["Classical"]
+    },
+    {
+      "id": "genres:folk",
+      "label": "Folk",
+      "aliases": ["Folk"]
+    },
+    {
+      "id": "genres:hiphop",
+      "label": "Hip hop",
+      "aliases": ["Hip hop", "hiphop"]
+    },
+    {
+      "id": "genres:rap",
+      "label": "Rap",
+      "aliases": ["Rap"]
+    },
+    {
+      "id": "genres:reggae",
+      "label": "Reggae",
+      "aliases": ["Reggae"]
+    },
+    {
+      "id": "genres:ska",
+      "label": "Ska",
+      "aliases": ["Ska"]
+    },
+    {
+      "id": "genres:punk",
+      "label": "Punk",
+      "aliases": ["Punk", "punk rock"]
+    },
+    {
+      "id": "genres:metal",
+      "label": "Metal",
+      "aliases": ["Metal", "heavy metal"]
+    },
+    {
+      "id": "genres:disco",
+      "label": "Disco",
+      "aliases": ["Disco"]
+    },
+    {
+      "id": "genres:funk",
+      "label": "Funk",
+      "aliases": ["Funk"]
+    },
+    {
+      "id": "genres:soul",
+      "label": "Soul",
+      "aliases": ["Soul"]
+    },
+    {
+      "id": "genres:gospel",
+      "label": "Gospel",
+      "aliases": ["Gospel"]
+    },
+    {
+      "id": "genres:randb",
+      "label": "R and B",
+      "aliases": ["R and B", "r&b", "rnb", "rhythm and blues"]
+    },
+    {
+      "id": "genres:electronic",
+      "label": "Electronic",
+      "aliases": ["Electronic", "electronica"]
+    },
+    {
+      "id": "genres:house",
+      "label": "House",
+      "aliases": ["House"]
+    },
+    {
+      "id": "genres:techno",
+      "label": "Techno",
+      "aliases": ["Techno"]
+    },
+    {
+      "id": "genres:trance",
+      "label": "Trance",
+      "aliases": ["Trance"]
+    },
+    {
+      "id": "genres:dubstep",
+      "label": "Dubstep",
+      "aliases": ["Dubstep"]
+    },
+    {
+      "id": "genres:drumandbass",
+      "label": "Drum and bass",
+      "aliases": ["Drum and bass", "dnb"]
+    },
+    {
+      "id": "genres:ambient",
+      "label": "Ambient",
+      "aliases": ["Ambient"]
+    },
+    {
+      "id": "genres:grunge",
+      "label": "Grunge",
+      "aliases": ["Grunge"]
+    },
+    {
+      "id": "genres:indie",
+      "label": "Indie",
+      "aliases": ["Indie", "indie rock"]
+    },
+    {
+      "id": "genres:alternative",
+      "label": "Alternative",
+      "aliases": ["Alternative", "alternative rock"]
+    },
+    {
+      "id": "genres:britpop",
+      "label": "Britpop",
+      "aliases": ["Britpop"]
+    },
+    {
+      "id": "genres:shoegaze",
+      "label": "Shoegaze",
+      "aliases": ["Shoegaze"]
+    },
+    {
+      "id": "genres:bluegrass",
+      "label": "Bluegrass",
+      "aliases": ["Bluegrass"]
+    },
+    {
+      "id": "genres:rockabilly",
+      "label": "Rockabilly",
+      "aliases": ["Rockabilly"]
+    },
+    {
+      "id": "genres:swing",
+      "label": "Swing",
+      "aliases": ["Swing"]
+    },
+    {
+      "id": "genres:bebop",
+      "label": "Bebop",
+      "aliases": ["Bebop"]
+    },
+    {
+      "id": "genres:bossanova",
+      "label": "Bossa nova",
+      "aliases": ["Bossa nova"]
+    },
+    {
+      "id": "genres:samba",
+      "label": "Samba",
+      "aliases": ["Samba"]
+    },
+    {
+      "id": "genres:salsa",
+      "label": "Salsa",
+      "aliases": ["Salsa"]
+    },
+    {
+      "id": "genres:tango",
+      "label": "Tango",
+      "aliases": ["Tango"]
+    },
+    {
+      "id": "genres:flamenco",
+      "label": "Flamenco",
+      "aliases": ["Flamenco"]
+    },
+    {
+      "id": "genres:afrobeat",
+      "label": "Afrobeat",
+      "aliases": ["Afrobeat"]
+    },
+    {
+      "id": "genres:afrobeats",
+      "label": "Afrobeats",
+      "aliases": ["Afrobeats"]
+    },
+    {
+      "id": "genres:kpop",
+      "label": "K pop",
+      "aliases": ["K pop", "kpop"]
+    },
+    {
+      "id": "genres:jpop",
+      "label": "J pop",
+      "aliases": ["J pop", "jpop"]
+    },
+    {
+      "id": "genres:opera",
+      "label": "Opera",
+      "aliases": ["Opera"]
+    },
+    {
+      "id": "genres:operetta",
+      "label": "Operetta",
+      "aliases": ["Operetta"]
+    },
+    {
+      "id": "genres:chiptune",
+      "label": "Chiptune",
+      "aliases": ["Chiptune"]
+    },
+    {
+      "id": "genres:synthpop",
+      "label": "Synthpop",
+      "aliases": ["Synthpop"]
+    },
+    {
+      "id": "genres:newwave",
+      "label": "New wave",
+      "aliases": ["New wave"]
+    },
+    {
+      "id": "genres:postpunk",
+      "label": "Post punk",
+      "aliases": ["Post punk"]
+    },
+    {
+      "id": "genres:postrock",
+      "label": "Post rock",
+      "aliases": ["Post rock"]
+    },
+    {
+      "id": "genres:progressiverock",
+      "label": "Progressive rock",
+      "aliases": ["Progressive rock", "prog rock"]
+    },
+    {
+      "id": "genres:psychedelicrock",
+      "label": "Psychedelic rock",
+      "aliases": ["Psychedelic rock"]
+    },
+    {
+      "id": "genres:garagerock",
+      "label": "Garage rock",
+      "aliases": ["Garage rock"]
+    },
+    {
+      "id": "genres:surfrock",
+      "label": "Surf rock",
+      "aliases": ["Surf rock"]
+    },
+    {
+      "id": "genres:deathmetal",
+      "label": "Death metal",
+      "aliases": ["Death metal"]
+    },
+    {
+      "id": "genres:blackmetal",
+      "label": "Black metal",
+      "aliases": ["Black metal"]
+    },
+    {
+      "id": "genres:doommetal",
+      "label": "Doom metal",
+      "aliases": ["Doom metal"]
+    },
+    {
+      "id": "genres:powermetal",
+      "label": "Power metal",
+      "aliases": ["Power metal"]
+    },
+    {
+      "id": "genres:thrashmetal",
+      "label": "Thrash metal",
+      "aliases": ["Thrash metal"]
+    },
+    {
+      "id": "genres:triphop",
+      "label": "Trip hop",
+      "aliases": ["Trip hop"]
+    },
+    {
+      "id": "genres:downtempo",
+      "label": "Downtempo",
+      "aliases": ["Downtempo"]
+    },
+    {
+      "id": "genres:dub",
+      "label": "Dub",
+      "aliases": ["Dub"]
+    },
+    {
+      "id": "genres:dancehall",
+      "label": "Dancehall",
+      "aliases": ["Dancehall"]
+    },
+    {
+      "id": "genres:reggaeton",
+      "label": "Reggaeton",
+      "aliases": ["Reggaeton"]
+    }
+  ],
+  "seas": [
+    {
+      "id": "seas:mediterranean",
+      "label": "Mediterranean",
+      "aliases": ["Mediterranean", "mediterranean sea"]
+    },
+    {
+      "id": "seas:caribbean",
+      "label": "Caribbean",
+      "aliases": ["Caribbean", "caribbean sea"]
+    },
+    {
+      "id": "seas:baltic",
+      "label": "Baltic",
+      "aliases": ["Baltic", "baltic sea"]
+    },
+    {
+      "id": "seas:blacksea",
+      "label": "Black Sea",
+      "aliases": ["Black Sea"]
+    },
+    {
+      "id": "seas:redsea",
+      "label": "Red Sea",
+      "aliases": ["Red Sea"]
+    },
+    {
+      "id": "seas:northsea",
+      "label": "North Sea",
+      "aliases": ["North Sea"]
+    },
+    {
+      "id": "seas:norwegiansea",
+      "label": "Norwegian Sea",
+      "aliases": ["Norwegian Sea"]
+    },
+    {
+      "id": "seas:greenlandsea",
+      "label": "Greenland Sea",
+      "aliases": ["Greenland Sea"]
+    },
+    {
+      "id": "seas:barentssea",
+      "label": "Barents Sea",
+      "aliases": ["Barents Sea"]
+    },
+    {
+      "id": "seas:whitesea",
+      "label": "White Sea",
+      "aliases": ["White Sea"]
+    },
+    {
+      "id": "seas:adriatic",
+      "label": "Adriatic",
+      "aliases": ["Adriatic", "adriatic sea"]
+    },
+    {
+      "id": "seas:aegean",
+      "label": "Aegean",
+      "aliases": ["Aegean", "aegean sea"]
+    },
+    {
+      "id": "seas:ionian",
+      "label": "Ionian",
+      "aliases": ["Ionian", "ionian sea"]
+    },
+    {
+      "id": "seas:tyrrhenian",
+      "label": "Tyrrhenian",
+      "aliases": ["Tyrrhenian", "tyrrhenian sea"]
+    },
+    {
+      "id": "seas:ligurian",
+      "label": "Ligurian",
+      "aliases": ["Ligurian", "ligurian sea"]
+    },
+    {
+      "id": "seas:alboran",
+      "label": "Alboran",
+      "aliases": ["Alboran", "alboran sea"]
+    },
+    {
+      "id": "seas:marmara",
+      "label": "Marmara",
+      "aliases": ["Marmara", "sea of marmara"]
+    },
+    {
+      "id": "seas:azov",
+      "label": "Azov",
+      "aliases": ["Azov", "sea of azov"]
+    },
+    {
+      "id": "seas:arabiansea",
+      "label": "Arabian Sea",
+      "aliases": ["Arabian Sea"]
+    },
+    {
+      "id": "seas:andamansea",
+      "label": "Andaman Sea",
+      "aliases": ["Andaman Sea"]
+    },
+    {
+      "id": "seas:southchinasea",
+      "label": "South China Sea",
+      "aliases": ["South China Sea"]
+    },
+    {
+      "id": "seas:eastchinasea",
+      "label": "East China Sea",
+      "aliases": ["East China Sea"]
+    },
+    {
+      "id": "seas:yellowsea",
+      "label": "Yellow Sea",
+      "aliases": ["Yellow Sea"]
+    },
+    {
+      "id": "seas:japansea",
+      "label": "Japan Sea",
+      "aliases": ["Japan Sea", "sea of japan", "east sea"]
+    },
+    {
+      "id": "seas:philippinesea",
+      "label": "Philippine Sea",
+      "aliases": ["Philippine Sea"]
+    },
+    {
+      "id": "seas:sulusea",
+      "label": "Sulu Sea",
+      "aliases": ["Sulu Sea"]
+    },
+    {
+      "id": "seas:celebessea",
+      "label": "Celebes Sea",
+      "aliases": ["Celebes Sea", "sulawesi sea"]
+    },
+    {
+      "id": "seas:javasea",
+      "label": "Java Sea",
+      "aliases": ["Java Sea"]
+    },
+    {
+      "id": "seas:bandasea",
+      "label": "Banda Sea",
+      "aliases": ["Banda Sea"]
+    },
+    {
+      "id": "seas:arafurasea",
+      "label": "Arafura Sea",
+      "aliases": ["Arafura Sea"]
+    },
+    {
+      "id": "seas:timorsea",
+      "label": "Timor Sea",
+      "aliases": ["Timor Sea"]
+    },
+    {
+      "id": "seas:coralsea",
+      "label": "Coral Sea",
+      "aliases": ["Coral Sea"]
+    },
+    {
+      "id": "seas:tasmansea",
+      "label": "Tasman Sea",
+      "aliases": ["Tasman Sea"]
+    },
+    {
+      "id": "seas:bismarcksea",
+      "label": "Bismarck Sea",
+      "aliases": ["Bismarck Sea"]
+    },
+    {
+      "id": "seas:solomonsea",
+      "label": "Solomon Sea",
+      "aliases": ["Solomon Sea"]
+    },
+    {
+      "id": "seas:beringsea",
+      "label": "Bering Sea",
+      "aliases": ["Bering Sea"]
+    },
+    {
+      "id": "seas:okhotsk",
+      "label": "Okhotsk",
+      "aliases": ["Okhotsk", "sea of okhotsk"]
+    },
+    {
+      "id": "seas:chukchisea",
+      "label": "Chukchi Sea",
+      "aliases": ["Chukchi Sea"]
+    },
+    {
+      "id": "seas:beaufortsea",
+      "label": "Beaufort Sea",
+      "aliases": ["Beaufort Sea"]
+    },
+    {
+      "id": "seas:labradorsea",
+      "label": "Labrador Sea",
+      "aliases": ["Labrador Sea"]
+    },
+    {
+      "id": "seas:weddellsea",
+      "label": "Weddell Sea",
+      "aliases": ["Weddell Sea"]
+    },
+    {
+      "id": "seas:rosssea",
+      "label": "Ross Sea",
+      "aliases": ["Ross Sea"]
+    },
+    {
+      "id": "seas:amundsensea",
+      "label": "Amundsen Sea",
+      "aliases": ["Amundsen Sea"]
+    },
+    {
+      "id": "seas:bellingshausensea",
+      "label": "Bellingshausen Sea",
+      "aliases": ["Bellingshausen Sea"]
+    },
+    {
+      "id": "seas:scotiasea",
+      "label": "Scotia Sea",
+      "aliases": ["Scotia Sea"]
+    },
+    {
+      "id": "seas:laccadivesea",
+      "label": "Laccadive Sea",
+      "aliases": ["Laccadive Sea"]
+    },
+    {
+      "id": "seas:laptevsea",
+      "label": "Laptev Sea",
+      "aliases": ["Laptev Sea"]
+    },
+    {
+      "id": "seas:karasea",
+      "label": "Kara Sea",
+      "aliases": ["Kara Sea"]
+    }
+  ],
+  "units": [
+    {
+      "id": "units:metre",
+      "label": "Metre",
+      "aliases": ["Metre", "meter", "m"]
+    },
+    {
+      "id": "units:kilometre",
+      "label": "Kilometre",
+      "aliases": ["Kilometre", "kilometer", "km"]
+    },
+    {
+      "id": "units:centimetre",
+      "label": "Centimetre",
+      "aliases": ["Centimetre", "centimeter", "cm"]
+    },
+    {
+      "id": "units:millimetre",
+      "label": "Millimetre",
+      "aliases": ["Millimetre", "millimeter", "mm"]
+    },
+    {
+      "id": "units:mile",
+      "label": "Mile",
+      "aliases": ["Mile"]
+    },
+    {
+      "id": "units:yard",
+      "label": "Yard",
+      "aliases": ["Yard"]
+    },
+    {
+      "id": "units:foot",
+      "label": "Foot",
+      "aliases": ["Foot", "feet"]
+    },
+    {
+      "id": "units:inch",
+      "label": "Inch",
+      "aliases": ["Inch"]
+    },
+    {
+      "id": "units:nauticalmile",
+      "label": "Nautical mile",
+      "aliases": ["Nautical mile"]
+    },
+    {
+      "id": "units:lightyear",
+      "label": "Light year",
+      "aliases": ["Light year"]
+    },
+    {
+      "id": "units:parsec",
+      "label": "Parsec",
+      "aliases": ["Parsec"]
+    },
+    {
+      "id": "units:astronomicalunit",
+      "label": "Astronomical unit",
+      "aliases": ["Astronomical unit", "au"]
+    },
+    {
+      "id": "units:gram",
+      "label": "Gram",
+      "aliases": ["Gram", "g"]
+    },
+    {
+      "id": "units:kilogram",
+      "label": "Kilogram",
+      "aliases": ["Kilogram", "kg"]
+    },
+    {
+      "id": "units:milligram",
+      "label": "Milligram",
+      "aliases": ["Milligram", "mg"]
+    },
+    {
+      "id": "units:tonne",
+      "label": "Tonne",
+      "aliases": ["Tonne", "metric ton"]
+    },
+    {
+      "id": "units:pound",
+      "label": "Pound",
+      "aliases": ["Pound", "lb"]
+    },
+    {
+      "id": "units:ounce",
+      "label": "Ounce",
+      "aliases": ["Ounce", "oz"]
+    },
+    {
+      "id": "units:stone",
+      "label": "Stone",
+      "aliases": ["Stone"]
+    },
+    {
+      "id": "units:second",
+      "label": "Second",
+      "aliases": ["Second", "s"]
+    },
+    {
+      "id": "units:minute",
+      "label": "Minute",
+      "aliases": ["Minute"]
+    },
+    {
+      "id": "units:hour",
+      "label": "Hour",
+      "aliases": ["Hour"]
+    },
+    {
+      "id": "units:ampere",
+      "label": "Ampere",
+      "aliases": ["Ampere", "amp"]
+    },
+    {
+      "id": "units:kelvin",
+      "label": "Kelvin",
+      "aliases": ["Kelvin"]
+    },
+    {
+      "id": "units:celsius",
+      "label": "Celsius",
+      "aliases": ["Celsius", "degree celsius"]
+    },
+    {
+      "id": "units:fahrenheit",
+      "label": "Fahrenheit",
+      "aliases": ["Fahrenheit", "degree fahrenheit"]
+    },
+    {
+      "id": "units:mole",
+      "label": "Mole",
+      "aliases": ["Mole", "mol"]
+    },
+    {
+      "id": "units:candela",
+      "label": "Candela",
+      "aliases": ["Candela"]
+    },
+    {
+      "id": "units:litre",
+      "label": "Litre",
+      "aliases": ["Litre", "liter"]
+    },
+    {
+      "id": "units:millilitre",
+      "label": "Millilitre",
+      "aliases": ["Millilitre", "milliliter"]
+    },
+    {
+      "id": "units:gallon",
+      "label": "Gallon",
+      "aliases": ["Gallon"]
+    },
+    {
+      "id": "units:pint",
+      "label": "Pint",
+      "aliases": ["Pint"]
+    },
+    {
+      "id": "units:quart",
+      "label": "Quart",
+      "aliases": ["Quart"]
+    },
+    {
+      "id": "units:fluidounce",
+      "label": "Fluid ounce",
+      "aliases": ["Fluid ounce"]
+    },
+    {
+      "id": "units:teaspoon",
+      "label": "Teaspoon",
+      "aliases": ["Teaspoon"]
+    },
+    {
+      "id": "units:tablespoon",
+      "label": "Tablespoon",
+      "aliases": ["Tablespoon"]
+    },
+    {
+      "id": "units:cup",
+      "label": "Cup",
+      "aliases": ["Cup"]
+    },
+    {
+      "id": "units:newton",
+      "label": "Newton",
+      "aliases": ["Newton"]
+    },
+    {
+      "id": "units:pascal",
+      "label": "Pascal",
+      "aliases": ["Pascal"]
+    },
+    {
+      "id": "units:bar",
+      "label": "Bar",
+      "aliases": ["Bar"]
+    },
+    {
+      "id": "units:atmosphere",
+      "label": "Atmosphere",
+      "aliases": ["Atmosphere"]
+    },
+    {
+      "id": "units:joule",
+      "label": "Joule",
+      "aliases": ["Joule"]
+    },
+    {
+      "id": "units:calorie",
+      "label": "Calorie",
+      "aliases": ["Calorie"]
+    },
+    {
+      "id": "units:watt",
+      "label": "Watt",
+      "aliases": ["Watt"]
+    },
+    {
+      "id": "units:horsepower",
+      "label": "Horsepower",
+      "aliases": ["Horsepower"]
+    },
+    {
+      "id": "units:volt",
+      "label": "Volt",
+      "aliases": ["Volt"]
+    },
+    {
+      "id": "units:ohm",
+      "label": "Ohm",
+      "aliases": ["Ohm"]
+    },
+    {
+      "id": "units:coulomb",
+      "label": "Coulomb",
+      "aliases": ["Coulomb"]
+    },
+    {
+      "id": "units:farad",
+      "label": "Farad",
+      "aliases": ["Farad"]
+    },
+    {
+      "id": "units:hertz",
+      "label": "Hertz",
+      "aliases": ["Hertz"]
+    },
+    {
+      "id": "units:becquerel",
+      "label": "Becquerel",
+      "aliases": ["Becquerel"]
+    },
+    {
+      "id": "units:sievert",
+      "label": "Sievert",
+      "aliases": ["Sievert"]
+    },
+    {
+      "id": "units:gray",
+      "label": "Gray",
+      "aliases": ["Gray"]
+    },
+    {
+      "id": "units:lumen",
+      "label": "Lumen",
+      "aliases": ["Lumen"]
+    },
+    {
+      "id": "units:lux",
+      "label": "Lux",
+      "aliases": ["Lux"]
+    },
+    {
+      "id": "units:tesla",
+      "label": "Tesla",
+      "aliases": ["Tesla"]
+    },
+    {
+      "id": "units:weber",
+      "label": "Weber",
+      "aliases": ["Weber"]
+    },
+    {
+      "id": "units:henry",
+      "label": "Henry",
+      "aliases": ["Henry"]
+    },
+    {
+      "id": "units:radian",
+      "label": "Radian",
+      "aliases": ["Radian"]
+    },
+    {
+      "id": "units:steradian",
+      "label": "Steradian",
+      "aliases": ["Steradian"]
+    },
+    {
+      "id": "units:degree",
+      "label": "Degree",
+      "aliases": ["Degree"]
+    },
+    {
+      "id": "units:knot",
+      "label": "Knot",
+      "aliases": ["Knot"]
+    },
+    {
+      "id": "units:hectare",
+      "label": "Hectare",
+      "aliases": ["Hectare"]
+    },
+    {
+      "id": "units:acre",
+      "label": "Acre",
+      "aliases": ["Acre"]
+    },
+    {
+      "id": "units:byte",
+      "label": "Byte",
+      "aliases": ["Byte"]
+    },
+    {
+      "id": "units:bit",
+      "label": "Bit",
+      "aliases": ["Bit"]
+    },
+    {
+      "id": "units:decibel",
+      "label": "Decibel",
+      "aliases": ["Decibel"]
+    }
+  ],
+  "ranges": [
+    {
+      "id": "ranges:himalayas",
+      "label": "Himalayas",
+      "aliases": ["Himalayas", "himalaya"]
+    },
+    {
+      "id": "ranges:andes",
+      "label": "Andes",
+      "aliases": ["Andes"]
+    },
+    {
+      "id": "ranges:alps",
+      "label": "Alps",
+      "aliases": ["Alps"]
+    },
+    {
+      "id": "ranges:rockymountains",
+      "label": "Rocky Mountains",
+      "aliases": ["Rocky Mountains", "rockies"]
+    },
+    {
+      "id": "ranges:appalachians",
+      "label": "Appalachians",
+      "aliases": ["Appalachians", "appalachian mountains"]
+    },
+    {
+      "id": "ranges:pyrenees",
+      "label": "Pyrenees",
+      "aliases": ["Pyrenees"]
+    },
+    {
+      "id": "ranges:carpathians",
+      "label": "Carpathians",
+      "aliases": ["Carpathians"]
+    },
+    {
+      "id": "ranges:apennines",
+      "label": "Apennines",
+      "aliases": ["Apennines"]
+    },
+    {
+      "id": "ranges:dolomites",
+      "label": "Dolomites",
+      "aliases": ["Dolomites"]
+    },
+    {
+      "id": "ranges:balkans",
+      "label": "Balkans",
+      "aliases": ["Balkans", "balkan mountains"]
+    },
+    {
+      "id": "ranges:scandinavianmountains",
+      "label": "Scandinavian Mountains",
+      "aliases": ["Scandinavian Mountains", "scandes"]
+    },
+    {
+      "id": "ranges:urals",
+      "label": "Urals",
+      "aliases": ["Urals", "ural mountains"]
+    },
+    {
+      "id": "ranges:caucasus",
+      "label": "Caucasus",
+      "aliases": ["Caucasus"]
+    },
+    {
+      "id": "ranges:atlasmountains",
+      "label": "Atlas Mountains",
+      "aliases": ["Atlas Mountains", "atlas"]
+    },
+    {
+      "id": "ranges:drakensberg",
+      "label": "Drakensberg",
+      "aliases": ["Drakensberg"]
+    },
+    {
+      "id": "ranges:rwenzori",
+      "label": "Rwenzori",
+      "aliases": ["Rwenzori", "ruwenzori"]
+    },
+    {
+      "id": "ranges:ethiopianhighlands",
+      "label": "Ethiopian Highlands",
+      "aliases": ["Ethiopian Highlands"]
+    },
+    {
+      "id": "ranges:hindukush",
+      "label": "Hindu Kush",
+      "aliases": ["Hindu Kush"]
+    },
+    {
+      "id": "ranges:karakoram",
+      "label": "Karakoram",
+      "aliases": ["Karakoram"]
+    },
+    {
+      "id": "ranges:pamirs",
+      "label": "Pamirs",
+      "aliases": ["Pamirs", "pamir mountains"]
+    },
+    {
+      "id": "ranges:tienshan",
+      "label": "Tien Shan",
+      "aliases": ["Tien Shan", "tian shan"]
+    },
+    {
+      "id": "ranges:kunlun",
+      "label": "Kunlun",
+      "aliases": ["Kunlun"]
+    },
+    {
+      "id": "ranges:altai",
+      "label": "Altai",
+      "aliases": ["Altai", "altay"]
+    },
+    {
+      "id": "ranges:zagros",
+      "label": "Zagros",
+      "aliases": ["Zagros"]
+    },
+    {
+      "id": "ranges:alborz",
+      "label": "Alborz",
+      "aliases": ["Alborz", "elburz"]
+    },
+    {
+      "id": "ranges:westernghats",
+      "label": "Western Ghats",
+      "aliases": ["Western Ghats"]
+    },
+    {
+      "id": "ranges:easternghats",
+      "label": "Eastern Ghats",
+      "aliases": ["Eastern Ghats"]
+    },
+    {
+      "id": "ranges:sierranevada",
+      "label": "Sierra Nevada",
+      "aliases": ["Sierra Nevada"]
+    },
+    {
+      "id": "ranges:sierramadre",
+      "label": "Sierra Madre",
+      "aliases": ["Sierra Madre"]
+    },
+    {
+      "id": "ranges:cascaderange",
+      "label": "Cascade Range",
+      "aliases": ["Cascade Range", "cascades"]
+    },
+    {
+      "id": "ranges:coastmountains",
+      "label": "Coast Mountains",
+      "aliases": ["Coast Mountains"]
+    },
+    {
+      "id": "ranges:alaskarange",
+      "label": "Alaska Range",
+      "aliases": ["Alaska Range"]
+    },
+    {
+      "id": "ranges:brooksrange",
+      "label": "Brooks Range",
+      "aliases": ["Brooks Range"]
+    },
+    {
+      "id": "ranges:greatdividingrange",
+      "label": "Great Dividing Range",
+      "aliases": ["Great Dividing Range"]
+    },
+    {
+      "id": "ranges:southernalps",
+      "label": "Southern Alps",
+      "aliases": ["Southern Alps", "ka tiritiri o te moana"]
+    },
+    {
+      "id": "ranges:tararuarange",
+      "label": "Tararua Range",
+      "aliases": ["Tararua Range", "tararuas"]
+    },
+    {
+      "id": "ranges:ruahinerange",
+      "label": "Ruahine Range",
+      "aliases": ["Ruahine Range", "ruahines"]
+    },
+    {
+      "id": "ranges:kaimanawarange",
+      "label": "Kaimanawa Range",
+      "aliases": ["Kaimanawa Range"]
+    },
+    {
+      "id": "ranges:kaikouraranges",
+      "label": "Kaikoura Ranges",
+      "aliases": ["Kaikoura Ranges"]
+    },
+    {
+      "id": "ranges:darranmountains",
+      "label": "Darran Mountains",
+      "aliases": ["Darran Mountains"]
+    },
+    {
+      "id": "ranges:transantarcticmountains",
+      "label": "Transantarctic Mountains",
+      "aliases": ["Transantarctic Mountains"]
+    }
+  ],
+  "fruit": [
+    {
+      "id": "fruit:apple",
+      "label": "Apple",
+      "aliases": ["Apple"]
+    },
+    {
+      "id": "fruit:apricot",
+      "label": "Apricot",
+      "aliases": ["Apricot"]
+    },
+    {
+      "id": "fruit:avocado",
+      "label": "Avocado",
+      "aliases": ["Avocado"]
+    },
+    {
+      "id": "fruit:banana",
+      "label": "Banana",
+      "aliases": ["Banana"]
+    },
+    {
+      "id": "fruit:blackberry",
+      "label": "Blackberry",
+      "aliases": ["Blackberry", "blackberries"]
+    },
+    {
+      "id": "fruit:blackcurrant",
+      "label": "Blackcurrant",
+      "aliases": ["Blackcurrant"]
+    },
+    {
+      "id": "fruit:blueberry",
+      "label": "Blueberry",
+      "aliases": ["Blueberry", "blueberries"]
+    },
+    {
+      "id": "fruit:boysenberry",
+      "label": "Boysenberry",
+      "aliases": ["Boysenberry"]
+    },
+    {
+      "id": "fruit:cherry",
+      "label": "Cherry",
+      "aliases": ["Cherry", "cherries"]
+    },
+    {
+      "id": "fruit:coconut",
+      "label": "Coconut",
+      "aliases": ["Coconut"]
+    },
+    {
+      "id": "fruit:cranberry",
+      "label": "Cranberry",
+      "aliases": ["Cranberry"]
+    },
+    {
+      "id": "fruit:date",
+      "label": "Date",
+      "aliases": ["Date"]
+    },
+    {
+      "id": "fruit:dragonfruit",
+      "label": "Dragon fruit",
+      "aliases": ["Dragon fruit", "pitaya"]
+    },
+    {
+      "id": "fruit:durian",
+      "label": "Durian",
+      "aliases": ["Durian"]
+    },
+    {
+      "id": "fruit:feijoa",
+      "label": "Feijoa",
+      "aliases": ["Feijoa"]
+    },
+    {
+      "id": "fruit:fig",
+      "label": "Fig",
+      "aliases": ["Fig"]
+    },
+    {
+      "id": "fruit:grape",
+      "label": "Grape",
+      "aliases": ["Grape"]
+    },
+    {
+      "id": "fruit:grapefruit",
+      "label": "Grapefruit",
+      "aliases": ["Grapefruit"]
+    },
+    {
+      "id": "fruit:guava",
+      "label": "Guava",
+      "aliases": ["Guava"]
+    },
+    {
+      "id": "fruit:kiwifruit",
+      "label": "Kiwifruit",
+      "aliases": ["Kiwifruit", "kiwi", "kiwi fruit"]
+    },
+    {
+      "id": "fruit:lemon",
+      "label": "Lemon",
+      "aliases": ["Lemon"]
+    },
+    {
+      "id": "fruit:lime",
+      "label": "Lime",
+      "aliases": ["Lime"]
+    },
+    {
+      "id": "fruit:lychee",
+      "label": "Lychee",
+      "aliases": ["Lychee"]
+    },
+    {
+      "id": "fruit:mandarin",
+      "label": "Mandarin",
+      "aliases": ["Mandarin", "tangerine"]
+    },
+    {
+      "id": "fruit:mango",
+      "label": "Mango",
+      "aliases": ["Mango"]
+    },
+    {
+      "id": "fruit:melon",
+      "label": "Melon",
+      "aliases": ["Melon"]
+    },
+    {
+      "id": "fruit:nectarine",
+      "label": "Nectarine",
+      "aliases": ["Nectarine"]
+    },
+    {
+      "id": "fruit:olive",
+      "label": "Olive",
+      "aliases": ["Olive"]
+    },
+    {
+      "id": "fruit:orange",
+      "label": "Orange",
+      "aliases": ["Orange"]
+    },
+    {
+      "id": "fruit:papaya",
+      "label": "Papaya",
+      "aliases": ["Papaya", "pawpaw"]
+    },
+    {
+      "id": "fruit:passionfruit",
+      "label": "Passionfruit",
+      "aliases": ["Passionfruit", "passion fruit"]
+    },
+    {
+      "id": "fruit:peach",
+      "label": "Peach",
+      "aliases": ["Peach"]
+    },
+    {
+      "id": "fruit:pear",
+      "label": "Pear",
+      "aliases": ["Pear"]
+    },
+    {
+      "id": "fruit:persimmon",
+      "label": "Persimmon",
+      "aliases": ["Persimmon"]
+    },
+    {
+      "id": "fruit:pineapple",
+      "label": "Pineapple",
+      "aliases": ["Pineapple"]
+    },
+    {
+      "id": "fruit:plum",
+      "label": "Plum",
+      "aliases": ["Plum"]
+    },
+    {
+      "id": "fruit:pomegranate",
+      "label": "Pomegranate",
+      "aliases": ["Pomegranate"]
+    },
+    {
+      "id": "fruit:raspberry",
+      "label": "Raspberry",
+      "aliases": ["Raspberry", "raspberries"]
+    },
+    {
+      "id": "fruit:strawberry",
+      "label": "Strawberry",
+      "aliases": ["Strawberry", "strawberries"]
+    },
+    {
+      "id": "fruit:watermelon",
+      "label": "Watermelon",
+      "aliases": ["Watermelon"]
+    }
+  ],
+  "vegetables": [
+    {
+      "id": "vegetables:artichoke",
+      "label": "Artichoke",
+      "aliases": ["Artichoke"]
+    },
+    {
+      "id": "vegetables:asparagus",
+      "label": "Asparagus",
+      "aliases": ["Asparagus"]
+    },
+    {
+      "id": "vegetables:aubergine",
+      "label": "Aubergine",
+      "aliases": ["Aubergine", "eggplant"]
+    },
+    {
+      "id": "vegetables:beetroot",
+      "label": "Beetroot",
+      "aliases": ["Beetroot", "beet"]
+    },
+    {
+      "id": "vegetables:bokchoy",
+      "label": "Bok choy",
+      "aliases": ["Bok choy", "pak choi"]
+    },
+    {
+      "id": "vegetables:broccoli",
+      "label": "Broccoli",
+      "aliases": ["Broccoli"]
+    },
+    {
+      "id": "vegetables:brusselssprouts",
+      "label": "Brussels sprouts",
+      "aliases": ["Brussels sprouts", "brussel sprouts"]
+    },
+    {
+      "id": "vegetables:cabbage",
+      "label": "Cabbage",
+      "aliases": ["Cabbage"]
+    },
+    {
+      "id": "vegetables:capsicum",
+      "label": "Capsicum",
+      "aliases": ["Capsicum", "bell pepper"]
+    },
+    {
+      "id": "vegetables:carrot",
+      "label": "Carrot",
+      "aliases": ["Carrot"]
+    },
+    {
+      "id": "vegetables:cauliflower",
+      "label": "Cauliflower",
+      "aliases": ["Cauliflower"]
+    },
+    {
+      "id": "vegetables:celery",
+      "label": "Celery",
+      "aliases": ["Celery"]
+    },
+    {
+      "id": "vegetables:chard",
+      "label": "Chard",
+      "aliases": ["Chard", "silverbeet"]
+    },
+    {
+      "id": "vegetables:chilli",
+      "label": "Chilli",
+      "aliases": ["Chilli", "chili", "chilli pepper"]
+    },
+    {
+      "id": "vegetables:corn",
+      "label": "Corn",
+      "aliases": ["Corn", "sweetcorn"]
+    },
+    {
+      "id": "vegetables:courgette",
+      "label": "Courgette",
+      "aliases": ["Courgette", "zucchini"]
+    },
+    {
+      "id": "vegetables:cucumber",
+      "label": "Cucumber",
+      "aliases": ["Cucumber"]
+    },
+    {
+      "id": "vegetables:fennel",
+      "label": "Fennel",
+      "aliases": ["Fennel"]
+    },
+    {
+      "id": "vegetables:garlic",
+      "label": "Garlic",
+      "aliases": ["Garlic"]
+    },
+    {
+      "id": "vegetables:greenbean",
+      "label": "Green bean",
+      "aliases": ["Green bean", "green beans"]
+    },
+    {
+      "id": "vegetables:kale",
+      "label": "Kale",
+      "aliases": ["Kale"]
+    },
+    {
+      "id": "vegetables:kumara",
+      "label": "Kumara",
+      "aliases": ["Kumara", "sweet potato"]
+    },
+    {
+      "id": "vegetables:leek",
+      "label": "Leek",
+      "aliases": ["Leek"]
+    },
+    {
+      "id": "vegetables:lettuce",
+      "label": "Lettuce",
+      "aliases": ["Lettuce"]
+    },
+    {
+      "id": "vegetables:mushroom",
+      "label": "Mushroom",
+      "aliases": ["Mushroom"]
+    },
+    {
+      "id": "vegetables:onion",
+      "label": "Onion",
+      "aliases": ["Onion"]
+    },
+    {
+      "id": "vegetables:parsnip",
+      "label": "Parsnip",
+      "aliases": ["Parsnip"]
+    },
+    {
+      "id": "vegetables:pea",
+      "label": "Pea",
+      "aliases": ["Pea", "peas"]
+    },
+    {
+      "id": "vegetables:potato",
+      "label": "Potato",
+      "aliases": ["Potato"]
+    },
+    {
+      "id": "vegetables:pumpkin",
+      "label": "Pumpkin",
+      "aliases": ["Pumpkin"]
+    },
+    {
+      "id": "vegetables:radish",
+      "label": "Radish",
+      "aliases": ["Radish"]
+    },
+    {
+      "id": "vegetables:rhubarb",
+      "label": "Rhubarb",
+      "aliases": ["Rhubarb"]
+    },
+    {
+      "id": "vegetables:shallot",
+      "label": "Shallot",
+      "aliases": ["Shallot"]
+    },
+    {
+      "id": "vegetables:spinach",
+      "label": "Spinach",
+      "aliases": ["Spinach"]
+    },
+    {
+      "id": "vegetables:squash",
+      "label": "Squash",
+      "aliases": ["Squash"]
+    },
+    {
+      "id": "vegetables:swede",
+      "label": "Swede",
+      "aliases": ["Swede", "rutabaga"]
+    },
+    {
+      "id": "vegetables:tomato",
+      "label": "Tomato",
+      "aliases": ["Tomato"]
+    },
+    {
+      "id": "vegetables:turnip",
+      "label": "Turnip",
+      "aliases": ["Turnip"]
+    }
+  ],
+  "pets": [
+    {
+      "id": "pets:cat",
+      "label": "Cat",
+      "aliases": ["Cat", "cats"]
+    },
+    {
+      "id": "pets:dog",
+      "label": "Dog",
+      "aliases": ["Dog", "dogs"]
+    },
+    {
+      "id": "pets:rabbit",
+      "label": "Rabbit",
+      "aliases": ["Rabbit", "bunny"]
+    },
+    {
+      "id": "pets:guineapig",
+      "label": "Guinea pig",
+      "aliases": ["Guinea pig"]
+    },
+    {
+      "id": "pets:hamster",
+      "label": "Hamster",
+      "aliases": ["Hamster"]
+    },
+    {
+      "id": "pets:gerbil",
+      "label": "Gerbil",
+      "aliases": ["Gerbil"]
+    },
+    {
+      "id": "pets:mouse",
+      "label": "Mouse",
+      "aliases": ["Mouse", "mice"]
+    },
+    {
+      "id": "pets:rat",
+      "label": "Rat",
+      "aliases": ["Rat"]
+    },
+    {
+      "id": "pets:goldfish",
+      "label": "Goldfish",
+      "aliases": ["Goldfish"]
+    },
+    {
+      "id": "pets:betta",
+      "label": "Betta",
+      "aliases": ["Betta", "siamese fighting fish"]
+    },
+    {
+      "id": "pets:guppy",
+      "label": "Guppy",
+      "aliases": ["Guppy"]
+    },
+    {
+      "id": "pets:budgie",
+      "label": "Budgie",
+      "aliases": ["Budgie", "budgerigar"]
+    },
+    {
+      "id": "pets:canary",
+      "label": "Canary",
+      "aliases": ["Canary"]
+    },
+    {
+      "id": "pets:parrot",
+      "label": "Parrot",
+      "aliases": ["Parrot"]
+    },
+    {
+      "id": "pets:cockatiel",
+      "label": "Cockatiel",
+      "aliases": ["Cockatiel"]
+    },
+    {
+      "id": "pets:cockatoo",
+      "label": "Cockatoo",
+      "aliases": ["Cockatoo"]
+    },
+    {
+      "id": "pets:lovebird",
+      "label": "Lovebird",
+      "aliases": ["Lovebird"]
+    },
+    {
+      "id": "pets:finch",
+      "label": "Finch",
+      "aliases": ["Finch"]
+    },
+    {
+      "id": "pets:turtle",
+      "label": "Turtle",
+      "aliases": ["Turtle"]
+    },
+    {
+      "id": "pets:tortoise",
+      "label": "Tortoise",
+      "aliases": ["Tortoise"]
+    },
+    {
+      "id": "pets:gecko",
+      "label": "Gecko",
+      "aliases": ["Gecko"]
+    },
+    {
+      "id": "pets:beardeddragon",
+      "label": "Bearded dragon",
+      "aliases": ["Bearded dragon"]
+    },
+    {
+      "id": "pets:snake",
+      "label": "Snake",
+      "aliases": ["Snake"]
+    },
+    {
+      "id": "pets:ferret",
+      "label": "Ferret",
+      "aliases": ["Ferret"]
+    },
+    {
+      "id": "pets:chinchilla",
+      "label": "Chinchilla",
+      "aliases": ["Chinchilla"]
+    },
+    {
+      "id": "pets:chook",
+      "label": "Chook",
+      "aliases": ["Chook", "chicken"]
+    },
+    {
+      "id": "pets:axolotl",
+      "label": "Axolotl",
+      "aliases": ["Axolotl"]
+    },
+    {
+      "id": "pets:frog",
+      "label": "Frog",
+      "aliases": ["Frog"]
+    },
+    {
+      "id": "pets:horse",
+      "label": "Horse",
+      "aliases": ["Horse"]
+    },
+    {
+      "id": "pets:pony",
+      "label": "Pony",
+      "aliases": ["Pony"]
+    }
+  ],
+  "instruments": [
+    {
+      "id": "instruments:piano",
+      "label": "Piano",
+      "aliases": ["Piano"]
+    },
+    {
+      "id": "instruments:guitar",
+      "label": "Guitar",
+      "aliases": ["Guitar"]
+    },
+    {
+      "id": "instruments:violin",
+      "label": "Violin",
+      "aliases": ["Violin"]
+    },
+    {
+      "id": "instruments:viola",
+      "label": "Viola",
+      "aliases": ["Viola"]
+    },
+    {
+      "id": "instruments:cello",
+      "label": "Cello",
+      "aliases": ["Cello"]
+    },
+    {
+      "id": "instruments:doublebass",
+      "label": "Double bass",
+      "aliases": ["Double bass", "upright bass"]
+    },
+    {
+      "id": "instruments:bassguitar",
+      "label": "Bass guitar",
+      "aliases": ["Bass guitar", "bass"]
+    },
+    {
+      "id": "instruments:drums",
+      "label": "Drums",
+      "aliases": ["Drums", "drum", "drum kit"]
+    },
+    {
+      "id": "instruments:flute",
+      "label": "Flute",
+      "aliases": ["Flute"]
+    },
+    {
+      "id": "instruments:clarinet",
+      "label": "Clarinet",
+      "aliases": ["Clarinet"]
+    },
+    {
+      "id": "instruments:oboe",
+      "label": "Oboe",
+      "aliases": ["Oboe"]
+    },
+    {
+      "id": "instruments:bassoon",
+      "label": "Bassoon",
+      "aliases": ["Bassoon"]
+    },
+    {
+      "id": "instruments:saxophone",
+      "label": "Saxophone",
+      "aliases": ["Saxophone", "sax"]
+    },
+    {
+      "id": "instruments:trumpet",
+      "label": "Trumpet",
+      "aliases": ["Trumpet"]
+    },
+    {
+      "id": "instruments:trombone",
+      "label": "Trombone",
+      "aliases": ["Trombone"]
+    },
+    {
+      "id": "instruments:tuba",
+      "label": "Tuba",
+      "aliases": ["Tuba"]
+    },
+    {
+      "id": "instruments:frenchhorn",
+      "label": "French horn",
+      "aliases": ["French horn", "horn"]
+    },
+    {
+      "id": "instruments:harp",
+      "label": "Harp",
+      "aliases": ["Harp"]
+    },
+    {
+      "id": "instruments:ukulele",
+      "label": "Ukulele",
+      "aliases": ["Ukulele", "uke"]
+    },
+    {
+      "id": "instruments:banjo",
+      "label": "Banjo",
+      "aliases": ["Banjo"]
+    },
+    {
+      "id": "instruments:mandolin",
+      "label": "Mandolin",
+      "aliases": ["Mandolin"]
+    },
+    {
+      "id": "instruments:accordion",
+      "label": "Accordion",
+      "aliases": ["Accordion"]
+    },
+    {
+      "id": "instruments:harmonica",
+      "label": "Harmonica",
+      "aliases": ["Harmonica"]
+    },
+    {
+      "id": "instruments:recorder",
+      "label": "Recorder",
+      "aliases": ["Recorder"]
+    },
+    {
+      "id": "instruments:xylophone",
+      "label": "Xylophone",
+      "aliases": ["Xylophone"]
+    },
+    {
+      "id": "instruments:marimba",
+      "label": "Marimba",
+      "aliases": ["Marimba"]
+    },
+    {
+      "id": "instruments:triangle",
+      "label": "Triangle",
+      "aliases": ["Triangle"]
+    },
+    {
+      "id": "instruments:tambourine",
+      "label": "Tambourine",
+      "aliases": ["Tambourine"]
+    },
+    {
+      "id": "instruments:bongos",
+      "label": "Bongos",
+      "aliases": ["Bongos"]
+    },
+    {
+      "id": "instruments:bagpipes",
+      "label": "Bagpipes",
+      "aliases": ["Bagpipes"]
+    },
+    {
+      "id": "instruments:organ",
+      "label": "Organ",
+      "aliases": ["Organ"]
+    },
+    {
+      "id": "instruments:synthesizer",
+      "label": "Synthesizer",
+      "aliases": ["Synthesizer", "synthesiser", "synth"]
+    },
+    {
+      "id": "instruments:didgeridoo",
+      "label": "Didgeridoo",
+      "aliases": ["Didgeridoo"]
+    },
+    {
+      "id": "instruments:sitar",
+      "label": "Sitar",
+      "aliases": ["Sitar"]
+    }
+  ],
+  "sports": [
+    {
+      "id": "sports:football",
+      "label": "Football",
+      "aliases": ["Football", "soccer"]
+    },
+    {
+      "id": "sports:rugby",
+      "label": "Rugby",
+      "aliases": ["Rugby", "rugby union"]
+    },
+    {
+      "id": "sports:rugbyleague",
+      "label": "Rugby league",
+      "aliases": ["Rugby league"]
+    },
+    {
+      "id": "sports:cricket",
+      "label": "Cricket",
+      "aliases": ["Cricket"]
+    },
+    {
+      "id": "sports:tennis",
+      "label": "Tennis",
+      "aliases": ["Tennis"]
+    },
+    {
+      "id": "sports:basketball",
+      "label": "Basketball",
+      "aliases": ["Basketball"]
+    },
+    {
+      "id": "sports:netball",
+      "label": "Netball",
+      "aliases": ["Netball"]
+    },
+    {
+      "id": "sports:volleyball",
+      "label": "Volleyball",
+      "aliases": ["Volleyball"]
+    },
+    {
+      "id": "sports:badminton",
+      "label": "Badminton",
+      "aliases": ["Badminton"]
+    },
+    {
+      "id": "sports:tabletennis",
+      "label": "Table tennis",
+      "aliases": ["Table tennis", "ping pong"]
+    },
+    {
+      "id": "sports:golf",
+      "label": "Golf",
+      "aliases": ["Golf"]
+    },
+    {
+      "id": "sports:hockey",
+      "label": "Hockey",
+      "aliases": ["Hockey", "field hockey"]
+    },
+    {
+      "id": "sports:icehockey",
+      "label": "Ice hockey",
+      "aliases": ["Ice hockey"]
+    },
+    {
+      "id": "sports:baseball",
+      "label": "Baseball",
+      "aliases": ["Baseball"]
+    },
+    {
+      "id": "sports:softball",
+      "label": "Softball",
+      "aliases": ["Softball"]
+    },
+    {
+      "id": "sports:swimming",
+      "label": "Swimming",
+      "aliases": ["Swimming"]
+    },
+    {
+      "id": "sports:surfing",
+      "label": "Surfing",
+      "aliases": ["Surfing"]
+    },
+    {
+      "id": "sports:sailing",
+      "label": "Sailing",
+      "aliases": ["Sailing"]
+    },
+    {
+      "id": "sports:rowing",
+      "label": "Rowing",
+      "aliases": ["Rowing"]
+    },
+    {
+      "id": "sports:kayaking",
+      "label": "Kayaking",
+      "aliases": ["Kayaking"]
+    },
+    {
+      "id": "sports:canoeing",
+      "label": "Canoeing",
+      "aliases": ["Canoeing"]
+    },
+    {
+      "id": "sports:cycling",
+      "label": "Cycling",
+      "aliases": ["Cycling"]
+    },
+    {
+      "id": "sports:running",
+      "label": "Running",
+      "aliases": ["Running"]
+    },
+    {
+      "id": "sports:athletics",
+      "label": "Athletics",
+      "aliases": ["Athletics", "track and field"]
+    },
+    {
+      "id": "sports:boxing",
+      "label": "Boxing",
+      "aliases": ["Boxing"]
+    },
+    {
+      "id": "sports:wrestling",
+      "label": "Wrestling",
+      "aliases": ["Wrestling"]
+    },
+    {
+      "id": "sports:judo",
+      "label": "Judo",
+      "aliases": ["Judo"]
+    },
+    {
+      "id": "sports:karate",
+      "label": "Karate",
+      "aliases": ["Karate"]
+    },
+    {
+      "id": "sports:taekwondo",
+      "label": "Taekwondo",
+      "aliases": ["Taekwondo"]
+    },
+    {
+      "id": "sports:fencing",
+      "label": "Fencing",
+      "aliases": ["Fencing"]
+    },
+    {
+      "id": "sports:archery",
+      "label": "Archery",
+      "aliases": ["Archery"]
+    },
+    {
+      "id": "sports:gymnastics",
+      "label": "Gymnastics",
+      "aliases": ["Gymnastics"]
+    },
+    {
+      "id": "sports:diving",
+      "label": "Diving",
+      "aliases": ["Diving"]
+    },
+    {
+      "id": "sports:waterpolo",
+      "label": "Water polo",
+      "aliases": ["Water polo"]
+    },
+    {
+      "id": "sports:handball",
+      "label": "Handball",
+      "aliases": ["Handball"]
+    },
+    {
+      "id": "sports:squash",
+      "label": "Squash",
+      "aliases": ["Squash"]
+    },
+    {
+      "id": "sports:skiing",
+      "label": "Skiing",
+      "aliases": ["Skiing"]
+    },
+    {
+      "id": "sports:snowboarding",
+      "label": "Snowboarding",
+      "aliases": ["Snowboarding"]
+    },
+    {
+      "id": "sports:skateboarding",
+      "label": "Skateboarding",
+      "aliases": ["Skateboarding"]
+    },
+    {
+      "id": "sports:climbing",
+      "label": "Climbing",
+      "aliases": ["Climbing", "rock climbing"]
+    },
+    {
+      "id": "sports:triathlon",
+      "label": "Triathlon",
+      "aliases": ["Triathlon"]
+    },
+    {
+      "id": "sports:bowls",
+      "label": "Bowls",
+      "aliases": ["Bowls", "lawn bowls"]
+    },
+    {
+      "id": "sports:darts",
+      "label": "Darts",
+      "aliases": ["Darts"]
+    },
+    {
+      "id": "sports:snooker",
+      "label": "Snooker",
+      "aliases": ["Snooker"]
+    },
+    {
+      "id": "sports:pool",
+      "label": "Pool",
+      "aliases": ["Pool"]
+    },
+    {
+      "id": "sports:americanfootball",
+      "label": "American football",
+      "aliases": ["American football"]
+    }
+  ],
+  "capitals": [
+    {
+      "id": "capitals:tirana",
+      "label": "Tirana",
+      "aliases": ["Tirana"]
+    },
+    {
+      "id": "capitals:andorralavella",
+      "label": "Andorra la Vella",
+      "aliases": ["Andorra la Vella"]
+    },
+    {
+      "id": "capitals:vienna",
+      "label": "Vienna",
+      "aliases": ["Vienna", "wien"]
+    },
+    {
+      "id": "capitals:minsk",
+      "label": "Minsk",
+      "aliases": ["Minsk"]
+    },
+    {
+      "id": "capitals:brussels",
+      "label": "Brussels",
+      "aliases": ["Brussels", "bruxelles"]
+    },
+    {
+      "id": "capitals:sarajevo",
+      "label": "Sarajevo",
+      "aliases": ["Sarajevo"]
+    },
+    {
+      "id": "capitals:sofia",
+      "label": "Sofia",
+      "aliases": ["Sofia"]
+    },
+    {
+      "id": "capitals:zagreb",
+      "label": "Zagreb",
+      "aliases": ["Zagreb"]
+    },
+    {
+      "id": "capitals:nicosia",
+      "label": "Nicosia",
+      "aliases": ["Nicosia", "lefkosia"]
+    },
+    {
+      "id": "capitals:prague",
+      "label": "Prague",
+      "aliases": ["Prague", "praha"]
+    },
+    {
+      "id": "capitals:copenhagen",
+      "label": "Copenhagen",
+      "aliases": ["Copenhagen", "kobenhavn"]
+    },
+    {
+      "id": "capitals:tallinn",
+      "label": "Tallinn",
+      "aliases": ["Tallinn"]
+    },
+    {
+      "id": "capitals:helsinki",
+      "label": "Helsinki",
+      "aliases": ["Helsinki"]
+    },
+    {
+      "id": "capitals:paris",
+      "label": "Paris",
+      "aliases": ["Paris"]
+    },
+    {
+      "id": "capitals:berlin",
+      "label": "Berlin",
+      "aliases": ["Berlin"]
+    },
+    {
+      "id": "capitals:athens",
+      "label": "Athens",
+      "aliases": ["Athens", "athina"]
+    },
+    {
+      "id": "capitals:budapest",
+      "label": "Budapest",
+      "aliases": ["Budapest"]
+    },
+    {
+      "id": "capitals:reykjavik",
+      "label": "Reykjavik",
+      "aliases": ["Reykjavik"]
+    },
+    {
+      "id": "capitals:dublin",
+      "label": "Dublin",
+      "aliases": ["Dublin"]
+    },
+    {
+      "id": "capitals:rome",
+      "label": "Rome",
+      "aliases": ["Rome", "roma"]
+    },
+    {
+      "id": "capitals:riga",
+      "label": "Riga",
+      "aliases": ["Riga"]
+    },
+    {
+      "id": "capitals:vaduz",
+      "label": "Vaduz",
+      "aliases": ["Vaduz"]
+    },
+    {
+      "id": "capitals:vilnius",
+      "label": "Vilnius",
+      "aliases": ["Vilnius"]
+    },
+    {
+      "id": "capitals:luxembourg",
+      "label": "Luxembourg",
+      "aliases": ["Luxembourg", "luxembourg city"]
+    },
+    {
+      "id": "capitals:valletta",
+      "label": "Valletta",
+      "aliases": ["Valletta"]
+    },
+    {
+      "id": "capitals:chisinau",
+      "label": "Chisinau",
+      "aliases": ["Chisinau"]
+    },
+    {
+      "id": "capitals:monaco",
+      "label": "Monaco",
+      "aliases": ["Monaco"]
+    },
+    {
+      "id": "capitals:podgorica",
+      "label": "Podgorica",
+      "aliases": ["Podgorica"]
+    },
+    {
+      "id": "capitals:amsterdam",
+      "label": "Amsterdam",
+      "aliases": ["Amsterdam"]
+    },
+    {
+      "id": "capitals:skopje",
+      "label": "Skopje",
+      "aliases": ["Skopje"]
+    },
+    {
+      "id": "capitals:oslo",
+      "label": "Oslo",
+      "aliases": ["Oslo"]
+    },
+    {
+      "id": "capitals:warsaw",
+      "label": "Warsaw",
+      "aliases": ["Warsaw", "warszawa"]
+    },
+    {
+      "id": "capitals:lisbon",
+      "label": "Lisbon",
+      "aliases": ["Lisbon", "lisboa"]
+    },
+    {
+      "id": "capitals:bucharest",
+      "label": "Bucharest",
+      "aliases": ["Bucharest", "bucuresti"]
+    },
+    {
+      "id": "capitals:moscow",
+      "label": "Moscow",
+      "aliases": ["Moscow", "moskva"]
+    },
+    {
+      "id": "capitals:sanmarino",
+      "label": "San Marino",
+      "aliases": ["San Marino"]
+    },
+    {
+      "id": "capitals:belgrade",
+      "label": "Belgrade",
+      "aliases": ["Belgrade", "beograd"]
+    },
+    {
+      "id": "capitals:bratislava",
+      "label": "Bratislava",
+      "aliases": ["Bratislava"]
+    },
+    {
+      "id": "capitals:ljubljana",
+      "label": "Ljubljana",
+      "aliases": ["Ljubljana"]
+    },
+    {
+      "id": "capitals:madrid",
+      "label": "Madrid",
+      "aliases": ["Madrid"]
+    },
+    {
+      "id": "capitals:stockholm",
+      "label": "Stockholm",
+      "aliases": ["Stockholm"]
+    },
+    {
+      "id": "capitals:bern",
+      "label": "Bern",
+      "aliases": ["Bern", "berne"]
+    },
+    {
+      "id": "capitals:ankara",
+      "label": "Ankara",
+      "aliases": ["Ankara"]
+    },
+    {
+      "id": "capitals:kyiv",
+      "label": "Kyiv",
+      "aliases": ["Kyiv", "kiev"]
+    },
+    {
+      "id": "capitals:london",
+      "label": "London",
+      "aliases": ["London"]
+    },
+    {
+      "id": "capitals:vaticancity",
+      "label": "Vatican City",
+      "aliases": ["Vatican City", "vatican"]
+    },
+    {
+      "id": "capitals:pristina",
+      "label": "Pristina",
+      "aliases": ["Pristina", "prishtina"]
+    }
+  ],
+  "elements": [
+    {
+      "id": "elements:hydrogen",
+      "label": "Hydrogen",
+      "aliases": ["Hydrogen", "h"]
+    },
+    {
+      "id": "elements:helium",
+      "label": "Helium",
+      "aliases": ["Helium", "he"]
+    },
+    {
+      "id": "elements:lithium",
+      "label": "Lithium",
+      "aliases": ["Lithium", "li"]
+    },
+    {
+      "id": "elements:beryllium",
+      "label": "Beryllium",
+      "aliases": ["Beryllium", "be"]
+    },
+    {
+      "id": "elements:boron",
+      "label": "Boron",
+      "aliases": ["Boron", "b"]
+    },
+    {
+      "id": "elements:carbon",
+      "label": "Carbon",
+      "aliases": ["Carbon", "c"]
+    },
+    {
+      "id": "elements:nitrogen",
+      "label": "Nitrogen",
+      "aliases": ["Nitrogen", "n"]
+    },
+    {
+      "id": "elements:oxygen",
+      "label": "Oxygen",
+      "aliases": ["Oxygen", "o"]
+    },
+    {
+      "id": "elements:fluorine",
+      "label": "Fluorine",
+      "aliases": ["Fluorine", "f"]
+    },
+    {
+      "id": "elements:neon",
+      "label": "Neon",
+      "aliases": ["Neon", "ne"]
+    },
+    {
+      "id": "elements:sodium",
+      "label": "Sodium",
+      "aliases": ["Sodium", "na"]
+    },
+    {
+      "id": "elements:magnesium",
+      "label": "Magnesium",
+      "aliases": ["Magnesium", "mg"]
+    },
+    {
+      "id": "elements:aluminium",
+      "label": "Aluminium",
+      "aliases": ["Aluminium", "aluminum", "al"]
+    },
+    {
+      "id": "elements:silicon",
+      "label": "Silicon",
+      "aliases": ["Silicon", "si"]
+    },
+    {
+      "id": "elements:phosphorus",
+      "label": "Phosphorus",
+      "aliases": ["Phosphorus", "p"]
+    },
+    {
+      "id": "elements:sulfur",
+      "label": "Sulfur",
+      "aliases": ["Sulfur", "sulphur", "s"]
+    },
+    {
+      "id": "elements:chlorine",
+      "label": "Chlorine",
+      "aliases": ["Chlorine", "cl"]
+    },
+    {
+      "id": "elements:argon",
+      "label": "Argon",
+      "aliases": ["Argon", "ar"]
+    },
+    {
+      "id": "elements:potassium",
+      "label": "Potassium",
+      "aliases": ["Potassium", "k"]
+    },
+    {
+      "id": "elements:calcium",
+      "label": "Calcium",
+      "aliases": ["Calcium", "ca"]
+    }
+  ],
+  "nzbirds": [
+    {
+      "id": "nzbirds:kiwi",
+      "label": "Kiwi",
+      "aliases": ["Kiwi"]
+    },
+    {
+      "id": "nzbirds:kea",
+      "label": "Kea",
+      "aliases": ["Kea"]
+    },
+    {
+      "id": "nzbirds:kaka",
+      "label": "Kaka",
+      "aliases": ["Kaka"]
+    },
+    {
+      "id": "nzbirds:kakapo",
+      "label": "Kakapo",
+      "aliases": ["Kakapo"]
+    },
+    {
+      "id": "nzbirds:tui",
+      "label": "Tui",
+      "aliases": ["Tui"]
+    },
+    {
+      "id": "nzbirds:kereru",
+      "label": "Kereru",
+      "aliases": ["Kereru", "new zealand pigeon", "wood pigeon"]
+    },
+    {
+      "id": "nzbirds:piwakawaka",
+      "label": "Piwakawaka",
+      "aliases": ["Piwakawaka", "fantail"]
+    },
+    {
+      "id": "nzbirds:pukeko",
+      "label": "Pukeko",
+      "aliases": ["Pukeko"]
+    },
+    {
+      "id": "nzbirds:takahe",
+      "label": "Takahe",
+      "aliases": ["Takahe"]
+    },
+    {
+      "id": "nzbirds:weka",
+      "label": "Weka",
+      "aliases": ["Weka"]
+    },
+    {
+      "id": "nzbirds:ruru",
+      "label": "Ruru",
+      "aliases": ["Ruru", "morepork"]
+    },
+    {
+      "id": "nzbirds:kotare",
+      "label": "Kotare",
+      "aliases": ["Kotare", "kingfisher", "sacred kingfisher"]
+    },
+    {
+      "id": "nzbirds:korimako",
+      "label": "Korimako",
+      "aliases": ["Korimako", "bellbird"]
+    },
+    {
+      "id": "nzbirds:hihi",
+      "label": "Hihi",
+      "aliases": ["Hihi", "stitchbird"]
+    },
+    {
+      "id": "nzbirds:kokako",
+      "label": "Kokako",
+      "aliases": ["Kokako"]
+    },
+    {
+      "id": "nzbirds:tieke",
+      "label": "Tieke",
+      "aliases": ["Tieke", "saddleback"]
+    },
+    {
+      "id": "nzbirds:titipounamu",
+      "label": "Titipounamu",
+      "aliases": ["Titipounamu", "rifleman"]
+    },
+    {
+      "id": "nzbirds:toutouwai",
+      "label": "Toutouwai",
+      "aliases": ["Toutouwai", "new zealand robin"]
+    },
+    {
+      "id": "nzbirds:mohua",
+      "label": "Mohua",
+      "aliases": ["Mohua", "yellowhead"]
+    },
+    {
+      "id": "nzbirds:hoiho",
+      "label": "Hoiho",
+      "aliases": ["Hoiho", "yellow eyed penguin"]
+    },
+    {
+      "id": "nzbirds:korora",
+      "label": "Korora",
+      "aliases": ["Korora", "little blue penguin", "blue penguin"]
+    },
+    {
+      "id": "nzbirds:toroa",
+      "label": "Toroa",
+      "aliases": ["Toroa", "albatross"]
+    },
+    {
+      "id": "nzbirds:karearea",
+      "label": "Karearea",
+      "aliases": ["Karearea", "new zealand falcon"]
+    },
+    {
+      "id": "nzbirds:kahu",
+      "label": "Kahu",
+      "aliases": ["Kahu", "harrier"]
+    },
+    {
+      "id": "nzbirds:kaki",
+      "label": "Kaki",
+      "aliases": ["Kaki", "black stilt"]
+    },
+    {
+      "id": "nzbirds:kotuku",
+      "label": "Kotuku",
+      "aliases": ["Kotuku", "white heron"]
+    },
+    {
+      "id": "nzbirds:huia",
+      "label": "Huia",
+      "aliases": ["Huia"]
+    },
+    {
+      "id": "nzbirds:moa",
+      "label": "Moa",
+      "aliases": ["Moa"]
+    },
+    {
+      "id": "nzbirds:haastseagle",
+      "label": "Haast's eagle",
+      "aliases": ["Haast's eagle", "haast eagle"]
+    }
+  ],
+  "herbs": [
+    {
+      "id": "herbs:basil",
+      "label": "Basil",
+      "aliases": ["Basil"]
+    },
+    {
+      "id": "herbs:parsley",
+      "label": "Parsley",
+      "aliases": ["Parsley"]
+    },
+    {
+      "id": "herbs:coriander",
+      "label": "Coriander",
+      "aliases": ["Coriander", "cilantro"]
+    },
+    {
+      "id": "herbs:mint",
+      "label": "Mint",
+      "aliases": ["Mint"]
+    },
+    {
+      "id": "herbs:rosemary",
+      "label": "Rosemary",
+      "aliases": ["Rosemary"]
+    },
+    {
+      "id": "herbs:thyme",
+      "label": "Thyme",
+      "aliases": ["Thyme"]
+    },
+    {
+      "id": "herbs:sage",
+      "label": "Sage",
+      "aliases": ["Sage"]
+    },
+    {
+      "id": "herbs:oregano",
+      "label": "Oregano",
+      "aliases": ["Oregano"]
+    },
+    {
+      "id": "herbs:dill",
+      "label": "Dill",
+      "aliases": ["Dill"]
+    },
+    {
+      "id": "herbs:chives",
+      "label": "Chives",
+      "aliases": ["Chives"]
+    },
+    {
+      "id": "herbs:tarragon",
+      "label": "Tarragon",
+      "aliases": ["Tarragon"]
+    },
+    {
+      "id": "herbs:marjoram",
+      "label": "Marjoram",
+      "aliases": ["Marjoram"]
+    },
+    {
+      "id": "herbs:bay",
+      "label": "Bay",
+      "aliases": ["Bay", "bay leaf"]
+    },
+    {
+      "id": "herbs:lemongrass",
+      "label": "Lemongrass",
+      "aliases": ["Lemongrass"]
+    },
+    {
+      "id": "herbs:sorrel",
+      "label": "Sorrel",
+      "aliases": ["Sorrel"]
+    },
+    {
+      "id": "herbs:chervil",
+      "label": "Chervil",
+      "aliases": ["Chervil"]
+    },
+    {
+      "id": "herbs:lovage",
+      "label": "Lovage",
+      "aliases": ["Lovage"]
+    },
+    {
+      "id": "herbs:fennel",
+      "label": "Fennel",
+      "aliases": ["Fennel"]
+    },
+    {
+      "id": "herbs:lavender",
+      "label": "Lavender",
+      "aliases": ["Lavender"]
+    },
+    {
+      "id": "herbs:lemonbalm",
+      "label": "Lemon balm",
+      "aliases": ["Lemon balm"]
+    },
+    {
+      "id": "herbs:savory",
+      "label": "Savory",
+      "aliases": ["Savory", "savoury"]
+    },
+    {
+      "id": "herbs:shiso",
+      "label": "Shiso",
+      "aliases": ["Shiso"]
+    },
+    {
+      "id": "herbs:curryleaf",
+      "label": "Curry leaf",
+      "aliases": ["Curry leaf"]
+    },
+    {
+      "id": "herbs:makrutlimeleaf",
+      "label": "Makrut lime leaf",
+      "aliases": ["Makrut lime leaf", "kaffir lime leaf"]
+    }
+  ],
+  "farm": [
+    {
+      "id": "farm:cow",
+      "label": "Cow",
+      "aliases": ["Cow", "cattle", "bull", "ox"]
+    },
+    {
+      "id": "farm:sheep",
+      "label": "Sheep",
+      "aliases": ["Sheep", "lamb", "ram"]
+    },
+    {
+      "id": "farm:pig",
+      "label": "Pig",
+      "aliases": ["Pig", "hog", "swine"]
+    },
+    {
+      "id": "farm:goat",
+      "label": "Goat",
+      "aliases": ["Goat"]
+    },
+    {
+      "id": "farm:horse",
+      "label": "Horse",
+      "aliases": ["Horse"]
+    },
+    {
+      "id": "farm:pony",
+      "label": "Pony",
+      "aliases": ["Pony"]
+    },
+    {
+      "id": "farm:donkey",
+      "label": "Donkey",
+      "aliases": ["Donkey", "ass"]
+    },
+    {
+      "id": "farm:chicken",
+      "label": "Chicken",
+      "aliases": ["Chicken", "hen", "rooster", "chook"]
+    },
+    {
+      "id": "farm:duck",
+      "label": "Duck",
+      "aliases": ["Duck"]
+    },
+    {
+      "id": "farm:goose",
+      "label": "Goose",
+      "aliases": ["Goose", "geese"]
+    },
+    {
+      "id": "farm:turkey",
+      "label": "Turkey",
+      "aliases": ["Turkey"]
+    },
+    {
+      "id": "farm:alpaca",
+      "label": "Alpaca",
+      "aliases": ["Alpaca"]
+    },
+    {
+      "id": "farm:llama",
+      "label": "Llama",
+      "aliases": ["Llama"]
+    },
+    {
+      "id": "farm:deer",
+      "label": "Deer",
+      "aliases": ["Deer"]
+    },
+    {
+      "id": "farm:buffalo",
+      "label": "Buffalo",
+      "aliases": ["Buffalo", "water buffalo"]
+    },
+    {
+      "id": "farm:rabbit",
+      "label": "Rabbit",
+      "aliases": ["Rabbit"]
+    },
+    {
+      "id": "farm:quail",
+      "label": "Quail",
+      "aliases": ["Quail"]
+    },
+    {
+      "id": "farm:ostrich",
+      "label": "Ostrich",
+      "aliases": ["Ostrich"]
+    },
+    {
+      "id": "farm:emu",
+      "label": "Emu",
+      "aliases": ["Emu"]
+    },
+    {
+      "id": "farm:bee",
+      "label": "Bee",
+      "aliases": ["Bee", "bees", "honeybee"]
+    }
+  ],
+  "trees": [
+    {
+      "id": "trees:oak",
+      "label": "Oak",
+      "aliases": ["Oak"]
+    },
+    {
+      "id": "trees:pine",
+      "label": "Pine",
+      "aliases": ["Pine"]
+    },
+    {
+      "id": "trees:maple",
+      "label": "Maple",
+      "aliases": ["Maple"]
+    },
+    {
+      "id": "trees:birch",
+      "label": "Birch",
+      "aliases": ["Birch"]
+    },
+    {
+      "id": "trees:willow",
+      "label": "Willow",
+      "aliases": ["Willow"]
+    },
+    {
+      "id": "trees:elm",
+      "label": "Elm",
+      "aliases": ["Elm"]
+    },
+    {
+      "id": "trees:ash",
+      "label": "Ash",
+      "aliases": ["Ash"]
+    },
+    {
+      "id": "trees:beech",
+      "label": "Beech",
+      "aliases": ["Beech"]
+    },
+    {
+      "id": "trees:cedar",
+      "label": "Cedar",
+      "aliases": ["Cedar"]
+    },
+    {
+      "id": "trees:fir",
+      "label": "Fir",
+      "aliases": ["Fir"]
+    },
+    {
+      "id": "trees:spruce",
+      "label": "Spruce",
+      "aliases": ["Spruce"]
+    },
+    {
+      "id": "trees:cypress",
+      "label": "Cypress",
+      "aliases": ["Cypress"]
+    },
+    {
+      "id": "trees:redwood",
+      "label": "Redwood",
+      "aliases": ["Redwood"]
+    },
+    {
+      "id": "trees:sequoia",
+      "label": "Sequoia",
+      "aliases": ["Sequoia"]
+    },
+    {
+      "id": "trees:eucalyptus",
+      "label": "Eucalyptus",
+      "aliases": ["Eucalyptus", "gum"]
+    },
+    {
+      "id": "trees:kauri",
+      "label": "Kauri",
+      "aliases": ["Kauri"]
+    },
+    {
+      "id": "trees:rimu",
+      "label": "Rimu",
+      "aliases": ["Rimu"]
+    },
+    {
+      "id": "trees:totara",
+      "label": "Totara",
+      "aliases": ["Totara"]
+    },
+    {
+      "id": "trees:pohutukawa",
+      "label": "Pohutukawa",
+      "aliases": ["Pohutukawa"]
+    },
+    {
+      "id": "trees:kowhai",
+      "label": "Kowhai",
+      "aliases": ["Kowhai"]
+    },
+    {
+      "id": "trees:kahikatea",
+      "label": "Kahikatea",
+      "aliases": ["Kahikatea"]
+    },
+    {
+      "id": "trees:puriri",
+      "label": "Puriri",
+      "aliases": ["Puriri"]
+    },
+    {
+      "id": "trees:karaka",
+      "label": "Karaka",
+      "aliases": ["Karaka"]
+    },
+    {
+      "id": "trees:manuka",
+      "label": "Manuka",
+      "aliases": ["Manuka"]
+    },
+    {
+      "id": "trees:kanuka",
+      "label": "Kanuka",
+      "aliases": ["Kanuka"]
+    },
+    {
+      "id": "trees:cabbagetree",
+      "label": "Cabbage tree",
+      "aliases": ["Cabbage tree", "ti kouka"]
+    },
+    {
+      "id": "trees:palm",
+      "label": "Palm",
+      "aliases": ["Palm"]
+    },
+    {
+      "id": "trees:olive",
+      "label": "Olive",
+      "aliases": ["Olive"]
+    },
+    {
+      "id": "trees:apple",
+      "label": "Apple",
+      "aliases": ["Apple"]
+    },
+    {
+      "id": "trees:cherry",
+      "label": "Cherry",
+      "aliases": ["Cherry"]
+    },
+    {
+      "id": "trees:peach",
+      "label": "Peach",
+      "aliases": ["Peach"]
+    },
+    {
+      "id": "trees:plum",
+      "label": "Plum",
+      "aliases": ["Plum"]
+    },
+    {
+      "id": "trees:pear",
+      "label": "Pear",
+      "aliases": ["Pear"]
+    },
+    {
+      "id": "trees:fig",
+      "label": "Fig",
+      "aliases": ["Fig"]
+    },
+    {
+      "id": "trees:magnolia",
+      "label": "Magnolia",
+      "aliases": ["Magnolia"]
+    },
+    {
+      "id": "trees:walnut",
+      "label": "Walnut",
+      "aliases": ["Walnut"]
+    },
+    {
+      "id": "trees:chestnut",
+      "label": "Chestnut",
+      "aliases": ["Chestnut"]
+    },
+    {
+      "id": "trees:poplar",
+      "label": "Poplar",
+      "aliases": ["Poplar"]
+    },
+    {
+      "id": "trees:acacia",
+      "label": "Acacia",
+      "aliases": ["Acacia"]
+    },
+    {
+      "id": "trees:jacaranda",
+      "label": "Jacaranda",
+      "aliases": ["Jacaranda"]
+    }
+  ],
+  "europe": [
+    {
+      "id": "europe:albania",
+      "label": "Albania",
+      "aliases": ["Albania"]
+    },
+    {
+      "id": "europe:andorra",
+      "label": "Andorra",
+      "aliases": ["Andorra"]
+    },
+    {
+      "id": "europe:austria",
+      "label": "Austria",
+      "aliases": ["Austria"]
+    },
+    {
+      "id": "europe:belarus",
+      "label": "Belarus",
+      "aliases": ["Belarus"]
+    },
+    {
+      "id": "europe:belgium",
+      "label": "Belgium",
+      "aliases": ["Belgium"]
+    },
+    {
+      "id": "europe:bosniaandherzegovina",
+      "label": "Bosnia and Herzegovina",
+      "aliases": ["Bosnia and Herzegovina", "bosnia"]
+    },
+    {
+      "id": "europe:bulgaria",
+      "label": "Bulgaria",
+      "aliases": ["Bulgaria"]
+    },
+    {
+      "id": "europe:croatia",
+      "label": "Croatia",
+      "aliases": ["Croatia"]
+    },
+    {
+      "id": "europe:cyprus",
+      "label": "Cyprus",
+      "aliases": ["Cyprus"]
+    },
+    {
+      "id": "europe:czechia",
+      "label": "Czechia",
+      "aliases": ["Czechia", "czech republic"]
+    },
+    {
+      "id": "europe:denmark",
+      "label": "Denmark",
+      "aliases": ["Denmark"]
+    },
+    {
+      "id": "europe:estonia",
+      "label": "Estonia",
+      "aliases": ["Estonia"]
+    },
+    {
+      "id": "europe:finland",
+      "label": "Finland",
+      "aliases": ["Finland"]
+    },
+    {
+      "id": "europe:france",
+      "label": "France",
+      "aliases": ["France"]
+    },
+    {
+      "id": "europe:germany",
+      "label": "Germany",
+      "aliases": ["Germany"]
+    },
+    {
+      "id": "europe:greece",
+      "label": "Greece",
+      "aliases": ["Greece"]
+    },
+    {
+      "id": "europe:hungary",
+      "label": "Hungary",
+      "aliases": ["Hungary"]
+    },
+    {
+      "id": "europe:iceland",
+      "label": "Iceland",
+      "aliases": ["Iceland"]
+    },
+    {
+      "id": "europe:ireland",
+      "label": "Ireland",
+      "aliases": ["Ireland", "republic of ireland"]
+    },
+    {
+      "id": "europe:italy",
+      "label": "Italy",
+      "aliases": ["Italy"]
+    },
+    {
+      "id": "europe:latvia",
+      "label": "Latvia",
+      "aliases": ["Latvia"]
+    },
+    {
+      "id": "europe:liechtenstein",
+      "label": "Liechtenstein",
+      "aliases": ["Liechtenstein"]
+    },
+    {
+      "id": "europe:lithuania",
+      "label": "Lithuania",
+      "aliases": ["Lithuania"]
+    },
+    {
+      "id": "europe:luxembourg",
+      "label": "Luxembourg",
+      "aliases": ["Luxembourg"]
+    },
+    {
+      "id": "europe:malta",
+      "label": "Malta",
+      "aliases": ["Malta"]
+    },
+    {
+      "id": "europe:moldova",
+      "label": "Moldova",
+      "aliases": ["Moldova"]
+    },
+    {
+      "id": "europe:monaco",
+      "label": "Monaco",
+      "aliases": ["Monaco"]
+    },
+    {
+      "id": "europe:montenegro",
+      "label": "Montenegro",
+      "aliases": ["Montenegro"]
+    },
+    {
+      "id": "europe:netherlands",
+      "label": "Netherlands",
+      "aliases": ["Netherlands", "holland"]
+    },
+    {
+      "id": "europe:northmacedonia",
+      "label": "North Macedonia",
+      "aliases": ["North Macedonia", "macedonia"]
+    },
+    {
+      "id": "europe:norway",
+      "label": "Norway",
+      "aliases": ["Norway"]
+    },
+    {
+      "id": "europe:poland",
+      "label": "Poland",
+      "aliases": ["Poland"]
+    },
+    {
+      "id": "europe:portugal",
+      "label": "Portugal",
+      "aliases": ["Portugal"]
+    },
+    {
+      "id": "europe:romania",
+      "label": "Romania",
+      "aliases": ["Romania"]
+    },
+    {
+      "id": "europe:russia",
+      "label": "Russia",
+      "aliases": ["Russia"]
+    },
+    {
+      "id": "europe:sanmarino",
+      "label": "San Marino",
+      "aliases": ["San Marino"]
+    },
+    {
+      "id": "europe:serbia",
+      "label": "Serbia",
+      "aliases": ["Serbia"]
+    },
+    {
+      "id": "europe:slovakia",
+      "label": "Slovakia",
+      "aliases": ["Slovakia"]
+    },
+    {
+      "id": "europe:slovenia",
+      "label": "Slovenia",
+      "aliases": ["Slovenia"]
+    },
+    {
+      "id": "europe:spain",
+      "label": "Spain",
+      "aliases": ["Spain"]
+    },
+    {
+      "id": "europe:sweden",
+      "label": "Sweden",
+      "aliases": ["Sweden"]
+    },
+    {
+      "id": "europe:switzerland",
+      "label": "Switzerland",
+      "aliases": ["Switzerland"]
+    },
+    {
+      "id": "europe:turkey",
+      "label": "Turkey",
+      "aliases": ["Turkey", "turkiye"]
+    },
+    {
+      "id": "europe:ukraine",
+      "label": "Ukraine",
+      "aliases": ["Ukraine"]
+    },
+    {
+      "id": "europe:unitedkingdom",
+      "label": "United Kingdom",
+      "aliases": ["United Kingdom", "uk", "britain", "great britain"]
+    },
+    {
+      "id": "europe:vaticancity",
+      "label": "Vatican City",
+      "aliases": ["Vatican City", "vatican"]
+    },
+    {
+      "id": "europe:kosovo",
+      "label": "Kosovo",
+      "aliases": ["Kosovo"]
+    }
+  ],
+  "flowers": [
+    {
+      "id": "flowers:rose",
+      "label": "Rose",
+      "aliases": ["Rose"]
+    },
+    {
+      "id": "flowers:daisy",
+      "label": "Daisy",
+      "aliases": ["Daisy"]
+    },
+    {
+      "id": "flowers:tulip",
+      "label": "Tulip",
+      "aliases": ["Tulip"]
+    },
+    {
+      "id": "flowers:daffodil",
+      "label": "Daffodil",
+      "aliases": ["Daffodil"]
+    },
+    {
+      "id": "flowers:sunflower",
+      "label": "Sunflower",
+      "aliases": ["Sunflower"]
+    },
+    {
+      "id": "flowers:lily",
+      "label": "Lily",
+      "aliases": ["Lily"]
+    },
+    {
+      "id": "flowers:iris",
+      "label": "Iris",
+      "aliases": ["Iris"]
+    },
+    {
+      "id": "flowers:dahlia",
+      "label": "Dahlia",
+      "aliases": ["Dahlia"]
+    },
+    {
+      "id": "flowers:peony",
+      "label": "Peony",
+      "aliases": ["Peony"]
+    },
+    {
+      "id": "flowers:poppy",
+      "label": "Poppy",
+      "aliases": ["Poppy"]
+    },
+    {
+      "id": "flowers:lavender",
+      "label": "Lavender",
+      "aliases": ["Lavender"]
+    },
+    {
+      "id": "flowers:marigold",
+      "label": "Marigold",
+      "aliases": ["Marigold"]
+    },
+    {
+      "id": "flowers:petunia",
+      "label": "Petunia",
+      "aliases": ["Petunia"]
+    },
+    {
+      "id": "flowers:pansy",
+      "label": "Pansy",
+      "aliases": ["Pansy"]
+    },
+    {
+      "id": "flowers:viola",
+      "label": "Viola",
+      "aliases": ["Viola"]
+    },
+    {
+      "id": "flowers:snapdragon",
+      "label": "Snapdragon",
+      "aliases": ["Snapdragon"]
+    },
+    {
+      "id": "flowers:geranium",
+      "label": "Geranium",
+      "aliases": ["Geranium"]
+    },
+    {
+      "id": "flowers:hydrangea",
+      "label": "Hydrangea",
+      "aliases": ["Hydrangea"]
+    },
+    {
+      "id": "flowers:hibiscus",
+      "label": "Hibiscus",
+      "aliases": ["Hibiscus"]
+    },
+    {
+      "id": "flowers:chrysanthemum",
+      "label": "Chrysanthemum",
+      "aliases": ["Chrysanthemum"]
+    },
+    {
+      "id": "flowers:carnation",
+      "label": "Carnation",
+      "aliases": ["Carnation"]
+    },
+    {
+      "id": "flowers:orchid",
+      "label": "Orchid",
+      "aliases": ["Orchid"]
+    },
+    {
+      "id": "flowers:begonia",
+      "label": "Begonia",
+      "aliases": ["Begonia"]
+    },
+    {
+      "id": "flowers:fuchsia",
+      "label": "Fuchsia",
+      "aliases": ["Fuchsia"]
+    },
+    {
+      "id": "flowers:foxglove",
+      "label": "Foxglove",
+      "aliases": ["Foxglove"]
+    },
+    {
+      "id": "flowers:hollyhock",
+      "label": "Hollyhock",
+      "aliases": ["Hollyhock"]
+    },
+    {
+      "id": "flowers:cosmos",
+      "label": "Cosmos",
+      "aliases": ["Cosmos"]
+    },
+    {
+      "id": "flowers:zinnia",
+      "label": "Zinnia",
+      "aliases": ["Zinnia"]
+    },
+    {
+      "id": "flowers:sweetpea",
+      "label": "Sweet pea",
+      "aliases": ["Sweet pea"]
+    },
+    {
+      "id": "flowers:bluebell",
+      "label": "Bluebell",
+      "aliases": ["Bluebell"]
+    },
+    {
+      "id": "flowers:snowdrop",
+      "label": "Snowdrop",
+      "aliases": ["Snowdrop"]
+    },
+    {
+      "id": "flowers:freesia",
+      "label": "Freesia",
+      "aliases": ["Freesia"]
+    },
+    {
+      "id": "flowers:ranunculus",
+      "label": "Ranunculus",
+      "aliases": ["Ranunculus"]
+    },
+    {
+      "id": "flowers:anemone",
+      "label": "Anemone",
+      "aliases": ["Anemone"]
+    },
+    {
+      "id": "flowers:camellia",
+      "label": "Camellia",
+      "aliases": ["Camellia"]
+    },
+    {
+      "id": "flowers:azalea",
+      "label": "Azalea",
+      "aliases": ["Azalea"]
+    },
+    {
+      "id": "flowers:rhododendron",
+      "label": "Rhododendron",
+      "aliases": ["Rhododendron"]
+    },
+    {
+      "id": "flowers:wisteria",
+      "label": "Wisteria",
+      "aliases": ["Wisteria"]
+    }
+  ],
+  "pulses": [
+    {
+      "id": "pulses:chickpea",
+      "label": "Chickpea",
+      "aliases": ["Chickpea", "garbanzo"]
+    },
+    {
+      "id": "pulses:lentil",
+      "label": "Lentil",
+      "aliases": ["Lentil", "lentils"]
+    },
+    {
+      "id": "pulses:redlentil",
+      "label": "Red lentil",
+      "aliases": ["Red lentil"]
+    },
+    {
+      "id": "pulses:greenlentil",
+      "label": "Green lentil",
+      "aliases": ["Green lentil"]
+    },
+    {
+      "id": "pulses:brownlentil",
+      "label": "Brown lentil",
+      "aliases": ["Brown lentil"]
+    },
+    {
+      "id": "pulses:blacklentil",
+      "label": "Black lentil",
+      "aliases": ["Black lentil", "beluga lentil"]
+    },
+    {
+      "id": "pulses:puylentil",
+      "label": "Puy lentil",
+      "aliases": ["Puy lentil"]
+    },
+    {
+      "id": "pulses:pea",
+      "label": "Pea",
+      "aliases": ["Pea", "peas"]
+    },
+    {
+      "id": "pulses:splitpea",
+      "label": "Split pea",
+      "aliases": ["Split pea"]
+    },
+    {
+      "id": "pulses:blackbean",
+      "label": "Black bean",
+      "aliases": ["Black bean", "black turtle bean"]
+    },
+    {
+      "id": "pulses:kidneybean",
+      "label": "Kidney bean",
+      "aliases": ["Kidney bean", "red kidney bean"]
+    },
+    {
+      "id": "pulses:cannellini",
+      "label": "Cannellini",
+      "aliases": ["Cannellini", "white kidney bean"]
+    },
+    {
+      "id": "pulses:navybean",
+      "label": "Navy bean",
+      "aliases": ["Navy bean", "haricot bean"]
+    },
+    {
+      "id": "pulses:pintobean",
+      "label": "Pinto bean",
+      "aliases": ["Pinto bean"]
+    },
+    {
+      "id": "pulses:borlotti",
+      "label": "Borlotti",
+      "aliases": ["Borlotti", "cranberry bean"]
+    },
+    {
+      "id": "pulses:limabean",
+      "label": "Lima bean",
+      "aliases": ["Lima bean", "butter bean"]
+    },
+    {
+      "id": "pulses:broadbean",
+      "label": "Broad bean",
+      "aliases": ["Broad bean", "fava bean"]
+    },
+    {
+      "id": "pulses:soybean",
+      "label": "Soybean",
+      "aliases": ["Soybean", "soya bean", "edamame"]
+    },
+    {
+      "id": "pulses:mungbean",
+      "label": "Mung bean",
+      "aliases": ["Mung bean"]
+    },
+    {
+      "id": "pulses:adzuki",
+      "label": "Adzuki",
+      "aliases": ["Adzuki", "adzuki bean", "azuki"]
+    },
+    {
+      "id": "pulses:blackeyedpea",
+      "label": "Black eyed pea",
+      "aliases": ["Black eyed pea", "cowpea"]
+    },
+    {
+      "id": "pulses:runnerbean",
+      "label": "Runner bean",
+      "aliases": ["Runner bean"]
+    },
+    {
+      "id": "pulses:greenbean",
+      "label": "Green bean",
+      "aliases": ["Green bean", "french bean", "string bean"]
+    },
+    {
+      "id": "pulses:flageolet",
+      "label": "Flageolet",
+      "aliases": ["Flageolet"]
+    },
+    {
+      "id": "pulses:greatnorthernbean",
+      "label": "Great northern bean",
+      "aliases": ["Great northern bean"]
+    },
+    {
+      "id": "pulses:lupinbean",
+      "label": "Lupin bean",
+      "aliases": ["Lupin bean", "lupini bean"]
+    },
+    {
+      "id": "pulses:pigeonpea",
+      "label": "Pigeon pea",
+      "aliases": ["Pigeon pea"]
+    },
+    {
+      "id": "pulses:chanadal",
+      "label": "Chana dal",
+      "aliases": ["Chana dal"]
+    },
+    {
+      "id": "pulses:uraddal",
+      "label": "Urad dal",
+      "aliases": ["Urad dal", "black gram"]
+    },
+    {
+      "id": "pulses:horsegram",
+      "label": "Horse gram",
+      "aliases": ["Horse gram"]
+    },
+    {
+      "id": "pulses:mothbean",
+      "label": "Moth bean",
+      "aliases": ["Moth bean"]
+    },
+    {
+      "id": "pulses:teparybean",
+      "label": "Tepary bean",
+      "aliases": ["Tepary bean"]
+    },
+    {
+      "id": "pulses:ricebean",
+      "label": "Rice bean",
+      "aliases": ["Rice bean"]
+    },
+    {
+      "id": "pulses:wingedbean",
+      "label": "Winged bean",
+      "aliases": ["Winged bean"]
+    }
+  ]
+}

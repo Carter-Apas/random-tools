@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { test } from "node:test";
 
-import { categories, findAnswer, normalize } from "../server/categories.js";
+import { questions, findAnswer, normalize } from "../server/questions.js";
 import {
-  changeCategory,
+  changeQuestion,
   publicRoom,
   startGame,
   submitAnswer,
@@ -25,18 +25,18 @@ const setup = (count = 3) => {
   return { store, tokens, room };
 };
 
-test("category aliases resolve to their identity or an explicit group of valid identities", () => {
-  for (const category of categories) {
-    if (category.id === "units" || category.family === "units") continue;
+test("question aliases resolve to their identity or an explicit group of valid identities", () => {
+  for (const question of questions) {
+    if (question.id === "units" || question.datasetId === "units") continue;
     const aliases = new Set<string>();
-    for (const answer of category.answers) {
+    for (const answer of question.answers) {
       assert.ok(answer.label.length);
       for (const alias of answer.aliases) {
-        if (category.normalization?.ambiguousNames !== "consume-all")
-          assert.equal(aliases.has(alias), false, `${category.id}: duplicate alias ${alias}`);
+        if (question.normalization?.ambiguousNames !== "consume-all")
+          assert.equal(aliases.has(alias), false, `${question.id}: duplicate alias ${alias}`);
         aliases.add(alias);
-        const resolved = findAnswer(category, alias);
-        assert.ok(resolved, `${category.id}: ${alias}`);
+        const resolved = findAnswer(question, alias);
+        assert.ok(resolved, `${question.id}: ${alias}`);
         assert.ok(resolved.id === answer.id || resolved.consumes?.includes(answer.id!));
       }
     }
@@ -48,8 +48,15 @@ test("valid answers pass clockwise and every recipient receives an independent t
   const { room } = setup();
   const deadline = room.deadline;
   const first = room.players[0];
-  const answer = room.category!.answers[0].label;
+  const answer = room.question!.answers[0].label;
+  const questionId = room.question!.id;
   submitAnswer(room, first.id, answer.toUpperCase(), room.turn, 2500);
+  assert.deepEqual(publicRoom(room, 2500).events.at(-1)?.acceptedAnswer, {
+    playerId: first.id,
+    label: answer,
+    questionId,
+    at: 2500,
+  });
   assert.equal(room.activeId, room.players[1].id);
   assert.equal(room.phase, "passing");
   assert.equal(room.move?.from, first.id);
@@ -65,6 +72,7 @@ test("valid answers pass clockwise and every recipient receives an independent t
     /Already picked/,
   );
   assert.deepEqual(room.used, [answer]);
+  assert.equal(room.events.filter((event) => event.acceptedAnswer).length, 1);
 });
 
 test("wrong, stale, and out-of-turn answers never pass or consume a heart", () => {
@@ -86,39 +94,39 @@ test("wrong, stale, and out-of-turn answers never pass or consume a heart", () =
   assert.equal(room.players[0].hearts, 3);
 });
 
-test("a tiny category exhausts, changes vegetable, and resets accepted answers", () => {
+test("a tiny question exhausts, changes vegetable, and resets accepted answers", () => {
   const { room } = setup();
-  room.category = {
-    ...categories.find((category) => category.id === "cheeses")!,
+  room.question = {
+    ...questions.find((question) => question.id === "cheeses")!,
     id: "test-small",
     vegetable: "turnip",
-    answers: categories.find((category) => category.id === "cheeses")!.answers.slice(0, 2),
+    answers: questions.find((question) => question.id === "cheeses")!.answers.slice(0, 2),
   };
-  room.categoryGoal = 2;
+  room.questionGoal = 2;
   submitAnswer(room, room.activeId!, "Cheddar", room.turn, 2500);
   tickGame(room, room.readyAt);
   submitAnswer(room, room.activeId!, "Brie", room.turn, room.readyAt + 100);
-  assert.notEqual(room.category.id, "test-small");
-  assert.notEqual(room.category.vegetable, "turnip");
+  assert.notEqual(room.question.id, "test-small");
+  assert.notEqual(room.question.vegetable, "turnip");
   assert.equal(room.used.length, 0);
 });
 
-test("a streak rotates a large category while preserving unused answers for another visit", () => {
+test("a streak rotates a large question while preserving unused answers for another visit", () => {
   const { room } = setup();
-  room.category = categories.find((category) => category.id === "fruit")!;
-  room.categoryGoal = 6;
-  const answers = room.category.answers.slice(0, 6);
+  room.question = questions.find((question) => question.id === "fruit")!;
+  room.questionGoal = 6;
+  const answers = room.question.answers.slice(0, 6);
   for (const answer of answers) {
     tickGame(room, room.readyAt);
     submitAnswer(room, room.activeId!, answer.label, room.turn, room.readyAt + 100);
   }
-  assert.notEqual(room.category.id, "fruit");
+  assert.notEqual(room.question.id, "fruit");
   assert.equal(room.used.length, 0);
 });
 
 test("late packets char the player before accepting an answer and cannot cost two hearts", () => {
   const { room } = setup();
-  const answer = room.category!.answers[0].label;
+  const answer = room.question!.answers[0].label;
   assert.throws(
     () => submitAnswer(room, room.activeId!, answer, room.turn, room.deadline),
     /turn timer ran out/,
@@ -135,7 +143,7 @@ test("late packets char the player before accepting an answer and cannot cost tw
 test("passing at the last millisecond cannot shorten the next player's timer", () => {
   const { room } = setup();
   const oldDeadline = room.deadline;
-  submitAnswer(room, room.activeId!, room.category!.answers[0].label, room.turn, oldDeadline - 1);
+  submitAnswer(room, room.activeId!, room.question!.answers[0].label, room.turn, oldDeadline - 1);
   assert.equal(room.turnStartedAt, oldDeadline - 1 + 1200);
   assert.equal(room.deadline - room.turnStartedAt, room.turnDurationMs);
   assert.ok(room.turnDurationMs >= paces.classic.min);
@@ -187,7 +195,7 @@ test("typing is accepted only for the active turn, cleared on pass and hidden du
   assert.equal(updateDraft(room, room.activeId!, "x".repeat(101), room.turn, 2500), false);
   const previousId = room.activeId!;
   const previousTurn = room.turn;
-  submitAnswer(room, previousId, room.category!.answers[0].label, room.turn, 2600);
+  submitAnswer(room, previousId, room.question!.answers[0].label, room.turn, 2600);
   assert.equal(room.draft, "");
   assert.equal(publicRoom(room, 2600).draft, "");
   assert.equal(updateDraft(room, previousId, "late packet", previousTurn, 2700), false);
@@ -201,10 +209,10 @@ test("typing is accepted only for the active turn, cleared on pass and hidden du
   assert.equal(room.draft, "");
 });
 
-test("trivial calendar and short-list categories are removed", () => {
+test("trivial calendar and short-list questions are removed", () => {
   for (const id of ["days", "months", "seasons", "rainbow", "suits", "planets", "islands"]) {
     assert.equal(
-      categories.some((category) => category.id === id),
+      questions.some((question) => question.id === id),
       false,
     );
   }
@@ -305,7 +313,7 @@ test("a wrong answer near expiry costs no heart until the natural deadline", () 
 
 test("regional plurals cannot be used as separate answers", () => {
   const { room } = setup();
-  room.category = categories.find((item) => item.id === "units")!;
+  room.question = questions.find((item) => item.id === "units")!;
   submitAnswer(room, room.activeId!, "liters", room.turn, 2500);
   tickGame(room, room.readyAt);
   const deadline = room.deadline;
@@ -317,52 +325,53 @@ test("regional plurals cannot be used as separate answers", () => {
   assert.equal(room.deadline, deadline);
 });
 
-test("every category can open a round regardless of its vegetable", () => {
+test("every question can open a round regardless of its vegetable", () => {
   const { room } = setup();
-  for (const category of categories) {
-    room.category = null;
-    room.deck = [category, ...categories.filter((other) => other.id !== category.id)];
-    changeCategory(room);
-    assert.equal(room.category, category);
+  for (const question of questions) {
+    room.question = null;
+    room.deck = [question, ...questions.filter((other) => other.id !== question.id)];
+    changeQuestion(room);
+    assert.equal(room.question, question);
   }
 });
 
 test("the question deck visits the whole pool without repeats and changes vegetable every time", () => {
   const { room } = setup();
-  const seen = new Set([room.category!.id]);
-  for (let i = 1; i < categories.length; i += 1) {
-    const previous = room.category!;
-    changeCategory(room);
-    assert.equal(seen.has(room.category!.id), false);
-    assert.notEqual(room.category!.vegetable, previous.vegetable);
-    seen.add(room.category!.id);
+  const seen = new Set([room.question!.id]);
+  for (let i = 1; i < questions.length; i += 1) {
+    const previous = room.question!;
+    changeQuestion(room);
+    assert.equal(seen.has(room.question!.id), false);
+    assert.notEqual(room.question!.vegetable, previous.vegetable);
+    seen.add(room.question!.id);
   }
-  assert.equal(seen.size, categories.length);
+  assert.equal(seen.size, questions.length);
   assert.equal(room.deck.length, 0);
-  const previous = room.category!;
-  changeCategory(room);
-  assert.notEqual(room.category!.vegetable, previous.vegetable);
+  const previous = room.question!;
+  changeQuestion(room);
+  assert.notEqual(room.question!.vegetable, previous.vegetable);
 });
 
 test("rematches preserve unused questions and prefer a different topic when available", () => {
   const { room } = setup();
-  const units = categories.find((item) => item.id === "units")!;
-  const length = categories.find((item) => item.id === "units-length")!;
-  const fruit = categories.find((item) => item.id === "fruit")!;
-  room.category = units;
+  const units = questions.find((item) => item.id === "units")!;
+  const length = questions.find((item) => item.id === "units-length")!;
+  const fruit = questions.find((item) => item.id === "fruit")!;
+  room.question = units;
   room.deck = [{ ...length, vegetable: "carrot" }, fruit];
-  changeCategory(room);
-  assert.equal(room.category.id, "fruit");
+  changeQuestion(room);
+  assert.equal(room.question.id, "fruit");
   room.status = "finished";
   startGame(room, 200000);
-  assert.equal(room.category!.id, "units-length");
+  assert.equal(room.question!.id, "units-length");
   assert.equal(room.deck.length, 0);
 });
 
 test("a shared valid name passes once and consumes every matching identity without revealing candidates", () => {
   const { room } = setup();
-  room.category = {
+  room.question = {
     id: "ambiguous-fixture",
+    datasetId: "fixture",
     name: "Fixture",
     prompt: "Name a sea",
     hint: "Fixture",
@@ -373,7 +382,7 @@ test("a shared valid name passes once and consumes every matching identity witho
       { id: "two", label: "Second sea", aliases: ["shared sea"] },
     ],
   };
-  room.categoryGoal = 6;
+  room.questionGoal = 6;
   assert.equal(submitAnswer(room, room.activeId!, "shared sea", room.turn, 2500), "shared sea");
   assert.deepEqual(room.usedIds, ["one", "two"]);
   assert.deepEqual(publicRoom(room, 2500).used, ["shared sea"]);

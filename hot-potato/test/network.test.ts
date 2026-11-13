@@ -52,7 +52,7 @@ test("real sockets host, join, enforce host actions, answer, reconnect, and clea
     internal.readyAt = Date.now() - 1;
     internal.phase = "answering";
     const stale = await send(guest, "answer", {
-      answer: internal.category!.answers[0].label,
+      answer: internal.question!.answers[0].label,
       turn: internal.turn,
     });
     assert.equal(stale.ok, false);
@@ -66,7 +66,7 @@ test("real sockets host, join, enforce host actions, answer, reconnect, and clea
     assert.equal(barrier.ok, false);
     assert.equal(internal.draft, "someone is thinking");
     const answered = await send(host, "answer", {
-      answer: internal.category!.answers[0].label,
+      answer: internal.question!.answers[0].label,
       turn: internal.turn,
     });
     assert.equal(answered.ok, true);

@@ -3,7 +3,7 @@ import { once } from "node:events";
 import { mkdir } from "node:fs/promises";
 import { chromium, webkit } from "playwright";
 import { createApp } from "../dist/server/server/app.js";
-import { categories } from "../dist/server/server/categories.js";
+import { questions } from "../dist/server/server/questions.js";
 import { publicRoom, startGame } from "../dist/server/server/game.js";
 
 const server = createApp();
@@ -86,6 +86,11 @@ const assertPass = async (page, room, direct, label) => {
   }
   await page.emulateMedia({ reducedMotion: "reduce" });
   await settle(page);
+  assert.equal(
+    await page.locator(".turn-heat").evaluate((heat) => getComputedStyle(heat).transitionDuration),
+    "0s",
+    `${label}: reduced motion disables the heat transition`,
+  );
   const reduced = await page.locator(".hot-vegetable").evaluate((vegetable) => ({
     x: Number.parseFloat(vegetable.style.left),
     target: Number.parseFloat(document.querySelector(".is-active").style.left),
@@ -152,9 +157,14 @@ const assertVisible = async (page, label) => {
       ".question-info",
       ".answer-feedback",
       ".hearts",
+      ".turn-heat",
+      ".accepted-answer",
     ];
+    const garden = document.querySelector(".arena").getBoundingClientRect().toJSON();
     return {
       visible,
+      garden,
+      heatPointerEvents: getComputedStyle(document.querySelector(".turn-heat")).pointerEvents,
       overflow: document.documentElement.scrollWidth > innerWidth,
       boxes: selectors.flatMap((selector) =>
         [...document.querySelectorAll(selector)].map((element) => {
@@ -165,6 +175,7 @@ const assertVisible = async (page, label) => {
     };
   });
   assert.equal(state.overflow, false, `${label}: no horizontal scrolling`);
+  assert.equal(state.heatPointerEvents, "none", `${label}: turn heat leaves controls usable`);
   for (const box of state.boxes) {
     assert.ok(
       box.width > 0 &&
@@ -175,6 +186,14 @@ const assertVisible = async (page, label) => {
         box.right <= state.visible.right + 1,
       `${label}: ${JSON.stringify(box)} outside ${JSON.stringify(state.visible)}`,
     );
+    if (box.selector === ".accepted-answer")
+      assert.ok(
+        box.left >= state.garden.left + 1 &&
+          box.right <= state.garden.right - 1 &&
+          box.top >= state.garden.top + 1 &&
+          box.bottom <= state.garden.bottom - 1,
+        `${label}: accepted answer stays inside the garden`,
+      );
   }
   const info = state.boxes.find((box) => box.selector === ".question-info");
   for (const selector of ["#current-question", ".turn-timer"]) {
@@ -184,7 +203,7 @@ const assertVisible = async (page, label) => {
         box.left >= info.right - 1 ||
         box.bottom <= info.top + 1 ||
         box.top >= info.bottom - 1,
-      `${label}: ${selector} overlaps category info`,
+      `${label}: ${selector} overlaps question info`,
     );
   }
 };
@@ -272,7 +291,7 @@ try {
         socket.on("answer", (data, ack) =>
           original(data, (result) => setTimeout(() => ack(result), 500)),
         );
-        room.category = categories.find((item) => item.id === "cheeses");
+        room.question = questions.find((item) => item.id === "cheeses");
         room.used = [];
         room.usedIds = [];
         publish(room);
@@ -312,6 +331,18 @@ try {
             ];
         for (const [width, height] of sizes) {
           await page.setViewportSize({ width, height });
+          // Show several recent picks together to exercise crowded answer labels.
+          room.events = room.question.answers.slice(0, 5).map((answer, index) => ({
+            id: index + 1,
+            kind: "answer",
+            text: `${room.players[index + 1].name}: ${answer.label}`,
+            acceptedAnswer: {
+              playerId: room.players[index + 1].id,
+              label: answer.label,
+              questionId: room.question.id,
+              at: Date.now(),
+            },
+          }));
           freeze(room);
           await assertVisible(page, `${engine.name()} resized ${width}x${height}`);
           await assertGrouped(page, `${engine.name()} resized ${width}x${height}`);
@@ -323,15 +354,15 @@ try {
         }
         if (mobile) {
           await page.setViewportSize({ width: 320, height: 320 });
-          const longest = [...categories]
+          const longest = [...questions]
             .sort((left, right) => right.prompt.length - left.prompt.length)
             .slice(0, 8);
-          for (const category of longest) {
-            room.category = category;
+          for (const question of longest) {
+            room.question = question;
             freeze(room);
-            await assertVisible(page, `${engine.name()} long prompt: ${category.id}`);
+            await assertVisible(page, `${engine.name()} long prompt: ${question.id}`);
           }
-          room.category = categories.find((item) => item.id === "cheeses");
+          room.question = questions.find((item) => item.id === "cheeses");
           publish(room);
         }
         await assertResizeDuringPass(page, room);
@@ -384,7 +415,7 @@ try {
           assert.deepEqual(await focusState(page), { focused: true, editable: true });
         }
         freeze(room);
-        await page.getByRole("button", { name: "Category hint and picked answers" }).click();
+        await page.getByRole("button", { name: "Question hint and picked answers" }).click();
         await page.getByRole("button", { name: "Back to the garden" }).click();
         assert.deepEqual(await focusState(page), { focused: true, editable: true });
         await context.close();

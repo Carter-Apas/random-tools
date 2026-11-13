@@ -10,6 +10,7 @@ export interface Answer {
 
 export interface NormalizationRules {
   plurals?: boolean;
+  singulars?: boolean;
   pluralFirstWord?: boolean;
   suffixes?: string[];
   ambiguousNames?: "reject" | "consume-all";
@@ -19,14 +20,14 @@ export interface NormalizationRules {
 export interface AnswerPack {
   schemaVersion: number;
   id: string;
-  categoryId: string;
+  questionId: string;
   source: { name: string; url: string; revision: string; sha256: string; license: string };
   answers: Answer[];
 }
 
 export interface AnswerProvider {
   id: string;
-  categoryId: string;
+  questionId: string;
   answers: readonly Answer[];
   normalization?: NormalizationRules;
 }

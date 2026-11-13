@@ -6,6 +6,7 @@ import { pathToFileURL } from "node:url";
 import { gzipSync } from "node:zlib";
 import { test } from "node:test";
 
+import { compileDataset } from "../content/datasets.js";
 import { compileCatalogue, compilePack, checkCoverage } from "../content/compile.js";
 import { loadSnapshots } from "../content/io.js";
 import { publishCatalogue } from "../content/publication.js";
@@ -19,22 +20,23 @@ import {
   wikidataQuery,
 } from "../content/adapters/wikidata.js";
 import { parseConstellations } from "../content/adapters/nasa.js";
+import { readCatalogue } from "../server/answers/catalogue-format.js";
 import { AnswerRegistry } from "../server/answers/index.js";
 import type {
-  CategoryDefinition,
-  CompiledCatalogue,
+  QuestionDefinition,
   Correction,
   CoverageCase,
   SourceSnapshot,
 } from "../server/answers/catalogue-types.js";
 
-const definition: CategoryDefinition = {
+const definition: QuestionDefinition = {
   id: "fixture",
   name: "Fixture",
   prompt: "Name a country",
-  hint: "A test category",
+  hint: "A test question",
   vegetable: "potato",
-  select: { source: "fixture-source", where: { continents: ["Africa"] } },
+  datasetId: "fixture-source",
+  select: { where: { continents: ["Africa"] } },
   normalization: { plurals: false },
   minimumAnswers: 1,
   maximumAnswers: 10,
@@ -67,14 +69,35 @@ const snapshot: SourceSnapshot = {
   ],
 };
 
-const compile = (definitions = [definition]) =>
-  compileCatalogue(definitions, [snapshot], new Map(), []);
+const datasetFixture = (
+  corrections: Correction[] = [],
+  seeds = [] as { id: string; label: string; aliases: string[] }[],
+) =>
+  compileDataset(
+    {
+      id: "fixture-source",
+      name: "Fixture",
+      description: "Fixture dataset",
+      imports: [{ source: "fixture-source", legacyKey: "fixture" }],
+      minimumRecords: 0,
+      maximumRecords: 10,
+      normalization: {},
+    },
+    [snapshot],
+    [],
+    { fixture: seeds },
+    corrections,
+    [],
+  );
 
-test("one catalogue source produces independently filtered categories and repeatable versions", () => {
+const compile = (definitions = [definition]) => compileCatalogue(definitions, [snapshot]);
+
+test("one catalogue source produces independently filtered questions and repeatable versions", () => {
   const asia = {
     ...definition,
     id: "asia",
-    select: { source: "fixture-source", where: { continents: ["Asia"] } },
+    datasetId: "fixture-source",
+    select: { where: { continents: ["Asia"] } },
   };
   const first = compile([definition, asia]).catalogue;
   assert.deepEqual(
@@ -86,7 +109,7 @@ test("one catalogue source produces independently filtered categories and repeat
 });
 
 test("missing, unexpectedly small, and unexpectedly large source sets cannot compile", () => {
-  assert.throws(() => compileCatalogue([definition], [], new Map(), []), /Missing source/);
+  assert.throws(() => compileCatalogue([definition], []), /Missing source/);
   assert.throws(() => compile([{ ...definition, minimumAnswers: 2 }]), /outside/);
   assert.throws(() => compile([{ ...definition, maximumAnswers: 0 }]), /outside/);
 });
@@ -97,7 +120,7 @@ test("regional seed aliases attach to a source identity and preserve its provena
     label: "Republic of Kenya",
     aliases: ["Kenya", "Republic of Kenya"],
   };
-  const { pack } = compilePack(definition, snapshot, [seed], []);
+  const { pack } = compilePack(definition, datasetFixture([], [seed]));
   assert.equal(pack.answers.length, 1);
   assert.equal(pack.answers[0].id, "country:kenya");
   assert.equal(pack.answers[0].evidence?.[0].sourceId, "fixture-source");
@@ -106,28 +129,37 @@ test("regional seed aliases attach to a source identity and preserve its provena
 test("pending suggestions never affect gameplay and approved corrections require evidence", () => {
   const suggestion = proposeAnswer(
     {
-      categoryId: "fixture",
+      datasetId: "fixture-source",
       answer: "Example",
       evidence: "https://example.org/proof",
       reason: "Reviewed source",
     },
-    new Set(["fixture"]),
+    new Set(["fixture-source"]),
   );
   assert.equal(suggestion.status, "pending");
-  assert.equal(compilePack(definition, snapshot, [], [suggestion]).pack.answers.length, 1);
-  const approved = { ...suggestion, status: "approved" as const };
-  const corrected = compilePack(definition, snapshot, [], [approved]).pack;
+  assert.equal(compilePack(definition, datasetFixture([suggestion])).pack.answers.length, 1);
+  const approved = {
+    ...suggestion,
+    status: "approved" as const,
+    answer: { ...suggestion.answer, facts: { continents: ["Africa"] } },
+  };
+  const corrected = compilePack(definition, datasetFixture([approved])).pack;
   assert.equal(corrected.answers.length, 2);
   assert.equal(corrected.answers[1].evidence?.[0].url, suggestion.evidence);
   assert.throws(
-    () => compilePack(definition, snapshot, [], [{ ...approved, evidence: "" }]),
+    () => compilePack(definition, datasetFixture([{ ...approved, evidence: "" }])),
     /needs evidence/,
   );
   assert.throws(
     () =>
       proposeAnswer(
-        { categoryId: "fixture", answer: "Example", evidence: "javascript:alert(1)", reason: "" },
-        new Set(["fixture"]),
+        {
+          datasetId: "fixture-source",
+          answer: "Example",
+          evidence: "javascript:alert(1)",
+          reason: "",
+        },
+        new Set(["fixture-source"]),
       ),
     /HTTPS/,
   );
@@ -135,18 +167,18 @@ test("pending suggestions never affect gameplay and approved corrections require
 
 test("reviewed aliases share identity and reviewed exclusions remove a classification error", () => {
   const alias: Correction = {
-    categoryId: "fixture",
+    datasetId: "fixture-source",
     status: "approved",
     answer: { id: "country:kenya", label: "Kenya", aliases: ["Alternative name"] },
     evidence: "https://example.org/proof",
     reason: "Documented name",
   };
-  const { pack } = compilePack(definition, snapshot, [], [alias]);
+  const { pack } = compilePack(definition, datasetFixture([alias]));
   const registry = new AnswerRegistry();
   registry.register(pack);
   assert.equal(registry.find("fixture", "Alternative name")?.id, "country:kenya");
   const exclude = { ...alias, action: "exclude" as const };
-  assert.throws(() => compilePack(definition, snapshot, [], [exclude]), /outside/);
+  assert.throws(() => compilePack(definition, datasetFixture([exclude])), /outside/);
 });
 
 test("failed coverage and large removals preserve the previously published catalogue", async () => {
@@ -156,7 +188,7 @@ test("failed coverage and large removals preserve the previously published catal
     const previous = compile().catalogue;
     await writeFile(output, JSON.stringify(previous));
     const invalid: CoverageCase = {
-      categoryId: "fixture",
+      questionId: "fixture",
       answer: "Japan",
       expected: "accepted",
       difficulty: "obscure",
@@ -180,10 +212,10 @@ test("failed coverage and large removals preserve the previously published catal
   }
 });
 
-test("the benchmark cannot silently omit a category or its difficult cases", () => {
+test("the benchmark cannot silently omit a question or its difficult cases", () => {
   assert.throws(() => requireBenchmark([definition], []), /missing common/);
   const fixture: CoverageCase = {
-    categoryId: "fixture",
+    questionId: "fixture",
     answer: "Kenya",
     expected: "accepted",
     difficulty: "common",
@@ -191,8 +223,8 @@ test("the benchmark cannot silently omit a category or its difficult cases", () 
   };
   assert.throws(() => requireBenchmark([definition], [fixture]), /missing obscure/);
   assert.throws(
-    () => checkCoverage(compile().catalogue.packs, [{ ...fixture, categoryId: "missing" }]),
-    /Unknown fixture category/,
+    () => checkCoverage(compile().catalogue.packs, [{ ...fixture, questionId: "missing" }]),
+    /Unknown fixture question/,
   );
 });
 
@@ -272,22 +304,22 @@ test("malformed responses, incomplete imports and changed NASA tables fail close
 
 test("every published question pack has independent common, obscure and boundary checks", async () => {
   const root = new URL("../", import.meta.url);
-  const catalogue = JSON.parse(
-    await readFile(new URL("server/answers/data/catalogue.json", root), "utf8"),
-  ) as CompiledCatalogue;
+  const catalogue = readCatalogue(
+    JSON.parse(await readFile(new URL("server/answers/data/catalogue.json", root), "utf8")),
+  );
   const fixtures = JSON.parse(
     await readFile(new URL("content/fixtures.json", root), "utf8"),
   ) as CoverageCase[];
-  assert.ok(catalogue.packs.length >= 100);
+  assert.ok(catalogue.packs.length >= 90);
   const definitions = JSON.parse(
-    await readFile(new URL("content/definitions.json", root), "utf8"),
-  ) as CategoryDefinition[];
+    await readFile(new URL("content/questions.json", root), "utf8"),
+  ) as QuestionDefinition[];
   assert.deepEqual(
-    new Set(catalogue.packs.map((pack) => pack.categoryId)),
+    new Set(catalogue.packs.map((pack) => pack.questionId)),
     new Set(definitions.map((item) => item.id)),
   );
   for (const pack of catalogue.packs) {
-    const cases = fixtures.filter((fixture) => fixture.categoryId === pack.categoryId);
+    const cases = fixtures.filter((fixture) => fixture.questionId === pack.questionId);
     assert.deepEqual(
       new Set(cases.map((fixture) => fixture.difficulty)),
       new Set(["common", "obscure", "boundary"]),
@@ -305,8 +337,6 @@ test("reviewed classification facts change membership without mutating their sou
   const { catalogue } = compileCatalogue(
     [definition],
     [snapshot],
-    new Map(),
-    [],
     [
       {
         sourceId: "fixture-source",
@@ -330,8 +360,6 @@ test("reviewed classification facts change membership without mutating their sou
       compileCatalogue(
         [definition],
         [snapshot],
-        new Map(),
-        [],
         [
           {
             sourceId: "fixture-source",

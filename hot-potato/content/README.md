@@ -1,8 +1,86 @@
-# Category content pipeline
+# Datasets and questions
 
-Source adapters collect whole catalogues; category definitions select records;
-reviewed corrections add missing facts or names; checks gate publication. Live
-games read the compiled, versioned server catalogue without external requests.
+A **dataset** owns named records, stable identities, aliases and properties. A
+**question** supplies a prompt, a boundary hint and a filter over one dataset.
+For example, `elements` contains all 118 elements and their properties;
+`elements-noble` selects `group: ["noble gas"]` from those same records.
+Questions never append their own answers after filtering.
+
+The game currently publishes **122 questions from 16 datasets**. Food combines
+fruit, vegetables, herbs, spices, pulses, pasta and cheese. Animals combines pets,
+farm animals and native birds: a horse can have both pet and farm roles, while a
+kiwi has `kind: ["bird"]` and `nativeTo: ["NZ"]`. Plants combines trees and flowers.
+Geography combines countries, capitals, rivers, seas and mountain ranges with a
+`kind` discriminator. Structured collections such as elements and measurement
+units keep their own schemas.
+
+New collections cover everyday things, cars, video games, Pokémon and jobs.
+Their questions include bus, kitchen, classroom, beach and camping items; car
+makers, 4WD/AWD models, electric cars and sports cars; game genres and decades;
+Pokémon types; and broad job families. Regional cheese questions, element-period
+quizzes and other specialist variants are archived in `retired-questions.json`
+with their cases in `retired-fixtures.json`. They are outside the active pool.
+
+## Content files
+
+- `datasets.json`: dataset names, descriptions, imports, normalization defaults
+  and expected record counts.
+- `curated-records.json`: shared project records with properties, including the
+  migrated hand-written banks. Records contain no question prompts.
+- `record-tags.json`: explicit identity-based context tags, classifications and
+  regional aliases. Unknown identities fail the build.
+- `questions.json`: playable prompts, hints, dataset IDs, property filters,
+  optional normalization overrides and expected subset sizes.
+- `sources/` and `sources.lock.json`: compressed source snapshots and checksums.
+- `corrections.json`: evidenced dataset-level aliases, additions and exclusions.
+- `fact-corrections.json`: evidenced corrections to imported classifications.
+- `fixtures.json`: common, less obvious and rejected boundary cases per question.
+- `legacy-answers.json`: migration aliases and regression baselines. This is a
+  build input; there is no runtime fallback to a separate hand-written bank.
+- `review.json`: publication results and changes from the previous catalogue.
+
+## Add a question
+
+Reuse an existing dataset and select records by their properties:
+
+```json
+{
+  "id": "animals-nz-birds",
+  "datasetId": "animals",
+  "name": "Feathered neighbours",
+  "prompt": "Name a native New Zealand bird",
+  "hint": "Māori and English names count. Extinct native birds count too.",
+  "vegetable": "carrot",
+  "select": { "where": { "kind": ["bird"], "nativeTo": ["NZ"] } },
+  "minimumAnswers": 20,
+  "maximumAnswers": 500
+}
+```
+
+Properties combine with AND; values within one property combine with OR. An
+empty filter selects the whole dataset. Unknown properties, empty filters for a
+property and unexpectedly small or large subsets fail publication. Each question
+needs independently chosen common, less obvious and invalid boundary fixtures.
+The dataset supplies normalization defaults; a question can override these for
+boundaries such as optional "River" or "Cheese" suffixes.
+
+Questions cannot carry ad hoc lists of additional accepted answers. Correct the
+shared record or its properties and rebuild all affected questions instead.
+
+## Add or extend a dataset
+
+Add its definition to `datasets.json`. An import references a checked-in source
+snapshot and can attach common facts such as `kind: ["cheese"]`. An import with
+`mode: "enrich"` adds properties to existing IDs without reintroducing removed
+records or replacing current names. Imports join by
+stable ID and retain aliases, properties and source evidence. Equal labels alone
+never merge unrelated external identities. Curated records and explicit tags
+extend those same datasets. Pending suggestions do not enter gameplay.
+
+Add an importer only when an existing snapshot lacks the required collection or
+properties. Adapters collect complete matching source sets without popularity or
+pageview cutoffs. Source record counts and SHA-256 checksums guard refreshes.
+No gameplay code needs to change to add a dataset or a question.
 
 ## Build and refresh
 
@@ -13,159 +91,94 @@ npm run answers:build
 npm run answers:check
 ```
 
-Both use checked-in snapshots and require no network. Build publishes
-`server/answers/data/catalogue.json` only after checks pass. Check also requires
-the rebuilt content version to match the published catalogue. Normal app and
-Docker builds consume the published file without running content tools.
-The builder reads legacy seeds independently of the published output. Use
-`npm run answers:build -- --bootstrap` to create the output from scratch or
-replace a damaged file; this skips comparison with the previous version while
-retaining source, size and benchmark checks.
+Both commands work offline. They assemble shared datasets, apply corrections,
+compile each question's subset and run coverage and existing-answer checks.
+Successful publication atomically replaces `server/answers/data/catalogue.json`.
+The schema-3 catalogue stores each dataset's used answer identities once; question
+packs reference those identities. The server loads it without network access.
+The browser receives the current prompt, hint and accepted display labels only.
 
-Fetch fresh data explicitly, then rebuild and review the changes:
+The normal app and Docker builds consume this published file. Content refreshes
+are separate, explicit operations:
 
 ```sh
-npm run answers:fetch
+npm run datasets:fetch -- objects vehicles video-games pokemon occupations
 npm run answers:fetch -- pasta cheeses
-npm run answers:fetch:units
-```
-
-Wikidata imports use typed membership queries, English and language-neutral
-names, and all matching records. There is no popularity, pageview, sitelink or
-top-result cutoff. English labels take precedence over neutral labels. NASA's
-adapter parses the StarChild constellation table and requires exactly 88 unique
-records. QUDT reuses the pinned units import and constrained SI-prefix grammar.
-
-Imports respect HTTP retry intervals and stop on invalid or unexpectedly small
-responses. Normalized snapshots under `sources/` are gzip compressed and pinned
-by SHA-256 in `sources.lock.json`. Each records the original response hash,
-retrieval revision, query URL and license. Wikidata is a captured live query,
-rather than a historical database-wide revision. Offline rebuilds reproduce the
-captured data; refreshing it is a separate content change.
-
-## Add a category
-
-Add a definition to `definitions.json`: ID, prompt, membership hint, vegetable,
-source selector, normalization rules and expected size. `select.where` combines
-fact filters with AND between properties and OR between values. A second country
-category can reuse `wikidata-countries` with `"where": { "continents": ["Q48"] }`
-for Asia. It needs no new importer or gameplay code. Explain how transcontinental
-countries, territories and former countries are treated in its hint.
-
-Add an adapter only when existing snapshots lack the catalogue or membership
-facts you need. Add independent common, obscure and invalid boundary cases to
-`fixtures.json`, then build and inspect `review.json`. The elements and modern
-constellations definitions require exactly 118 and 88 records respectively.
-
-## Question families and facts
-
-A definition can set `family` to a shared topic ID. The room shuffles questions,
-prefers another family on a change, and keeps its unused deck between rematches.
-It never discards remaining questions merely because their default vegetables
-match: the vegetable marker changes in that case. Exact questions do not repeat
-until the full pool has been visited.
-
-Refresh classification snapshots explicitly, then rebuild offline:
-
-```sh
-npm run questions:fetch
 npm run questions:fetch -- instrument-families genre-families
+npm run answers:fetch:units
 npm run answers:build
 npm run answers:check
 ```
 
-Refresh the original answer sources and build their base packs before refreshing
-question facts when both names and memberships need an update. Classification
-queries are in `question-facts.json`; there is no popularity cutoff. QUDT quantity
-kinds come from the same pinned vocabulary as the unit names; SI-prefix units
-inherit their base quantity. PubChem supplies element groups, standard states
-and atomic numbers. Periods derive from atomic numbers. Discovery-era questions
-are omitted because source discovery/isolation dates are inconsistent.
-The country snapshot pins the mledoze/countries dataset and its ODbL attribution;
-UN-member questions exclude the Vatican observer even though that dataset marks
-it as a member. National capitals inherit their country facts. These are pinned
-content snapshots, not live claims that classifications never change.
+The new dataset importer uses Python 3's standard library. It is unnecessary for
+normal app builds and deployment. It streams the large game response and only
+parses downloaded LVIS Python literals with `ast.literal_eval`; it never executes
+downloaded code. `--from-cache DIRECTORY` can normalize captured raw responses
+without another network request.
 
-`fact-corrections.json` supplies reviewed, evidenced memberships where a subclass
-chain is missing or misleading. Each entry replaces the named fact fields while
-leaving other fields intact. The compiler applies these to copies of snapshots,
-retains the review evidence, and versions the corrections with the published packs.
-`corrections.json` still handles names, omissions and answer exclusions. Every new
-question requires its own common, obscure and rejected-answer cases; narrowing a
-question does not inherit all answers from its broader family.
+Existing source adapters cover QUDT, Wikidata, NASA, PubChem and mledoze/countries.
+Refresh answer sources and build base packs before refreshing their derived
+classification snapshots. Wikidata snapshots capture a query at retrieval time;
+these are pinned facts, not a guarantee that classifications never change.
+
+New sources and their limits:
+
+| Dataset         | Source                                                                     | Properties and limits                                                                                                                                                                                                                                                        |
+| --------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Everyday things | [LVIS v1](https://www.lvisdataset.org/) vocabulary                         | Object names and synonyms; scene/context membership is explicit project curation, not an inferred LVIS fact.                                                                                                                                                                 |
+| Cars            | [US EPA](https://www.fueleconomy.gov/feg/ws/index.shtml) and Wikidata      | Global makes/model classes from Wikidata, plus US-market drivetrain, fuel and body classes since 1984 from EPA; sports-car classes use Wikidata plus evidenced tags. AWD counts in the combined 4WD/AWD question. Two-seater and sports-car classifications remain distinct. |
+| Video games     | [Wikidata](https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games) | English and language-neutral titles, aliases, genres, platform IDs and release decades; genre filters include captured subclass ancestry. Entries require a direct video-game type.                                                                                          |
+| Pokémon         | [PokeAPI](https://github.com/PokeAPI/pokeapi)                              | English species names, generations, default-form types, legendary/mythical status; alternate forms share a species identity.                                                                                                                                                 |
+| Jobs            | [O*NET 31.0](https://www.onetcenter.org/database.html)                     | Occupation codes, alternate job titles and SOC job families; plural occupational titles also accept singulars. No descriptions are imported.                                                                                                                                 |
+
+Open-ended scene questions have finite, reviewed memberships. An unlisted item
+can still be plausible in real life. The hint states the intended boundary; the
+pipeline does not claim exhaustive real-world coverage. New context tags and
+aliases belong in the dataset, where future prompts can reuse them.
 
 ## Correct an omission
 
 ```sh
 npm run answers:propose -- \
-  --category pasta \
-  --answer 'A documented regional variety' \
+  --dataset food \
+  --answer 'A documented regional pasta' \
+  --facts '{"kind":["pasta"]}' \
   --evidence 'https://example.org/source' \
-  --reason 'The source identifies this as a pasta shape'
+  --reason 'The source identifies it as a pasta shape'
 ```
 
-This appends a pending suggestion to ignored `candidates.local.jsonl`. It has no
-effect on gameplay. Verify its evidence and membership, copy it into
-`corrections.json`, and set status to `approved`. Use `--id` with an existing
-source ID when adding an alias; new entities receive a stable review ID.
+This writes a pending suggestion to ignored `candidates.local.jsonl`. Verify its
+identity, membership facts and evidence before adding an approved entry to
+`corrections.json`. Use `--id` to attach an alias to an existing entity. Corrections
+apply to the dataset before question filters run, so they cannot bypass a narrower
+question's membership rules. Add a fixture for each fix.
 
-Corrections support `upsert` (default), `exclude` and `remove-aliases`. Approved
-entries require an HTTPS evidence URL and a review reason. Their URLs and text
-are never executed. Add a regression fixture for each fix. The Filindeu entry
-demonstrates a documented regional alias missing from the source import.
+Approved corrections require an HTTPS evidence URL and a review reason. The
+supported actions are `upsert`, `exclude` and `remove-aliases`. Properties on an
+upsert describe where the record belongs. Evidence text and URLs are never run.
+Tags in `record-tags.json` are editorial; scientific or source-classification
+corrections belong in the evidenced correction files.
 
-AI or other tools can propose candidates in this same format. No model is
-connected to the live timer or trusted to approve its own suggestions. This is
-a maintainer queue; an in-game player reporting interface is not implemented.
+Publication also blocks removal of over 10% of any previous question's IDs, even
+if additions hide the loss. `--allow-removals` permits a deliberate reviewed change.
+`--bootstrap` recovers a missing or older-schema catalogue while retaining source,
+size and coverage checks. Failures preserve the previously published catalogue.
 
-## Identity, review and publication
+## Gameplay
 
-The compiler retains source IDs, aliases and evidence. Legacy names attach to
-source records through unambiguous matches. Curated names take priority over
-conflicting source aliases; unmatched legacy records are reported separately.
-Different external IDs are never merged solely because names match. Records
-whose names are entirely reserved by another curated identity are quarantined
-in the report for disambiguation.
+A question is the unit of play. The deck draws across datasets before taking
+another question from each, shuffling datasets and questions cryptographically.
+Unused questions survive rematches; exact questions repeat only after the pool
+has been visited. On a change the game prefers a different dataset. Vegetables
+are visual markers and never determine which dataset is eligible.
 
-Published packs accept a shared valid name even when several admitted entities
-use it. Lookup consumes all matching identities, preventing reuse through a
-specific alias. Candidates remain private. Scientific symbol collisions still
-fail closed, and symbol capitalization remains meaningful. Other providers can
-retain the default ambiguous-name rejection policy.
+Questions change after six accepted answers, exhaustion of a smaller bank, or a
+roast. Shared aliases resolve to the same identity; names shared by admitted
+entities consume every matching identity. Scientific symbol collisions reject.
+Spelling tolerance accepts only a unique nearest identity, protects dictionary
+words and meaningful answers from other questions, and never reveals candidates.
+Incorrect or repeated submissions leave the turn deadline unchanged.
 
-Publication requires the benchmark and existing-answer baseline to pass. Losing
-over 10% of a category's previous IDs blocks publication even if additions hide
-the loss in its total count. After review, use
-`npm run answers:build -- --allow-removals` to permit a deliberate large change.
-Failures leave the previous published file intact; successful writes use an
-atomic rename. `review.json` lists versions, additions/removals, legacy-only
-answers, ambiguous names, quarantined records and individual check results.
-
-The 104 packs cover the original ten sourced categories and 94 constrained
-questions, including quantities measured by units, element groups and periods,
-moons by parent, instrument and genre families, regional cheese origins, and
-country/capital geography, language and currency constraints.
-Membership boundaries matter: seas include historical seas but exclude lakes
-and oceans; moons exclude provisional numbered designations; African countries
-are current UN members; pasta excludes prepared dishes. Remaining game
-categories retain their legacy banks.
-
-The benchmark contains 382 independently chosen expectations, with common and
-obscure positives and invalid boundaries for every pack. A separate baseline protects
-previously accepted answers. Passing these cases does not establish 99%
-real-world coverage. Sources can omit or misclassify facts; legacy-only entries
-and quarantined identities are explicit remaining content work. Broader sources
-and further independent test cases improve coverage without popularity filters.
-
-Runtime lookup first resolves exact labels, aliases and symbols. A separate spelling
-index accepts only an unambiguous nearest identity, with one edit (two for long
-names), stricter four-letter names and no correction of shorter names or scientific
-notation. A pinned server-only MIT English lexicon and names from other categories
-protect meaningful wrong words. Category definitions select `typos: "aliases"`,
-`"canonical"` (chemical elements), or `"off"`; the setting participates in pack
-versions. Typos consume the same IDs as exact names and expose no suggestions.
-The invalid benchmark also runs through tolerant gameplay lookup.
-
-Unresolved runtime misses show an error without a time penalty. A bounded live
-verifier and its timing policy remain separate future work; the content pipeline
-does not turn an unverified miss into an externally disproven fact.
+There is no live verifier, in-game reporting UI or LLM judge. Those would require
+a separate timing policy and stale-turn protection. Source snapshots, metadata,
+licenses and attribution remain server-side or on the public data-credits page.

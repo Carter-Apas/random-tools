@@ -40,8 +40,8 @@ const compile = (provider: AnswerProvider): AnswerIndex => {
   for (const answer of provider.answers) {
     for (const symbol of answer.symbols ?? []) addKey(result.symbols, symbolKey(symbol), answer);
     for (const alias of [answer.label, ...answer.aliases]) {
-      for (const form of nameForms(provider.categoryId, alias, provider.normalization)) {
-        for (const key of answerKeys(provider.categoryId, form, provider.normalization))
+      for (const form of nameForms(provider.questionId, alias, provider.normalization)) {
+        for (const key of answerKeys(provider.questionId, form, provider.normalization))
           addKey(result.names, key, answer);
       }
     }
@@ -55,24 +55,24 @@ export class AnswerRegistry {
     { provider: AnswerProvider; index: AnswerIndex; spelling?: SpellingIndex }
   >();
   register(provider: AnswerProvider): void {
-    this.providers.set(provider.categoryId, { provider, index: compile(provider) });
+    this.providers.set(provider.questionId, { provider, index: compile(provider) });
   }
-  find(categoryId: string, raw: string): Answer | undefined {
-    const entry = this.providers.get(categoryId);
+  find(questionId: string, raw: string): Answer | undefined {
+    const entry = this.providers.get(questionId);
     if (!entry) return undefined;
     const symbol = entry.index.symbols.get(symbolKey(raw));
     if (symbol) return symbol.length === 1 ? symbol[0] : undefined;
-    for (const key of answerKeys(categoryId, raw, entry.provider.normalization)) {
+    for (const key of answerKeys(questionId, raw, entry.provider.normalization)) {
       const answer = entry.index.names.get(key);
       if (answer) return resolveNames(answer, raw, entry.provider);
     }
     return undefined;
   }
 
-  correct(categoryId: string, raw: string, recognized: Set<string>): Answer | undefined {
-    const exact = this.find(categoryId, raw);
+  correct(questionId: string, raw: string, recognized: Set<string>): Answer | undefined {
+    const exact = this.find(questionId, raw);
     if (exact) return exact;
-    const entry = this.providers.get(categoryId);
+    const entry = this.providers.get(questionId);
     if (!entry || entry.provider.normalization?.typos === "off") return undefined;
     if (entry.index.symbols.has(symbolKey(raw))) return undefined;
     if (!mayCorrect(raw, recognized)) return undefined;

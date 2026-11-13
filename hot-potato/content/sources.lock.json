@@ -22,6 +22,11 @@
       "sha256": "1b465f734ba2c75f0ea50d272858822b3d6a419d315cd2e454e3fe037e0ec60b"
     },
     {
+      "id": "epa-vehicles",
+      "file": "sources/epa-vehicles.json.gz",
+      "sha256": "51a73a4061bac0a15af5c572eb7466d2a52eff8b6734ea0463c46044451c794d"
+    },
+    {
       "id": "genre-families",
       "file": "sources/genre-families.json.gz",
       "sha256": "b84f02fe60fb79e6d5687fb10a0fd0c0121b644da6d6226211fea459b9ed59ed"
@@ -30,6 +35,11 @@
       "id": "instrument-families",
       "file": "sources/instrument-families.json.gz",
       "sha256": "1fb6d98c1ea269500ff633a47af06f2f9808aa401dde6fe7443614522f9d1ecd"
+    },
+    {
+      "id": "lvis-objects",
+      "file": "sources/lvis-objects.json.gz",
+      "sha256": "015c55b5e4545535f0bd15e839cfd4d61a9e1790403478e459ee2f043a13d35e"
     },
     {
       "id": "moon-parents",
@@ -42,9 +52,29 @@
       "sha256": "83cda87db22c8250341ac72210e3541e99c05d8b9c37924bf4ec0168a98d627a"
     },
     {
+      "id": "onet-occupations",
+      "file": "sources/onet-occupations.json.gz",
+      "sha256": "769d9e937898eafb3c7aadf291b24278463dd4618c457c28e0957829b08a34d2"
+    },
+    {
+      "id": "pokeapi-pokemon",
+      "file": "sources/pokeapi-pokemon.json.gz",
+      "sha256": "6d05d723e90e55025f4758526e8b4f9ac623d81f4a6b41add8a5a26ef3186387"
+    },
+    {
       "id": "unit-quantities",
       "file": "sources/unit-quantities.json.gz",
       "sha256": "d33117493ef965eebd794013e9fb0dd6a87d7b6378e66acdd7a90ba5054d3fd6"
+    },
+    {
+      "id": "wikidata-car-companies",
+      "file": "sources/wikidata-car-companies.json.gz",
+      "sha256": "f8ea4ac1921f1cd6f36777672e559722ebca2eb2f7238b40e994111c4979ea89"
+    },
+    {
+      "id": "wikidata-car-models",
+      "file": "sources/wikidata-car-models.json.gz",
+      "sha256": "ffebd98cfc4349b451bcd275a24e0f65d9dd1bc8166b0d246f35fc32bd558707"
     },
     {
       "id": "wikidata-cheeses",
@@ -85,6 +115,16 @@
       "id": "wikidata-seas",
       "file": "sources/wikidata-seas.json.gz",
       "sha256": "7f91f886b1862caf537f0189956d7532029699bcf09454743947f3c2c31c8de3"
+    },
+    {
+      "id": "wikidata-sports-cars",
+      "file": "sources/wikidata-sports-cars.json.gz",
+      "sha256": "38a3c9ef3628de9085f184626e2eb02c00283548ec23f1f7741f1bbd88d6ccf6"
+    },
+    {
+      "id": "wikidata-video-games",
+      "file": "sources/wikidata-video-games.json.gz",
+      "sha256": "fd7b7a5246d7bda60ffd5b792fb8914ebf18312269c3f1874a1c855e94900c22"
     }
   ]
 }

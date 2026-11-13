@@ -30,14 +30,15 @@ const pluralCategories = new Set([
 ]);
 
 export const nameForms = (
-  categoryId: string,
+  questionId: string,
   value: string,
   rules?: NormalizationRules,
 ): string[] => {
   const forms = [value];
-  if (!(rules?.plurals ?? pluralCategories.has(categoryId)) || value.length < 3) return forms;
+  if (rules?.singulars) forms.push(pluralize.singular(value));
+  if (!(rules?.plurals ?? pluralCategories.has(questionId)) || value.length < 3) return forms;
   forms.push(pluralize.plural(value));
-  if (categoryId === "units" || rules?.pluralFirstWord) {
+  if (questionId === "units" || rules?.pluralFirstWord) {
     const words = value.split(" ");
     words[0] = pluralize.plural(words[0]);
     forms.push(words.join(" "));
@@ -46,7 +47,7 @@ export const nameForms = (
 };
 
 export const answerKeys = (
-  categoryId: string,
+  questionId: string,
   value: string,
   rules?: NormalizationRules,
 ): string[] => {
@@ -60,8 +61,8 @@ export const answerKeys = (
         .map((suffix) => (key.endsWith(suffix) ? key.slice(0, -suffix.length) : key)),
     ];
   }
-  if (categoryId === "rivers") return [key, key.replace(/river$/, "")];
-  if (categoryId === "seas") return [key, key.replace(/sea$/, "")];
-  if (categoryId === "ranges") return [key, key.replace(/(mountains|range)$/, "")];
+  if (questionId === "rivers") return [key, key.replace(/river$/, "")];
+  if (questionId === "seas") return [key, key.replace(/sea$/, "")];
+  if (questionId === "ranges") return [key, key.replace(/(mountains|range)$/, "")];
   return [key];
 };

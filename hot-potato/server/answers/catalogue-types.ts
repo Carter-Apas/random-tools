@@ -22,24 +22,39 @@ export interface SourceSnapshot {
   records: CatalogueRecord[];
 }
 
-export interface CategoryDefinition {
+export interface DatasetDefinition {
   id: string;
-  family?: string;
+  name: string;
+  description: string;
+  imports: {
+    source: string;
+    facts?: Record<string, string[]>;
+    legacyKey?: string;
+    mode?: "enrich";
+  }[];
+  minimumRecords: number;
+  maximumRecords: number;
+  normalization: NormalizationRules;
+}
+
+export interface QuestionDefinition {
+  id: string;
+  datasetId: string;
   name: string;
   prompt: string;
   hint: string;
   vegetable: Vegetable;
-  select: { source: string; where?: Record<string, string[]> };
-  normalization: NormalizationRules;
+  select: { where?: Record<string, string[]> };
+  normalization?: NormalizationRules;
   minimumAnswers: number;
   maximumAnswers: number;
 }
 
 export interface Correction {
-  categoryId: string;
+  datasetId: string;
   status: "pending" | "approved";
   action?: "upsert" | "exclude" | "remove-aliases";
-  answer: Answer & { id: string };
+  answer: Answer & { id: string; facts?: Record<string, string[]> };
   evidence: string;
   reason: string;
 }
@@ -53,7 +68,7 @@ export interface FactCorrection {
 }
 
 export interface CoverageCase {
-  categoryId: string;
+  questionId: string;
   answer: string;
   expected: "accepted" | "rejected";
   difficulty: "common" | "obscure" | "boundary";
@@ -62,16 +77,25 @@ export interface CoverageCase {
 
 export interface CompiledPack {
   id: string;
-  categoryId: string;
+  questionId: string;
   version: string;
-  definition: CategoryDefinition;
+  datasetId: string;
+  definition: QuestionDefinition;
   sourceIds: string[];
   answers: Answer[];
 }
 
 export interface CompiledCatalogue {
-  schemaVersion: 2;
+  schemaVersion: 3;
   version: string;
   sources: ContentSource[];
   packs: CompiledPack[];
+  datasets: {
+    id: string;
+    name: string;
+    description: string;
+    records: number;
+    properties: string[];
+    sourceIds: string[];
+  }[];
 }

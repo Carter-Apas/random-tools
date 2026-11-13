@@ -1,0 +1,2062 @@
+[
+  {
+    "id": "units",
+    "name": "Measure for measure",
+    "prompt": "Name a unit of measurement",
+    "vegetable": "potato",
+    "hint": "Metric, imperial, historical and specialist units. Singulars, plurals and regional spellings accepted.",
+    "select": {
+      "where": {}
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 3000,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "elements",
+    "name": "Elementary",
+    "prompt": "Name a chemical element",
+    "vegetable": "potato",
+    "hint": "All 118 recognised chemical elements. Current names and correctly capitalised symbols count; hypothetical elements do not.",
+    "select": {
+      "where": {}
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 118,
+    "maximumAnswers": 118,
+    "datasetId": "elements"
+  },
+  {
+    "id": "moons",
+    "name": "Moonlighting",
+    "prompt": "Name a moon in our solar system",
+    "vegetable": "potato",
+    "hint": "Named moons of planets and dwarf planets, including Earth’s Moon. Provisional numbered designations do not count.",
+    "select": {
+      "where": {}
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 150,
+    "maximumAnswers": 1000,
+    "datasetId": "moons"
+  },
+  {
+    "id": "pasta",
+    "name": "Pasta la vista",
+    "prompt": "Name a type of pasta",
+    "vegetable": "carrot",
+    "hint": "Pasta shapes and filled pasta, including regional varieties. Prepared dishes and sauces do not count.",
+    "select": {
+      "where": {
+        "kind": ["pasta"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 100,
+    "maximumAnswers": 2000,
+    "datasetId": "food"
+  },
+  {
+    "id": "cheeses",
+    "name": "Say cheese",
+    "prompt": "Name a type of cheese",
+    "vegetable": "turnip",
+    "hint": "Cheese varieties from around the world. Producers do not count. The Cheese suffix is optional.",
+    "select": {
+      "where": {
+        "kind": ["cheese"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "suffixes": ["cheese"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 400,
+    "maximumAnswers": 10000,
+    "datasetId": "food"
+  },
+  {
+    "id": "genres",
+    "name": "Turn it up",
+    "prompt": "Name a music genre",
+    "vegetable": "aubergine",
+    "hint": "Music genres, regional styles and subgenres count. Artists, albums and songs do not.",
+    "select": {
+      "where": {}
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 500,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "instruments",
+    "name": "Garden band",
+    "prompt": "Name a musical instrument",
+    "vegetable": "corn",
+    "hint": "Instrument types, models and regional instruments count. Individual named instruments and manufacturers do not.",
+    "select": {
+      "where": {}
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 500,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "seas",
+    "name": "Seven seas and then some",
+    "prompt": "Name a sea",
+    "vegetable": "tomato",
+    "hint": "Named seas, including historical seas. Oceans and inland lakes do not count. The Sea suffix is optional.",
+    "select": {
+      "where": {
+        "kind": ["sea"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "suffixes": ["sea"],
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 80,
+    "maximumAnswers": 1000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "africa",
+    "name": "African adventure",
+    "prompt": "Name a country in Africa",
+    "vegetable": "corn",
+    "hint": "The 54 current UN member countries in Africa. Territories and former countries do not count.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"],
+        "region": ["Africa"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 54,
+    "maximumAnswers": 54,
+    "datasetId": "geography"
+  },
+  {
+    "id": "constellations",
+    "name": "Written in the stars",
+    "prompt": "Name a constellation",
+    "vegetable": "beetroot",
+    "hint": "The 88 modern IAU constellations. Latin names and unambiguous English names count; asterisms such as the Big Dipper do not.",
+    "select": {
+      "where": {}
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 88,
+    "maximumAnswers": 88,
+    "datasetId": "constellations"
+  },
+  {
+    "id": "units-length",
+    "name": "Going the distance",
+    "prompt": "Name a unit of length",
+    "vegetable": "potato",
+    "hint": "A unit of length. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Length"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-mass",
+    "name": "Heavy lifting",
+    "prompt": "Name a unit of mass",
+    "vegetable": "carrot",
+    "hint": "A unit of mass. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Mass"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-volume",
+    "name": "Fill it up",
+    "prompt": "Name a unit of volume",
+    "vegetable": "turnip",
+    "hint": "A unit of volume. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Volume", "LiquidVolume", "DryVolume"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-time",
+    "name": "Ticking away",
+    "prompt": "Name a unit of time",
+    "vegetable": "pumpkin",
+    "hint": "A unit of time. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Time"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-speed",
+    "name": "Need for speed",
+    "prompt": "Name a unit of speed",
+    "vegetable": "corn",
+    "hint": "A unit of speed. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Speed", "LinearVelocity", "Velocity"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-temperature",
+    "name": "Hot and cold",
+    "prompt": "Name a unit of temperature",
+    "vegetable": "carrot",
+    "hint": "A unit of temperature. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["Temperature", "ThermodynamicTemperature"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "units-data",
+    "name": "A byte to eat",
+    "prompt": "Name a unit of digital storage",
+    "vegetable": "corn",
+    "hint": "A unit of digital storage. Names, regional spellings, SI prefixes and correctly capitalised scientific symbols count.",
+    "select": {
+      "where": {
+        "quantity": ["AmountOfData", "BitDataVolume", "ByteDataVolume"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "pluralFirstWord": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 8,
+    "maximumAnswers": 20000,
+    "datasetId": "units"
+  },
+  {
+    "id": "elements-noble",
+    "name": "A noble cause",
+    "prompt": "Name a noble gas",
+    "vegetable": "potato",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "group": ["Noble gas"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "elements-first20",
+    "name": "Twenty strong",
+    "prompt": "Name an element with atomic number 1–20",
+    "vegetable": "pumpkin",
+    "hint": "Element names or correctly capitalised symbols count. Use the periodic-table classification. For discovery dates, use the first reported discovery.",
+    "select": {
+      "where": {
+        "numberBand": ["first20"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "canonical"
+    },
+    "minimumAnswers": 2,
+    "maximumAnswers": 20000,
+    "datasetId": "elements"
+  },
+  {
+    "id": "moons-jupiter",
+    "name": "Orbiting Jupiter",
+    "prompt": "Name a moon of Jupiter",
+    "vegetable": "aubergine",
+    "hint": "Named natural satellites of Jupiter. Provisional numbered designations do not count.",
+    "select": {
+      "where": {
+        "parent": ["Q319"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "moons"
+  },
+  {
+    "id": "moons-saturn",
+    "name": "Orbiting Saturn",
+    "prompt": "Name a moon of Saturn",
+    "vegetable": "tomato",
+    "hint": "Named natural satellites of Saturn. Provisional numbered designations do not count.",
+    "select": {
+      "where": {
+        "parent": ["Q193"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "moons"
+  },
+  {
+    "id": "instruments-strings",
+    "name": "String theory",
+    "prompt": "Name a string instrument",
+    "vegetable": "turnip",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["strings"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-wind",
+    "name": "A second wind",
+    "prompt": "Name a wind instrument",
+    "vegetable": "pumpkin",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["wind"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-woodwind",
+    "name": "Woodland winds",
+    "prompt": "Name a woodwind instrument",
+    "vegetable": "corn",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["woodwind"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-brass",
+    "name": "Brass roots",
+    "prompt": "Name a brass-family instrument",
+    "vegetable": "aubergine",
+    "hint": "Instrument types and regional varieties count. Brass-family instruments use vibrating lips; the material need not be brass.",
+    "select": {
+      "where": {
+        "family": ["brass"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-percussion",
+    "name": "Keep the beat",
+    "prompt": "Name a percussion instrument",
+    "vegetable": "tomato",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["percussion"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "instruments-keyboard",
+    "name": "Keys to the garden",
+    "prompt": "Name a keyboard instrument",
+    "vegetable": "potato",
+    "hint": "Instrument types and regional varieties count. Use an instrument in this playing or sound-producing family.",
+    "select": {
+      "where": {
+        "family": ["keyboard"]
+      }
+    },
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "instruments"
+  },
+  {
+    "id": "genres-rock",
+    "name": "Rock garden",
+    "prompt": "Name a style of rock music",
+    "vegetable": "pumpkin",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["rock"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "genres-metal",
+    "name": "Heavy harvest",
+    "prompt": "Name a metal music genre",
+    "vegetable": "corn",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["metal"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "genres-jazz",
+    "name": "All that jazz",
+    "prompt": "Name a style of jazz",
+    "vegetable": "tomato",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["jazz"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "genres-electronic",
+    "name": "Plugged in",
+    "prompt": "Name an electronic music genre",
+    "vegetable": "potato",
+    "hint": "Genres, regional styles and subgenres in this music family count. Artists, songs and albums do not.",
+    "select": {
+      "where": {
+        "family": ["electronic"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 20,
+    "maximumAnswers": 20000,
+    "datasetId": "music"
+  },
+  {
+    "id": "countries-world",
+    "name": "Around the world",
+    "prompt": "Name a UN member country",
+    "vegetable": "corn",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-asia",
+    "name": "An Asian adventure",
+    "prompt": "Name a UN member country in Asia",
+    "vegetable": "aubergine",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"],
+        "region": ["Asia"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-americas",
+    "name": "Across the Americas",
+    "prompt": "Name a UN member in the Americas",
+    "vegetable": "tomato",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"],
+        "region": ["Americas"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-oceania",
+    "name": "Across Oceania",
+    "prompt": "Name a UN member country in Oceania",
+    "vegetable": "potato",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"],
+        "region": ["Oceania"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-south-america",
+    "name": "Southbound",
+    "prompt": "Name a UN member in South America",
+    "vegetable": "carrot",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"],
+        "subregion": ["South America"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "countries-landlocked",
+    "name": "No sea in sight",
+    "prompt": "Name a landlocked UN member country",
+    "vegetable": "tomato",
+    "hint": "Current UN member countries only; territories and observer states are excluded. Transcontinental states follow this region’s geographic grouping.",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "unMember": ["true"],
+        "landlocked": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-world",
+    "name": "Capital collection",
+    "prompt": "Name a capital of a UN member country",
+    "vegetable": "carrot",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "kind": ["capital"],
+        "unMember": ["true"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-africa",
+    "name": "African capitals",
+    "prompt": "Name a UN member’s capital in Africa",
+    "vegetable": "beetroot",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "kind": ["capital"],
+        "unMember": ["true"],
+        "region": ["Africa"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-asia",
+    "name": "Asian capitals",
+    "prompt": "Name a UN member’s capital in Asia",
+    "vegetable": "turnip",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "kind": ["capital"],
+        "unMember": ["true"],
+        "region": ["Asia"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-americas",
+    "name": "American capitals",
+    "prompt": "Name a UN member’s capital in the Americas",
+    "vegetable": "pumpkin",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "kind": ["capital"],
+        "unMember": ["true"],
+        "region": ["Americas"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "capitals-oceania",
+    "name": "Oceanic capitals",
+    "prompt": "Name a UN member’s capital in Oceania",
+    "vegetable": "corn",
+    "hint": "National capitals of current UN member countries. Use the city, rather than the country. Countries with multiple capitals may have several valid answers.",
+    "select": {
+      "where": {
+        "kind": ["capital"],
+        "unMember": ["true"],
+        "region": ["Oceania"]
+      }
+    },
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    },
+    "minimumAnswers": 5,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "rivers",
+    "name": "A river runs through it",
+    "prompt": "Name a major river",
+    "hint": "Major world rivers and familiar New Zealand rivers. River suffix is optional.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "kind": ["river"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "geography",
+    "normalization": {
+      "suffixes": ["river"]
+    }
+  },
+  {
+    "id": "spices",
+    "name": "Spice of life",
+    "prompt": "Name a culinary spice",
+    "hint": "Individual culinary spices. Herb leaves and spice blends sit this one out.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "kind": ["spice"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "ranges",
+    "name": "Peak performance",
+    "prompt": "Name a mountain range",
+    "hint": "Mountain ranges from around the world. Range or Mountains suffix is optional.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "kind": ["mountain-range"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "geography",
+    "normalization": {
+      "suffixes": ["range", "mountains"]
+    }
+  },
+  {
+    "id": "fruit",
+    "name": "Fruit salad",
+    "prompt": "Name a common fruit",
+    "hint": "Common culinary fruits, including a few Kiwi favourites.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "kind": ["fruit"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "vegetables",
+    "name": "From the patch",
+    "prompt": "Name a common vegetable",
+    "hint": "Culinary vegetables. NZ and overseas names are welcome.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "kind": ["vegetable"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "pets",
+    "name": "Creature comforts",
+    "prompt": "Name a common pet animal",
+    "hint": "Common companion animals and familiar aquarium pets.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "role": ["pets"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "animals"
+  },
+  {
+    "id": "sports",
+    "name": "Fresh air club",
+    "prompt": "Name a sport",
+    "hint": "Use a common English name. Each answer can be used once per visit.",
+    "vegetable": "aubergine",
+    "select": {},
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "sports"
+  },
+  {
+    "id": "capitals",
+    "name": "Capital gains",
+    "prompt": "Name a national capital in Europe",
+    "hint": "Capitals of countries in the Europe category, including transcontinental countries and Kosovo.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "kind": ["capital"],
+        "gameRegion": ["Europe"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "nzbirds",
+    "name": "Feathered neighbours",
+    "prompt": "Name a native New Zealand bird",
+    "hint": "Māori or English names. Extinct native birds count too.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "kind": ["bird"],
+        "nativeTo": ["NZ"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "animals"
+  },
+  {
+    "id": "herbs",
+    "name": "A pinch of green",
+    "prompt": "Name a culinary herb",
+    "hint": "Fresh or dried herbs used in cooking.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "kind": ["herb"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "farm",
+    "name": "Down on the farm",
+    "prompt": "Name a common farm animal",
+    "hint": "Different names for the same animal share an answer.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "role": ["farm"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "animals"
+  },
+  {
+    "id": "trees",
+    "name": "Branching out",
+    "prompt": "Name a common type of tree",
+    "hint": "Use a common English name. Each answer can be used once per visit.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "kind": ["tree"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "plants"
+  },
+  {
+    "id": "europe",
+    "name": "A European holiday",
+    "prompt": "Name a country in Europe",
+    "hint": "Sovereign countries, including transcontinental countries and Kosovo.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "kind": ["country"],
+        "gameRegion": ["Europe"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "geography"
+  },
+  {
+    "id": "flowers",
+    "name": "In full bloom",
+    "prompt": "Name a common garden flower",
+    "hint": "Use a common English name. Each answer can be used once per visit.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "kind": ["flower"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "plants"
+  },
+  {
+    "id": "pulses",
+    "name": "Full of beans",
+    "prompt": "Name an edible bean or pulse",
+    "hint": "Common edible beans, peas and lentil varieties. General and specific lentil names have their own slots.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "kind": ["pulse"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 20000,
+    "datasetId": "food"
+  },
+  {
+    "id": "produce",
+    "datasetId": "food",
+    "name": "Fresh picks",
+    "prompt": "Name a fruit or vegetable",
+    "hint": "Use a common culinary fruit or vegetable. Regional names count; the same food shares one answer.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "kind": ["fruit", "vegetable"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "animals",
+    "datasetId": "animals",
+    "name": "Animal kingdom",
+    "prompt": "Name an animal",
+    "hint": "Familiar animal types and named native birds. General and specific animal names may have separate entries.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {}
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "birds",
+    "datasetId": "animals",
+    "name": "Animal kingdom",
+    "prompt": "Name a bird",
+    "hint": "Common bird types and native New Zealand birds, including extinct birds.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "kind": ["bird"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "plants",
+    "datasetId": "plants",
+    "name": "Growing things",
+    "prompt": "Name a tree or garden flower",
+    "hint": "Tree and flower names. Common English and Māori names are accepted.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {}
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-bus",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might see on a bus",
+    "hint": "People, fixtures and belongings inside a bus count. Things visible only outside its windows do not. Common names and regional terms are accepted.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "context": ["bus"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-kitchen",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would find in a kitchen",
+    "hint": "Common items in the kitchen collection. Regional names and familiar alternatives count.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "context": ["kitchen"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-classroom",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would find in a classroom",
+    "hint": "Common items in the classroom collection. Regional names and familiar alternatives count.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "context": ["classroom"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-beach",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might take to the beach",
+    "hint": "Common items in the beach collection. Regional names and familiar alternatives count.",
+    "vegetable": "potato",
+    "select": {
+      "where": {
+        "context": ["beach"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-camping",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might take camping",
+    "hint": "Common items in the camping collection. Regional names and familiar alternatives count.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "context": ["camping"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-workshop",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would find in a toolbox or workshop",
+    "hint": "Common items in the workshop collection. Regional names and familiar alternatives count.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "context": ["workshop"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-bathroom",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would find in a bathroom",
+    "hint": "Common items in the bathroom collection. Regional names and familiar alternatives count.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "context": ["bathroom"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-bedroom",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would find in a bedroom",
+    "hint": "Common items in the bedroom collection. Regional names and familiar alternatives count.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "context": ["bedroom"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-garden",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would use or see in a garden",
+    "hint": "Common items in the garden collection. Regional names and familiar alternatives count.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "context": ["garden"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-airport",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might see at an airport",
+    "hint": "Common items in the airport collection. Regional names and familiar alternatives count.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "context": ["airport"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-office",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you would find in an office",
+    "hint": "Common items in the office collection. Regional names and familiar alternatives count.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "context": ["office"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-picnic",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might take on a picnic",
+    "hint": "Common items in the picnic collection. Regional names and familiar alternatives count.",
+    "vegetable": "potato",
+    "select": {
+      "where": {
+        "context": ["picnic"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-clothing",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you can wear",
+    "hint": "Common clothing items from the everyday-objects collection.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "kind": ["clothing"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-electronic",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name an electronic device or accessory",
+    "hint": "Common electronic items from the everyday-objects collection.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "kind": ["electronic"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-furniture",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name a piece of furniture",
+    "hint": "Common furniture items from the everyday-objects collection.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "kind": ["furniture"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-container",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you can put things in",
+    "hint": "Common container items from the everyday-objects collection.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "kind": ["container"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "car-companies",
+    "datasetId": "vehicles",
+    "name": "On the road",
+    "prompt": "Name a car company",
+    "hint": "Car brands and manufacturers, including historic makes. Individual models do not count.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "kind": ["make"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "car-models",
+    "datasetId": "vehicles",
+    "name": "On the road",
+    "prompt": "Name a car model",
+    "hint": "Sourced car and road-vehicle model names count, with or without the manufacturer. Drivetrain versions share an identity; distinct models and performance editions can have separate entries.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "kind": ["model"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "cars-four-wheel",
+    "datasetId": "vehicles",
+    "name": "On the road",
+    "prompt": "Name a four-wheel or all-wheel drive car",
+    "hint": "Models with at least one documented 4WD or AWD variant sold in the US. You can omit the manufacturer and drivetrain suffix.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "kind": ["model"],
+        "drive": ["4wd", "awd"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "cars-electric",
+    "datasetId": "vehicles",
+    "name": "On the road",
+    "prompt": "Name an electric car",
+    "hint": "Battery-electric models sold in the US. A model with an electric variant counts; hybrids alone do not.",
+    "vegetable": "potato",
+    "select": {
+      "where": {
+        "kind": ["model"],
+        "fuel": ["electric"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "cars-sports",
+    "datasetId": "vehicles",
+    "name": "On the road",
+    "prompt": "Name a sports car",
+    "hint": "Sports-car models, including past models. Manufacturer and model names count; individual privately owned cars do not.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "kind": ["model"],
+        "style": ["sports"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "cars-two-seat",
+    "datasetId": "vehicles",
+    "name": "On the road",
+    "prompt": "Name a two-seater car",
+    "hint": "Models classified as two-seaters sold in the US. You may include or omit the manufacturer.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "kind": ["model"],
+        "bodyClass": ["Two Seaters"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-racing",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a racing video game",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "genre": ["Q860750"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-sports",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a sports video game",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "genre": ["Q868217"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-platform",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a platform video game",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "genre": ["Q828322"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-puzzle",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a puzzle video game",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "genre": ["Q54767"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-rpg",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a role-playing video game",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "genre": ["Q744038"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-strategy",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a strategy video game",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "potato",
+    "select": {
+      "where": {
+        "genre": ["Q472055"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-shooter",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a first-person shooter",
+    "hint": "Give a video game title. Sequels and related subgenres count; franchise names alone count only when they are also game titles.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "genre": ["Q185029"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-1980",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a video game released in the 1980s",
+    "hint": "A title with at least one documented release in this decade. Regional release dates can differ.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "decade": ["1980"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-1990",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a video game released in the 1990s",
+    "hint": "A title with at least one documented release in this decade. Regional release dates can differ.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "decade": ["1990"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "games-switch",
+    "datasetId": "video-games",
+    "name": "Game on",
+    "prompt": "Name a game released on Nintendo Switch",
+    "hint": "The original Nintendo Switch platform, including ports and cross-platform games; Switch 2-only games do not count.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "platform": ["Q19610114"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "sports-ball",
+    "datasetId": "sports",
+    "name": "Get moving",
+    "prompt": "Name a sport played with a ball",
+    "hint": "Common ball sports. Rugby union and rugby league have separate entries.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "equipment": ["ball"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "sports-water",
+    "datasetId": "sports",
+    "name": "Get moving",
+    "prompt": "Name a water sport",
+    "hint": "Sports played in or on water. Common English and regional names count.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "environment": ["water"]
+      }
+    },
+    "minimumAnswers": 6,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "sports-racket",
+    "datasetId": "sports",
+    "name": "Get moving",
+    "prompt": "Name a racket or paddle sport",
+    "hint": "Tennis, court racket sports and table tennis count.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "equipment": ["racket"]
+      }
+    },
+    "minimumAnswers": 4,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a Pokémon",
+    "hint": "English Pokémon species names. Regional and alternate forms share their species identity.",
+    "vegetable": "potato",
+    "select": {
+      "where": {}
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-fire",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a fire-type Pokémon",
+    "hint": "Species whose default form has this type. Dual types count; alternate-form types alone do not.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "type": ["fire"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-water",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a water-type Pokémon",
+    "hint": "Species whose default form has this type. Dual types count; alternate-form types alone do not.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "type": ["water"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-grass",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a grass-type Pokémon",
+    "hint": "Species whose default form has this type. Dual types count; alternate-form types alone do not.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "type": ["grass"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-electric",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a electric-type Pokémon",
+    "hint": "Species whose default form has this type. Dual types count; alternate-form types alone do not.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "type": ["electric"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-dragon",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a dragon-type Pokémon",
+    "hint": "Species whose default form has this type. Dual types count; alternate-form types alone do not.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "type": ["dragon"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-original",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name one of the original 151 Pokémon",
+    "hint": "Species introduced in generation one, using their English names.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "generation": ["1"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "pokemon-legendary",
+    "datasetId": "pokemon",
+    "name": "Catch them all",
+    "prompt": "Name a legendary or mythical Pokémon",
+    "hint": "Legendary and mythical species both count, using their English names.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "legendary": ["true"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a job",
+    "hint": "Job titles and everyday alternatives. A general title shared by several occupations counts once.",
+    "vegetable": "potato",
+    "select": {
+      "where": {}
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-healthcare",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a healthcare job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "group": ["29", "31"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-building",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a building or construction job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "group": ["47"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-food",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a job involving food or drink",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "group": ["35"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-arts",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a job in art, entertainment or media",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "group": ["27"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-education",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a job in education",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "group": ["25"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-computers",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a computing or maths job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "group": ["15"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-transport",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a transport job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "group": ["53"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-repairs",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a job fixing or maintaining things",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "potato",
+    "select": {
+      "where": {
+        "group": ["49"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-science",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a science job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "group": ["19"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-protective",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name an emergency or protective-service job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "beetroot",
+    "select": {
+      "where": {
+        "group": ["33"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "jobs-personal-care",
+    "datasetId": "occupations",
+    "name": "Working world",
+    "prompt": "Name a personal-care or recreation job",
+    "hint": "Occupations in this job family. Common alternative titles and regional spellings count when listed.",
+    "vegetable": "turnip",
+    "select": {
+      "where": {
+        "group": ["39"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-supermarket",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might buy at a supermarket",
+    "hint": "Common items in the supermarket collection. Everyday names and listed regional alternatives count.",
+    "vegetable": "pumpkin",
+    "select": {
+      "where": {
+        "context": ["supermarket"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-gym",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might see at a gym",
+    "hint": "Common items in the gym collection. Everyday names and listed regional alternatives count.",
+    "vegetable": "corn",
+    "select": {
+      "where": {
+        "context": ["gym"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-restaurant",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might see in a restaurant",
+    "hint": "Common items in the restaurant collection. Everyday names and listed regional alternatives count.",
+    "vegetable": "aubergine",
+    "select": {
+      "where": {
+        "context": ["restaurant"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-living-room",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might see in a living room",
+    "hint": "Common items in the living room collection. Everyday names and listed regional alternatives count.",
+    "vegetable": "tomato",
+    "select": {
+      "where": {
+        "context": ["living-room"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-pocket",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might carry in a pocket",
+    "hint": "Common items in the pocket collection. Everyday names and listed regional alternatives count.",
+    "vegetable": "potato",
+    "select": {
+      "where": {
+        "context": ["pocket"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  },
+  {
+    "id": "things-party",
+    "datasetId": "objects",
+    "name": "Everyday adventures",
+    "prompt": "Name something you might see at a birthday party",
+    "hint": "Common items in the party collection. Everyday names and listed regional alternatives count.",
+    "vegetable": "carrot",
+    "select": {
+      "where": {
+        "context": ["party"]
+      }
+    },
+    "minimumAnswers": 10,
+    "maximumAnswers": 250000
+  }
+]

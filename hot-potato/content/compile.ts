@@ -6,7 +6,7 @@ import { AnswerRegistry } from "../server/answers/index.js";
 import { normalize } from "../server/answers/normalize.js";
 import type { Answer } from "../server/answers/types.js";
 import type {
-  CategoryDefinition,
+  QuestionDefinition,
   CompiledCatalogue,
   CompiledPack,
   Correction,
@@ -19,7 +19,7 @@ export const digest = (value: unknown): string =>
   createHash("sha256").update(JSON.stringify(value)).digest("hex");
 
 export interface PackReview {
-  categoryId: string;
+  questionId: string;
   sourceRecords: number;
   publishedAnswers: number;
   legacyOnly: string[];
@@ -34,7 +34,7 @@ const unique = (values: string[]): string[] => [...new Set(values)];
 const validName = (name: string): boolean =>
   name.trim().length > 0 && name.length <= 100 && normalize(name).length > 0;
 
-const selectRecords = (definition: CategoryDefinition, snapshot: SourceSnapshot): Answer[] =>
+const selectRecords = (definition: QuestionDefinition, snapshot: SourceSnapshot): Answer[] =>
   snapshot.records
     .filter((record) =>
       Object.entries(definition.select.where ?? {}).every(([property, values]) =>
@@ -64,7 +64,11 @@ const matchSeed = (answers: Answer[], seed: Answer, selected: Set<string>): Answ
   return matches.length === 1 ? matches[0] : undefined;
 };
 
-const mergeSeeds = (answers: Answer[], seeds: readonly Answer[], review: PackReview): Answer[] => {
+export const mergeSeeds = (
+  answers: Answer[],
+  seeds: readonly Answer[],
+  review: PackReview,
+): Answer[] => {
   const ordered: Answer[] = [];
   const selected = new Set<string>();
   for (const seed of seeds) {
@@ -74,7 +78,7 @@ const mergeSeeds = (answers: Answer[], seeds: readonly Answer[], review: PackRev
       const legacy = {
         ...seed,
         aliases: [...seed.aliases],
-        evidence: [{ sourceId: "legacy-curation", url: "hot-potato/server/answers/seeds.ts" }],
+        evidence: [{ sourceId: "legacy-curation", url: "repo:content/legacy-answers.json" }],
       };
       ordered.push(legacy);
       selected.add(identity(legacy));
@@ -128,14 +132,14 @@ const mergeCorrection = (existing: Answer, correction: Correction): void => {
     existing.symbols = unique([...(existing.symbols ?? []), ...correction.answer.symbols]);
 };
 
-const applyCorrections = (
+export const applyCorrections = (
   answers: Answer[],
-  definition: CategoryDefinition,
+  definition: { id: string },
   corrections: Correction[],
 ): Answer[] => {
   let result = answers;
   for (const correction of corrections.filter(
-    (item) => item.categoryId === definition.id && item.status === "approved",
+    (item) => item.datasetId === definition.id && item.status === "approved",
   )) {
     if (!/^https:\/\//.test(correction.evidence) || !correction.reason.trim())
       throw new Error(`Approved correction for ${definition.id} needs evidence and a reason`);
@@ -152,17 +156,22 @@ const applyCorrections = (
       continue;
     }
     const evidence = { sourceId: "reviewed-corrections", url: correction.evidence };
-    if (existing) mergeCorrection(existing, correction);
-    else result.push({ ...correction.answer, source: correction.evidence, evidence: [evidence] });
+    if (existing) {
+      mergeCorrection(existing, correction);
+      if (correction.answer.facts) {
+        const record = existing as Answer & { facts?: Record<string, string[]> };
+        record.facts = { ...record.facts, ...correction.answer.facts };
+      }
+    } else result.push({ ...correction.answer, source: correction.evidence, evidence: [evidence] });
   }
   return result;
 };
 
-const registryFor = (definition: CategoryDefinition, answers: Answer[]): AnswerRegistry => {
+const registryFor = (definition: QuestionDefinition, answers: Answer[]): AnswerRegistry => {
   const registry = new AnswerRegistry();
   registry.register({
     id: definition.id,
-    categoryId: definition.id,
+    questionId: definition.id,
     answers,
     normalization: definition.normalization,
   });
@@ -170,7 +179,7 @@ const registryFor = (definition: CategoryDefinition, answers: Answer[]): AnswerR
 };
 
 const resolveLabels = (
-  definition: CategoryDefinition,
+  definition: QuestionDefinition,
   answers: Answer[],
   review: PackReview,
 ): Answer[] => {
@@ -200,22 +209,24 @@ const resolveLabels = (
 };
 
 export const compilePack = (
-  definition: CategoryDefinition,
+  definition: QuestionDefinition,
   snapshot: SourceSnapshot,
-  seeds: readonly Answer[],
-  corrections: Correction[],
 ): { pack: CompiledPack; review: PackReview } => {
   const selected = selectRecords(definition, snapshot);
+  const properties = new Set(snapshot.records.flatMap((record) => Object.keys(record.facts)));
+  for (const [property, values] of Object.entries(definition.select.where ?? {})) {
+    if (!properties.has(property) || !Array.isArray(values) || !values.length)
+      throw new Error(`${definition.id}: unknown or empty dataset filter ${property}`);
+  }
   const review: PackReview = {
-    categoryId: definition.id,
+    questionId: definition.id,
     sourceRecords: selected.length,
     publishedAnswers: 0,
     legacyOnly: [],
     quarantined: [],
     ambiguousNames: [],
   };
-  const answers = applyCorrections(mergeSeeds(selected, seeds, review), definition, corrections);
-  const playable = resolveLabels(definition, answers, review);
+  const playable = resolveLabels(definition, selected, review);
   review.publishedAnswers = playable.length;
   if (playable.length < definition.minimumAnswers || playable.length > definition.maximumAnswers)
     throw new Error(
@@ -227,8 +238,9 @@ export const compilePack = (
   const version = digest({ definition, answers: playable });
   return {
     pack: {
-      id: `category-${definition.id}`,
-      categoryId: definition.id,
+      id: `question-${definition.id}`,
+      questionId: definition.id,
+      datasetId: definition.datasetId,
       version,
       definition,
       sourceIds,
@@ -240,8 +252,8 @@ export const compilePack = (
 
 export const checkCoverage = (packs: CompiledPack[], cases: CoverageCase[]) => {
   for (const fixture of cases) {
-    if (!packs.some((pack) => pack.categoryId === fixture.categoryId))
-      throw new Error(`Unknown fixture category: ${fixture.categoryId}`);
+    if (!packs.some((pack) => pack.questionId === fixture.questionId))
+      throw new Error(`Unknown fixture question: ${fixture.questionId}`);
   }
   const registry = new AnswerRegistry();
   for (const pack of packs)
@@ -249,29 +261,22 @@ export const checkCoverage = (packs: CompiledPack[], cases: CoverageCase[]) => {
   return cases.map((fixture) => ({
     ...fixture,
     passed:
-      Boolean(registry.find(fixture.categoryId, fixture.answer)) ===
+      Boolean(registry.find(fixture.questionId, fixture.answer)) ===
       (fixture.expected === "accepted"),
   }));
 };
 
 export const compileCatalogue = (
-  definitions: CategoryDefinition[],
+  definitions: QuestionDefinition[],
   snapshots: SourceSnapshot[],
-  seeds: Map<string, readonly Answer[]>,
-  corrections: Correction[],
   factCorrections: FactCorrection[] = [],
 ) => {
   if (new Set(definitions.map((definition) => definition.id)).size !== definitions.length)
-    throw new Error("Duplicate category definition");
+    throw new Error("Duplicate question definition");
   const compiled = definitions.map((definition) => {
-    const snapshot = snapshots.find((item) => item.source.id === definition.select.source);
-    if (!snapshot) throw new Error(`Missing source ${definition.select.source}`);
-    return compilePack(
-      definition,
-      correctFacts(snapshot, factCorrections),
-      seeds.get(definition.id) ?? [],
-      corrections,
-    );
+    const snapshot = snapshots.find((item) => item.source.id === definition.datasetId);
+    if (!snapshot) throw new Error(`Missing source ${definition.datasetId}`);
+    return compilePack(definition, correctFacts(snapshot, factCorrections));
   });
   const packs = compiled.map((item) => item.pack);
   const sources = snapshots
@@ -283,20 +288,6 @@ export const compileCatalogue = (
       name: "Reviewed classification facts",
       url: "repo:content/fact-corrections.json",
       content: factCorrections,
-      license: "LicenseRef-ReviewedFacts",
-    },
-    {
-      id: "legacy-curation",
-      name: "Previously curated answers",
-      url: "repo:server/answers/seeds.ts",
-      content: [...seeds],
-      license: "LicenseRef-Project",
-    },
-    {
-      id: "reviewed-corrections",
-      name: "Reviewed facts and aliases",
-      url: "repo:content/corrections.json",
-      content: corrections,
       license: "LicenseRef-ReviewedFacts",
     },
   ];
@@ -311,10 +302,21 @@ export const compileCatalogue = (
       sha256: digest(source.content),
     });
   }
+  const datasets = snapshots.map((snapshot) => ({
+    id: snapshot.source.id,
+    name: snapshot.source.name,
+    description: snapshot.source.name,
+    records: snapshot.records.length,
+    properties: [
+      ...new Set(snapshot.records.flatMap((record) => Object.keys(record.facts))),
+    ].sort(),
+    sourceIds: [snapshot.source.id],
+  }));
   const catalogue: CompiledCatalogue = {
-    schemaVersion: 2,
-    version: digest({ sources, packs }),
+    schemaVersion: 3,
+    version: digest({ sources, datasets, packs }),
     sources,
+    datasets,
     packs,
   };
   return { catalogue, reviews: compiled.map((item) => item.review) };

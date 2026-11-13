@@ -5,7 +5,7 @@ import { mkdir, readFile } from "node:fs/promises";
 import { chromium } from "playwright";
 
 import { createApp } from "../dist/server/server/app.js";
-import { categories } from "../dist/server/server/categories.js";
+import { questions } from "../dist/server/server/questions.js";
 import { publicRoom } from "../dist/server/server/game.js";
 
 const server = createApp();
@@ -139,6 +139,14 @@ try {
   assert.equal(await host.locator(".gardener").count(), 2);
   await host.getByRole("button", { name: "Let's get cooking!" }).click();
   await host.getByText("Your turn! Pick a fresh answer.", { exact: true }).waitFor();
+  await waitFor(
+    async () =>
+      Number(await host.locator(".turn-heat").evaluate((heat) => getComputedStyle(heat).opacity)) >
+      0.5,
+    "Your turn visibly warms the screen edges",
+  );
+  assert.equal(await host.locator(".turn-heat").getAttribute("data-active"), "true");
+  assert.equal(await guest.locator(".turn-heat").getAttribute("data-active"), "false");
   await guest.locator("#answer").fill("private future answer");
   await new Promise((resolve) => setTimeout(resolve, 150));
   assert.equal(room.draft, "");
@@ -148,9 +156,10 @@ try {
   assert.equal(await host.locator(".speech-bubble output").innerText(), "live words");
   assert.equal(await guest.locator(".answer-box .speech-bubble").count(), 0);
   assert.equal(await guest.locator("#answer").inputValue(), "private future answer");
-  const answer = room.category.answers[0].label;
+  const answer = room.question.answers[0].label;
   await answerOn(host, "definitely not an answer");
   await host.getByText("Wrong answer. Try again!").waitFor();
+  assert.equal(await host.locator(".accepted-answer").count(), 0);
   assert.equal(
     await host.locator("#answer").evaluate((input) => document.activeElement === input),
     true,
@@ -158,6 +167,19 @@ try {
   assert.equal(await host.locator("#answer").getAttribute("aria-invalid"), "true");
   await answerOn(host, answer);
   await guest.getByText("Your turn! Pick a fresh answer.", { exact: true }).waitFor();
+  assert.equal(await host.locator(".turn-heat").getAttribute("data-active"), "false");
+  assert.equal(await guest.locator(".turn-heat").getAttribute("data-active"), "true");
+  for (const page of [host, guest]) {
+    assert.equal(await page.locator(".accepted-answer output").innerText(), answer);
+    assert.equal(
+      await page.locator(".accepted-answer").evaluate((bubble) => {
+        const character = bubble.parentElement.querySelector(".character-figure");
+        return bubble.getBoundingClientRect().bottom <= character.getBoundingClientRect().top;
+      }),
+      true,
+      "Accepted answers stay above the character",
+    );
+  }
   assert.equal(await guest.locator("#answer").inputValue(), "private future answer");
   await host
     .locator(".speech-bubble output")
@@ -169,34 +191,51 @@ try {
     await guest.locator("#answer").evaluate((input) => document.activeElement === input),
     true,
   );
-  const nextAnswer = room.category.answers.find((item) => !room.used.includes(item.label)).label;
+  const nextAnswer = room.question.answers.find((item) => !room.used.includes(item.label)).label;
   await answerOn(guest, nextAnswer);
   await host.getByText("Your turn! Pick a fresh answer.", { exact: true }).waitFor();
   await noOverflow(guest);
   await screenshot(host, "desktop-game");
   await figuresFitArena(guest);
   await screenshot(guest, "mobile-game");
-  room.category = {
-    ...categories.find((item) => item.id === "cheeses"),
+  const recentAnswer = room.events.at(-1).acceptedAnswer;
+  const acceptedAt = recentAnswer.at;
+  recentAnswer.at = Date.now() - 12500;
+  publish(room);
+  await waitFor(
+    async () => (await guest.locator(".accepted-answer").count()) === 0,
+    "Accepted answer bubbles expire",
+  );
+  recentAnswer.at = acceptedAt;
+  publish(room);
+  await guest.reload();
+  await guest.locator(".accepted-answer output").filter({ hasText: nextAnswer }).waitFor();
+  room.question = {
+    ...questions.find((item) => item.id === "cheeses"),
     id: "test-small",
     vegetable: "turnip",
-    answers: categories.find((item) => item.id === "cheeses").answers.slice(0, 2),
+    answers: questions.find((item) => item.id === "cheeses").answers.slice(0, 2),
   };
-  room.categoryGoal = 2;
+  room.questionGoal = 2;
   room.used = [];
   room.usedIds = [];
   publish(room);
   await answerOn(host, "Cheddar");
   await guest.getByText("Your turn! Pick a fresh answer.", { exact: true }).waitFor();
   await answerOn(guest, "Brie");
-  await waitFor(() => room.category.id !== "test-small", "Category should change when exhausted");
-  assert.notEqual(room.category.vegetable, "turnip");
+  await waitFor(() => room.question.id !== "test-small", "Question should change when exhausted");
+  await waitFor(
+    async () => (await host.locator(".accepted-answer").count()) === 0,
+    "Changing questions clears old answer bubbles",
+  );
+  assert.notEqual(room.question.vegetable, "turnip");
   await guest.reload();
   await guest.locator(".room-invite").waitFor();
   assert.equal(await guest.locator(".gardener").count(), 2);
   await noOverflow(guest);
   await waitFor(() => room.phase === "answering", "Player receives the vegetable");
   room.penaltyMs = 0;
+  let previousGlow = 0;
   for (const [stage, elapsed] of [
     ["warm", 0.4],
     ["hands", 0.7],
@@ -207,7 +246,15 @@ try {
     room.deadline = room.turnStartedAt + room.turnDurationMs;
     publish(room);
     await guest.locator(`.is-active .heat-${stage}`).waitFor();
+    const glow = await host
+      .locator(".turn-heat")
+      .evaluate((heat) => Number(getComputedStyle(heat).opacity));
+    assert.ok(glow > previousGlow, "The red edge glow grows as the turn gets hotter");
+    previousGlow = glow;
+    await screenshot(host, `desktop-turn-heat-${stage}`);
     await screenshot(guest, `mobile-heat-${stage}`);
+    assert.equal(await host.locator(".turn-heat").getAttribute("data-active"), "true");
+    assert.equal(await guest.locator(".turn-heat").getAttribute("data-active"), "false");
   }
   room.turnStartedAt = Date.now();
   room.deadline = room.turnStartedAt + room.turnDurationMs;
@@ -292,7 +339,7 @@ try {
   );
   assert.deepEqual(failures, []);
   console.log(
-    `Browser checks passed: rooms, answers, category changes, reconnect, heat stages, charring, live/private typing, refocus, winner, rematch, bots, exact approved64x96 portraits, pose sizes, seating bounds, rules, 320–1440px layout, reduced motion. Screenshots: ${output}`,
+    `Browser checks passed: rooms, answers, question changes, reconnect, heat stages, charring, live/private typing, refocus, winner, rematch, bots, exact approved64x96 portraits, pose sizes, seating bounds, rules, 320–1440px layout, reduced motion. Screenshots: ${output}`,
   );
 } finally {
   for (const context of contexts) await context.close();
