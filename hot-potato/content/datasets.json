@@ -24,6 +24,54 @@
           "kind": ["cheese"]
         },
         "mode": "enrich"
+      },
+      {
+        "source": "wikidata-breads",
+        "facts": {
+          "kind": ["bread"]
+        }
+      },
+      {
+        "source": "wikidata-soups",
+        "facts": {
+          "kind": ["soup"]
+        }
+      },
+      {
+        "source": "wikidata-sandwiches",
+        "facts": {
+          "kind": ["sandwich"]
+        }
+      },
+      {
+        "source": "wikidata-cakes",
+        "facts": {
+          "kind": ["cake"]
+        }
+      },
+      {
+        "source": "wikidata-sauces",
+        "facts": {
+          "kind": ["sauce"]
+        }
+      },
+      {
+        "source": "wikidata-sausages",
+        "facts": {
+          "kind": ["sausage"]
+        }
+      },
+      {
+        "source": "wikidata-cocktails",
+        "facts": {
+          "kind": ["cocktail"]
+        }
+      },
+      {
+        "source": "wikidata-salads",
+        "facts": {
+          "kind": ["salad"]
+        }
       }
     ],
     "minimumRecords": 1500,
@@ -85,6 +133,24 @@
           "kind": ["sea"]
         },
         "legacyKey": "seas"
+      },
+      {
+        "source": "wikidata-deserts",
+        "facts": {
+          "kind": ["desert"]
+        }
+      },
+      {
+        "source": "wikidata-volcanoes",
+        "facts": {
+          "kind": ["volcano"]
+        }
+      },
+      {
+        "source": "wikidata-us-national-parks",
+        "facts": {
+          "kind": ["us-national-park"]
+        }
       }
     ],
     "minimumRecords": 500,
@@ -296,8 +362,8 @@
   },
   {
     "id": "pokemon",
-    "name": "Pok\u00e9mon",
-    "description": "Pok\u00e9mon species with default-form types, generations and legendary/mythical status.",
+    "name": "Pokémon",
+    "description": "Pokémon species with default-form types, generations and legendary/mythical status.",
     "imports": [
       {
         "source": "pokeapi-pokemon"
@@ -327,6 +393,233 @@
       "ambiguousNames": "consume-all",
       "typos": "aliases",
       "singulars": true
+    }
+  },
+  {
+    "id": "colours",
+    "name": "Colours",
+    "description": "Named colours, shades and tints in everyday English.",
+    "imports": [],
+    "minimumRecords": 80,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "body",
+    "name": "Human body",
+    "description": "Human body parts, internal organs and bones, with everyday and anatomical names.",
+    "imports": [],
+    "minimumRecords": 100,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "languages",
+    "name": "Languages",
+    "description": "Living, classical and signed human languages, plus Esperanto.",
+    "imports": [],
+    "minimumRecords": 120,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "dogs",
+    "name": "Dog breeds",
+    "description": "Recognised dog breeds and popular crossbreeds, with common nicknames.",
+    "imports": [],
+    "minimumRecords": 100,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "breeds",
+    "name": "Cat and horse breeds",
+    "description": "Cat, horse and pony breeds with the species they belong to.",
+    "imports": [
+      {
+        "source": "wikidata-cat-breeds",
+        "facts": {
+          "kind": ["cat"]
+        }
+      },
+      {
+        "source": "wikidata-horse-breeds",
+        "facts": {
+          "kind": ["horse"]
+        }
+      }
+    ],
+    "minimumRecords": 600,
+    "maximumRecords": 5000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "mythology",
+    "name": "Mythology",
+    "description": "Gods, goddesses and other divine figures with the pantheons they belong to.",
+    "imports": [
+      {
+        "source": "wikidata-greek-deities",
+        "facts": {
+          "pantheon": ["greek"]
+        }
+      },
+      {
+        "source": "wikidata-roman-deities",
+        "facts": {
+          "pantheon": ["roman"]
+        }
+      },
+      {
+        "source": "wikidata-norse-deities",
+        "facts": {
+          "pantheon": ["norse"]
+        }
+      },
+      {
+        "source": "wikidata-egyptian-deities",
+        "facts": {
+          "pantheon": ["egyptian"]
+        }
+      }
+    ],
+    "minimumRecords": 1000,
+    "maximumRecords": 10000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "leaders",
+    "name": "Heads of government",
+    "description": "People who have held a national office, with the office they held.",
+    "imports": [
+      {
+        "source": "wikidata-us-presidents",
+        "facts": {
+          "office": ["us-president"]
+        }
+      },
+      {
+        "source": "wikidata-uk-prime-ministers",
+        "facts": {
+          "office": ["uk-prime-minister"]
+        }
+      },
+      {
+        "source": "wikidata-nz-prime-ministers",
+        "facts": {
+          "office": ["nz-prime-minister"]
+        }
+      }
+    ],
+    "minimumRecords": 140,
+    "maximumRecords": 1000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "pastimes",
+    "name": "Pastimes",
+    "description": "Card games and other tabletop pastimes.",
+    "imports": [
+      {
+        "source": "wikidata-card-games",
+        "facts": {
+          "kind": ["card-game"]
+        }
+      }
+    ],
+    "minimumRecords": 800,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "computing",
+    "name": "Computing",
+    "description": "Programming languages and other computing terms.",
+    "imports": [
+      {
+        "source": "wikidata-programming-languages",
+        "facts": {
+          "kind": ["programming-language"]
+        }
+      }
+    ],
+    "minimumRecords": 1000,
+    "maximumRecords": 20000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "films",
+    "name": "Films",
+    "description": "Feature films with their studios and series.",
+    "imports": [],
+    "minimumRecords": 150,
+    "maximumRecords": 5000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "teams",
+    "name": "Sports teams",
+    "description": "Professional and national sports teams with the competitions they have played in.",
+    "imports": [],
+    "minimumRecords": 90,
+    "maximumRecords": 5000,
+    "normalization": {
+      "plurals": false,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
+    }
+  },
+  {
+    "id": "materials",
+    "name": "Materials",
+    "description": "Gemstones, fabrics and other everyday materials.",
+    "imports": [],
+    "minimumRecords": 80,
+    "maximumRecords": 5000,
+    "normalization": {
+      "plurals": true,
+      "ambiguousNames": "consume-all",
+      "typos": "aliases"
     }
   }
 ]

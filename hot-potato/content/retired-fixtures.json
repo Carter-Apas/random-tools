@@ -1,89 +1,5 @@
 [
   {
-    "questionId": "units-area",
-    "answer": "hectares",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-area",
-    "answer": "barns",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-area",
-    "answer": "metres",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-pressure",
-    "answer": "pascals",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-pressure",
-    "answer": "torr",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-pressure",
-    "answer": "newtons",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-energy",
-    "answer": "joules",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-energy",
-    "answer": "ergs",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-energy",
-    "answer": "watts",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-power",
-    "answer": "watts",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-power",
-    "answer": "horsepower",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-power",
-    "answer": "joules",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
     "questionId": "units-frequency",
     "answer": "hertz",
     "expected": "accepted",
@@ -147,90 +63,6 @@
     "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
   },
   {
-    "questionId": "units-force",
-    "answer": "newtons",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-force",
-    "answer": "dynes",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-force",
-    "answer": "kilograms",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-angle",
-    "answer": "radians",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-angle",
-    "answer": "steradians",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "units-angle",
-    "answer": "metres",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/qudt/qudt-public-repo/39bd2d3f5050d8b24e083b48a3af31f3fe1badc8/src/main/rdf/vocab/unit/VOCAB_QUDT-UNITS-ALL.ttl"
-  },
-  {
-    "questionId": "elements-halogen",
-    "answer": "Chlorine",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-halogen",
-    "answer": "Astatine",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-halogen",
-    "answer": "Argon",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-alkali",
-    "answer": "Sodium",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-alkali",
-    "answer": "Caesium",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-alkali",
-    "answer": "Calcium",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
     "questionId": "elements-alkaline",
     "answer": "Calcium",
     "expected": "accepted",
@@ -247,27 +79,6 @@
   {
     "questionId": "elements-alkaline",
     "answer": "Sodium",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-transition",
-    "answer": "Iron",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-transition",
-    "answer": "Ruthenium",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-transition",
-    "answer": "Aluminium",
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
@@ -315,27 +126,6 @@
     "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
   },
   {
-    "questionId": "elements-metalloids",
-    "answer": "Silicon",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-metalloids",
-    "answer": "Tellurium",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-metalloids",
-    "answer": "Iron",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
     "questionId": "elements-nonmetals",
     "answer": "Oxygen",
     "expected": "accepted",
@@ -357,27 +147,6 @@
     "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
   },
   {
-    "questionId": "elements-gas",
-    "answer": "Oxygen",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-gas",
-    "answer": "Radon",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-gas",
-    "answer": "Mercury",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
     "questionId": "elements-liquid",
     "answer": "Mercury",
     "expected": "accepted",
@@ -394,27 +163,6 @@
   {
     "questionId": "elements-liquid",
     "answer": "Oxygen",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-one-symbol",
-    "answer": "Carbon",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-one-symbol",
-    "answer": "Tungsten",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
-  },
-  {
-    "questionId": "elements-one-symbol",
-    "answer": "Iron",
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
@@ -546,48 +294,6 @@
     "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
   },
   {
-    "questionId": "moons-uranus",
-    "answer": "Titania",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "moons-uranus",
-    "answer": "Sycorax",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "moons-uranus",
-    "answer": "Triton",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "moons-neptune",
-    "answer": "Triton",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "moons-neptune",
-    "answer": "Halimede",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "moons-neptune",
-    "answer": "Titania",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
     "questionId": "moons-pluto",
     "answer": "Charon",
     "expected": "accepted",
@@ -607,27 +313,6 @@
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%3Fvalue+%7B+wd%3AQ2+wd%3AQ111+wd%3AQ319+wd%3AQ193+wd%3AQ324+wd%3AQ332+wd%3AQ339+wd%3AQ558+wd%3AQ422+wd%3AQ407+%7D+%3Fitem+wdt%3AP397+%3Fvalue%3B+wdt%3AP31%2Fwdt%3AP279*+wd%3AQ2537.+BIND%28%22parent%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "instruments-bowed",
-    "answer": "Viola",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "instruments-bowed",
-    "answer": "Nyckelharpa",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "instruments-bowed",
-    "answer": "Guitar",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
   },
   {
     "questionId": "instruments-plucked",
@@ -670,153 +355,6 @@
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ1798603+%22strings%22%29+%28wd%3AQ173453+%22wind%22%29+%28wd%3AQ133163+%22percussion%22%29+%28wd%3AQ181247+%22woodwind%22%29+%28wd%3AQ180744+%22brass%22%29+%28wd%3AQ52954+%22keyboard%22%29+%28wd%3AQ192096+%22bowed%22%29+%28wd%3AQ230262+%22plucked%22%29+%28wd%3AQ1327500+%22electronic%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-punk",
-    "answer": "Hardcore punk",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-punk",
-    "answer": "D-beat",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-punk",
-    "answer": "Bossa nova",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-blues",
-    "answer": "Delta blues",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-blues",
-    "answer": "Piedmont blues",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-blues",
-    "answer": "Death metal",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-hiphop",
-    "answer": "Gangsta rap",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-hiphop",
-    "answer": "G-funk",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "genres-hiphop",
-    "answer": "Bluegrass",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+VALUES+%28%3Froot+%3Fvalue%29+%7B+%28wd%3AQ11399+%22rock%22%29+%28wd%3AQ12326776+%22metal%22%29+%28wd%3AQ3071+%22punk%22%29+%28wd%3AQ8341+%22jazz%22%29+%28wd%3AQ9778+%22electronic%22%29+%28wd%3AQ9759+%22blues%22%29+%28wd%3AQ11401+%22hiphop%22%29+%7D+%3Fitem+wdt%3AP279*+%3Froot.+BIND%28%22family%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-france",
-    "answer": "Brie",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-france",
-    "answer": "Reblochon",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-france",
-    "answer": "Gouda",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-italy",
-    "answer": "Parmesan",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-italy",
-    "answer": "Taleggio",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-italy",
-    "answer": "Gouda",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-switzerland",
-    "answer": "Emmental",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-switzerland",
-    "answer": "Gruyere",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-switzerland",
-    "answer": "Feta",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-britain",
-    "answer": "Cheddar",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-britain",
-    "answer": "Wensleydale",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
-  },
-  {
-    "questionId": "cheeses-britain",
-    "answer": "Brie",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
   },
   {
     "questionId": "cheeses-spain",
@@ -945,69 +483,6 @@
     "evidence": "https://query.wikidata.org/sparql?query=SELECT+DISTINCT+%3Fitem+%3Fproperty+%3Fvalue+WHERE+%7B+%3Fitem+wdt%3AP279*+wd%3AQ10943%3B+wdt%3AP495%2Fwdt%3AP17%3F+%3Fvalue.+VALUES+%3Fvalue+%7B+wd%3AQ142+wd%3AQ38+wd%3AQ39+wd%3AQ145+wd%3AQ29+wd%3AQ55+wd%3AQ183+wd%3AQ30+wd%3AQ41+wd%3AQ45+%7D+BIND%28%22origin%22+AS+%3Fproperty%29+%7D&format=json"
   },
   {
-    "questionId": "countries-central-america",
-    "answer": "Panama",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-central-america",
-    "answer": "Belize",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-central-america",
-    "answer": "Mexico",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-caribbean",
-    "answer": "Jamaica",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-caribbean",
-    "answer": "Dominica",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-caribbean",
-    "answer": "Belize",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-southeast-asia",
-    "answer": "Thailand",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-southeast-asia",
-    "answer": "Timor-Leste",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-southeast-asia",
-    "answer": "India",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
     "questionId": "countries-central-asia",
     "answer": "Kazakhstan",
     "expected": "accepted",
@@ -1092,48 +567,6 @@
     "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
   },
   {
-    "questionId": "countries-french",
-    "answer": "France",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-french",
-    "answer": "Djibouti",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-french",
-    "answer": "Brazil",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-spanish",
-    "answer": "Spain",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-spanish",
-    "answer": "Equatorial Guinea",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-spanish",
-    "answer": "Brazil",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
     "questionId": "countries-english",
     "answer": "New Zealand",
     "expected": "accepted",
@@ -1192,27 +625,6 @@
   {
     "questionId": "countries-portuguese",
     "answer": "Spain",
-    "expected": "rejected",
-    "difficulty": "boundary",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-euro",
-    "answer": "France",
-    "expected": "accepted",
-    "difficulty": "common",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-euro",
-    "answer": "Montenegro",
-    "expected": "accepted",
-    "difficulty": "obscure",
-    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
-  },
-  {
-    "questionId": "countries-euro",
-    "answer": "Sweden",
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
@@ -1300,5 +712,950 @@
     "expected": "rejected",
     "difficulty": "boundary",
     "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Zeuhl",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Q196999"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Hip hop",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q11401"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Metallica",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Q15920"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Nyckelharpa",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Q182718"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Violin",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q8355"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Yamaha Corporation",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.yamaha.com/en/about/profile/"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Jazz",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q8341"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Drum and bass",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q188994"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Skweee",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q888137"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Djent",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q2532560"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Spotify",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#genres"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Abbey Road",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#genres"
+  },
+  {
+    "questionId": "genres",
+    "answer": "Beethoven",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#genres"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Guitar",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q6607"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Piano",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q5994"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Ondes Martenot",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q862501"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Hydraulophone",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q3143699"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Beethoven",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#instruments"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Sheet music",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#instruments"
+  },
+  {
+    "questionId": "instruments",
+    "answer": "Music stand",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#instruments"
+  },
+  {
+    "questionId": "countries-world",
+    "answer": "Japan",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "countries-world",
+    "answer": "Kiribati",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "countries-world",
+    "answer": "Greenland",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "capitals-world",
+    "answer": "Tokyo",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "capitals-world",
+    "answer": "Ngerulmud",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "capitals-world",
+    "answer": "New York",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://raw.githubusercontent.com/mledoze/countries/fa4f62182d19ff4f8b325cde6387c9cd9d80955a/countries.json"
+  },
+  {
+    "questionId": "sports",
+    "answer": "Football",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports",
+    "answer": "Bowls",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports",
+    "answer": "Chess",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "produce",
+    "answer": "Apple",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "produce",
+    "answer": "Kumara",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "produce",
+    "answer": "Cheddar",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "animals",
+    "answer": "Dog",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "animals",
+    "answer": "Kakapo",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "animals",
+    "answer": "Apple",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "plants",
+    "answer": "Oak",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "plants",
+    "answer": "Ranunculus",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "plants",
+    "answer": "Dog",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "car-models",
+    "answer": "Toyota Corolla",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+    "questionId": "car-models",
+    "answer": "Jeep Wrangler",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+    "questionId": "car-models",
+    "answer": "Toyota",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+    "questionId": "games-sports",
+    "answer": "Wii Sports",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-sports",
+    "answer": "NBA Jam",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-sports",
+    "answer": "Tetris",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-rpg",
+    "answer": "Final Fantasy VII",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-rpg",
+    "answer": "Chrono Trigger",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-rpg",
+    "answer": "Mario Kart 8 Deluxe",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-strategy",
+    "answer": "Civilization VI",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-strategy",
+    "answer": "Age of Empires II",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-strategy",
+    "answer": "Tetris",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-1990",
+    "answer": "Super Mario 64",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-1990",
+    "answer": "Chrono Trigger",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-1990",
+    "answer": "Minecraft",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "pokemon",
+    "answer": "Pikachu",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pokeapi.co/docs/v2"
+  },
+  {
+    "questionId": "pokemon",
+    "answer": "Farfetch’d",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pokeapi.co/docs/v2"
+  },
+  {
+    "questionId": "pokemon",
+    "answer": "Mario",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pokeapi.co/docs/v2"
+  },
+  {
+    "questionId": "jobs",
+    "answer": "Teacher",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.onetcenter.org/database.html"
+  },
+  {
+    "questionId": "jobs",
+    "answer": "Plumber",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.onetcenter.org/database.html"
+  },
+  {
+    "questionId": "jobs",
+    "answer": "Chair",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.onetcenter.org/database.html"
+  },
+  {
+    "questionId": "car-models",
+    "answer": "Suzuki Jimny",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q1410131"
+  },
+  {
+    "questionId": "games-2000",
+    "answer": "Halo 3",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2000",
+    "answer": "Metroid Fusion",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2000",
+    "answer": "Elden Ring",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2010",
+    "answer": "Minecraft",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2010",
+    "answer": "Bloodborne",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2010",
+    "answer": "Tekken 3",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2020",
+    "answer": "Elden Ring",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2020",
+    "answer": "Astro Bot",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "games-2020",
+    "answer": "Halo 3",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.wikidata.org/wiki/Wikidata:WikiProject_Video_games"
+  },
+  {
+    "questionId": "colours",
+    "answer": "Red",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "colours",
+    "answer": "Vermilion",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "colours",
+    "answer": "Rainbow",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "body-parts",
+    "answer": "Elbow",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.ncbi.nlm.nih.gov/books/NBK279390/"
+  },
+  {
+    "questionId": "body-parts",
+    "answer": "Hyoid",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.ncbi.nlm.nih.gov/books/NBK279390/"
+  },
+  {
+    "questionId": "body-parts",
+    "answer": "Tail",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.ncbi.nlm.nih.gov/books/NBK279390/"
+  },
+  {
+    "questionId": "languages",
+    "answer": "Spanish",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://iso639-3.sil.org/code_tables/639/data"
+  },
+  {
+    "questionId": "languages",
+    "answer": "Tigrinya",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://iso639-3.sil.org/code_tables/639/data"
+  },
+  {
+    "questionId": "languages",
+    "answer": "Python",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://iso639-3.sil.org/code_tables/639/data"
+  },
+  {
+    "questionId": "dog-breeds",
+    "answer": "Labrador",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.dogsnz.org.nz/breeds/"
+  },
+  {
+    "questionId": "dog-breeds",
+    "answer": "Schipperke",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.dogsnz.org.nz/breeds/"
+  },
+  {
+    "questionId": "dog-breeds",
+    "answer": "Siamese",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.dogsnz.org.nz/breeds/"
+  },
+  {
+    "questionId": "units",
+    "answer": "quectometres",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.bipm.org/en/measurement-units/si-prefixes"
+  },
+  {
+    "questionId": "units",
+    "answer": "liters",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://qudt.org/vocab/unit/L"
+  },
+  {
+    "questionId": "units",
+    "answer": "velocity",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://qudt.org/schema/qudt/QuantityKind"
+  },
+  {
+    "questionId": "units",
+    "answer": "meters",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "http://qudt.org/vocab/unit/M"
+  },
+  {
+    "questionId": "units",
+    "answer": "litres",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "http://qudt.org/vocab/unit/L"
+  },
+  {
+    "questionId": "units",
+    "answer": "fathoms",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "http://qudt.org/vocab/unit/FATH"
+  },
+  {
+    "questionId": "units",
+    "answer": "curies",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "http://qudt.org/vocab/unit/CI"
+  },
+  {
+    "questionId": "units",
+    "answer": "length",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#units"
+  },
+  {
+    "questionId": "units",
+    "answer": "speed",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#units"
+  },
+  {
+    "questionId": "units",
+    "answer": "hot potato",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#units"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Oganesson",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Aluminum",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Ununennium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Gold",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q897"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Oxygen",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/entity/Q629"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Livermorium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q1304"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Tennessine",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.wikidata.org/entity/Q1306"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Water",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#elements"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Iron-56",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#elements"
+  },
+  {
+    "questionId": "elements",
+    "answer": "Unbinilium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/definitions.json#elements"
+  },
+  {
+    "questionId": "birds",
+    "answer": "Parrot",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "birds",
+    "answer": "Titipounamu",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "birds",
+    "answer": "Dog",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "fruit",
+    "answer": "Apple",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "fruit",
+    "answer": "Feijoa",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "fruit",
+    "answer": "Carrot",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "vegetables",
+    "answer": "Carrot",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "vegetables",
+    "answer": "Kumara",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "vegetables",
+    "answer": "Apple",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "car-companies",
+    "answer": "Toyota",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+    "questionId": "car-companies",
+    "answer": "Volkswagen",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+    "questionId": "car-companies",
+    "answer": "Corolla",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+    "questionId": "car-companies",
+    "answer": "BYD",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://www.wikidata.org/wiki/Q27423"
+  },
+  {
+    "questionId": "sports-ball",
+    "answer": "Football",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports-ball",
+    "answer": "Bowls",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports-ball",
+    "answer": "Swimming",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports-team",
+    "answer": "Rugby",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports-team",
+    "answer": "Kabaddi",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "sports-team",
+    "answer": "Tennis",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "things-clothing",
+    "answer": "Shirt",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "things-clothing",
+    "answer": "Cardigan",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "things-clothing",
+    "answer": "Hammer",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "things-container",
+    "answer": "Backpack",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "things-container",
+    "answer": "Carton",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "things-container",
+    "answer": "Pencil",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "repo:content/questions.json"
+  },
+  {
+    "questionId": "elements-halogen",
+    "answer": "Chlorine",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-halogen",
+    "answer": "Astatine",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-halogen",
+    "answer": "Argon",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-alkali",
+    "answer": "Sodium",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-alkali",
+    "answer": "Caesium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-alkali",
+    "answer": "Calcium",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-metalloids",
+    "answer": "Silicon",
+    "expected": "accepted",
+    "difficulty": "common",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-metalloids",
+    "answer": "Tellurium",
+    "expected": "accepted",
+    "difficulty": "obscure",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
+  },
+  {
+    "questionId": "elements-metalloids",
+    "answer": "Iron",
+    "expected": "rejected",
+    "difficulty": "boundary",
+    "evidence": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON"
   }
 ]

@@ -13,6 +13,7 @@ export interface NormalizationRules {
   singulars?: boolean;
   pluralFirstWord?: boolean;
   suffixes?: string[];
+  prefixes?: string[];
   ambiguousNames?: "reject" | "consume-all";
   typos?: "canonical" | "aliases" | "off";
 }

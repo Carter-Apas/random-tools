@@ -56,8 +56,8 @@ and loses one of three hearts. After a two-second recovery they return to normal
 at zero hearts they remain charred on the ground and spectate. The last gardener
 with hearts wins; the host can start a rematch with fresh hearts.
 
-The content model separates **datasets** from **questions**. Sixteen shared datasets
-own answer identities, names and properties; 122 questions select subsets of those
+The content model separates **datasets** from **questions**. Twenty-eight shared datasets
+own answer identities, names and properties; 243 questions select subsets of those
 records. Fruit and vegetables share food records. Pets, farm animals and native
 New Zealand birds share animal records with role and native-region properties.
 Plants and geography also combine related collections. All questions use compiled,
@@ -83,7 +83,10 @@ Regenerate it with `npm run answers:fetch:spelling`; its checksum is verified.
 The question pool includes everyday scenes (a bus, kitchen, classroom, beach,
 campsite, office and birthday party), car makes and models, electric and 4WD/AWD
 cars, sports cars, video-game genres and decades, Pokémon types and broad job
-families. Regional cheese questions and other specialist variants are archived.
+families. It also covers breads, soups, cakes and cocktails; cat and horse breeds;
+Greek, Roman, Norse and Egyptian gods; US presidents and British and New Zealand
+prime ministers; deserts, volcanoes and New Zealand regions, national parks and
+Great Walks; Pixar, Ghibli, Bond, Marvel and Disney films; NBA, NFL and rugby teams. Regional cheese questions and other specialist variants are archived.
 Context memberships are reviewed, finite lists; plausible unlisted answers can
 still be missing. Hints explain the question's boundary.
 

@@ -67,6 +67,16 @@
       "sha256": "d33117493ef965eebd794013e9fb0dd6a87d7b6378e66acdd7a90ba5054d3fd6"
     },
     {
+      "id": "wikidata-breads",
+      "file": "sources/wikidata-breads.json.gz",
+      "sha256": "a5a3858a3c30d93dced66b939562887ca750a4795a26a5a90a8e48f670a0da9f"
+    },
+    {
+      "id": "wikidata-cakes",
+      "file": "sources/wikidata-cakes.json.gz",
+      "sha256": "c477cc4012cd645aa22812366a92595af5512a64f2287712069eeabf50f4ed97"
+    },
+    {
       "id": "wikidata-car-companies",
       "file": "sources/wikidata-car-companies.json.gz",
       "sha256": "f8ea4ac1921f1cd6f36777672e559722ebca2eb2f7238b40e994111c4979ea89"
@@ -77,14 +87,39 @@
       "sha256": "ffebd98cfc4349b451bcd275a24e0f65d9dd1bc8166b0d246f35fc32bd558707"
     },
     {
+      "id": "wikidata-card-games",
+      "file": "sources/wikidata-card-games.json.gz",
+      "sha256": "5ace6ad44405eb3d32cd5cfa01e8ad6ca549b4e6627b2b607c046f94dbd94dee"
+    },
+    {
+      "id": "wikidata-cat-breeds",
+      "file": "sources/wikidata-cat-breeds.json.gz",
+      "sha256": "17d233a7383f0d4895cbe61458798d82ecefabe7dccb800a198a3f01f71e9bab"
+    },
+    {
       "id": "wikidata-cheeses",
       "file": "sources/wikidata-cheeses.json.gz",
       "sha256": "fd8fcaa1b8aeb0c14215610b1fab3a383a93d1b222e5125f0b661e73019300ef"
     },
     {
+      "id": "wikidata-cocktails",
+      "file": "sources/wikidata-cocktails.json.gz",
+      "sha256": "7b75a97b0445776b2471bf87d298801665ad4b5c31010d1c554a9aba09910e62"
+    },
+    {
       "id": "wikidata-countries",
       "file": "sources/wikidata-countries.json.gz",
       "sha256": "85c8e375306319042ca65e2ff3c6f65dd170f2f08c743af28192eb6cce92c682"
+    },
+    {
+      "id": "wikidata-deserts",
+      "file": "sources/wikidata-deserts.json.gz",
+      "sha256": "95f721db555499637d8fb610c2975b214c1169e52961c01f67273c6b7aad206c"
+    },
+    {
+      "id": "wikidata-egyptian-deities",
+      "file": "sources/wikidata-egyptian-deities.json.gz",
+      "sha256": "ba8587d8eeadd8ad01b819cff108a85e14def7905cc0ddd7c6c3d86c8081c9d8"
     },
     {
       "id": "wikidata-elements",
@@ -97,6 +132,16 @@
       "sha256": "61b513459328f19d0dfff76cbc16125b88b951dbd85cc287d5168aeefacb5956"
     },
     {
+      "id": "wikidata-greek-deities",
+      "file": "sources/wikidata-greek-deities.json.gz",
+      "sha256": "7bbe0abe2d15c2b648ea60dd77d695026187b09a0aea826d9b885fd6edc4008d"
+    },
+    {
+      "id": "wikidata-horse-breeds",
+      "file": "sources/wikidata-horse-breeds.json.gz",
+      "sha256": "483aab7c651d6979c0c783ee8dd1341d48b2c57e42285a880066de443f45be7c"
+    },
+    {
       "id": "wikidata-instruments",
       "file": "sources/wikidata-instruments.json.gz",
       "sha256": "6b06820b50d172803f73f47da89676de55a38c27cf56c612046fd965b56a1006"
@@ -107,9 +152,49 @@
       "sha256": "8bcdde455c365d705be9dd4b6a71a5015c386a99c7d9a3fcda8099089c696dfc"
     },
     {
+      "id": "wikidata-norse-deities",
+      "file": "sources/wikidata-norse-deities.json.gz",
+      "sha256": "347aa87d0bd1aaeac2582bfb3e01d7f68d67f5147015d08dc9c4ee05bbc8ac32"
+    },
+    {
+      "id": "wikidata-nz-prime-ministers",
+      "file": "sources/wikidata-nz-prime-ministers.json.gz",
+      "sha256": "e0af4e0b44c38661ec7e9a08ca3ac618073c3743f3dd35c152a5da6f9b0957cb"
+    },
+    {
       "id": "wikidata-pasta",
       "file": "sources/wikidata-pasta.json.gz",
       "sha256": "95268de233d14d1e76807f19341538288b721a4b57ce6a3782a764ff318e9c02"
+    },
+    {
+      "id": "wikidata-programming-languages",
+      "file": "sources/wikidata-programming-languages.json.gz",
+      "sha256": "edbd01e0b3637a92756e90d5bd5d0deb084d1929a01f7b68e11a81869d91abbe"
+    },
+    {
+      "id": "wikidata-roman-deities",
+      "file": "sources/wikidata-roman-deities.json.gz",
+      "sha256": "fd289d88cbc99afb0abf44ac0cbfa9ff62914b9d65fc0b8693d272dc544b79d5"
+    },
+    {
+      "id": "wikidata-salads",
+      "file": "sources/wikidata-salads.json.gz",
+      "sha256": "ef1b2705f47f0363772797ba705f746f60436189b6e8f0044f9c822b7c15aac0"
+    },
+    {
+      "id": "wikidata-sandwiches",
+      "file": "sources/wikidata-sandwiches.json.gz",
+      "sha256": "18641c1426f0bdbc12dcbdd2996fb4e5e0cb0dcaf5f51a43f4df1c22210ce5cc"
+    },
+    {
+      "id": "wikidata-sauces",
+      "file": "sources/wikidata-sauces.json.gz",
+      "sha256": "7dc8b283b701c8bfec0374b14d32fd4f5d7eef539eb6c772e2149c98bce7bbd0"
+    },
+    {
+      "id": "wikidata-sausages",
+      "file": "sources/wikidata-sausages.json.gz",
+      "sha256": "e7bc6766876c7e639fd8900799e61b4d88012507a58cc2ac7aba237869d32ac7"
     },
     {
       "id": "wikidata-seas",
@@ -117,14 +202,39 @@
       "sha256": "7f91f886b1862caf537f0189956d7532029699bcf09454743947f3c2c31c8de3"
     },
     {
+      "id": "wikidata-soups",
+      "file": "sources/wikidata-soups.json.gz",
+      "sha256": "61778a378451a4698039630da3f08ec813064214128d8e0b9f3f8eecdfafdb56"
+    },
+    {
       "id": "wikidata-sports-cars",
       "file": "sources/wikidata-sports-cars.json.gz",
       "sha256": "38a3c9ef3628de9085f184626e2eb02c00283548ec23f1f7741f1bbd88d6ccf6"
     },
     {
+      "id": "wikidata-uk-prime-ministers",
+      "file": "sources/wikidata-uk-prime-ministers.json.gz",
+      "sha256": "b4517786333562b97e906b1d4e960d4238ea378986f60c608d2f19065e31a2a9"
+    },
+    {
+      "id": "wikidata-us-national-parks",
+      "file": "sources/wikidata-us-national-parks.json.gz",
+      "sha256": "abcb78d35bed4babea7dfd9453c6829097d625119402014fd1e58a3b79f4fa15"
+    },
+    {
+      "id": "wikidata-us-presidents",
+      "file": "sources/wikidata-us-presidents.json.gz",
+      "sha256": "3b806157836a9482823d729b5ea993c299d3bfc4393ad2f6bdbc2ec1738bfb74"
+    },
+    {
       "id": "wikidata-video-games",
       "file": "sources/wikidata-video-games.json.gz",
       "sha256": "fd7b7a5246d7bda60ffd5b792fb8914ebf18312269c3f1874a1c855e94900c22"
+    },
+    {
+      "id": "wikidata-volcanoes",
+      "file": "sources/wikidata-volcanoes.json.gz",
+      "sha256": "82665b6c2b21ed8860e757029c16030e38cce41d39e5d31922d4126503b86304"
     }
   ]
 }

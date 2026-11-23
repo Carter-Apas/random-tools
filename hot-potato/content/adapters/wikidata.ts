@@ -11,6 +11,14 @@ export interface WikidataCollection {
   excludeLabels?: string[];
 }
 
+const typed = (root: string): string =>
+  `{ ?item wdt:P279+ wd:${root}. } UNION { ?item wdt:P31 wd:${root}. }`;
+
+const office = (position: string): string => `?item wdt:P39 wd:${position}; wdt:P31 wd:Q5.`;
+
+const familyName =
+  'OPTIONAL { ?item wdt:P734 ?family. ?family rdfs:label ?familyName. FILTER(LANG(?familyName) = "en") }';
+
 export const wikidataCollections: WikidataCollection[] = [
   {
     id: "pasta",
@@ -54,12 +62,108 @@ export const wikidataCollections: WikidataCollection[] = [
     extra: "OPTIONAL { ?item wdt:P30 ?continent. }",
     minimumRecords: 193,
   },
+  {
+    id: "breads",
+    membership: typed("Q7802"),
+    minimumRecords: 500,
+    excludeLabels: ["^[Bb]reads?$"],
+  },
+  {
+    id: "soups",
+    membership: typed("Q41415"),
+    minimumRecords: 500,
+    excludeLabels: ["^[Ss]oups?$"],
+  },
+  {
+    id: "sandwiches",
+    membership: typed("Q28803"),
+    minimumRecords: 250,
+    excludeLabels: ["^[Ss]andwich(es)?$"],
+  },
+  {
+    id: "cakes",
+    membership: typed("Q13276"),
+    minimumRecords: 300,
+    excludeLabels: ["^[Cc]akes?$"],
+  },
+  {
+    id: "sauces",
+    membership: typed("Q178359"),
+    minimumRecords: 250,
+    excludeLabels: ["^[Ss]auces?$"],
+  },
+  {
+    id: "sausages",
+    membership: typed("Q131419"),
+    minimumRecords: 150,
+    excludeLabels: ["^[Ss]ausages?$"],
+  },
+  {
+    id: "cocktails",
+    membership: typed("Q134768"),
+    minimumRecords: 300,
+    excludeLabels: ["^[Cc]ocktails?$"],
+  },
+  {
+    id: "salads",
+    membership: typed("Q9266"),
+    minimumRecords: 100,
+    excludeLabels: ["^[Ss]alads?$"],
+  },
+  { id: "cat-breeds", membership: "?item wdt:P31 wd:Q43577.", minimumRecords: 80 },
+  { id: "horse-breeds", membership: "?item wdt:P31 wd:Q1160573.", minimumRecords: 300 },
+  {
+    id: "greek-deities",
+    membership: "?item wdt:P31/wdt:P279* wd:Q22989102.",
+    minimumRecords: 400,
+  },
+  {
+    id: "roman-deities",
+    membership: "?item wdt:P31/wdt:P279* wd:Q11688446.",
+    minimumRecords: 200,
+  },
+  { id: "norse-deities", membership: "?item wdt:P31/wdt:P279* wd:Q16513881.", minimumRecords: 40 },
+  {
+    id: "egyptian-deities",
+    membership: "?item wdt:P31/wdt:P279* wd:Q146083.",
+    minimumRecords: 100,
+  },
+  { id: "us-presidents", membership: office("Q11696"), extra: familyName, minimumRecords: 45 },
+  {
+    id: "uk-prime-ministers",
+    membership: office("Q14211"),
+    extra: familyName,
+    minimumRecords: 50,
+  },
+  {
+    id: "nz-prime-ministers",
+    membership: office("Q1071117"),
+    extra: familyName,
+    minimumRecords: 40,
+  },
+  { id: "deserts", membership: "?item wdt:P31 wd:Q8514.", minimumRecords: 1000 },
+  {
+    id: "volcanoes",
+    membership: "?item wdt:P31/wdt:P279* wd:Q8072.",
+    minimumRecords: 1500,
+  },
+  { id: "us-national-parks", membership: "?item wdt:P31 wd:Q34918903.", minimumRecords: 60 },
+  {
+    id: "card-games",
+    membership: "{ ?item wdt:P31/wdt:P279* wd:Q142714. } UNION { ?item wdt:P279+ wd:Q142714. }",
+    minimumRecords: 800,
+  },
+  {
+    id: "programming-languages",
+    membership: "?item wdt:P31/wdt:P279* wd:Q9143.",
+    minimumRecords: 1000,
+  },
 ];
 
 type Binding = Record<string, { value: string; "xml:lang"?: string }>;
 
 export const wikidataQuery = (collection: WikidataCollection): string => `
-SELECT DISTINCT ?item ?label ?alias ?symbol ?continent WHERE {
+SELECT DISTINCT ?item ?label ?alias ?symbol ?continent ?familyName WHERE {
   ${collection.membership}
   ?item rdfs:label ?label. FILTER(LANG(?label) IN ("en", "mul"))
   OPTIONAL { ?item skos:altLabel ?alias. FILTER(LANG(?alias) IN ("en", "mul")) }
@@ -77,6 +181,13 @@ const validRow = (row: Binding, collection: WikidataCollection): boolean => {
   return acceptedLanguage(row.label["xml:lang"]) && !excludedName(row.label.value, collection);
 };
 
+const addNames = (record: CatalogueRecord, row: Binding): void => {
+  if (row.alias?.value && acceptedLanguage(row.alias["xml:lang"]))
+    record.aliases.push(row.alias.value);
+  if (row.familyName?.value) record.aliases.push(row.familyName.value);
+  if (row.symbol?.value) record.symbols?.push(row.symbol.value);
+};
+
 const addRow = (record: CatalogueRecord, row: Binding, englishLabels: Set<string>): void => {
   const label = row.label.value;
   if (record.label !== label) record.aliases.push(label);
@@ -85,9 +196,7 @@ const addRow = (record: CatalogueRecord, row: Binding, englishLabels: Set<string
     record.label = label;
     englishLabels.add(record.id);
   }
-  if (row.alias?.value && acceptedLanguage(row.alias["xml:lang"]))
-    record.aliases.push(row.alias.value);
-  if (row.symbol?.value) record.symbols?.push(row.symbol.value);
+  addNames(record, row);
 };
 
 const addFacts = (record: CatalogueRecord, row: Binding): void => {

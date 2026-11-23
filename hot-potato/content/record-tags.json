@@ -2932,5 +2932,695 @@
     "facts": {},
     "aliases": ["BYD"],
     "evidence": "https://www.byd.com/nz"
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:football",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:rugby",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:rugbyleague",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:cricket",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:basketball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:netball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:volleyball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:hockey",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:icehockey",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:baseball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:softball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:waterpolo",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:handball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:americanfootball",
+    "facts": {
+      "format": ["team"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:boxing",
+    "facts": {
+      "kind": ["combat"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:wrestling",
+    "facts": {
+      "kind": ["combat"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:judo",
+    "facts": {
+      "kind": ["combat"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:karate",
+    "facts": {
+      "kind": ["combat"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:taekwondo",
+    "facts": {
+      "kind": ["combat"]
+    }
+  },
+  {
+    "datasetId": "sports",
+    "recordId": "sports:fencing",
+    "facts": {
+      "kind": ["combat"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:koala.n.01",
+    "facts": {
+      "group": ["marsupial"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:lion.n.01",
+    "facts": {
+      "group": ["wild-cat"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:tiger.n.02",
+    "facts": {
+      "group": ["wild-cat"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:cougar.n.01",
+    "facts": {
+      "group": ["wild-cat"]
+    },
+    "aliases": ["puma", "mountain lion"]
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:monkey.n.01",
+    "facts": {
+      "group": ["primate"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:gorilla.n.01",
+    "facts": {
+      "group": ["primate"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:dolphin.n.02",
+    "facts": {
+      "group": ["cetacean"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:kiwi",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:kakapo",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:takahe",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:weka",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:moa",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:ostrich",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:emu",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "lvis:penguin.n.01",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:hoiho",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "animals",
+    "recordId": "animal:korora",
+    "facts": {
+      "flight": ["flightless"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:orange",
+    "facts": {
+      "group": ["citrus"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:lemon",
+    "facts": {
+      "group": ["citrus"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:lime",
+    "facts": {
+      "group": ["citrus"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:grapefruit",
+    "facts": {
+      "group": ["citrus"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:mandarin",
+    "facts": {
+      "group": ["citrus"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:blackberry",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:blackcurrant",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:blueberry",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:boysenberry",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:cranberry",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:raspberry",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:strawberry",
+    "facts": {
+      "group": ["berry"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:beetroot",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:carrot",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:kumara",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:parsnip",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:potato",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:radish",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:swede",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "food",
+    "recordId": "food:turnip",
+    "facts": {
+      "group": ["root"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:aries",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:taurus",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:gemini",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:cancer",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:leo",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:virgo",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:libra",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:scorpius",
+    "facts": {
+      "zodiac": ["true"]
+    },
+    "aliases": ["Scorpio"]
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:sagittarius",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:capricornus",
+    "facts": {
+      "zodiac": ["true"]
+    },
+    "aliases": ["Capricorn"]
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:aquarius",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "constellations",
+    "recordId": "nasa:constellation:pisces",
+    "facts": {
+      "zodiac": ["true"]
+    }
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q193656",
+    "facts": {},
+    "aliases": ["Palmerston"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q312569",
+    "facts": {},
+    "aliases": ["Liverpool"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q312567",
+    "facts": {},
+    "aliases": ["Melbourne"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q243705",
+    "facts": {},
+    "aliases": ["Salisbury", "Lord Salisbury"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q244620",
+    "facts": {},
+    "aliases": ["Rosebery", "Lord Rosebery"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q24631",
+    "facts": {},
+    "aliases": ["Aberdeen", "Lord Aberdeen"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q237829",
+    "facts": {},
+    "aliases": ["Derby", "Lord Derby"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q157208",
+    "facts": {},
+    "aliases": ["Portland", "Duke of Portland"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q273809",
+    "facts": {},
+    "aliases": ["Newcastle", "Duke of Newcastle"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q294651",
+    "facts": {},
+    "aliases": ["Bute", "Lord Bute"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q312583",
+    "facts": {},
+    "aliases": ["Grafton", "Duke of Grafton"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q378043",
+    "facts": {},
+    "aliases": ["Rockingham", "Lord Rockingham"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q312573",
+    "facts": {},
+    "aliases": ["Shelburne", "Lord Shelburne"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q312591",
+    "facts": {},
+    "aliases": ["Goderich", "Lord Goderich"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q238639",
+    "facts": {},
+    "aliases": ["Devonshire", "Duke of Devonshire"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q270415",
+    "facts": {},
+    "aliases": ["Wilmington", "Lord Wilmington"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q312577",
+    "facts": {},
+    "aliases": ["Sidmouth"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q128976",
+    "facts": {},
+    "aliases": ["Douglas-Home", "Home"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q131691",
+    "facts": {},
+    "aliases": ["Wellington", "Duke of Wellington"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q7416",
+    "facts": {},
+    "aliases": ["Thatcher"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q8016",
+    "facts": {},
+    "aliases": ["Churchill"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q82006",
+    "facts": {},
+    "aliases": ["Disraeli"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q104190",
+    "facts": {},
+    "aliases": ["Walpole"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q139785",
+    "facts": {},
+    "aliases": ["Bolger"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q235996",
+    "facts": {},
+    "aliases": ["Shipley"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q328286",
+    "facts": {},
+    "aliases": ["Waterhouse"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q294662",
+    "facts": {},
+    "aliases": ["Earl Grey"]
+  },
+  {
+    "datasetId": "leaders",
+    "recordId": "http://www.wikidata.org/entity/Q3606816",
+    "facts": {},
+    "aliases": ["Jacinda"]
+  },
+  {
+    "datasetId": "geography",
+    "recordId": "http://www.wikidata.org/entity/Q464004",
+    "facts": {},
+    "aliases": ["Smoky Mountains", "Smokies", "Great Smokies"]
+  },
+  {
+    "datasetId": "geography",
+    "recordId": "http://www.wikidata.org/entity/Q219562",
+    "facts": {},
+    "aliases": ["Bryce"]
+  },
+  {
+    "datasetId": "geography",
+    "recordId": "http://www.wikidata.org/entity/Q191824",
+    "facts": {},
+    "aliases": ["Redwoods"]
+  },
+  {
+    "datasetId": "geography",
+    "recordId": "http://www.wikidata.org/entity/Q222695",
+    "facts": {},
+    "aliases": ["Tetons", "Teton"]
+  },
+  {
+    "datasetId": "geography",
+    "recordId": "http://www.wikidata.org/entity/Q944329",
+    "facts": {},
+    "aliases": ["Rainier"]
+  },
+  {
+    "datasetId": "food",
+    "recordId": "http://www.wikidata.org/entity/Q23004",
+    "facts": {},
+    "aliases": ["Roll", "Dinner roll"]
   }
 ]

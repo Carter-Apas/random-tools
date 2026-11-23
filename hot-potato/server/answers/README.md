@@ -22,7 +22,7 @@ labels, while answer banks, evidence and identities stay private.
 | `catalogue-types.ts`                  | Dataset, question, snapshot, correction and compiled-pack contracts            |
 | `catalogue-format.ts`, `catalogue.ts` | Deduplicated storage, reference validation and catalogue loading               |
 | `question-types.ts`                   | Runtime question with its dataset identity and selected answers                |
-| `normalize.ts`                        | Category-aware inflections, accents, punctuation, suffixes and exact symbols   |
+| `normalize.ts`                        | Category-aware inflections, accents, punctuation, affixes and exact symbols    |
 | `index.ts`, `spelling.ts`             | Exact lookup, shared names and constrained typo tolerance                      |
 | `../questions.ts`                     | Materialize published questions and protect meaningful words across questions  |
 | `../game.ts`                          | Dataset-aware question rotation, identity consumption and authoritative timing |

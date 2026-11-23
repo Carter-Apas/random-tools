@@ -6,7 +6,7 @@ For example, `elements` contains all 118 elements and their properties;
 `elements-noble` selects `group: ["noble gas"]` from those same records.
 Questions never append their own answers after filtering.
 
-The game currently publishes **122 questions from 16 datasets**. Food combines
+The game currently publishes **243 questions from 28 datasets**. Food combines
 fruit, vegetables, herbs, spices, pulses, pasta and cheese. Animals combines pets,
 farm animals and native birds: a horse can have both pet and farm roles, while a
 kiwi has `kind: ["bird"]` and `nativeTo: ["NZ"]`. Plants combines trees and flowers.
@@ -15,11 +15,49 @@ Geography combines countries, capitals, rivers, seas and mountain ranges with a
 units keep their own schemas.
 
 New collections cover everyday things, cars, video games, Pokémon and jobs.
-Their questions include bus, kitchen, classroom, beach and camping items; car
-makers, 4WD/AWD models, electric cars and sports cars; game genres and decades;
+Their questions include bus, kitchen, classroom, beach and camping items; 4WD/AWD
+models, electric cars and sports cars; game genres and decades;
 Pokémon types; and broad job families. Regional cheese questions, element-period
 quizzes and other specialist variants are archived in `retired-questions.json`
 with their cases in `retired-fixtures.json`. They are outside the active pool.
+
+Fully curated collections cover colours, the human body (parts, organs and
+bones), languages and dog breeds. US states and their capitals live in
+geography, dinosaurs in animals, and sports carry `format: ["team"]`,
+`kind: ["combat"]` and `environment` tags for team, combat and winter questions.
+
+Six accepted answers end a question, so the active pool favours subsets small
+enough that six answers take some thought. Catch-all prompts such as "Name an
+animal", "Name a job", "Name a colour" or "Name a language" are archived in
+`retired-questions.json`; narrower filters over the same records replace them:
+marsupials, wild cats, primates, cetaceans, sharks and flightless birds; citrus,
+berries, nuts and root vegetables; shades of one colour; body regions; language
+families and regions; terrier, gundog and hound breeds; track and field events.
+
+The same applies to categories most players can list at length without thinking:
+"Name a chemical element", "Name a unit of measurement", "Name a bird", "Name a
+common fruit", "Name a car company" and similar are archived too. Specific
+variants stand in for them: transition metals, gaseous elements and one-letter
+symbols; units of area, pressure, energy, power, force and angle; moons of Uranus
+and Neptune; French, Italian, British and Swiss cheeses; Caribbean, Central
+American, Southeast Asian, Spanish-speaking, French-speaking and euro countries;
+bowed instruments; punk, blues and hip-hop genres.
+
+Further Wikidata collections extend food (breads, soups, sandwiches, cakes, sauces,
+sausages, cocktails and salads) and geography (deserts, volcanoes and US national
+parks), and supply new datasets for cat and horse breeds, mythology (Greek, Roman,
+Norse and Egyptian deities), heads of government (US presidents, British and New
+Zealand prime ministers), card games and programming languages. Office holders
+accept surnames; a surname shared by several people consumes all of them.
+
+Curated datasets cover films (Pixar, Studio Ghibli, James Bond, the Marvel
+Cinematic Universe and Walt Disney Animation Studios), sports teams (NBA, NFL,
+Super Rugby and Rugby World Cup nations) and materials (gemstones and fabrics).
+Curated geography adds New Zealand regions, national parks and Great Walks,
+Canadian provinces and territories, and Summer Olympic host cities; these lists
+change when a new film, franchise, park or host city appears. Curated records also
+fill well-known gaps in the imported collections, such as Mount Fuji, Tongariro,
+Horus and sourdough.
 
 ## Content files
 
@@ -29,6 +67,8 @@ with their cases in `retired-fixtures.json`. They are outside the active pool.
   migrated hand-written banks. Records contain no question prompts.
 - `record-tags.json`: explicit identity-based context tags, classifications and
   regional aliases. Unknown identities fail the build.
+- `question-policy.json`: question IDs ruled too broad and the whole-dataset
+  exceptions; the build enforces it (see `../AGENTS.md`).
 - `questions.json`: playable prompts, hints, dataset IDs, property filters,
   optional normalization overrides and expected subset sizes.
 - `sources/` and `sources.lock.json`: compressed source snapshots and checksums.
@@ -62,7 +102,8 @@ empty filter selects the whole dataset. Unknown properties, empty filters for a
 property and unexpectedly small or large subsets fail publication. Each question
 needs independently chosen common, less obvious and invalid boundary fixtures.
 The dataset supplies normalization defaults; a question can override these for
-boundaries such as optional "River" or "Cheese" suffixes.
+boundaries such as optional "River" or "Cheese" suffixes, or optional leading
+words with `prefixes` ("Mount" and "Mt" for volcanoes).
 
 Questions cannot carry ad hoc lists of additional accepted answers. Correct the
 shared record or its properties and rebuild all affected questions instead.
@@ -103,7 +144,7 @@ are separate, explicit operations:
 
 ```sh
 npm run datasets:fetch -- objects vehicles video-games pokemon occupations
-npm run answers:fetch -- pasta cheeses
+npm run answers:fetch -- pasta cheeses breads volcanoes us-presidents
 npm run questions:fetch -- instrument-families genre-families
 npm run answers:fetch:units
 npm run answers:build

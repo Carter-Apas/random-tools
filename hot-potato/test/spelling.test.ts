@@ -28,9 +28,9 @@ test("clear question typos resolve to the same identity as the correctly spelled
     ["cheeses", "chedddar", "cheddar"],
     ["cheeses", "ftea", "feta"],
     ["capitals", "misnk", "minsk"],
-    ["genres", "jazzz", "jazz"],
-    ["instruments", "nyckleharpa", "nyckelharpa"],
-    ["units", "btye", "byte"],
+    ["genres-jazz", "bebopp", "bebop"],
+    ["instruments-strings", "nyckleharpa", "nyckelharpa"],
+    ["units-data", "btye", "byte"],
   ]) {
     const question = questions.find((item) => item.id === questionId)!;
     const expected = findAnswer(question, correct);
@@ -41,13 +41,13 @@ test("clear question typos resolve to the same identity as the correctly spelled
 
 test("real words, short names and scientific notation do not get guessed into answers", () => {
   for (const [questionId, wrong] of [
-    ["genres", "mango"],
+    ["genres-rock", "mango"],
     ["capitals", "mink"],
     ["capitals", "minks"],
     ["seas", "black tea"],
     ["constellations", "little beer"],
-    ["units", "m/S"],
-    ["elements", "Ununennium"],
+    ["units-speed", "m/S"],
+    ["elements-transition", "Ununennium"],
     ["cheeses", "fez"],
   ]) {
     assert.equal(

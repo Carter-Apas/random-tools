@@ -198,17 +198,17 @@ test("stored questions reference shared dataset entities and invalid references 
 test("the published questions share food and animal identities while retaining their boundaries", () => {
   const get = (id: string) => questions.find((question) => question.id === id)!;
 
-  assert.equal(get("fruit").datasetId, get("vegetables").datasetId);
-  assert.equal(
-    findAnswer(get("produce"), "tomato")?.id,
-    findAnswer(get("vegetables"), "tomato")?.id,
-  );
+  assert.equal(get("citrus").datasetId, get("root-vegetables").datasetId);
+  assert.ok(findAnswer(get("root-vegetables"), "carrot"));
   assert.equal(findAnswer(get("pets"), "horse")?.id, findAnswer(get("farm"), "horse")?.id);
-  assert.equal(findAnswer(get("animals"), "kea")?.id, findAnswer(get("nzbirds"), "kea")?.id);
+  assert.equal(
+    findAnswer(get("flightless-birds"), "kiwi")?.id,
+    findAnswer(get("nzbirds"), "kiwi")?.id,
+  );
   assert.equal(findAnswer(get("nzbirds"), "dog"), undefined);
-  assert.equal(findAnswer(get("fruit"), "carrot"), undefined);
+  assert.equal(findAnswer(get("citrus"), "carrot"), undefined);
   assert.equal(get("trees").datasetId, get("flowers").datasetId);
-  assert.equal(get("europe").datasetId, get("capitals-world").datasetId);
+  assert.equal(get("europe").datasetId, get("capitals").datasetId);
 });
 
 const roomFixture = () => {
@@ -228,13 +228,13 @@ test("the opening deck visits each dataset before drawing its next question", ()
 
 test("dataset changes take priority over vegetables and retain that preference on rematches", () => {
   const room = roomFixture();
-  const previous = questions.find((question) => question.id === "units")!;
+  const previous = questions.find((question) => question.id === "units-mass")!;
   const sameDataset = {
     ...questions.find((question) => question.id === "units-length")!,
     vegetable: "carrot" as const,
   };
   const differentDataset = {
-    ...questions.find((question) => question.id === "fruit")!,
+    ...questions.find((question) => question.id === "berries")!,
     vegetable: previous.vegetable,
   };
   room.question = previous;

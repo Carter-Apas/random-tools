@@ -7,6 +7,8 @@ import type { CuratedRecord, RecordTag } from "../content/datasets.js";
 import { atomicJson, contentRoot, loadSnapshots, readJson } from "../content/io.js";
 import { catalogueChanges, publishCatalogue } from "../content/publication.js";
 import { baselineCases, requireBenchmark } from "../content/baseline.js";
+import { requireSpecificQuestions } from "../content/policy.js";
+import type { QuestionPolicy } from "../content/policy.js";
 import type { Answer } from "../server/answers/types.js";
 import { withUnitPack } from "../server/answers/units.js";
 import { qudtSnapshot } from "../content/adapters/qudt.js";
@@ -20,6 +22,11 @@ import type {
 } from "../server/answers/catalogue-types.js";
 
 const rawQuestions = await readJson<QuestionDefinition[]>(new URL("questions.json", contentRoot));
+requireSpecificQuestions(
+  rawQuestions,
+  await readJson<QuestionDefinition[]>(new URL("retired-questions.json", contentRoot)),
+  await readJson<QuestionPolicy>(new URL("question-policy.json", contentRoot)),
+);
 const datasets = await readJson<DatasetDefinition[]>(new URL("datasets.json", contentRoot));
 const definitions = rawQuestions.map((question) => {
   const dataset = datasets.find((dataset) => dataset.id === question.datasetId);

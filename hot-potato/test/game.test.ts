@@ -27,7 +27,7 @@ const setup = (count = 3) => {
 
 test("question aliases resolve to their identity or an explicit group of valid identities", () => {
   for (const question of questions) {
-    if (question.id === "units" || question.datasetId === "units") continue;
+    if (question.datasetId === "units") continue;
     const aliases = new Set<string>();
     for (const answer of question.answers) {
       assert.ok(answer.label.length);
@@ -113,14 +113,14 @@ test("a tiny question exhausts, changes vegetable, and resets accepted answers",
 
 test("a streak rotates a large question while preserving unused answers for another visit", () => {
   const { room } = setup();
-  room.question = questions.find((question) => question.id === "fruit")!;
+  room.question = questions.find((question) => question.id === "berries")!;
   room.questionGoal = 6;
   const answers = room.question.answers.slice(0, 6);
   for (const answer of answers) {
     tickGame(room, room.readyAt);
     submitAnswer(room, room.activeId!, answer.label, room.turn, room.readyAt + 100);
   }
-  assert.notEqual(room.question.id, "fruit");
+  assert.notEqual(room.question.id, "berries");
   assert.equal(room.used.length, 0);
 });
 
@@ -313,7 +313,7 @@ test("a wrong answer near expiry costs no heart until the natural deadline", () 
 
 test("regional plurals cannot be used as separate answers", () => {
   const { room } = setup();
-  room.question = questions.find((item) => item.id === "units")!;
+  room.question = questions.find((item) => item.id === "units-volume")!;
   submitAnswer(room, room.activeId!, "liters", room.turn, 2500);
   tickGame(room, room.readyAt);
   const deadline = room.deadline;
@@ -354,13 +354,13 @@ test("the question deck visits the whole pool without repeats and changes vegeta
 
 test("rematches preserve unused questions and prefer a different topic when available", () => {
   const { room } = setup();
-  const units = questions.find((item) => item.id === "units")!;
+  const units = questions.find((item) => item.id === "units-mass")!;
   const length = questions.find((item) => item.id === "units-length")!;
-  const fruit = questions.find((item) => item.id === "fruit")!;
+  const fruit = questions.find((item) => item.id === "berries")!;
   room.question = units;
   room.deck = [{ ...length, vegetable: "carrot" }, fruit];
   changeQuestion(room);
-  assert.equal(room.question.id, "fruit");
+  assert.equal(room.question.id, "berries");
   room.status = "finished";
   startGame(room, 200000);
   assert.equal(room.question!.id, "units-length");

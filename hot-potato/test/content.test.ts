@@ -12,6 +12,7 @@ import { loadSnapshots } from "../content/io.js";
 import { publishCatalogue } from "../content/publication.js";
 import { proposeAnswer } from "../content/candidates.js";
 import { requireBenchmark } from "../content/baseline.js";
+import { requireSpecificQuestions } from "../content/policy.js";
 import { fetchSourceText } from "../content/http.js";
 import {
   fetchWikidata,
@@ -372,4 +373,30 @@ test("reviewed classification facts change membership without mutating their sou
       ),
     /Missing fact-correction/,
   );
+});
+
+test("questions ruled too broad cannot return under an old ID, a new ID or as a whole dataset", () => {
+  const question = (id: string, where: Record<string, string[]>): QuestionDefinition => ({
+    id,
+    datasetId: "food",
+    name: id,
+    prompt: id,
+    hint: id,
+    vegetable: "potato",
+    select: { where },
+    minimumAnswers: 1,
+    maximumAnswers: 10,
+  });
+
+  const retired = [question("fruit", { kind: ["fruit"] })];
+  const policy = { wholeDatasetAllowed: ["everything"], tooBroad: ["fruit"] };
+
+  const check = (active: QuestionDefinition) => () =>
+    requireSpecificQuestions([active], retired, policy);
+
+  assert.throws(check(question("fruit", { kind: ["fruit"] })), /listed as too broad/);
+  assert.throws(check(question("fruits-again", { kind: ["fruit"] })), /same records/);
+  assert.throws(check(question("food", {})), /whole dataset/);
+  assert.doesNotThrow(check(question("everything", {})));
+  assert.doesNotThrow(check(question("citrus", { kind: ["fruit"], group: ["citrus"] })));
 });

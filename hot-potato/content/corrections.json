@@ -297,5 +297,135 @@
     },
     "evidence": "https://www.gov.uk/protected-food-drink-names/hessischer-handkase-slash-hessischer-handkas",
     "reason": "The registered cheese is a German variety; generic and protected regional names count."
+  },
+  {
+    "datasetId": "food",
+    "status": "approved",
+    "action": "remove-aliases",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q6345457",
+      "label": "Kadhi",
+      "aliases": ["Curry"],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q6345457",
+    "reason": "Curry is a broad family of dishes, not a name for this yoghurt soup."
+  },
+  {
+    "datasetId": "geography",
+    "status": "approved",
+    "action": "remove-aliases",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q6583",
+      "label": "Sahara",
+      "aliases": ["Desert"],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q6583",
+    "reason": "The generic word would let \"desert\" answer its own question."
+  },
+  {
+    "datasetId": "geography",
+    "status": "approved",
+    "action": "remove-aliases",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q6740601",
+      "label": "Badia",
+      "aliases": ["Desert", "Steppe"],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q6740601",
+    "reason": "Generic landform words are not names for this desert."
+  },
+  {
+    "datasetId": "computing",
+    "status": "approved",
+    "action": "remove-aliases",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q1411939",
+      "label": "Server Side Includes",
+      "aliases": ["SHTML"],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q1411939",
+    "reason": "A file extension, one letter away from HTML, which is not a programming language."
+  },
+  {
+    "datasetId": "computing",
+    "status": "approved",
+    "action": "remove-aliases",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q1057802",
+      "label": "ABC",
+      "aliases": ["JSON"],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q1057802",
+    "reason": "JSON is a data format unrelated to the ABC language."
+  },
+  {
+    "datasetId": "computing",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q46441",
+      "label": "Cascading Style Sheets",
+      "aliases": [],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q46441",
+    "reason": "A style sheet language rather than a programming language under this question boundary."
+  },
+  {
+    "datasetId": "computing",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q2115",
+      "label": "XML",
+      "aliases": [],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q2115",
+    "reason": "A markup language rather than a programming language under this question boundary."
+  },
+  {
+    "datasetId": "leaders",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q269909",
+      "label": "Andy Burnham",
+      "aliases": [],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q269909",
+    "reason": "The source lists the office in error; he has not been Prime Minister of the United Kingdom."
+  },
+  {
+    "datasetId": "leaders",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q16829347",
+      "label": "Basil Feilding, 6th Earl of Denbigh",
+      "aliases": [],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q16829347",
+    "reason": "The source lists the office in error; he was never Prime Minister of the United Kingdom."
+  },
+  {
+    "datasetId": "leaders",
+    "status": "approved",
+    "action": "exclude",
+    "answer": {
+      "id": "http://www.wikidata.org/entity/Q4476255",
+      "label": "Hugh Watt",
+      "aliases": [],
+      "facts": {}
+    },
+    "evidence": "https://www.wikidata.org/entity/Q4476255",
+    "reason": "Acting prime minister for six days in 1974; not counted among New Zealand prime ministers."
   }
 ]

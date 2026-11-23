@@ -46,19 +46,28 @@ export const nameForms = (
   return forms;
 };
 
+const affixes = (values: string[] = []): string[] => values.map(normalize).filter(Boolean);
+
 export const answerKeys = (
   questionId: string,
   value: string,
   rules?: NormalizationRules,
 ): string[] => {
   const key = normalize(value);
-  if (rules?.suffixes) {
-    return [
+  if (rules?.suffixes || rules?.prefixes) {
+    const trimmed = [
       key,
-      ...rules.suffixes
-        .map(normalize)
-        .filter(Boolean)
-        .map((suffix) => (key.endsWith(suffix) ? key.slice(0, -suffix.length) : key)),
+      ...affixes(rules.suffixes).map((suffix) =>
+        key.endsWith(suffix) ? key.slice(0, -suffix.length) : key,
+      ),
+    ];
+    return [
+      ...trimmed,
+      ...trimmed.flatMap((name) =>
+        affixes(rules.prefixes)
+          .filter((prefix) => name.startsWith(prefix))
+          .map((prefix) => name.slice(prefix.length)),
+      ),
     ];
   }
   if (questionId === "rivers") return [key, key.replace(/river$/, "")];
