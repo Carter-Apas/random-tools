@@ -3,6 +3,7 @@ import type { Answer, AnswerProvider } from "./types.js";
 import { SpellingIndex, isDictionaryPhrase } from "./spelling.js";
 
 interface AnswerIndex {
+  fullNames: Map<string, Answer[]>;
   names: Map<string, Answer[]>;
   symbols: Map<string, Answer[]>;
 }
@@ -36,13 +37,14 @@ const resolveNames = (
 };
 
 const compile = (provider: AnswerProvider): AnswerIndex => {
-  const result: AnswerIndex = { names: new Map(), symbols: new Map() };
+  const result: AnswerIndex = { fullNames: new Map(), names: new Map(), symbols: new Map() };
   for (const answer of provider.answers) {
     for (const symbol of answer.symbols ?? []) addKey(result.symbols, symbolKey(symbol), answer);
     for (const alias of [answer.label, ...answer.aliases]) {
       for (const form of nameForms(provider.questionId, alias, provider.normalization)) {
-        for (const key of answerKeys(provider.questionId, form, provider.normalization))
-          addKey(result.names, key, answer);
+        const keys = answerKeys(provider.questionId, form, provider.normalization);
+        addKey(result.fullNames, keys[0], answer);
+        for (const key of keys) addKey(result.names, key, answer);
       }
     }
   }
@@ -62,9 +64,12 @@ export class AnswerRegistry {
     if (!entry) return undefined;
     const symbol = entry.index.symbols.get(symbolKey(raw));
     if (symbol) return symbol.length === 1 ? symbol[0] : undefined;
-    for (const key of answerKeys(questionId, raw, entry.provider.normalization)) {
-      const answer = entry.index.names.get(key);
-      if (answer) return resolveNames(answer, raw, entry.provider);
+    const keys = answerKeys(questionId, raw, entry.provider.normalization);
+    for (const names of [entry.index.fullNames, entry.index.names]) {
+      for (const key of keys) {
+        const answer = names.get(key);
+        if (answer) return resolveNames(answer, raw, entry.provider);
+      }
     }
     return undefined;
   }

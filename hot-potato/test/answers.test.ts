@@ -95,3 +95,39 @@ test("shared surnames use up every matching office holder", () => {
   assert.equal(findAnswer(presidents, "Roosevelt")?.consumes?.length, 2);
   assert.equal(findAnswer(presidents, "Hillary Clinton"), undefined);
 });
+
+const question = (id: string) => questions.find((item) => item.id === id)!;
+
+test("the category word in an answer is optional", () => {
+  const blue = question("colours-blue");
+  assert.equal(findAnswer(blue, "sky")?.label, "Sky blue");
+  assert.equal(findAnswer(blue, "Sky blue")?.label, "Sky blue");
+  assert.equal(findAnswer(blue, "navy blue")?.label, "Navy");
+  assert.equal(findAnswer(blue, "blue"), undefined);
+  assert.equal(findAnswer(question("sharks"), "tiger")?.label, "Tiger shark");
+  assert.equal(findAnswer(question("sharks"), "shark"), undefined);
+  assert.equal(findAnswer(question("dogs-terrier"), "Yorkshire")?.label, "Yorkshire Terrier");
+  assert.equal(findAnswer(question("genres-jazz"), "cool")?.label, "cool jazz");
+  assert.equal(findAnswer(question("genres-rock"), "music"), undefined);
+  assert.equal(findAnswer(question("sports-water"), "polo")?.label, "Water polo");
+});
+
+test("a full name outranks a shortened one and words are never split", () => {
+  const cats = question("wild-cats");
+  const leopard = findAnswer(cats, "Leopard");
+  assert.equal(leopard?.label, "Leopard");
+  assert.equal(leopard?.consumes, undefined);
+  assert.equal(findAnswer(cats, "Leopard cat")?.label, "Leopard cat");
+  assert.equal(findAnswer(cats, "sand")?.label, "Sand cat");
+  assert.equal(findAnswer(cats, "Bobcat")?.label, "Bobcat");
+  assert.equal(findAnswer(cats, "bob"), undefined);
+  assert.equal(findAnswer(question("cakes"), "pan"), undefined);
+});
+
+test("a leading article is optional but never an answer on its own", () => {
+  const disney = question("films-disney-animation");
+  assert.equal(findAnswer(disney, "Lion King")?.label, "The Lion King");
+  assert.equal(findAnswer(disney, "the lion king")?.label, "The Lion King");
+  assert.equal(findAnswer(disney, "The"), undefined);
+  assert.equal(findAnswer(question("volcanoes"), "volcano"), undefined);
+});

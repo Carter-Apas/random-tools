@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 
 import { Arena } from "./Arena";
 import { AnswerBox } from "./AnswerBox";
+import { QuestionPopup } from "./QuestionPopup";
 import { TurnTimer } from "./TurnTimer";
 import { TurnHeat } from "./TurnHeat";
 import { useClock } from "./motion";
@@ -160,6 +161,7 @@ const Play = ({
   return (
     <main className="play-layout">
       <TurnHeat room={room} you={you} now={now} connected={connected} />
+      <QuestionPopup question={question} />
       <section className="panel play-question" aria-labelledby="current-question">
         <div className="play-topic">
           <img src={`/assets/${question.vegetable}.png`} alt="" />

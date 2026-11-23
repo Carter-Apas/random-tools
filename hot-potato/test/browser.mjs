@@ -139,6 +139,23 @@ try {
   assert.equal(await host.locator(".gardener").count(), 2);
   await host.getByRole("button", { name: "Let's get cooking!" }).click();
   await host.getByText("Your turn! Pick a fresh answer.", { exact: true }).waitFor();
+  for (const page of [host, guest]) {
+    const popup = page.locator(".question-popup-card");
+    assert.equal(await popup.locator("strong").innerText(), room.question.prompt);
+    assert.equal(
+      await popup.evaluate((card) => {
+        const box = card.getBoundingClientRect();
+        return (
+          Math.abs(box.left + box.width / 2 - innerWidth / 2) < 2 &&
+          Math.abs(box.top + box.height / 2 - innerHeight / 2) < 2
+        );
+      }),
+      true,
+      "The new question pops up in the middle of the screen",
+    );
+  }
+  for (const page of [host, guest])
+    await page.locator(".question-popup-card").waitFor({ state: "hidden" });
   await waitFor(
     async () =>
       Number(await host.locator(".turn-heat").evaluate((heat) => getComputedStyle(heat).opacity)) >
@@ -222,8 +239,17 @@ try {
   publish(room);
   await answerOn(host, "Cheddar");
   await guest.getByText("Your turn! Pick a fresh answer.", { exact: true }).waitFor();
+  await host.locator("#answer").fill("stale prepared answer");
   await answerOn(guest, "Brie");
   await waitFor(() => room.question.id !== "test-small", "Question should change when exhausted");
+  for (const page of [host, guest]) {
+    await page.locator(".question-popup-card").filter({ hasText: room.question.prompt }).waitFor();
+    await waitFor(
+      async () => (await page.locator("#answer").inputValue()) === "",
+      "Changing questions clears every player's prepared answer",
+    );
+  }
+  assert.equal(room.draft, "");
   await waitFor(
     async () => (await host.locator(".accepted-answer").count()) === 0,
     "Changing questions clears old answer bubbles",

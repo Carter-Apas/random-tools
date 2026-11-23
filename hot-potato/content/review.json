@@ -1,5 +1,5 @@
 {
-  "version": "5eda732d9b1e69fb6fdc08a43f6f63eebd591876297d3641849c5a76509f8789",
+  "version": "6ae95d3cdfa7dc511f1897f8636bc5b6b4519009c9b6c7451d6b7b269a225cbc",
   "reviews": [
     {
       "questionId": "moons",
@@ -31,12 +31,6 @@
       "legacyOnly": [],
       "quarantined": [],
       "ambiguousNames": [
-        "Wensleydale",
-        "Cheshire",
-        "Lancashire",
-        "Caerphilly",
-        "Fontina",
-        "Comte",
         "hard cheese",
         "white cheese",
         "L’Etivaz",
@@ -45,7 +39,6 @@
         "Alpkäse",
         "soft cheese",
         "Swiss cheeses",
-        "Saint Paulin",
         "pressed uncooked cheese",
         "Oštiepok",
         "Lori",
@@ -3302,9 +3295,7 @@
       "publishedAnswers": 330,
       "legacyOnly": [],
       "quarantined": [],
-      "ambiguousNames": [
-        "Saint Paulin"
-      ]
+      "ambiguousNames": []
     },
     {
       "questionId": "cheeses-italy",
@@ -3320,9 +3311,7 @@
       "publishedAnswers": 79,
       "legacyOnly": [],
       "quarantined": [],
-      "ambiguousNames": [
-        "Wensleydale"
-      ]
+      "ambiguousNames": []
     },
     {
       "questionId": "cheeses-switzerland",
@@ -3536,7 +3525,6 @@
         "French toast",
         "kerststol",
         "black bread",
-        "sandwich",
         "beer bread",
         "sourdough bread",
         "beer bread",
@@ -3558,8 +3546,7 @@
         "dinner roll",
         "pide",
         "Telera",
-        "Galette des rois",
-        "Sourdough"
+        "Galette des rois"
       ]
     },
     {
@@ -3586,7 +3573,6 @@
         "Amiedi",
         "Guthuk",
         "okra soup",
-        "goulash",
         "white soup",
         "peppersoup",
         "melon soup",
@@ -3703,9 +3689,6 @@
         "Genovese sauce",
         "cheese sauce",
         "pesto",
-        "Mustard",
-        "Marinara",
-        "Alfredo",
         "Thousand Island dressing"
       ]
     },
@@ -3752,8 +3735,7 @@
       "ambiguousNames": [
         "herring salad",
         "Beetroot salad",
-        "beetroot salad",
-        "poke"
+        "beetroot salad"
       ]
     },
     {
@@ -3768,8 +3750,6 @@
         "British Shorthair",
         "Javanese",
         "Sphynx",
-        "Birman",
-        "Munchkin",
         "Sphynx",
         "British Shorthair"
       ]
@@ -3782,7 +3762,6 @@
       "quarantined": [],
       "ambiguousNames": [
         "Boer Pony",
-        "Namaqua",
         "Irish cob",
         "Chinese Kazakh Horse",
         "Australian Pony",
@@ -4223,14 +4202,12 @@
         "Mauna Loa",
         "Vulcano",
         "Laki",
-        "San Cristobal",
         "Trölladyngja",
         "Laki",
         "Santa María",
         "Greater Ararat",
         "Vulcano",
         "Volcán del Hoyo",
-        "Dutton",
         "Mount Sempu",
         "Mount Io",
         "Cerro Volcán",
@@ -4273,8 +4250,6 @@
         "Cerro Colorado",
         "Mount Edgecumbe",
         "Mount Teon",
-        "Callaqui",
-        "Santa Isabel",
         "Hunga Tonga–Hunga Haʻapai",
         "Mount Pangasun",
         "Volcán El Molcajete",
@@ -4298,7 +4273,6 @@
         "Sopka Ostraya",
         "Sopka Mayachnaya",
         "Sopka Skalistaya",
-        "Kitumbeine",
         "Komaga Take",
         "Yakeyama",
         "Mount Yake",
@@ -4311,7 +4285,6 @@
         "Mount Io",
         "Langtutkin",
         "Mount Batur",
-        "Trident",
         "Kohala",
         "Red Hill",
         "Mount Taylor",
@@ -4321,7 +4294,6 @@
         "Langtutkin",
         "Nonda",
         "Atosa Nupuri",
-        "Otake",
         "Krýsuvík",
         "Mount Iō",
         "Borawli",
@@ -6835,65 +6807,65 @@
     },
     {
       "questionId": "soups",
-      "previous": 1093,
+      "previous": 1096,
       "current": 1096,
-      "added": 3,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "sandwiches",
-      "previous": 591,
+      "previous": 593,
       "current": 593,
-      "added": 2,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "cakes",
-      "previous": 627,
+      "previous": 638,
       "current": 638,
-      "added": 11,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "sauces",
-      "previous": 525,
+      "previous": 540,
       "current": 540,
-      "added": 15,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "sausages",
-      "previous": 369,
+      "previous": 378,
       "current": 378,
-      "added": 9,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "cocktails",
-      "previous": 679,
+      "previous": 685,
       "current": 685,
-      "added": 6,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "salads",
-      "previous": 261,
+      "previous": 271,
       "current": 271,
-      "added": 10,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "cat-breeds",
-      "previous": 138,
+      "previous": 140,
       "current": 140,
-      "added": 2,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "horse-breeds",
-      "previous": 672,
+      "previous": 678,
       "current": 678,
-      "added": 6,
+      "added": 0,
       "removed": 0
     },
     {
@@ -6912,16 +6884,16 @@
     },
     {
       "questionId": "gods-norse",
-      "previous": 72,
+      "previous": 73,
       "current": 73,
-      "added": 1,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "gods-egyptian",
-      "previous": 226,
+      "previous": 227,
       "current": 227,
-      "added": 1,
+      "added": 0,
       "removed": 0
     },
     {
@@ -6947,16 +6919,16 @@
     },
     {
       "questionId": "deserts",
-      "previous": 2282,
+      "previous": 2289,
       "current": 2289,
-      "added": 7,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "volcanoes",
-      "previous": 2676,
+      "previous": 2692,
       "current": 2692,
-      "added": 16,
+      "added": 0,
       "removed": 0
     },
     {
@@ -7017,17 +6989,17 @@
     },
     {
       "questionId": "card-games",
-      "previous": 1863,
+      "previous": 1887,
       "current": 1887,
-      "added": 24,
+      "added": 0,
       "removed": 0
     },
     {
       "questionId": "programming-languages",
-      "previous": 1938,
+      "previous": 1940,
       "current": 1940,
-      "added": 4,
-      "removed": 2
+      "added": 0,
+      "removed": 0
     },
     {
       "questionId": "films-pixar",

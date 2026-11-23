@@ -34,6 +34,23 @@ Also avoid the other extreme. A question with only six or seven answers forces
 players to name nearly all of them (halogens, alkali metals and metalloids are
 archived for this reason). Aim for roughly ten or more.
 
+## Implicit category words
+
+Players should never have to type the category itself. When answers contain the
+word the question is about ("Sky blue" in a shades of blue question, "Tiger
+shark" in a shark question), list that word under the question's
+`normalization.suffixes` or `normalization.prefixes` in `content/questions.json`
+so "sky" and "tiger" are accepted. Check this for every new question.
+
+- Only list the category word or its direct forms ("rock", "rock music"). Do not
+  list other head nouns: "spaniel" in a gundog question would make "English"
+  match three breeds.
+- A leading "The" is already optional everywhere; do not add it.
+- After adding a rule, try the bare category word and a few short forms. The
+  bare word must stay rejected, and no short form should read as a wrong answer.
+
+The matching rules themselves are described in `content/README.md`.
+
 ## What the build enforces
 
 `npm run answers:build` and `npm run answers:check` fail when a question in

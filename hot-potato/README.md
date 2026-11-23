@@ -14,10 +14,14 @@ Bots are labelled in the garden. Rooms are private by code, with no public listi
 When the vegetable reaches you, type an unused answer to the question prompt and
 press **Pass it!** or Enter. Answers are checked on the server against versioned
 packs and curated banks; capitalisation, accents, punctuation, and regional
-aliases are accepted according to each question's rules.
+aliases are accepted according to each question's rules. The category word is
+implicit: "sky" counts as sky blue, "tiger" as tiger shark, and a leading "The"
+is optional.
 Wrong or repeated answers keep the vegetable in your hands while your timer ticks.
 The input refocuses and selects the rejected answer, with a clear error message.
 You may prepare an answer between turns: it stays private until your turn starts.
+Each new question pops up in the middle of the screen for a moment, and every
+player's answer bar is cleared so nobody carries an answer over from the last one.
 A speech bubble beside the active character shows their live typing. The answer
 bar stays clear for private preparation. Accepted answers linger above each gardener
 for 12 seconds, until their next turn, or until the question changes. Your screen's

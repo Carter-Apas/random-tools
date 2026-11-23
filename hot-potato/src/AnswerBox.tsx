@@ -14,7 +14,7 @@ export const AnswerBox = ({
   you: string;
   connected: boolean;
 }) => {
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = usePreparedAnswer(room.question?.id);
   const [failure, setFailure] = useState({ turn: 0, message: "" });
   const [sending, setSending] = useState(false);
   const input = useRef<HTMLInputElement>(null);
@@ -97,6 +97,16 @@ export const AnswerBox = ({
   );
 };
 
+const usePreparedAnswer = (questionId: string | undefined) => {
+  const [answer, setAnswer] = useState("");
+  const [seen, setSeen] = useState(questionId);
+  if (seen !== questionId) {
+    setSeen(questionId);
+    setAnswer("");
+  }
+  return [answer, setAnswer] as const;
+};
+
 const hasHearts = (room: RoomView, you: string) =>
   (room.players.find((player) => player.id === you)?.hearts ?? 0) > 0;
 
@@ -106,7 +116,7 @@ const canAnswer = (room: RoomView, you: string, connected: boolean) =>
 const answerHint = (ready: boolean) =>
   ready
     ? "Enter to pass. Check your spelling and try again if needed."
-    : "Your prepared answer stays private until your turn starts.";
+    : "Prepared answers stay private and clear with each question.";
 
 const turnMessage = (room: RoomView, alive: boolean, active: boolean) => {
   if (!alive) return "You're spectating. Cheer on the survivors!";

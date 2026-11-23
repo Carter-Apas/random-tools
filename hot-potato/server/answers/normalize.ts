@@ -46,32 +46,52 @@ export const nameForms = (
   return forms;
 };
 
-const affixes = (values: string[] = []): string[] => values.map(normalize).filter(Boolean);
+const legacySuffixes: Record<string, string[]> = {
+  rivers: ["river"],
+  seas: ["sea"],
+  ranges: ["mountains", "range"],
+};
+
+const wordKeys = (value: string): string[] =>
+  value
+    .split(/[^\p{L}\p{M}\p{N}'’.]+/u)
+    .map(normalize)
+    .filter(Boolean);
+
+const withoutEnding = (words: string[], ending: string[]): string[] | undefined =>
+  ending.length > 0 &&
+  words.length > ending.length &&
+  ending.every((word, index) => words[words.length - ending.length + index] === word)
+    ? words.slice(0, -ending.length)
+    : undefined;
+
+const withoutOpening = (words: string[], opening: string[]): string[] | undefined =>
+  opening.length > 0 &&
+  words.length > opening.length &&
+  opening.every((word, index) => words[index] === word)
+    ? words.slice(opening.length)
+    : undefined;
+
+const present = (words: string[] | undefined): words is string[] => words !== undefined;
 
 export const answerKeys = (
   questionId: string,
   value: string,
   rules?: NormalizationRules,
 ): string[] => {
-  const key = normalize(value);
-  if (rules?.suffixes || rules?.prefixes) {
-    const trimmed = [
-      key,
-      ...affixes(rules.suffixes).map((suffix) =>
-        key.endsWith(suffix) ? key.slice(0, -suffix.length) : key,
-      ),
-    ];
-    return [
-      ...trimmed,
-      ...trimmed.flatMap((name) =>
-        affixes(rules.prefixes)
-          .filter((prefix) => name.startsWith(prefix))
-          .map((prefix) => name.slice(prefix.length)),
-      ),
-    ];
-  }
-  if (questionId === "rivers") return [key, key.replace(/river$/, "")];
-  if (questionId === "seas") return [key, key.replace(/sea$/, "")];
-  if (questionId === "ranges") return [key, key.replace(/(mountains|range)$/, "")];
-  return [key];
+  const words = wordKeys(value);
+  const suffixes = rules?.suffixes ?? legacySuffixes[questionId] ?? [];
+  const prefixes = [...(rules?.prefixes ?? []), "the"];
+  const shortened = [
+    words,
+    ...suffixes.map((suffix) => withoutEnding(words, wordKeys(suffix))).filter(present),
+  ];
+  const optional = [
+    ...shortened.slice(1),
+    ...shortened.flatMap((name) =>
+      prefixes.map((prefix) => withoutOpening(name, wordKeys(prefix))).filter(present),
+    ),
+  ].map((name) => name.join(""));
+  const categoryWords = new Set([...suffixes, ...prefixes].map(normalize));
+  return [...new Set([normalize(value), ...optional.filter((key) => !categoryWords.has(key))])];
 };

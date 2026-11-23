@@ -105,6 +105,13 @@ The dataset supplies normalization defaults; a question can override these for
 boundaries such as optional "River" or "Cheese" suffixes, or optional leading
 words with `prefixes` ("Mount" and "Mt" for volcanoes).
 
+When the category word is part of an answer, list it so players need not type
+it: `suffixes: ["blue"]` lets "sky" and "navy blue" both resolve in a shades of
+blue question. Affixes match whole words only, so "bob" is never "Bobcat". A
+full name always outranks a shortened one: "Leopard" is the leopard, not the
+leopard cat. A shortened name that is only the category word ("music", "shark")
+is never accepted. A leading "The" is optional in every question.
+
 Questions cannot carry ad hoc lists of additional accepted answers. Correct the
 shared record or its properties and rebuild all affected questions instead.
 

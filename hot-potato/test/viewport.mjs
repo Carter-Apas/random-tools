@@ -295,6 +295,12 @@ try {
         room.used = [];
         room.usedIds = [];
         publish(room);
+        await page
+          .locator(".question-popup-card")
+          .filter({ hasText: room.question.prompt })
+          .waitFor();
+        await page.waitForFunction(() => document.querySelector("#answer").value === "");
+        assert.deepEqual(await focusState(page), { focused: true, editable: true });
         await page.locator("#answer").fill("chedddar");
         await page.locator(".answer-form button").click();
         assert.deepEqual(await focusState(page), { focused: true, editable: true });
