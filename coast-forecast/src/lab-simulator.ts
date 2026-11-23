@@ -1,6 +1,7 @@
 import { element, escape, number } from "./format";
 
 import { evaluateProfile } from "../shared/point-scoring";
+import { independentCurves, maximumWind, usesWindSurface } from "../shared/wind-surface";
 import { curveMaximum } from "../shared/curves";
 import { variables } from "../shared/variables";
 import type { PointProfile, Scenario, VariableId } from "../shared/types";
@@ -40,7 +41,9 @@ export const renderSimulation = (profile: PointProfile, inputs: Scenario): void 
 
 export const maximumScenario = (profile: PointProfile, initial: Scenario): Scenario => {
   const next = { ...initial };
-  for (const curve of profile.curves.filter((item) => item.enabled))
+  for (const curve of independentCurves(profile).filter((item) => item.enabled))
     next[curve.variable] = curve.points.find((point) => point.y === curveMaximum(curve))!.x;
+  if (usesWindSurface(profile) && profile.windSurface?.enabled)
+    Object.assign(next, maximumWind(profile.windSurface));
   return next;
 };

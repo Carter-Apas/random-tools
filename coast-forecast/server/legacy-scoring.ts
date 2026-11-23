@@ -23,6 +23,8 @@ export const migrateLegacyScoring = (current: ScoringConfig, input: unknown): Sc
     if (!profileActivities.includes(name as keyof ScoringConfig))
       throw new Error(`Unknown scoring profile: ${name}`);
     const profile = name as keyof ScoringConfig;
+    delete result[profile].windSurface;
+    delete result[profile].windMode;
     const fields = asRecord(value, "Legacy thresholds");
     const allowed = [
       "minHeightM",

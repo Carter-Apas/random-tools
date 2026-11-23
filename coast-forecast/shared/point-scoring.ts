@@ -1,6 +1,12 @@
 import { curveMaximum, evaluateCurve } from "./curves.js";
+import {
+  independentCurves,
+  compileWindSurface,
+  windMaximum,
+  usesWindSurface,
+} from "./wind-surface.js";
 import { variables } from "./variables.js";
-import type { ConditionScore, PointProfile, Scenario, Scores, Spot } from "./types.js";
+import type { ConditionScore, PointProfile, Scenario, Scores, Spot, WindSurface } from "./types.js";
 
 export const scoreLabel = (value: number | null): string => {
   if (value === null) return "Unavailable";
@@ -11,7 +17,7 @@ export const scoreLabel = (value: number | null): string => {
 };
 
 export const evaluateProfile = (profile: PointProfile, inputs: Scenario): ConditionScore => {
-  const factors = profile.curves
+  const factors: ConditionScore["factors"] = independentCurves(profile)
     .filter((curve) => curve.enabled)
     .map((curve) => {
       const input = inputs[curve.variable];
@@ -23,6 +29,8 @@ export const evaluateProfile = (profile: PointProfile, inputs: Scenario): Condit
         maxPoints: curveMaximum(curve),
       };
     });
+  if (usesWindSurface(profile) && profile.windSurface?.enabled)
+    factors.push(windFactor(profile.windSurface, inputs));
   const maxPoints = factors.reduce((sum, factor) => sum + factor.maxPoints, 0);
   const complete =
     factors.length > 0 && maxPoints > 0 && factors.every((factor) => factor.points !== null);
@@ -34,7 +42,7 @@ export const evaluateProfile = (profile: PointProfile, inputs: Scenario): Condit
     .map((factor) => `${factor.name}: ${factor.points!.toFixed(1)} points.`);
   const reason =
     maxPoints <= 0
-      ? "Enable curves with a positive combined maximum to calculate a score."
+      ? "Enable curves or surfaces with a positive combined maximum to calculate a score."
       : "Required input for an enabled curve is missing; no score is calculated.";
   return {
     value,
@@ -77,3 +85,18 @@ const combinedScore = (lower: ConditionScore | null): ConditionScore => ({
   factors: [],
   reasons: ["Combined fishing score is the lower of rock fishing and inshore boat fishing."],
 });
+
+const windFactor = (surface: WindSurface, inputs: Scenario): ConditionScore["factors"][number] => {
+  const speed = inputs.windSpeed;
+  const direction = inputs.windDirection;
+  const valid =
+    speed !== null && direction !== null && Number.isFinite(speed) && Number.isFinite(direction);
+  return {
+    variable: "wind",
+    name: "Wind speed × direction",
+    input: speed,
+    inputs: { windSpeed: speed, windDirection: direction },
+    points: valid ? compileWindSurface(surface)(speed, direction) : null,
+    maxPoints: windMaximum(surface),
+  };
+};

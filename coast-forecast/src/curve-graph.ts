@@ -50,7 +50,13 @@ export const graphY = (value: number, view: GraphView): number =>
 export const curveSvg = (
   curve: PointCurve,
   view: GraphView,
-  options: { mini?: boolean; selected?: number; input?: number | null; offshore?: number } = {},
+  options: {
+    mini?: boolean;
+    selected?: number;
+    input?: number | null;
+    offshore?: number;
+    idPrefix?: string;
+  } = {},
 ): string => {
   const definition = variables[curve.variable];
   const evaluate = compileCurve(curve);
@@ -84,7 +90,7 @@ export const curveSvg = (
     input === undefined || input === null
       ? ""
       : `<line x1="${graphX(input, curve, view)}" x2="${graphX(input, curve, view)}" y1="${view.top}" y2="${view.height - view.bottom}" class="curve-sim-marker"/><circle cx="${graphX(input, curve, view)}" cy="${graphY(evaluate(input), view)}" r="5" class="curve-sim-dot"/>`;
-  const negativeId = options.mini ? `negative-${curve.variable}` : "editor-negative";
+  const negativeId = negativeClipId(curve, options.mini, options.idPrefix);
   return `<svg viewBox="0 0 ${view.width} ${view.height}" class="${options.mini ? "curve-mini" : "curve-svg"}" ${options.mini ? 'aria-hidden="true"' : `role="group" aria-label="${escape(definition.label)} points curve. Drag control points, double-click to add, or use the numeric controls."`}><defs><clipPath id="${negativeId}"><rect x="0" y="${zero}" width="${view.width}" height="${view.height}"/></clipPath></defs>${grid}${referenceLines(curve, view, options.offshore)}<line x1="${view.left}" x2="${view.width - view.right}" y1="${zero}" y2="${zero}" class="curve-zero"/><path d="${path}" class="curve-path"/><path d="${path}" class="curve-path curve-negative" clip-path="url(#${negativeId})"/>${marker}${points}</svg>`;
 };
 
@@ -97,3 +103,6 @@ const referenceLines = (curve: PointCurve, view: GraphView, offshore?: number): 
     })
     .join("");
 };
+
+const negativeClipId = (curve: PointCurve, mini = false, prefix = "") =>
+  `${prefix}${mini ? `negative-${curve.variable}` : "editor-negative"}`;

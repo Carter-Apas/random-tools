@@ -89,7 +89,7 @@ test("version 2 curve documents migrate with exact scores and a preserved origin
     await writeFile(path, original);
     const store = await loadSettings([piha, teArai], path);
     assert.deepEqual(store.read().spots, [piha, teArai]);
-    assert.equal(store.export().schemaVersion, 3);
+    assert.equal(store.export().schemaVersion, 4);
     assert.equal(await readFile(`${path}.v2.bak`, "utf8"), original);
     const restarted = await loadSettings([piha, teArai], path);
     assert.deepEqual(restarted.export(), store.export());

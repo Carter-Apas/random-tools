@@ -23,7 +23,7 @@ export const scoreCards = (scores: Scores): string =>
       const factors = score.factors
         .map(
           (factor) =>
-            `<li><span>${escape(factor.name)} <small>max ${number(factor.maxPoints)} pts</small></span><strong>${number(factor.points)} pts</strong></li>`,
+            `<li><span>${escape(factor.name)} <small>max ${number(factor.maxPoints)} pts${factor.inputs ? ` · ${number(factor.inputs.windSpeed)} km/h from ${number(factor.inputs.windDirection, 0)}°` : ""}</small></span><strong>${number(factor.points)} pts</strong></li>`,
         )
         .join("");
       return `<article class="score-card" data-tone="${tone}"><h4>${label}</h4><p class="score-number">${number(score.value, 0)}<span>/100</span><b>${escape(score.label)}</b></p><details><summary>Why this score?</summary><ul class="score-factors">${factors}</ul>${score.reasons.map((reason) => `<p>${escape(reason)}</p>`).join("")}</details></article>`;

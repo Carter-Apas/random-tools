@@ -1,3 +1,4 @@
+import { defaultWindSurface } from "./wind-defaults.js";
 import { variables } from "./variables.js";
 import type { PointCurve, ScoringConfig, VariableId } from "./types.js";
 
@@ -50,6 +51,7 @@ const extras = (curves: PointCurve[]): PointCurve[] => {
 
 export const defaultScoring = (offshore = 90, swellFrom = 240): ScoringConfig => ({
   surfing: {
+    windSurface: defaultWindSurface(offshore, "surfing"),
     curves: extras([
       makeCurve("surfHeight", [
         [0, -150],
@@ -109,6 +111,7 @@ export const defaultScoring = (offshore = 90, swellFrom = 240): ScoringConfig =>
     ]),
   },
   rockFishing: {
+    windSurface: defaultWindSurface(offshore, "rockFishing"),
     curves: extras([
       makeCurve("waveHeight", [
         [0, 40],
@@ -148,6 +151,7 @@ export const defaultScoring = (offshore = 90, swellFrom = 240): ScoringConfig =>
     ]),
   },
   inshoreFishing: {
+    windSurface: defaultWindSurface(offshore, "inshoreFishing"),
     curves: extras([
       makeCurve("waveHeight", [
         [0, 45],

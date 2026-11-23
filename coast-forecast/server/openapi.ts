@@ -1,7 +1,24 @@
 import { outlookPaths, outlookSchema } from "./openapi-outlook.js";
-import { adminPaths, scoringSchema } from "./openapi-admin.js";
+import { adminPaths, scoringSchema, windSurfaceSchema } from "./openapi-admin.js";
 
 const nullableNumber = { type: ["number", "null"] };
+const modelSelection = {
+  type: "object",
+  required: ["selection", "resolvedModel"],
+  properties: {
+    selection: { const: "best_match" },
+    resolvedModel: {
+      type: ["string", "null"],
+      description:
+        "Null for automatic forecasts: the provider response does not identify the underlying model(s) per variable/hour. Best Match is a selection policy, not a fixed model.",
+    },
+  },
+};
+const modelGrid = {
+  type: ["object", "null"],
+  description: "Provider-reported grid point; null when this source is unavailable.",
+  properties: { latitude: { type: "number" }, longitude: { type: "number" } },
+};
 const score = {
   type: "object",
   required: ["value", "label", "points", "maxPoints", "factors", "reasons"],
@@ -12,13 +29,24 @@ const score = {
       type: ["number", "null"],
       description: "Signed sum of earned curve points before normalization.",
     },
-    maxPoints: { type: "number", description: "Sum of true maxima of all enabled curves." },
+    maxPoints: {
+      type: "number",
+      description: "Sum of true maxima of enabled curves and wind surfaces; wind is counted once.",
+    },
     factors: {
       type: "array",
       items: {
         type: "object",
         properties: {
-          variable: { type: "string" },
+          variable: {
+            type: "string",
+            description: "Variable ID, or wind for the joint speed × direction surface.",
+          },
+          inputs: {
+            type: "object",
+            properties: { windSpeed: nullableNumber, windDirection: nullableNumber },
+            description: "Both inputs for the joint wind contribution.",
+          },
           name: { type: "string" },
           coast: { type: "string" },
           latitude: { type: "number" },
@@ -37,7 +65,7 @@ const score = {
 const scores = {
   type: "object",
   description:
-    "curves-v2 conditions preferences. Fishing is the minimum of rock and inshore scores; required missing data gives null. Not a catch prediction or safety rating.",
+    "surfaces-v1 conditions preferences. Fishing is the minimum of rock and inshore scores; required missing data gives null. Not a catch prediction or safety rating.",
   properties: Object.fromEntries(
     ["surfing", "fishing", "rockFishing", "inshoreFishing"].map((key) => [key, score]),
   ),
@@ -111,7 +139,22 @@ const forecast = {
     },
     source: {
       type: "object",
-      description: "Attribution and actual weather/marine grid coordinates.",
+      description: "Attribution, model selection policy and provider-reported grid coordinates.",
+      properties: {
+        name: { type: "string" },
+        weather: { type: "string", format: "uri" },
+        marine: { type: "string", format: "uri" },
+        licence: { type: "string" },
+        models: {
+          type: "object",
+          required: ["weather", "marine"],
+          properties: { weather: modelSelection, marine: modelSelection },
+        },
+        modelGrid: {
+          type: "object",
+          properties: { weather: modelGrid, marine: modelGrid },
+        },
+      },
     },
     units: { type: "object" },
     summary: {
@@ -140,7 +183,7 @@ const forecast = {
     scoring: {
       type: "object",
       properties: {
-        version: { const: "curves-v2" },
+        version: { const: "surfaces-v1" },
         scale: { type: "string" },
         note: { type: "string" },
       },
@@ -206,7 +249,7 @@ export const openapi = {
   openapi: "3.1.0",
   info: {
     title: "Coast forecast API",
-    version: "3.1.0",
+    version: "4.0.0",
     description:
       "Hourly marine and weather forecasts for configured coastal places, initially Piha / Māori Bay and Te Ārai. Defaults to tomorrow in Pacific/Auckland. All missing measurements are null; zero means a measured/modelled zero. Forecast routes are public; admin configuration routes require a password session. Unversioned /api routes are aliases.",
   },
@@ -320,6 +363,7 @@ export const openapi = {
       ConditionScore: score,
       Scores: scores,
       ScoringConfig: scoringSchema,
+      WindSurface: windSurfaceSchema,
     },
   },
 };

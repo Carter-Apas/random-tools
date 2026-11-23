@@ -500,6 +500,56 @@ thead th {
 .forecast-notes p {
   margin: 7px 0;
 }
+.forecast-models {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mono-border);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--mono-muted);
+}
+.forecast-models h3 {
+  font-size: 14px;
+  color: var(--mono-text);
+  margin: 0 0 14px;
+}
+#model-details,
+#sampling-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px 32px;
+}
+.model-source h4 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--mono-text);
+  margin: 0;
+}
+.model-source p {
+  margin: 3px 0;
+}
+.forecast-models > p,
+.forecast-models details > p {
+  max-width: 780px;
+  margin: 14px 0 0;
+}
+.forecast-models details {
+  margin-top: 12px;
+}
+.forecast-models summary {
+  cursor: pointer;
+}
+#sampling-details {
+  margin-top: 14px;
+}
+.model-source dl {
+  margin: 6px 0 0;
+}
+.model-source dd {
+  margin: 0 0 6px;
+  font-family: var(--mono-font-code);
+  font-variant-numeric: tabular-nums;
+}
 .source-row {
   display: flex;
   align-items: center;
@@ -1362,5 +1412,209 @@ footer {
   .outlook-strip-footer {
     flex-direction: column;
     gap: 6px;
+  }
+}
+
+.wind-chart-stack {
+  width: 100%;
+  min-width: 0;
+}
+.wind-chart-stack .forecast-chart {
+  display: block;
+  height: 140px;
+  margin-bottom: -20px;
+}
+.wind-direction-strip {
+  display: block;
+  width: 100%;
+  height: 86px;
+  overflow: visible;
+  cursor: crosshair;
+}
+.wind-hour {
+  color: var(--mono-text);
+}
+.wind-hour.is-selected {
+  color: var(--mono-accent-text);
+}
+.wind-hour-arrow {
+  stroke: currentColor;
+  stroke-width: 1.9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wind-direction-strip text {
+  font-family: var(--mono-font);
+  fill: currentColor;
+  font-size: 11px;
+}
+.wind-direction-strip .wind-hour-speed {
+  font-size: 12px;
+  font-weight: 600;
+}
+.wind-direction-strip .wind-hour-gust {
+  fill: var(--mono-muted);
+  font-size: 10px;
+}
+.wind-direction-strip .wind-hour-time {
+  fill: var(--mono-muted);
+  font-size: 10px;
+}
+.coastal-directions {
+  border: 1px solid var(--mono-border);
+  background: var(--mono-surface);
+  border-radius: var(--mono-radius-lg);
+  margin: 0 0 26px;
+  overflow: hidden;
+}
+.coast-directions-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 19px 22px;
+}
+.coast-directions-heading h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+.coast-directions-heading p {
+  color: var(--mono-muted);
+  font-size: 11px;
+  margin: 6px 0 0;
+}
+.coast-directions-hint {
+  color: var(--mono-muted);
+  font-size: 10px;
+}
+.coast-directions-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+}
+.coast-map-frame {
+  position: relative;
+  min-width: 0;
+  min-height: 280px;
+}
+#coast-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  background: #d6e5e8;
+  isolation: isolate;
+}
+.coast-north {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 500;
+  pointer-events: none;
+  border: 1px solid #647a86;
+  background: #fff;
+  color: #263c4b;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.coast-directions-detail {
+  padding: 0 22px 15px;
+  min-width: 0;
+}
+.coast-directions-detail dl {
+  margin: 0;
+}
+.coast-readout {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--mono-border);
+}
+.coast-readout dt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+.coast-readout i {
+  display: inline-block;
+  width: 15px;
+  height: 0;
+  border-top: 3px solid;
+}
+.coast-readout-wind dt {
+  color: var(--wind);
+}
+.coast-readout-primary dt {
+  color: var(--sea);
+}
+.coast-readout-secondary dt {
+  color: var(--rain);
+}
+.coast-readout-secondary i {
+  border-top-style: dashed;
+}
+.coast-readout dd {
+  margin: 0;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.coast-readout dd span {
+  display: block;
+  color: var(--mono-muted);
+  font-size: 10px;
+  line-height: 1.8;
+  margin-top: 4px;
+}
+#coast-shore-note,
+#coast-map-status {
+  color: var(--mono-muted);
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 12px 0 0;
+}
+#coast-map .leaflet-control-attribution {
+  background: #fff;
+  color: #333;
+  font-size: 10px;
+}
+#coast-map .leaflet-control-attribution a {
+  color: #125776;
+}
+@media (max-width: 760px) {
+  .coast-directions-layout {
+    grid-template-columns: minmax(0, 1fr) 250px;
+  }
+  .coast-directions-heading {
+    padding: 16px;
+  }
+  .coast-directions-detail {
+    padding-inline: 16px;
+  }
+}
+@media (max-width: 540px) {
+  .coast-directions-layout {
+    grid-template-columns: 1fr;
+  }
+  .coast-directions-hint {
+    display: none;
+  }
+  .coast-directions-detail {
+    padding-top: 8px;
+  }
+  .coast-readout {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+  }
+  .coast-readout dt {
+    margin: 0;
+  }
+  .wind-chart-stack .forecast-chart {
+    height: 120px;
+    margin-bottom: -17px;
   }
 }

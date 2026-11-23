@@ -1011,3 +1011,449 @@
   fill: var(--mono-muted);
   opacity: 0.04;
 }
+
+.wind-surface-card {
+  border-color: var(--mono-control-border);
+}
+.wind-surface-badge {
+  align-self: center;
+  color: var(--mono-info);
+  font-size: 12px;
+  padding: 0 16px;
+}
+.wind-inline-badge {
+  display: inline-block;
+  font-size: 9px;
+  padding: 2px 4px;
+  color: var(--mono-info);
+  border: 1px solid var(--mono-border);
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.mono-dialog.wind-dialog {
+  width: min(1180px, calc(100% - 32px));
+  max-width: 1180px;
+  max-height: calc(100dvh - 28px);
+  padding: 26px;
+  overflow: auto;
+}
+.wind-dialog[open] {
+  animation: curve-open 0.2s ease-out both;
+}
+.wind-dialog.is-closing {
+  animation: curve-close 0.16s ease-in both;
+}
+.wind-dialog::backdrop {
+  background: #000a;
+  backdrop-filter: blur(4px);
+}
+.wind-intro {
+  color: var(--mono-muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 15px 0 20px;
+}
+.wind-top-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 17px;
+}
+.wind-top-controls .admin-check {
+  margin: 0;
+  font-size: 12px;
+}
+.wind-top-controls > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.wind-top-controls button {
+  font-size: 10px;
+}
+.wind-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 295px;
+  border: 1px solid var(--mono-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--mono-inset);
+}
+.wind-scene-panel {
+  min-width: 0;
+  padding: 13px;
+}
+.wind-scene-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.wind-scene-toolbar > span {
+  font-size: 10px;
+  color: var(--mono-muted);
+}
+.wind-scene-toolbar > div {
+  display: flex;
+  gap: 5px;
+}
+.wind-scene-toolbar button {
+  font-size: 10px;
+}
+.wind-scene-toolbar i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 4px 0 9px;
+}
+.wind-positive {
+  background: var(--mono-success);
+}
+.wind-negative {
+  background: var(--mono-danger);
+}
+.wind-scene {
+  display: block;
+  width: 100%;
+  height: 350px;
+  touch-action: none;
+  cursor: grab;
+}
+.wind-scene:active {
+  cursor: grabbing;
+}
+.wind-help {
+  color: var(--mono-muted);
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 9px 0;
+}
+.wind-direction-panel {
+  border-left: 1px solid var(--mono-border);
+  padding: 17px;
+  background: var(--mono-surface);
+}
+.wind-dial {
+  width: 146px;
+  height: 146px;
+  margin: 0 auto 10px;
+  cursor: crosshair;
+  touch-action: none;
+}
+.wind-dial svg {
+  width: 100%;
+  height: 100%;
+}
+.wind-dial svg text {
+  fill: var(--mono-text);
+  font-size: 10px;
+}
+.wind-dial line {
+  stroke-width: 1.5;
+}
+.wind-dial-pointer {
+  stroke: var(--mono-accent-text);
+  stroke-width: 2.5 !important;
+}
+.wind-dial-dot {
+  fill: var(--mono-accent-text);
+}
+.wind-stored-dot {
+  fill: var(--mono-info);
+  stroke: var(--mono-surface);
+  stroke-width: 1.5;
+}
+.wind-bearing-fields {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 10px;
+}
+.wind-bearing-fields label,
+.wind-blend-label {
+  font-size: 10px;
+}
+.wind-bearing-fields input,
+.wind-bearing-fields select,
+.wind-blend-label select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  font-size: 11px;
+  min-height: 34px;
+  padding: 6px 8px;
+}
+.wind-bearing {
+  width: 100%;
+  margin: 15px 0;
+  accent-color: var(--mono-accent);
+}
+#wind-shore-guide .direction-compass {
+  display: none;
+}
+#wind-shore-guide .direction-label {
+  font-size: 9px;
+}
+#wind-shore-guide .direction-legend {
+  gap: 5px;
+}
+.wind-blend-label {
+  display: block;
+  margin-top: 10px;
+}
+.wind-simulation {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--mono-border);
+}
+.wind-simulation label {
+  font-size: 10px;
+}
+.wind-simulation label span {
+  color: var(--mono-muted);
+}
+.wind-simulation .mono-input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  font-size: 13px;
+}
+.wind-simulation input[type="range"] {
+  width: 100%;
+  accent-color: var(--mono-accent);
+}
+#wind-result {
+  display: grid;
+  gap: 7px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+#wind-result strong {
+  font-size: 23px;
+  font-weight: 500;
+}
+#wind-result small,
+#wind-result span {
+  color: var(--mono-muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.wind-slice-section {
+  padding-top: 19px;
+}
+.wind-slice-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+.wind-slice-heading h3 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+#wind-slice-state {
+  color: var(--mono-muted);
+  font-size: 11px;
+  margin: 0;
+  line-height: 1.7;
+}
+.wind-slice-heading > div:last-child {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.embedded-curve > .curve-dialog-head,
+.embedded-curve > #wind-slice-curve-note,
+.embedded-curve > .admin-check,
+.embedded-curve > .curve-dialog-actions {
+  display: none;
+}
+.embedded-curve .curve-canvas,
+#wind-blend-preview {
+  height: 240px;
+}
+.embedded-curve .curve-toolbar {
+  margin-bottom: 12px;
+}
+.embedded-curve .curve-point-controls {
+  gap: 8px;
+}
+.embedded-curve .curve-preview {
+  padding-block: 10px;
+}
+#wind-error {
+  color: var(--mono-danger);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.wind-dialog .place-actions {
+  padding-top: 12px;
+}
+.wind-dialog .place-actions > button {
+  font-size: 11px;
+}
+#wind-independent {
+  color: var(--mono-muted);
+}
+@media (max-width: 900px) {
+  .wind-workspace {
+    grid-template-columns: minmax(0, 1fr) 250px;
+  }
+  .wind-scene {
+    height: 330px;
+  }
+}
+@media (max-width: 690px) {
+  .mono-dialog.wind-dialog {
+    width: calc(100% - 14px);
+    max-height: calc(100dvh - 14px);
+    padding: 16px;
+  }
+  .wind-workspace {
+    grid-template-columns: 1fr;
+  }
+  .wind-direction-panel {
+    border-left: 0;
+    border-top: 1px solid var(--mono-border);
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 8px 13px;
+    align-items: center;
+  }
+  .wind-dial {
+    grid-row: span 3;
+    width: 130px;
+    height: 130px;
+    margin: 0;
+  }
+  .wind-direction-panel .wind-help,
+  .wind-direction-panel .wind-blend-label {
+    grid-column: 1/-1;
+  }
+  .wind-bearing-fields {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .wind-scene {
+    height: 280px;
+  }
+  .wind-simulation {
+    grid-template-columns: 115px minmax(0, 1fr);
+    gap: 12px;
+  }
+  #wind-result {
+    grid-column: 1/-1;
+    grid-template-columns: auto auto;
+    align-items: baseline;
+    text-align: left;
+  }
+  #wind-result span {
+    text-align: right;
+  }
+  .wind-slice-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+@media (max-width: 380px) {
+  .wind-direction-panel {
+    padding: 12px;
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .wind-dial {
+    width: 110px;
+    height: 110px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wind-dialog[open],
+  .wind-dialog.is-closing {
+    animation: none;
+  }
+}
+
+.wind-mode-selector {
+  border: 1px solid var(--mono-border);
+  border-radius: 7px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+.wind-mode-selector legend {
+  padding: 0 5px;
+  font-size: 12px;
+}
+.wind-mode-selector label {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 11px;
+}
+.wind-mode-selector input {
+  accent-color: var(--mono-accent);
+}
+.wind-mode-selector p {
+  flex-basis: 100%;
+  color: var(--mono-muted);
+  font-size: 10px;
+  line-height: 1.7;
+  margin: 2px 0 0;
+}
+.wind-comparison-section {
+  border-bottom: 1px solid var(--mono-border);
+  padding-block: 18px;
+}
+.wind-comparison-section h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.wind-slice-comparison {
+  height: 220px;
+  width: 100%;
+  background: var(--mono-inset);
+  border: 1px solid var(--mono-border);
+  border-radius: 7px;
+}
+.wind-slice-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.wind-slice-chip {
+  color: var(--mono-text);
+  background: var(--mono-inset);
+  border: 1px solid var(--mono-border);
+  border-radius: 5px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.wind-slice-chip i {
+  width: 18px;
+  border-top: 2px solid var(--slice-color);
+}
+.wind-slice-chip[aria-pressed="true"] {
+  border-color: var(--mono-accent-text);
+  background: var(--mono-raised);
+}
+
+.wind-comparison-section .wind-slice-heading > div {
+  display: block;
+  flex-shrink: 1;
+}

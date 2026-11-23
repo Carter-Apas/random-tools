@@ -96,8 +96,8 @@ export const loadSettings = async (defaults: Spot[], path: string): Promise<Sett
   }
   const spots = importConfiguration(saved, defaults);
   const store = memorySettings(defaults, spots, path);
-  if (saved.schemaVersion !== 3) {
-    const version = saved.schemaVersion === 2 ? 2 : 1;
+  if (saved.schemaVersion !== 4) {
+    const version = typeof saved.schemaVersion === "number" ? saved.schemaVersion : 1;
     try {
       await copyFile(path, `${path}.v${version}.bak`, constants.COPYFILE_EXCL);
     } catch (error) {

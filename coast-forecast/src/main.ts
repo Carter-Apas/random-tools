@@ -3,6 +3,8 @@ import { initMono } from "@random-tools/mono/browser";
 import { scoreCards, coastScores } from "./scores-view";
 import "@random-tools/mono/styles.css";
 import "./styles.css";
+import { createCoastMap } from "./coast-map";
+import { renderForecastSource } from "./forecast-source";
 import { OutlookStrip } from "./outlook";
 import { chartHour, renderCharts } from "./charts";
 import {
@@ -167,6 +169,7 @@ const render = (): void => {
   element("daylight").textContent =
     `Sunrise ${shortTime(forecast.sunrise)} · sunset ${shortTime(forecast.sunset)}`;
   element("spot-note").textContent = forecast.spot.note;
+  renderForecastSource(forecast);
   element("calibration-note").textContent =
     `Surf estimate = total significant wave height × ${number(forecast.surfEstimate.factor, 2)} (${forecast.surfEstimate.calibrated ? "manually calibrated" : "uncalibrated"}). It is a simple proxy; breaking waves can differ. Wind orientation uses ${forecast.spot.offshoreFromDegrees}° as directly offshore.`;
   element("updated").textContent =
@@ -191,6 +194,7 @@ const renderHour = (): void => {
   const forecast = forecasts.get(selected);
   if (!forecast) return;
   const hour = forecast.hours[selectedHour];
+  coast.update(forecast.spot, hour);
   const slider = element<HTMLInputElement>("hour");
   slider.value = String(selectedHour);
   slider.setAttribute("aria-valuetext", `${hourLabel(hour.localTime)} New Zealand time`);
@@ -268,6 +272,8 @@ const updateLocation = (): void => {
   const params = new URLSearchParams({ spot: selected, date: requestedDate });
   history.replaceState(null, "", `?${params}`);
 };
+
+const coast = createCoastMap();
 
 const week = new OutlookStrip((date) => {
   requestedDate = date === dateOffset(1) ? "tomorrow" : date;

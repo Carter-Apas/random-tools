@@ -18,7 +18,7 @@ const importPlaces = (input: unknown): Spot[] => {
 
 export const importConfiguration = (input: unknown, defaults: Spot[]): Spot[] => {
   const document = asRecord(input, "Configuration");
-  if (document.schemaVersion === 3) {
+  if (document.schemaVersion === 3 || document.schemaVersion === 4) {
     if (Object.keys(document).some((key) => !["schemaVersion", "spots"].includes(key)))
       throw new Error("Unknown configuration property.");
     return importPlaces(document.spots);
@@ -30,7 +30,7 @@ const importLegacy = (document: Record<string, unknown>, defaults: Spot[]): Spot
   const legacy = !Object.hasOwn(document, "schemaVersion");
   if (!legacy && document.schemaVersion !== 2)
     throw new Error(
-      "Unsupported configuration version. Expected schemaVersion 3 (version 2 is also supported).",
+      "Unsupported configuration version. Expected schemaVersion 4 (versions 2 and 3 are also supported).",
     );
   if (!legacy && Object.keys(document).some((key) => !["schemaVersion", "spots"].includes(key)))
     throw new Error("Unknown configuration property.");

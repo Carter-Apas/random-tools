@@ -3,6 +3,8 @@ import "@random-tools/mono/styles.css";
 import "./styles.css";
 import "./admin.css";
 
+import { openWindEditor } from "./wind-editor";
+import { windCard } from "./wind-card";
 import { openPlaceEditor } from "./place-editor";
 import { directionGuide } from "./direction-guide";
 import { curveSvg, graphView } from "./curve-graph";
@@ -12,6 +14,7 @@ import { maximumScenario, renderSimulation, renderSimulatorInputs } from "./lab-
 
 import { newPlace, placeId, configurationDocument } from "../shared/places";
 import { parseProfile, boundedNumber } from "../shared/config-validation";
+import { usesWindSurface, setWindMode } from "../shared/wind-surface";
 import { curveMaximum } from "../shared/curves";
 import { evaluateProfile } from "../shared/point-scoring";
 import { makeCurve, defaultScoring } from "../shared/scoring-config";
@@ -92,15 +95,27 @@ const replaceCurve = (curve: PointCurve) => {
 
 const renderVariables = () => {
   const score = evaluateProfile(profile(), scenario);
+  const surfaceMode = usesWindSurface(profile());
+  element("wind-mode")
+    .querySelectorAll<HTMLInputElement>("input[name=wind-mode]")
+    .forEach((input) => {
+      input.checked = input.value === (surfaceMode ? "surface" : "independent");
+    });
+  element("wind-mode-note").textContent = surfaceMode
+    ? "Speed and direction are inputs to one surface score. Separate wind curves are inactive. Gusts are scored separately."
+    : "Speed and direction each have their own curve. The 3D surface is inactive; saved surface edits are retained.";
   element("maximum-total").textContent = `${number(score.maxPoints)} pts available`;
-  element("variable-list").innerHTML = (Object.keys(variables) as VariableId[])
-    .map((key) => {
-      const curve = currentCurve(key);
-      const definition = variables[key];
-      const factor = score.factors.find((item) => item.variable === key);
-      return `<article class="variable-card${curve.enabled ? "" : " is-disabled"}"><label class="variable-toggle"><input type="checkbox" data-enable="${key}" aria-label="Include ${escape(definition.label)}" ${curve.enabled ? "checked" : ""}/></label><button type="button" class="variable-open" data-open-curve="${key}"><span class="variable-copy"><strong>${escape(definition.label)}</strong><small>${curve.enabled ? `${number(factor?.points)} earned / ${number(curveMaximum(curve))} maximum pts` : "Disabled · click to explore"}</small></span>${curveSvg(curve, graphView(curve, true), { mini: true, offshore: spot().offshoreFromDegrees })}<span class="variable-chevron" aria-hidden="true">↗</span></button></article>`;
-    })
-    .join("");
+  element("variable-list").innerHTML =
+    windCard(profile(), scenario) +
+    (Object.keys(variables) as VariableId[])
+      .filter((key) => !usesWindSurface(profile()) || !["windSpeed", "windDirection"].includes(key))
+      .map((key) => {
+        const curve = currentCurve(key);
+        const definition = variables[key];
+        const factor = score.factors.find((item) => item.variable === key);
+        return `<article class="variable-card${curve.enabled ? "" : " is-disabled"}"><label class="variable-toggle"><input type="checkbox" data-enable="${key}" aria-label="Include ${escape(definition.label)}" ${curve.enabled ? "checked" : ""}/></label><button type="button" class="variable-open" data-open-curve="${key}"><span class="variable-copy"><strong>${escape(definition.label)}</strong><small>${curve.enabled ? `${number(factor?.points)} earned / ${number(curveMaximum(curve))} maximum pts` : "Disabled · click to explore"}</small></span>${curveSvg(curve, graphView(curve, true), { mini: true, offshore: spot().offshoreFromDegrees })}<span class="variable-chevron" aria-hidden="true">↗</span></button></article>`;
+      })
+      .join("");
 };
 
 const render = () => {
@@ -134,7 +149,10 @@ const editCurve = (key: VariableId) => {
     input: scenario[key],
     preview: (curve) =>
       evaluateProfile(
-        { curves: [...profile().curves.filter((item) => item.variable !== key), curve] },
+        {
+          ...profile(),
+          curves: [...profile().curves.filter((item) => item.variable !== key), curve],
+        },
         scenario,
       ),
     apply: (curve) => {
@@ -145,6 +163,22 @@ const editCurve = (key: VariableId) => {
     },
   });
 };
+
+const editWind = () =>
+  openWindEditor({
+    profile: profile(),
+    activity,
+    context: `${spot().name} / ${activityNames[activity]}`,
+    offshore: spot().offshoreFromDegrees,
+    inputs: scenario,
+    apply: (surface, inputs, mode) => {
+      profile().windSurface = surface;
+      profile().windMode = mode;
+      scenario = inputs;
+      markDirty();
+      render();
+    },
+  });
 
 const documentValue = () => configurationDocument(drafts);
 
@@ -313,7 +347,7 @@ const chooseImport = async () => {
       throw new Error("Choose a JSON configuration object.");
     const document = imported as Record<string, unknown>;
     element("import-summary").textContent =
-      `${file.name} · ${number(file.size / 1024)} KB · ${document.schemaVersion === 3 ? "Version 3 places & curves" : "Earlier configuration; it will be migrated"}`;
+      `${file.name} · ${number(file.size / 1024)} KB · ${document.schemaVersion === 4 ? "Version 4 places, curves & surfaces" : "Earlier configuration; it will be migrated"}`;
     element("import-error").textContent = "";
     element<HTMLDialogElement>("import-dialog").showModal();
   } catch (error) {
@@ -369,14 +403,33 @@ const changeCalibration = () => {
 
 const openFromEvent = (event: MouseEvent) => {
   const target =
-    event.target instanceof Element ? event.target.closest<HTMLElement>("[data-open-curve]") : null;
-  if (target?.dataset.openCurve) editCurve(target.dataset.openCurve as VariableId);
+    event.target instanceof Element
+      ? event.target.closest<HTMLElement>("[data-open-curve], [data-open-wind]")
+      : null;
+  if (target && (Object.hasOwn(target.dataset, "openWind") || target.dataset.openCurve === "wind"))
+    editWind();
+  else if (target?.dataset.openCurve) editCurve(target.dataset.openCurve as VariableId);
 };
 
+element("wind-mode").addEventListener("change", (event) => {
+  const input = event.target as HTMLInputElement;
+  if (input.value !== "surface" && input.value !== "independent") return;
+  spot().scoring[activity] = setWindMode(profile(), input.value);
+  markDirty();
+  renderVariables();
+  renderSimulation(profile(), scenario);
+});
 for (const id of ["variable-list", "sim-breakdown"])
   element(id).addEventListener("click", openFromEvent);
 element("variable-list").addEventListener("change", (event) => {
   const input = event.target as HTMLInputElement;
+  if (input.dataset.enableWind && profile().windSurface) {
+    profile().windSurface!.enabled = input.checked;
+    markDirty();
+    renderVariables();
+    renderSimulation(profile(), scenario);
+    return;
+  }
   if (!input.dataset.enable) return;
   const curve = structuredClone(currentCurve(input.dataset.enable as VariableId));
   curve.enabled = input.checked;

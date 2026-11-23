@@ -1,13 +1,17 @@
 import { variables } from "./variables.js";
 import type { CurvePoint, PointCurve } from "./types.js";
 
-export const drawCurveSection = (base: PointCurve, stroke: CurvePoint[]): PointCurve => {
+export const drawCurveSection = (
+  base: PointCurve,
+  stroke: CurvePoint[],
+  pointLimit = 10000,
+): PointCurve => {
   const definition = variables[base.variable];
   const samples = [
     ...new Map(
       stroke.map((point) => [
         Number(Math.max(definition.min, Math.min(definition.max, point.x)).toFixed(3)),
-        Number(Math.max(-10000, Math.min(10000, point.y)).toFixed(2)),
+        Number(Math.max(-pointLimit, Math.min(pointLimit, point.y)).toFixed(2)),
       ]),
     ).entries(),
   ].sort((a, b) => a[0] - b[0]);

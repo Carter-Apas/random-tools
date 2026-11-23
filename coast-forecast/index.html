@@ -127,6 +127,32 @@
               ><span>11pm</span>
             </div>
           </section>
+          <section class="coastal-directions" aria-labelledby="coast-directions-title">
+            <div class="coast-directions-heading">
+              <div>
+                <h3 id="coast-directions-title">
+                  Wind & swell at <span id="coast-hour">6am</span>
+                </h3>
+                <p id="coast-location"></p>
+              </div>
+              <span class="coast-directions-hint">Follows the timeline</span>
+            </div>
+            <div class="coast-directions-layout">
+              <div class="coast-map-frame">
+                <div
+                  id="coast-map"
+                  role="region"
+                  aria-label="Coastal wind and swell directions"
+                ></div>
+                <span class="coast-north" aria-hidden="true">N ↑</span>
+              </div>
+              <div class="coast-directions-detail">
+                <dl id="coast-directions-values"></dl>
+                <p id="coast-shore-note"></p>
+                <p id="coast-map-status" role="status"></p>
+              </div>
+            </div>
+          </section>
           <section class="forecast-board" aria-label="Hourly forecast charts" id="charts"></section>
           <p class="chart-help">Select a chart or move the time slider to explore an hour.</p>
           <details class="hourly-details">
@@ -177,6 +203,20 @@
               Forecasts describe modelled conditions. Check local conditions before surfing, boating
               or rock fishing.
             </p>
+          </section>
+          <section class="forecast-models" aria-labelledby="models-title">
+            <h3 id="models-title">Forecast models & sources</h3>
+            <div id="model-details"></div>
+            <p>
+              Best Match lets Open-Meteo select the underlying models. These responses don’t
+              identify the exact model for each variable and hour. Forecasts are cached for one
+              hour; the retrieval time below is not the model’s run time.
+            </p>
+            <details>
+              <summary>Sampling coordinates</summary>
+              <div id="sampling-details"></div>
+              <p>Grid coordinates are those reported by the provider for each response.</p>
+            </details>
           </section>
           <div class="source-row">
             <span id="updated"></span

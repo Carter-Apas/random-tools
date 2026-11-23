@@ -41,6 +41,23 @@ flags, and 6am/noon/6pm wind and scores. `spot` is required. All unavailable day
 produce HTTP 503 with the seven dated entries; partial results use HTTP 200.
 The existing `/api/v1/forecast` response remains the detailed single-day API.
 
+## Wind timeline and coastal directions
+
+The main wind chart includes direction arrows with sustained wind and gust values
+in km/h beneath the bars. Arrows point where the wind travels; the bearing labels
+describe where it comes FROM. The selected hour is always shown, with less dense
+labels on narrow screens. Click a bar or arrow, or use the time slider, to select
+an hour.
+
+**Wind & swell** shows an OpenStreetMap view of the selected place, the saved
+shoreline reference, and incoming wind, primary-swell and secondary-swell arrows.
+The readouts and arrows follow the selected hour, date and location. The map is
+north-up; the dashed shore line uses the location's admin orientation. Missing
+directions are omitted, without inventing an arrow. Map tiles load near the
+viewport and are reused while moving through the timeline. This display uses the
+forecast data already loaded and does not make additional weather/marine API
+requests. If tiles cannot load, the directional overlays and readouts still work.
+
 ## Forecast lab
 
 Visit `/admin` and choose a password on first use. Alternatively set
@@ -70,8 +87,8 @@ the gold sea handle can also be dragged to rotate it. The saved offshore bearing
 represents the land side: wind FROM that direction is offshore. Swell FROM the
 opposite, sea side approaches the shore. The map, place summary, and all three
 direction curve editors show matching land/sea/shore-parallel guides. These are
-orientation references; existing scoring curves remain at absolute bearings.
-New places start with curves aligned to their chosen shore reference.
+orientation references; existing curves and wind-surface slices remain at absolute bearings.
+New places start with curves and wind surfaces aligned to their chosen shore reference.
 
 Tiles load directly from OpenStreetMap in the browser only while the map is open,
 with attribution and an origin referrer. No tile prefetching, geocoder, account or
@@ -93,6 +110,35 @@ to edit its graph in the animated dialog:
 - Use keyboard arrows on a focused point; Shift moves faster. Numeric controls
   are also available. A curve can contain 2–256 points.
 
+Open **Wind speed × direction** for the 3D wind editor. The view is radial: FROM bearing goes around the compass, speed increases outward from calm at the centre, and signed points set height. Every stored slice is drawn at once; gold highlights the selected bearing. Drag the canvas or use arrow keys to rotate; wheel,
++/− zoom and 0 resets. Camera buttons and a reset control are also available.
+The preview runs locally without WebGL or another map/API dependency.
+
+- Select a direction with the compass, bearing input, slider or stored-slice list.
+- **All direction slices** compares every speed curve on one chart, with a matching colour legend. Select any bearing in that legend to edit it.
+- A stored direction exposes its ordinary 2D wind-speed curve, with draggable
+  points, freehand drawing, interpolation, numeric values and undo/redo.
+- Between stored directions, the selected line is a blended preview. **Add slice
+  here** makes that bearing independently editable. You can keep 2–36 slices.
+- Choose smooth, linear or stepped interpolation between directions; speed curves
+  have their own interpolation. Directions join continuously through north when
+  using smooth/linear blending. Stepped blending intentionally has jumps.
+- Adjust simulated speed to move the marker and see wind points plus the complete
+  activity score. **Undo surface** / **Redo** also cover slice/preset changes.
+- **Offshore / onshore preset** starts a direction-aware model for the current
+  activity and shoreline. Its surf example awards +8 wind points at 40 km/h
+  offshore versus −200 onshore. Fishing presets have their own penalties.
+- **From independent curves** seeds a surface from the stored speed/direction
+  curves, retaining their extrema. Review the blended preview before applying,
+  particularly for detailed smooth direction curves.
+- Surface points allow −20,000 to +20,000; the range also accommodates combinations
+  of two older curves. A 3D preview samples the function; scoring uses full curves.
+
+**Use this surface** updates the current draft and simulated wind inputs. **Cancel**
+discards the editor's local changes. Each activity/place has its own surface.
+New places/reset defaults use surfaces. Older saved profiles retain independent
+wind curves until a surface is explicitly applied. The **Wind scoring** selector makes the two modes mutually exclusive: either the surface or separate speed/direction scoring curves are shown and counted. Switching modes retains both sets of edits, including across save/restart. The speed and direction fields in the simulator remain necessary inputs to either model. Gusts remain an independent curve.
+
 **Use this curve** applies it to your unsaved draft. **Save configuration** saves
 all places and activities together, including map references and sampling points. Switching places/activities retains drafts;
 leaving the page with unsaved changes prompts the browser. Reset affects only the
@@ -100,7 +146,7 @@ selected activity and remains a draft until saved.
 
 The simulator accepts independent fake swell/weather inputs and shows earned
 points, the available maximum, each contribution and the resulting score. Its
-**Curve maxima** preset sets every enabled input at its own mathematical maximum;
+**Curve maxima** preset sets each independent input to its maximum and wind speed/direction jointly to the surface maximum;
 **Wrong wind** demonstrates penalties, and **Calm fishing** provides a calmer
 scenario. **Load tomorrow** copies the forecast’s 6am conditions without changing
 the forecast. The browser and backend use the same interpolation/scoring module.
@@ -114,13 +160,13 @@ unchanged. Configuration contains data only; executable expressions are not used
 ## Point normalization
 
 ```text
-maximum = sum(maximum of each enabled curve)
-earned = sum(each enabled curve evaluated at its input)
+maximum = sum(maximum of each enabled curve or surface)
+earned = sum(each enabled curve or surface evaluated at its inputs)
 score = clamp(100 × earned / maximum, 0, 100)
 ```
 
 The final score is rounded to an integer. There are no separate percentage
-weights or hidden threshold caps. A curve’s positive maximum naturally sets its
+weights or hidden threshold caps. A function’s positive maximum naturally sets its
 influence. Negative values subtract from the raw total before normalization. An
 entirely negative curve contributes its actual maximum to the denominator; each
 activity must have a strictly positive combined maximum to save.
@@ -133,9 +179,21 @@ neither points nor maxima. Missing input for an enabled curve produces an
 unavailable score, not zero. User-defined curves determine all penalties; weather
 codes, direction and height have no additional hard-coded score caps.
 
+`windMode` selects **surface** or **independent** scoring. Only the selected mode
+contributes points or maxima. In surface mode, standalone `windSpeed` and
+`windDirection` curves are inactive, even when the surface itself is disabled.
+Independent mode ignores the retained surface and uses the two separate curves.
+When `windMode` is omitted, older documents infer surface mode from the presence
+of `windSurface`, otherwise independent mode. Surface mode requires a surface.
+
+The surface uses its **highest point across all slices once**, rather than adding
+slice maxima. Shape-preserving interpolation in both dimensions ensures no
+intermediate value exceeds that maximum. Missing speed or direction makes an
+enabled wind surface unavailable; disabling it excludes its points and maximum.
+
 Each hourly score contains `value`, `label`, signed `points`, `maxPoints`, and
-`factors` containing the input, earned points and maximum for each enabled curve.
-The scoring version is **`curves-v2`**. Labels are excellent ≥80, good ≥60,
+`factors` containing earned points and the maximum for each contribution. The joint wind factor has `variable: "wind"` and `inputs: { windSpeed, windDirection }`.
+The scoring version is **`surfaces-v1`**. Labels are excellent ≥80, good ≥60,
 fair ≥40, poor below 40. Combined fishing is the lower of rock and inshore scores.
 `summary.scores` averages scored daylight hours and reports `scoredHours`,
 `daylightHours` and `bestHour`; hourly scores remain available at night.
@@ -182,11 +240,11 @@ liveness without depending on upstream providers.
 
 ## JSON format and migration
 
-Exported and saved files have `schemaVersion: 3`, with `spots` keyed by stable
+Exported and saved files have `schemaVersion: 4`, with `spots` keyed by stable
 place ID. Each place contains its `name`, `coast`, `note`, `latitude`, `longitude`,
 `marineLatitude`, `marineLongitude`, `surfHeightFactor`, `offshoreFromDegrees`,
 `calibrated`, and `scoring` with `surfing`, `rockFishing`, `inshoreFishing`. Every
-activity contains a `curves` array. Each curve has:
+activity contains a `curves` array and optional `windSurface` / `windMode`. A surface contains `enabled`, direction `interpolation`, and sorted `slices` of `{ direction, curve }`. Slice curves have `variable: "windSpeed"`, `enabled: true`, and ordinary interpolation/points. Bearings are unique in [0°, 360°); each slice has 2–256 points within 0–100 km/h. Each ordinary curve has:
 
 ```json
 {
@@ -208,19 +266,19 @@ air/water temperature and WMO weather code. Curves must have increasing, unique
 input values within their variable’s domain. There can be one curve per variable.
 `GET /api/openapi.json` documents the complete schema.
 
-Version 2 curve configurations and unversioned threshold settings are converted
-on startup. Their original file is kept as `settings.json.v2.bak` or
-`settings.json.v1.bak`, and the new file is written in version 3 format. Version 2
-curve values and both original locations are preserved exactly.
-Calibration and threshold intent are retained through curve control points; the
-old percentage formula is intentionally replaced. Import also accepts version 2 and legacy
-threshold files. Invalid versions or values are rejected.
+Version 2/3 curve configurations and unversioned threshold settings are converted
+on startup. Their original file is kept as `settings.json.v2.bak`, `.v3.bak` or
+`.v1.bak`, and the new file is written in version 4 format. Saved version 2/3
+curves retain their original independent scoring until a surface is applied in
+the editor. Legacy threshold intent is retained through curve control points;
+the old percentage formula is replaced. Import accepts these earlier formats.
+Invalid configurations leave the current configuration unchanged.
 
 `SPOT_CONFIG_FILE` can still provide startup overrides for calibration, land/sea
 sampling coordinates and scoring curves. Reset uses these startup defaults;
 saved admin configuration takes precedence. The response exposes the actual
 weather/marine model grid coordinates. Changing the offshore bearing changes
-wind-orientation labels, while scoring direction curves remain absolute bearings.
+wind-orientation labels, while scoring direction curves and surface slices remain absolute bearings.
 
 ## API
 
@@ -257,7 +315,7 @@ Authenticated admin endpoints:
 - `POST /api/admin/setup`, `POST /api/admin/login`: JSON `{ "password": "…" }`.
 - `POST /api/admin/logout`: invalidate this session.
 - `GET /api/admin/settings`: current configuration and reset defaults.
-- `GET /api/admin/config`: export all configured places and curves as version 3 JSON without credentials.
+- `GET /api/admin/config`: export all configured places and curves as version 4 JSON without credentials.
 - `PUT /api/admin/config`: validate and atomically import the complete document.
 - `PUT /api/admin/spots/{spot}`: name, sampling coordinates, orientation, calibration or activity curves. Add/remove places by replacing the complete configuration.
 - `DELETE /api/admin/spots/{spot}`: reset one place to startup defaults.
@@ -267,6 +325,16 @@ All admin configuration reads/writes require the session cookie, including the
 routes remain accessible without an admin session.
 
 ## Forecast source and caching
+
+Wind and weather currently use Open-Meteo's automatic **Best Match** selection
+through `/v1/forecast`; waves and water temperature use the marine API's automatic
+Best Match selection. Neither request pins a specific model such as GFS or ECMWF.
+The forecast response exposes `source.models.weather` and `source.models.marine`,
+each with `selection: "best_match"` and `resolvedModel: null`: the upstream responses
+do not identify the exact contributing models per variable/hour. The main page's
+**Forecast models & sources** section shows this policy, documentation links,
+requested sampling coordinates and provider-reported grid coordinates. Retrieval
+time is the cache fetch time, not a model run time.
 
 [Open-Meteo weather](https://open-meteo.com/en/docs) and
 [marine](https://open-meteo.com/en/docs/marine-weather-api) data is cached in server
@@ -305,7 +373,7 @@ npm run build
 npm test
 ```
 
-Tests cover curve maxima and no overshoot, negative cancellation, normalization,
+Tests cover curve/surface maxima and no overshoot, circular direction blending, wind interaction, negative cancellation, normalization,
 missing inputs, wrapping directions, forecast/simulator agreement, JSON round
 trips, atomic failures, legacy migration, password setup/login/logout/expiry,
 persistence, custom locations/migration/shoreline geometry, NZ dates/DST, seven-day batching, shared cache/coalescing, per-date sun times, midnight rollover, and partial provider availability.

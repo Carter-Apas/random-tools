@@ -1,3 +1,4 @@
+import { windTimeline } from "./wind-timeline";
 import { escape, hourLabel, number } from "./format";
 
 import type { ForecastHour } from "../shared/types";
@@ -52,6 +53,7 @@ export const chart = (
   label: string,
   minimum: number,
   maximum?: number,
+  showTicks = true,
 ): string => {
   const values = series
     .flatMap((item) => item.values)
@@ -64,15 +66,17 @@ export const chart = (
       return `<line x1="${left}" x2="${width - right}" y1="${y}" y2="${y}" class="grid-line"/><text x="${left - 9}" y="${y + 4}" text-anchor="end">${number(max * fraction)}</text>`;
     })
     .join("");
-  const ticks = hours
-    .map((hour, index) =>
-      [0, 6, 12, 18, hours.length - 1].includes(index)
-        ? `<text x="${x(index, hours.length)}" y="${height - 6}" text-anchor="middle">${hourLabel(hour.localTime)}</text>`
-        : "",
-    )
-    .join("");
+  const ticks = !showTicks
+    ? ""
+    : hours
+        .map((hour, index) =>
+          [0, 6, 12, 18, hours.length - 1].includes(index)
+            ? `<text x="${x(index, hours.length)}" y="${height - 6}" text-anchor="middle">${hourLabel(hour.localTime)}</text>`
+            : "",
+        )
+        .join("");
   const selectedX = x(selected, hours.length);
-  return `<svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" class="forecast-chart" role="img" aria-label="${escape(label)}. Use the time slider for hourly values.">${grid}${series.map((item) => drawSeries(item, max, hours.length)).join("")}<line x1="${selectedX}" x2="${selectedX}" y1="4" y2="${height - bottom}" class="selection-line"/><circle cx="${selectedX}" cy="5" r="3" class="selection-dot"/>${ticks}</svg>`;
+  return `<svg data-hour-chart viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" class="forecast-chart" role="img" aria-label="${escape(label)}. Use the time slider for hourly values.">${grid}${series.map((item) => drawSeries(item, max, hours.length)).join("")}<line x1="${selectedX}" x2="${selectedX}" y1="4" y2="${height - bottom}" class="selection-line"/><circle cx="${selectedX}" cy="5" r="3" class="selection-dot"/>${ticks}</svg>`;
 };
 
 const panel = (
@@ -158,26 +162,31 @@ export const renderCharts = (
       "Wind",
       number(hour.wind.speedKmh, 0),
       "km/h",
-      `${number(hour.wind.gustKmh, 0)} km/h gusts · ${escape(hour.wind.from)}<br>${escape(hour.wind.relative ?? "Orientation unavailable")}<span class="legend"><i style="background:${wind}"></i>Wind <i class="gust-key"></i>Gusts</span>`,
-      chart(
-        hours,
-        selected,
-        [
-          {
-            values: hours.map((item) => item.wind.gustKmh),
-            color: "var(--mono-subtle)",
-            label: "Wind gust (km/h)",
-          },
-          {
-            values: hours.map((item) => item.wind.speedKmh),
-            color: wind,
-            label: "Wind (km/h)",
-            bars: true,
-          },
-        ],
-        "Wind and gust speed in kilometres per hour",
-        10,
-      ),
+      `${number(hour.wind.gustKmh, 0)} km/h gusts · ${escape(hour.wind.from)}<br>${escape(hour.wind.relative ?? "Orientation unavailable")}<br>Arrows: travel direction<br>Numbers: wind / gusts<span class="legend"><i style="background:${wind}"></i>Wind <i class="gust-key"></i>Gusts</span>`,
+      '<div class="wind-chart-stack">' +
+        chart(
+          hours,
+          selected,
+          [
+            {
+              values: hours.map((item) => item.wind.gustKmh),
+              color: "var(--mono-subtle)",
+              label: "Wind gust (km/h)",
+            },
+            {
+              values: hours.map((item) => item.wind.speedKmh),
+              color: wind,
+              label: "Wind (km/h)",
+              bars: true,
+            },
+          ],
+          "Wind and gust speed in kilometres per hour",
+          10,
+          undefined,
+          false,
+        ) +
+        windTimeline(hours, selected, width, left, right) +
+        "</div>",
       wind,
     ),
     panel(
@@ -231,7 +240,7 @@ export const renderCharts = (
 
 export const chartHour = (event: MouseEvent, count: number): number | null => {
   if (!(event.target instanceof Element)) return null;
-  const svg = event.target.closest("svg.forecast-chart");
+  const svg = event.target.closest("svg.forecast-chart, svg.wind-direction-strip");
   if (!svg) return null;
   const bounds = svg.getBoundingClientRect();
   const relative = (((event.clientX - bounds.left) / bounds.width) * width - left) / plot;

@@ -34,7 +34,7 @@ export const defaultPlace = (spot: Spot): Spot => ({
 });
 
 export const configurationDocument = (spots: Spot[]): ConfigurationDocument => ({
-  schemaVersion: 3,
+  schemaVersion: 4,
   spots: Object.fromEntries(spots.map(({ id, ...configuration }) => [id, configuration])),
 });
 

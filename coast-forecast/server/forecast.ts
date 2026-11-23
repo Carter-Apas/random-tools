@@ -47,6 +47,10 @@ export const createForecastService = ({
         weather: "https://open-meteo.com/en/docs",
         marine: "https://open-meteo.com/en/docs/marine-weather-api",
         licence: "CC BY 4.0",
+        models: {
+          weather: { selection: "best_match", resolvedModel: null },
+          marine: { selection: "best_match", resolvedModel: null },
+        },
         modelGrid: {
           weather: grid(raw.weather),
           marine: grid(raw.marine),
@@ -67,8 +71,9 @@ export const createForecastService = ({
         note: "A simple local proxy, not a nearshore surf model. Raw swell and waves are preserved. No tide, bathymetry or shelter modelling.",
       },
       scoring: {
-        version: "curves-v2",
-        scale: "0–100; earned points / sum of enabled curve maxima × 100, clamped to 0–100",
+        version: "surfaces-v1",
+        scale:
+          "0–100; earned points / sum of enabled curve and surface maxima × 100, clamped to 0–100",
         note: "Personal conditions heuristic, not a catch prediction or safety rating. Fishing combines rock and inshore boat fishing using the lower score. Daily scores average available daylight hours. Tides, access, local hazards and species are not modelled.",
       },
       sunrise: dailyTime(raw.weather, "sunrise", date),

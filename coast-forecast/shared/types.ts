@@ -46,6 +46,19 @@ export interface PointCurve {
 
 export interface PointProfile {
   curves: PointCurve[];
+  windSurface?: WindSurface;
+  windMode?: "surface" | "independent";
+}
+
+export interface WindSlice {
+  direction: number;
+  curve: PointCurve;
+}
+
+export interface WindSurface {
+  enabled: boolean;
+  interpolation: "linear" | "smooth" | "step";
+  slices: WindSlice[];
 }
 
 export type ScoringConfig = Record<ProfileActivity, PointProfile>;
@@ -55,7 +68,7 @@ export type Scenario = Record<VariableId, number | null>;
 export type SpotConfiguration = Omit<Spot, "id">;
 
 export interface ConfigurationDocument {
-  schemaVersion: 3;
+  schemaVersion: 4;
   spots: Record<string, SpotConfiguration>;
 }
 
@@ -67,11 +80,12 @@ export interface ConditionScore {
   points: number | null;
   maxPoints: number;
   factors: {
-    variable: VariableId;
+    variable: VariableId | "wind";
     name: string;
     input: number | null;
     points: number | null;
     maxPoints: number;
+    inputs?: { windSpeed: number | null; windDirection: number | null };
   }[];
   reasons: string[];
 }
@@ -150,6 +164,7 @@ export interface Forecast {
     weather: string;
     marine: string;
     licence: string;
+    models: Record<"weather" | "marine", { selection: "best_match"; resolvedModel: string | null }>;
     modelGrid: {
       weather: { latitude: number; longitude: number } | null;
       marine: { latitude: number; longitude: number } | null;

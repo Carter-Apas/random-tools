@@ -85,11 +85,23 @@
             <section class="lab-library" aria-labelledby="variables-title">
               <div class="lab-section-heading">
                 <div>
-                  <h2 id="variables-title">Points curves</h2>
-                  <p>Open a variable to shape its contribution.</p>
+                  <h2 id="variables-title">Curves & surfaces</h2>
+                  <p>Open a scoring function to shape its contribution.</p>
                 </div>
                 <span id="maximum-total"></span>
               </div>
+              <fieldset id="wind-mode" class="wind-mode-selector">
+                <legend>Wind scoring</legend>
+                <label
+                  ><input type="radio" name="wind-mode" value="surface" />Speed × direction
+                  surface</label
+                >
+                <label
+                  ><input type="radio" name="wind-mode" value="independent" />Separate speed &
+                  direction curves</label
+                >
+                <p id="wind-mode-note"></p>
+              </fieldset>
               <div id="variable-list" class="variable-list"></div>
               <details class="lab-calibration">
                 <summary>Place calibration</summary>
@@ -168,10 +180,12 @@
           <details class="lab-method">
             <summary>How the point model works</summary>
             <p>
-              Each enabled curve turns one input into signed points. We add the earned points,
-              divide by the sum of every enabled curve’s maximum, then multiply by 100 and clamp the
-              result to 0–100. A curve with a larger positive maximum has more influence. Negative
-              points cancel positive ones; a large negative penalty can make the whole day a zero.
+              Each enabled curve or surface turns its inputs into signed points. We add the earned
+              points, divide by the sum of every enabled curve or surface maximum, then multiply by
+              100 and clamp the result to 0–100. A function with a larger positive maximum has more
+              influence. Negative points cancel positive ones; a large negative penalty can make the
+              whole day a zero. A wind surface contributes its highest point once and replaces
+              separate speed/direction points.
             </p>
             <p>
               Smooth curves stay inside their control-point values, so the displayed maximum is the
@@ -263,6 +277,196 @@
         ><button class="mono-button mono-button--primary" id="apply-curve" type="button">
           Use this curve
         </button>
+      </div>
+    </dialog>
+    <dialog id="wind-editor" class="mono-dialog wind-dialog" aria-labelledby="wind-title">
+      <div class="curve-dialog-head">
+        <div>
+          <p id="wind-context" class="place-eyebrow"></p>
+          <h2 id="wind-title">Wind, in three dimensions.</h2>
+        </div>
+        <button
+          type="button"
+          id="close-wind"
+          class="mono-button mono-button--sm"
+          aria-label="Close wind surface editor"
+        >
+          Close
+        </button>
+      </div>
+      <p class="wind-intro">
+        Direction goes around the compass, speed increases outward, and height shows points. Every
+        stored slice is drawn; gold highlights the selected direction.
+      </p>
+      <div class="wind-top-controls">
+        <label class="admin-check"
+          ><input id="wind-enabled" type="checkbox" />Include wind surface in the score</label
+        >
+        <div>
+          <button type="button" id="wind-default" class="mono-button mono-button--sm">
+            Offshore / onshore preset</button
+          ><button type="button" id="wind-from-curves" class="mono-button mono-button--sm">
+            From independent curves</button
+          ><button type="button" id="wind-undo" class="mono-button mono-button--sm">
+            Undo surface</button
+          ><button type="button" id="wind-redo" class="mono-button mono-button--sm">Redo</button>
+        </div>
+      </div>
+      <div class="wind-workspace">
+        <section class="wind-scene-panel" aria-label="Three-dimensional scoring preview">
+          <div class="wind-scene-toolbar">
+            <span
+              ><i class="wind-positive"></i>Positive points <i class="wind-negative"></i>Negative
+              penalties · all slices visible</span
+            >
+            <div>
+              <button
+                type="button"
+                class="mono-button mono-button--sm"
+                id="wind-rotate-left"
+                aria-label="Rotate surface left"
+              >
+                ↶</button
+              ><button
+                type="button"
+                class="mono-button mono-button--sm"
+                id="wind-rotate-right"
+                aria-label="Rotate surface right"
+              >
+                ↷</button
+              ><button type="button" class="mono-button mono-button--sm" id="wind-reset-view">
+                Reset view
+              </button>
+            </div>
+          </div>
+          <canvas
+            id="wind-scene"
+            class="wind-scene"
+            role="img"
+            tabindex="0"
+            aria-label="Interactive radial 3D wind scoring surface"
+            aria-describedby="wind-scene-help"
+            >Use the direction slices and numeric controls below to edit wind scores.</canvas
+          >
+          <p id="wind-scene-help" class="wind-help">
+            Drag to rotate · scroll or +/− to zoom · arrow keys rotate · 0 resets. Preview is
+            sampled; scores use the full curves.
+          </p>
+        </section>
+        <aside class="wind-direction-panel" aria-label="Select a wind direction">
+          <div
+            id="wind-dial"
+            class="wind-dial"
+            role="slider"
+            tabindex="0"
+            aria-label="Wind direction from"
+            aria-valuemin="0"
+            aria-valuemax="359"
+            aria-valuenow="90"
+          ></div>
+          <div class="wind-bearing-fields">
+            <label
+              >Direction from (°)<input
+                id="wind-direction"
+                class="mono-input"
+                type="number"
+                min="0"
+                max="359"
+                step="1" /></label
+            ><label>Stored slice<select id="wind-slices" class="mono-input"></select></label>
+          </div>
+          <input
+            id="wind-bearing"
+            class="wind-bearing"
+            type="range"
+            min="0"
+            max="359"
+            step="1"
+            aria-label="Preview wind direction"
+          />
+          <div id="wind-shore-guide" class="direction-guide"></div>
+          <p class="wind-help">
+            Bearings are absolute FROM directions. 0° and 360° join. The shoreline helps identify
+            offshore and onshore.
+          </p>
+          <label class="wind-blend-label"
+            >Blend between directions<select id="wind-blending" class="mono-input">
+              <option value="smooth">Smooth</option>
+              <option value="linear">Linear</option>
+              <option value="step">Steps</option>
+            </select></label
+          >
+        </aside>
+      </div>
+      <div class="wind-simulation">
+        <div>
+          <label for="wind-speed">Simulated wind speed <span>km/h</span></label
+          ><input id="wind-speed" class="mono-input" type="number" min="0" max="100" step="any" />
+        </div>
+        <input
+          id="wind-speed-range"
+          type="range"
+          min="0"
+          max="100"
+          step="0.5"
+          aria-label="Simulated wind speed"
+        />
+        <div id="wind-result" role="status" aria-live="polite"></div>
+      </div>
+      <section class="wind-comparison-section" aria-labelledby="wind-comparison-title">
+        <div class="wind-slice-heading">
+          <div>
+            <h3 id="wind-comparison-title">All direction slices</h3>
+            <p class="wind-help">
+              Compare every speed curve together. Select a bearing below to edit its slice.
+            </p>
+          </div>
+        </div>
+        <div id="wind-slice-comparison" class="wind-slice-comparison"></div>
+        <div
+          id="wind-slice-legend"
+          class="wind-slice-legend"
+          role="group"
+          aria-label="Select a stored direction slice"
+        ></div>
+      </section>
+      <section class="wind-slice-section" aria-labelledby="wind-slice-title">
+        <div class="wind-slice-heading">
+          <div>
+            <h3 id="wind-slice-title">Direction slice</h3>
+            <p id="wind-slice-state"></p>
+          </div>
+          <div>
+            <button type="button" class="mono-button mono-button--sm" id="wind-add-slice">
+              Add slice here</button
+            ><button type="button" class="mono-button mono-button--sm" id="wind-remove-slice">
+              Remove slice
+            </button>
+          </div>
+        </div>
+        <div id="wind-blend-preview" class="curve-canvas" hidden></div>
+        <div
+          id="wind-slice-editor"
+          class="embedded-curve"
+          aria-label="Edit this direction’s wind speed curve"
+        ></div>
+      </section>
+      <p id="wind-maximum" class="wind-help"></p>
+      <p class="wind-help">
+        Wind scoring uses either this surface or separate speed/direction curves, never both. Gusts
+        remain a separate curve. Existing curves are retained so you can switch back.
+      </p>
+      <p id="wind-error" role="alert"></p>
+      <div class="place-actions">
+        <button type="button" id="wind-independent" class="mono-button">
+          Use independent wind curves
+        </button>
+        <div class="curve-dialog-actions">
+          <button type="button" id="cancel-wind" class="mono-button">Cancel</button
+          ><button type="button" id="apply-wind" class="mono-button mono-button--primary">
+            Use this surface
+          </button>
+        </div>
       </div>
     </dialog>
     <dialog id="import-dialog" class="mono-dialog import-dialog" aria-labelledby="import-title">

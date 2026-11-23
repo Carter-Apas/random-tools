@@ -50,7 +50,7 @@ test("wind classification uses FROM bearings and differs between coasts", () => 
   assert.equal(compass(240), "WSW");
 });
 
-test("provider requests use separate land/sea coordinates and explicit units", () => {
+test("provider requests use automatic models, separate land/sea coordinates and explicit units", () => {
   const marine = providerUrl("marine", piha, date);
   const weather = providerUrl("weather", piha, date);
   assert.equal(marine.searchParams.get("longitude"), "174.4");
@@ -58,6 +58,8 @@ test("provider requests use separate land/sea coordinates and explicit units", (
   assert.equal(marine.searchParams.get("cell_selection"), "sea");
   assert.equal(weather.searchParams.get("wind_speed_unit"), "kmh");
   assert.equal(weather.searchParams.get("timeformat"), "unixtime");
+  assert.equal(weather.searchParams.get("models"), null);
+  assert.equal(marine.searchParams.get("models"), null);
   assert.equal(
     providerUrl("marine", piha, date, "test-key").hostname,
     "customer-marine-api.open-meteo.com",
@@ -78,6 +80,14 @@ test("normalization preserves raw swell, unit values, midnight, zeros and daylig
   assert.equal(data.summary.lightestDaylightWind?.localTime, `${date}T08:00`);
   assert.equal(data.surfEstimate.calibrated, false);
   assert.equal(data.sunrise, `${date}T06:00`);
+  assert.deepEqual(data.source.models, {
+    weather: { selection: "best_match", resolvedModel: null },
+    marine: { selection: "best_match", resolvedModel: null },
+  });
+  assert.deepEqual(data.source.modelGrid.weather, {
+    latitude: fixture(false).latitude,
+    longitude: fixture(false).longitude,
+  });
 });
 
 test("one-hour memory cache coalesces simultaneous calls; tuning reuses raw data", async () => {
@@ -141,6 +151,8 @@ test("a missing marine provider produces nulls and a warning, without inventing 
   assert.equal(data.hours[6].estimatedSurfHeightM, null);
   assert.equal(data.summary.swellHeightM, null);
   assert.equal(data.hours[6].wind.speedKmh, 15);
+  assert.equal(data.source.modelGrid.marine, null);
+  assert.equal(data.source.models.marine.resolvedModel, null);
   assert.match(data.warnings.join(" "), /Marine forecast unavailable/);
 });
 

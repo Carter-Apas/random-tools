@@ -68,6 +68,7 @@ test("all seven days reuse raw data while curve and calibration edits recalculat
   const first = await getOutlook(piha, getForecast, now());
   const tuned = structuredClone(piha);
   tuned.surfHeightFactor = 0.5;
+  delete tuned.scoring.surfing.windSurface;
   tuned.scoring.surfing.curves = [
     {
       variable: "windSpeed",

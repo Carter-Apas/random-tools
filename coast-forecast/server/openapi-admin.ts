@@ -25,6 +25,50 @@ export const curveSchema = {
   description:
     "Ordered unique input x values in the variable domain; signed point y values. Circular direction curves join at 0 and 360 degrees with equal y. Smooth interpolation is shape-preserving: the maximum equals the highest control-point y. Outside control points, endpoint values are held.",
 };
+export const windSurfaceSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["enabled", "interpolation", "slices"],
+  description:
+    "One wind speed × FROM direction contribution. Slices wrap through north. Direction and speed interpolation are shape-preserving; the true maximum is the highest point across all slices, counted once. The windMode selects surface or independent scoring, never both; an inactive surface is retained. Without windMode, presence of windSurface selects surface scoring, including when disabled.",
+  properties: {
+    enabled: { type: "boolean" },
+    interpolation: { enum: ["smooth", "linear", "step"] },
+    slices: {
+      type: "array",
+      minItems: 2,
+      maxItems: 36,
+      description:
+        "Unique direction bearings sorted in ascending order, from 0 inclusive to 360 exclusive.",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["direction", "curve"],
+        properties: {
+          direction: { type: "number", minimum: 0, exclusiveMaximum: 360 },
+          curve: {
+            ...curveSchema,
+            properties: {
+              ...curveSchema.properties,
+              variable: { const: "windSpeed" },
+              enabled: { const: true },
+              points: {
+                ...curveSchema.properties.points,
+                items: {
+                  ...curveSchema.properties.points.items,
+                  properties: {
+                    x: { type: "number", minimum: 0, maximum: 100 },
+                    y: { type: "number", minimum: -20000, maximum: 20000 },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+};
 export const scoringSchema = {
   type: "object",
   additionalProperties: false,
@@ -36,6 +80,12 @@ export const scoringSchema = {
         required: ["curves"],
         properties: {
           curves: { type: "array", maxItems: Object.keys(variables).length, items: curveSchema },
+          windSurface: windSurfaceSchema,
+          windMode: {
+            enum: ["surface", "independent"],
+            description:
+              "Mutually exclusive scoring mode. Omitted: use surface when windSurface exists, otherwise independent curves. Surface mode requires windSurface; unused shapes are retained.",
+          },
         },
       },
     ]),
@@ -63,7 +113,7 @@ export const configurationSchema = {
   additionalProperties: false,
   required: ["schemaVersion", "spots"],
   properties: {
-    schemaVersion: { const: 3 },
+    schemaVersion: { const: 4 },
     spots: {
       type: "object",
       minProperties: 1,
@@ -157,7 +207,7 @@ export const adminPaths = {
       summary: "Export configuration JSON; excludes credentials",
       responses: {
         200: response(
-          "Version 3 places, sampling coordinates, orientation and curves",
+          "Version 4 places, sampling coordinates, curves and wind surfaces",
           configurationSchema,
         ),
         401: errorResponses[401],
@@ -168,7 +218,7 @@ export const adminPaths = {
       security,
       summary: "Atomically replace places, sampling coordinates, orientation and curves",
       description:
-        "Maximum 2 MB. Every activity must have a positive sum of enabled maxima. Version 2 configurations and legacy threshold documents can be imported and are converted to curves. No executable expressions are accepted.",
+        "Maximum 2 MB. Every activity must have a positive sum of enabled maxima. Version 2/3 configurations and legacy threshold documents can be imported and are converted to curves. No executable expressions are accepted.",
       requestBody: {
         required: true,
         content: { "application/json": { schema: configurationSchema } },
